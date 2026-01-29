@@ -1,0 +1,20 @@
+uuid: a26c5090-65c8-4461-ad0c-d42a8129312d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - paragraphs
+id: node.field_resuse_menu_and_services
+field_name: field_resuse_menu_and_services
+entity_type: node
+type: entity_reference
+settings:
+  target_type: paragraph
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

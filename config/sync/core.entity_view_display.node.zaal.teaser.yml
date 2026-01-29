@@ -84,6 +84,7 @@ hidden:
   field_prijs_per_persoon: true
   field_reference_reservations: true
   field_regels: true
+  field_resuse_menu_and_services: true
   field_room_layouts: true
   field_room_pricing_settings: true
   field_staanplaatsen: true

@@ -274,6 +274,7 @@ hidden:
   field_hourly_currency: true
   field_person_currency: true
   field_regels: true
+  field_resuse_menu_and_services: true
   field_room_layouts: true
   field_room_pricing_settings: true
   langcode: true

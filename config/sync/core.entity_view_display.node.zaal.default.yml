@@ -318,6 +318,7 @@ content:
 hidden:
   field_bedrijf_zaal: true
   field_prijs_eenheid: true
+  field_resuse_menu_and_services: true
   langcode: true
   layout_builder__layout: true
   search_api_excerpt: true

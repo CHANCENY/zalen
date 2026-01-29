@@ -21,22 +21,27 @@ class ParagraphAutocompleteMatcher extends EntityAutocompleteMatcher {
       return $matches;
     }
 
-    foreach ($matches as &$match) {
+    $list = [];
+    foreach ($matches as $k=>$match) {
       $paragraph_id = $this->extractId($match['value']);
       if (!empty($paragraph_id)) {
         $paragraph = Paragraph::load($paragraph_id);
         $symbol = '';
         if (!empty($paragraph->get('field_service_currency')->value)) {
           $symbol = Drupal::service('reservation.currencies')->getSymbol($paragraph->get('field_service_currency')->value);
+          $title = ucfirst($paragraph->get('field_is_service_or_menu')->value);
+          $label = "{$title}: {$paragraph->get('field_service_short_description')->value} {$symbol}{$paragraph->get('field_service_amount')->value} ({$paragraph_id})";
+          $matches[$k]['label'] = $label;
+          $matches[$k]['value'] = $label;
+          $list[] = [
+            'value' => $label,
+            'label' => $label,
+          ];
         }
-        $title = ucfirst($paragraph->get('field_is_service_or_menu')->value);
-        $label = "{$title}: {$paragraph->get('field_service_short_description')->value} {$symbol}{$paragraph->get('field_service_amount')->value} ({$paragraph_id})";
-        $match['label'] = $label;
-        $match['value'] = $label;
       }
     }
 
-    return $matches;
+    return !empty($list) ? $list : $matches;
   }
 
   function extractId(string $value): int {

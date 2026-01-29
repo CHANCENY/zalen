@@ -295,5 +295,6 @@ hidden:
   field_person_currency: true
   field_prijs_eenheid: true
   field_regels: true
+  field_resuse_menu_and_services: true
   promote: true
   sticky: true
