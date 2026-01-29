@@ -1,0 +1,11 @@
+uuid: 5299c726-acdb-4758-8b51-7aca5a9ce9c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.curt
+label: Curt
+description: ''
+targetEntityType: node
+cache: true

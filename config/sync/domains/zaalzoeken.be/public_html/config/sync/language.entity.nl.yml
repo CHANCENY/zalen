@@ -1,0 +1,9 @@
+uuid: 8892463e-d010-4dbc-b073-ec6e4a8e57ba
+langcode: nl
+status: true
+dependencies: {  }
+id: nl
+label: Vlaams/NL
+direction: ltr
+weight: 0
+locked: false

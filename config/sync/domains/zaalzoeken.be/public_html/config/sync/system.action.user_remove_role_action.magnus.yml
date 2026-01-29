@@ -1,0 +1,14 @@
+uuid: db968239-3d81-4d32-9454-47304f575094
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.magnus
+  module:
+    - user
+id: user_remove_role_action.magnus
+label: 'Remove the Magnus role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: magnus

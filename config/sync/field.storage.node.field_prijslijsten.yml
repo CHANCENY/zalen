@@ -1,0 +1,23 @@
+uuid: 63688aa7-2ad8-4ee2-abe7-4165be7a89b6
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_prijslijsten
+field_name: field_prijslijsten
+entity_type: node
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

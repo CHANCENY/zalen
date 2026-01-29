@@ -1,0 +1,15 @@
+/**
+ * @file
+ * Styles for AWTur's highlighted component.
+ */
+
+.has-featured-top .region-highlighted {
+  background: #f0f0f0;
+  background: rgba(30, 50, 10, 0.08);
+}
+.hylighted-status-messages{
+  margin: 0 16px;
+}
+/*.region-highlighted {
+  margin: 0 15px;
+}*/

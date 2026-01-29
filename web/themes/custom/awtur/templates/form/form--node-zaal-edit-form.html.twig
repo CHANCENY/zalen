@@ -1,0 +1,167 @@
+{# varable: {{ language_id }} choosen language in the language dropdown #}
+{# ..\web\themes\custom\awtur\templates\form\form--node-zaal-edit-form.html.twig #}
+
+{{ attach_library('awtur/form-zaal-edit') }}
+{{ attach_library('awtur/multiselect-sumoselect') }}
+
+<form{{ attributes }}>
+  <div class="zaal-form" id="zaal-form-wrapper">
+    <h1>{{ 'Edit Function Room'|t }}</h1>
+
+    {{ element.form_build_id }}
+    {{ element.form_id }}
+    {{ element.form_token }}
+
+  <fieldset class="form-section" id="zaal-language-langcode">
+    <legend>{{ 'Language of the content'|t }}</legend>
+
+    {{ element.langcode }}
+  </fieldset>
+
+    <div class="form-item--title required">
+      {{ element.title }}
+    </div>
+
+    <fieldset class="form-section" id="section-occasions">
+      <legend>{{ 'Occasions per group'|t }}</legend>
+
+      <div>
+        {{ element.field_feestgelegenheid }}
+      </div>
+      <div>
+        {{ element.field_comercielegelegenheden }}
+      </div>
+      <div>
+        {{ element.field_concertgelegenheden }}
+      </div>
+      <div>
+        {{ element.field_vergadergelegenheden }}
+      </div>
+
+    </fieldset>
+
+    <fieldset class="form-section" id="section-capacity">
+      <legend>{{ 'Capacity'|t }}</legend>
+
+      <div class="zaal-form-places">
+        <div>
+          {{ element.field_zitplaatsen }}
+        </div>
+        <div>
+          {{ element.field_staanplaatsen }}
+        </div>
+      </div>
+      <div>
+        {{ element.field_oppervlakte }}
+      </div>
+      <div class="zaal-form-occupation">
+        <div>
+          {{ element.field_bezetting_tot }}
+        </div>
+        <div>
+          {{ element.field_bezetting_van }}
+        </div>
+      </div>
+      <div>
+        {{ element.field_plattegrond }}
+      </div>
+
+
+    </fieldset>
+
+    <div class="zaal-form-layouts">
+        {{ element.field_room_layouts }}
+    </div>
+    {# new #}
+     <details style="background: #ffeb3b; padding: 10px; margin: 10px 0;">
+  <summary><strong>DEBUG: Room Layout Capacities</strong></summary>
+  <h4>Element exists: {{ element.room_layout_capacities is defined ? 'YES' : 'NO' }}</h4>
+  {% if element.room_layout_capacities is defined %}
+    <h4>Children:</h4>
+    <ul>
+      {% for key, child in element.room_layout_capacities %}
+        {% if key|first != '#' %}
+          <li>{{ key }}: {{ child['#type'] ?? 'no type' }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</details>
+
+{# Dan het echte element #}
+{% if element.room_layout_capacities %}
+<fieldset class="form-section" id="section-layout-capacities">
+  <legend>{{ 'Capacity per Room Layout'|t }}</legend>
+  <div class="zaal-form-layout-capacities">
+    {{ element.room_layout_capacities }}
+  </div>
+</fieldset>
+{% endif %}
+
+    <fieldset class="form-section" id="section-features">
+      <legend>{{ 'Comfort & Features'|t }}</legend>
+
+      <div>
+        {{ element.field_uitrusting }}
+      </div>
+      <div>
+        {{ element.field_media }}
+      </div>
+      <div>
+        {{ element.field_thema }}
+      </div>
+
+    </fieldset>
+
+    <fieldset class="form-section" id="section-image-info">
+      <legend>{{ 'Images and Description'|t }}</legend>
+
+      <div>
+        {{ element.field_foto }}
+      </div>
+      <div>
+        {{ element.body }}
+      </div>
+
+    </fieldset>
+
+    <fieldset class="form-section">
+      <legend>{{ "Unit Price & Extra Services"|t }}</legend>
+      <details>
+        <summary>{{ 'Hall prices'|t }}</summary>
+        {{ element.field_room_pricing_settings }}
+      </details>
+      <details>
+        <summary>{{ 'Extra Services'|t }}</summary>
+        {{ element.field_extra_room_services }}
+      </details>
+    </fieldset>
+
+    <fieldset class="form-section" id="section-image-info">
+      <legend>{{ 'Confirmation'|t }}</legend>
+      <div>
+        {{ element.field_confirmatie }}
+      </div>
+
+    </fieldset>
+
+    {# ================= ACTIONS ================= #}
+{#    <div>#}
+{#      {{ element.terms_of_use }}#}
+{#    </div>#}
+    <div class="form-actions" id="zaal-form-actions">
+      {{ element.actions }}
+    </div>
+    {# =============Advanced============= #}
+    {% if user.isAuthenticated() and 'administrator' in user.roles %}
+      <fieldset class="form-section" id="section-advanced-settings">
+        <legend>{{ 'Advanced settings'|t }}</legend>
+        <div class="zaal-form-advanced">
+          {{ element.advanced.group }}
+        </div>
+      </fieldset>
+    {% endif %}
+
+  {{ element.footer }}
+  </div>
+</form>

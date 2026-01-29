@@ -1,0 +1,9 @@
+uuid: 3af56cb1-b7f3-4c40-8705-f7419186a04c
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Kindvriendelijke punten'
+vid: kindvriendelijke_punten
+description: 'Faciliteiten voor kinderen'
+weight: 0
+new_revision: false

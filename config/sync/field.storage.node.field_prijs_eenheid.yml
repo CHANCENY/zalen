@@ -1,0 +1,36 @@
+uuid: 2cb4dbcd-e5ad-44b6-b1dd-d2be802b3056
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - room_tariff
+id: node.field_prijs_eenheid
+field_name: field_prijs_eenheid
+entity_type: node
+type: room_tariff
+settings:
+  default_currency: EUR
+  tariff_type:
+    per_hour: 'Hourly rate'
+    inan_day: 'Daily price'
+    i_person: 'Per person'
+    interval: 'Interval price'
+    rang_dat: 'Date range'
+    services: 'Additional services'
+  currency:
+    EUR: Euro
+    USD: 'US dollar'
+  range_type:
+    tim: 'Repeat every day'
+    day: 'Repeat every week'
+    mon: 'Repeat every month'
+    yea: 'Repeat every year'
+  default_fin_service: ECB
+module: room_tariff
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

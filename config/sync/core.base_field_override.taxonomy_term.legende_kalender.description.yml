@@ -1,0 +1,21 @@
+uuid: a8b708c8-e2e8-4f56-9853-a2f4379c4e34
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.legende_kalender
+  module:
+    - text
+id: taxonomy_term.legende_kalender.description
+field_name: description
+entity_type: taxonomy_term
+bundle: legende_kalender
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

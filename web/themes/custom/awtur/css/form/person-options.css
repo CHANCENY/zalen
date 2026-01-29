@@ -1,0 +1,135 @@
+.my-per-person-item {
+  display: flex;
+  background-color: #ffffff;
+  filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.25));
+  margin-bottom: 32px;
+  padding: 16px 0;
+}
+.my-per-person-item img.person-option-photo {
+  max-width: none !important;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 24px 16px 16px 16px;
+}
+.my-per-person-item .person-option-offer {
+  border-left: 1px solid #BD8100;
+  border-right: 1px solid #BD8100;
+  padding: 16px;
+}
+.my-per-person-item .person-option-title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.my-per-person-item h4.person-option-label {
+  font-size: clamp(0.75rem, -0.5625rem + 3vw, 1.5rem);
+  padding-bottom: 8px;
+  font-weight: 700;
+}
+.my-per-person-item .person-option-title input[type="checkbox"]:before{
+  width: 20px;
+  height: 20px;
+}
+.my-per-person-item .person-option-description {
+  color: #BD8100;
+  border-top: 1px solid #BD8100;
+  padding: 16px;
+  max-height: clamp(4.0625rem, 3.5156rem + 1.25vw, 4.375rem);
+  min-height: clamp(4.0625rem, 3.5156rem + 1.25vw, 4.375rem);
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.4s ease;
+}
+.my-per-person-item .person-option-description.expanded {
+  max-height: 9999px;
+}
+.my-per-person-item .person-option-calculate {
+  align-content: center;
+  justify-items: center;
+  margin-left: auto;
+}
+.my-per-person-item input[type="number"] {
+  border: 1px solid #5392f9;
+  border-radius: 4px;
+  background-color: #ffffff;
+  width: 130px;
+  position: relative;
+}
+.my-per-person-item .person-option-count {
+  position: relative;
+}
+.my-per-person-item span.person-option-persons {
+  color: lightgray;
+  font-size: 11px;
+  position: absolute;
+  right: 29px;
+  bottom: -7px;
+}
+.my-per-person-item span.person-option-price {
+  font-size: 36px;
+}
+.my-per-person-item .person-option-tarif {
+  position: absolute;
+  right: 50px;
+  top: 48px;
+}
+.my-per-person-item .person-option-lees-meer a {
+  display: flex;
+  justify-content: end;
+}
+.my-per-person-item .person-option-lees-meer a:hover,
+.my-per-person-item .person-option-lees-meer a:focus,
+.my-per-person-item .person-option-lees-meer a:active {
+   border-bottom: none;
+  }
+.reservation-service-count-wrapper,.reservation-overnightroom-count-wrapper {
+  display: none;
+}
+
+#edit-overnight-rooms {
+  .overnight-selector-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .reservation-overnight-room-image {
+    flex: 0 0 100px;
+    max-width: 100px;
+  }
+
+  .reservation-overnight-room-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .js-form-type-checkbox {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 600px) {
+    .overnight-selector-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .reservation-overnight-room-image {
+      margin-bottom: 1rem;
+    }
+  }
+
+}
+.reservation-overnightroom-count-wrapper {
+  .form-date {
+    margin: 10px 10px 10px 20px;
+  }
+}

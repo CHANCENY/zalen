@@ -1,0 +1,17 @@
+uuid: e84e12d3-e11e-4e80-88ed-6d84b1ff86a5
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Zaal
+type: zaal
+description: 'Aparte eenheden, verhuurbare zalen per zaal categorie.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

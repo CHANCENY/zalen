@@ -1,0 +1,9 @@
+name: Methods payment to invoice
+type: module
+description: 'Add payments methods for invoice.'
+package: Custom Reservation
+core_version_requirement: ^9.3 || ^10
+version: 0.1
+dependencies:
+  - drupal:datetime
+  - drupal:user

@@ -1,0 +1,16 @@
+name: Payment Form Field
+description: Provides a field to add payment forms to entities.
+core_version_requirement: ^9.3 || ^10
+configure: payment.payment_type
+configure_parameters:
+  bundle: payment_form
+type: module
+package: Payment
+dependencies:
+  - drupal:field
+  - payment:payment
+
+# Information added by Drupal.org packaging script on 2022-10-26
+version: '8.x-2.2'
+project: 'payment'
+datestamp: 1666817640

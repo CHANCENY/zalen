@@ -1,0 +1,20 @@
+uuid: 6176b1ca-16bf-4215-92eb-bd97f8d12c0a
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - user
+id: user.field_vip_abonnement_vervaldatum
+field_name: field_vip_abonnement_vervaldatum
+entity_type: user
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

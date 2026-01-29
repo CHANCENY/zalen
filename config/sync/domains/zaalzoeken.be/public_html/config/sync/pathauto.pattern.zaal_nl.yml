@@ -1,0 +1,33 @@
+uuid: ff6f3bc3-2635-47a1-8dbb-0b7a2d0e2248
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: zaal_nl
+label: 'Zaal NL'
+type: 'canonical_entities:node'
+pattern: '/zaal/[node:title]'
+selection_criteria:
+  a18545cc-8dcb-4089-9a3b-6c4c73485989:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: a18545cc-8dcb-4089-9a3b-6c4c73485989
+    context_mapping:
+      node: node
+    bundles:
+      zaal: zaal
+  82ba9f7e-8455-4338-9a07-6dcab28e6ca7:
+    id: language
+    negate: false
+    uuid: 82ba9f7e-8455-4338-9a07-6dcab28e6ca7
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      nl: nl
+selection_logic: and
+weight: -10
+relationships:
+  'node:langcode:language':
+    label: Language

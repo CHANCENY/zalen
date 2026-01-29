@@ -1,0 +1,10 @@
+name: Invoice payments
+type: module
+description: 'Add list invoice payments for zalen node.'
+package: Custom Reservation
+core_version_requirement: ^9.3 || ^10
+version: 0.1
+dependencies:
+  - field
+  - drupal:datetime
+  - drupal:user

@@ -1,0 +1,7 @@
+label: 'Nur Datum'
+date_format: 'd. F Y'
+separator: ' Smart date Format '
+join: 'Smart date Format '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

@@ -1,0 +1,9 @@
+uuid: f21036ef-22e5-448f-8cd5-d214cfd7e483
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Afstand openbaar vervoer'
+vid: afstand_openbaar_vervoer
+description: 'Standaard afstanden tot 1km'
+weight: 0
+new_revision: false

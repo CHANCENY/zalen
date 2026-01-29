@@ -1,0 +1,32 @@
+{% set base_path = drupal_token('site:base-path') ~ '/' %}
+    {% set thema_pad = base_path ~ directory %} {# path('<front>') {{ directory }} or {{ active_theme_path() }} #}
+  
+        {%
+        set classes = [
+          'field',
+          'field--name-' ~ field_name|clean_class,
+          'field--type-' ~ field_type|clean_class,
+          'field--label-' ~ label_display,
+          label_display == 'inline' ? 'clearfix',
+        ]
+      %}
+      {%
+        set title_classes = [
+          'field__label',
+          label_display == 'visually_hidden' ? 'visually-hidden',
+        ]
+      %}
+      
+        <div{{ attributes.addClass(classes) }}>
+          <div{{ title_attributes.addClass(title_classes) }}>
+            <img src="{{ thema_pad }}/images/icons/bedrijf/sluit-periode.svg">
+            <h3>{{ label }}</h3>
+          </div>
+          {% if multiple %}
+            <div class="field__items bedrijf-sluit-periode">
+          {% endif %}
+          {% for item in items %}
+            <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+          {% endfor %}
+          </div>
+        

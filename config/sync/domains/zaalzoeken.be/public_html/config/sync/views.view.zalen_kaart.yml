@@ -1,0 +1,524 @@
+uuid: da20acfc-a2c6-4172-b565-8fe2ecfa27ee
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_foto
+    - field.storage.node.field_lat_long
+    - image.style.thumbnail
+    - node.type.bedrijf
+  module:
+    - address
+    - image
+    - leaflet
+    - leaflet_views
+    - node
+    - user
+id: zalen_kaart
+label: 'Zalen kaart'
+module: views
+description: 'Alle zalen verzameld op een map'
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Master
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Zalen kaart'
+      fields:
+        field_lat_long:
+          id: field_lat_long
+          table: node__field_lat_long
+          field: field_lat_long
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: leaflet_formatter_default
+          settings:
+            multiple_map: false
+            leaflet_map: 'OSM Mapnik'
+            height: 370
+            height_unit: px
+            hide_empty_map: false
+            disable_wheel: true
+            gesture_handling: false
+            reset_map:
+              control: false
+              position: topright
+            popup: false
+            popup_content: ''
+            map_position:
+              force: false
+              center:
+                lat: 0.0
+                lon: 0.0
+              zoom: 13
+              minZoom: 1
+              maxZoom: 18
+              zoomFiner: 0
+            weight: ''
+            icon:
+              iconType: marker
+              iconUrl: ''
+              shadowUrl: ''
+              className: ''
+              iconSize:
+                x: ''
+                'y': ''
+              iconAnchor:
+                x: ''
+                'y': ''
+              shadowSize:
+                x: ''
+                'y': ''
+              shadowAnchor:
+                x: ''
+                'y': ''
+              popupAnchor:
+                x: ''
+                'y': ''
+              html: '<div></div>'
+              html_class: leaflet-map-divicon
+              circle_marker_options: '{"radius":100,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
+            leaflet_markercluster:
+              control: false
+              options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds":false}'
+              include_path: false
+            path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}'
+            geocoder:
+              control: true
+              settings:
+                position: topright
+                input_size: 25
+                providers:
+                  openstreetmap:
+                    weight: -20
+                    checked: true
+                  bing_maps:
+                    weight: -19
+                    checked: true
+                  google_maps:
+                    weight: -18
+                    checked: true
+                min_terms: 4
+                delay: 700
+                zoom: 16
+                popup: false
+                options: ''
+            fullscreen_control: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_foto:
+          id: field_foto
+          table: node__field_foto
+          field: field_foto
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: image
+          settings:
+            image_link: content
+            image_style: thumbnail
+            svg_render_as_image: true
+            svg_attributes:
+              width: null
+              height: null
+            image_loading:
+              attribute: lazy
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 1
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_adres_locality:
+          id: field_adres_locality
+          table: node__field_adres
+          field: field_adres_locality
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: subdivision
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          display_name: true
+      pager:
+        type: none
+        options:
+          offset: 0
+          items_per_page: null
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts: {  }
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            bedrijf: bedrijf
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      style:
+        type: leaflet_map
+        options:
+          grouping:
+            -
+              field: field_lat_long
+              rendered: true
+              rendered_strip: false
+          data_source: field_lat_long
+          entity_source: __base_table
+          name_field: title
+          description_field: '#rendered_view_fields'
+          view_mode: full
+          leaflet_map: 'OSM Mapnik'
+          height: '700'
+          height_unit: px
+          hide_empty_map: false
+          disable_wheel: true
+          gesture_handling: false
+          reset_map:
+            control: true
+            position: topleft
+          map_position:
+            force: false
+            center:
+              lat: 50.8465573
+              lon: 4.351697
+            zoom: 12
+            minZoom: 1
+            maxZoom: 18
+            zoomFiner: -1
+          weight: ''
+          icon:
+            iconType: circle_marker
+            iconUrl: ''
+            shadowUrl: ''
+            className: ''
+            iconSize:
+              x: '8'
+              'y': '11'
+            iconAnchor:
+              x: ''
+              'y': ''
+            shadowSize:
+              x: ''
+              'y': ''
+            shadowAnchor:
+              x: ''
+              'y': ''
+            popupAnchor:
+              x: ''
+              'y': ''
+            html: '<div></div>'
+            html_class: leaflet-map-divicon
+            circle_marker_options: '{"radius":7,"color":"yellow","fillColor":"#f03","fillOpacity":0.5}'
+          leaflet_markercluster:
+            control: true
+            options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds":false}'
+            include_path: 1
+          path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}'
+          geocoder:
+            control: true
+            settings:
+              position: topright
+              input_size: 25
+              providers:
+                google_maps:
+                  weight: '0'
+                  checked: 1
+                bing_maps:
+                  weight: '1'
+                  checked: 1
+                openstreetmap:
+                  weight: '2'
+                  checked: 1
+              min_terms: 4
+              delay: 800
+              zoom: 16
+              popup: false
+              options: ''
+          fullscreen_control: true
+      row:
+        type: fields
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_lat_long'
+  page_zalen_kaart:
+    id: page_zalen_kaart
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: zalen-kaart
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_lat_long'

@@ -1,0 +1,33 @@
+uuid: f3dd7fba-79aa-44fe-ae44-a9b8d4110491
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: bedrijf_nl
+label: 'Bedrijf UA'
+type: 'canonical_entities:node'
+pattern: '/компанії/[node:title]'
+selection_criteria:
+  2ee66165-8100-4285-9389-f8be7267ada5:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 2ee66165-8100-4285-9389-f8be7267ada5
+    context_mapping:
+      node: node
+    bundles:
+      bedrijf: bedrijf
+  92c5e404-8180-4406-9fa3-b1cb4a7b86e2:
+    id: language
+    negate: false
+    uuid: 92c5e404-8180-4406-9fa3-b1cb4a7b86e2
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      uk: uk
+selection_logic: and
+weight: -10
+relationships:
+  'node:langcode:language':
+    label: Language

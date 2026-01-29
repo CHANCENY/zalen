@@ -1,0 +1,21 @@
+uuid: 7cb569ce-2d06-46da-bce9-8036588e3c33
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.reservation.field_evenement
+    - reservation.type.type_booking
+  module:
+    - options
+id: reservation.type_booking.field_evenement
+field_name: field_evenement
+entity_type: reservation
+bundle: type_booking
+label: Evenement
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

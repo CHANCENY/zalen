@@ -1,0 +1,20 @@
+uuid: f879d459-28a2-4ebf-8ba8-44553b8c8f40
+langcode: en
+status: true
+dependencies: {  }
+name: provincie_teaser
+label: 'Provincie teaser(280 x 113)'
+effects:
+  149334e0-29cc-4e23-84df-90fe5beb8632:
+    uuid: 149334e0-29cc-4e23-84df-90fe5beb8632
+    id: image_resize
+    weight: 1
+    data:
+      width: 280
+      height: 113
+  26fb84a4-6f26-496e-9fd1-473ba42a0bdb:
+    uuid: 26fb84a4-6f26-496e-9fd1-473ba42a0bdb
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

@@ -1,0 +1,55 @@
+﻿.tat-popup {
+    padding: 6px;
+    border-radius: 10px;
+    background: rgba(222, 222, 206, 0.6);
+    border: 3px #ccc double;
+}
+.tat-popup .ui-widget-header {
+    background: none;
+    /*color: #6e5937;*/
+    color: #000;
+}
+.tat-popup .ui-widget-header button {
+    background: none;
+    border: 1px #999 solid;
+    border-radius: 50%;
+}
+.tat-popup .ui-widget-header button .ui-icon-closethick {
+    background-image: url(../../images/icons/cancel.svg);
+    background-position: center;
+}
+
+.tat-popup  input.form-text {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0));
+}
+.tat-popup  input.form-text:focus {
+    border-color: #dad4cc;
+}
+.tat-popup .form-item label, .tat-popup .form-wrapper .label {
+    color: #555;
+}
+.tat-popup .form-composite > .fieldset-wrapper > .description, .tat-popup .form-item .description {
+    border-left: 12px rgba(243, 238, 233, 0.3) solid;
+}
+.tat-popup .form-composite > .fieldset-wrapper > .description:before, .tat-popup .form-item .description:before {
+    margin-left: -25px;
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    line-height: 1.1;
+    color: rgb(152, 140, 32);
+    background: rgba(251, 251, 224, 0.3);
+    border: 1px #777 solid;
+}
+
+.tat-popup .ui-dialog-buttonset button {
+    background: #ff7600;
+    color: #fff;
+    box-shadow: 0 0 0px 4px rgba(0, 0, 0, 0.1);
+}
+.tat-popup .ui-dialog-buttonset button:hover {
+    background: #ff5200;
+}
+.tat-popup .ui-dialog-buttonpane {
+    background: none;
+}

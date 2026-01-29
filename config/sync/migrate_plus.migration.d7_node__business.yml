@@ -1,0 +1,112 @@
+uuid: eef3d228-248e-4c16-99c4-7abb5ef10c68
+langcode: nl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: _gu--STeuINqihyTOzruVAIbs8OGQ_XOzm7WOCKCLx8
+id: d7_node__business
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: zalen_d7
+label: 'Content (D7 → D10) – Business nodes (adres)'
+source:
+  plugin: d7_business_node_complete
+  node_type: business
+process:
+  nid:
+    plugin: skip_if_node_owner_not_pendente
+    source: nid
+  title: title
+  uid:
+    plugin: migration_lookup
+    migration: d7_user__zalen
+    source: node_uid
+  status:
+    plugin: default_value
+    default_value: 0
+  created: created
+  changed: changed
+  langcode:
+    plugin: default_value
+    default_value: nl
+  body/value:
+    plugin: get
+    source: body/0/value
+  body/format:
+    plugin: default_value
+    default_value: basic_html
+  field_telefoon/value:
+    plugin: get
+    source: field_phone/0/value
+  field_gsm/value:
+    plugin: get
+    source: field_gsm/0/value
+  field_contact_persoon/value:
+    plugin: get
+    source: field_contactpersoon/0/value
+  field_adres:
+    plugin: location_to_address
+    source: field_adres/0/lid
+  field_website/uri:
+    plugin: get
+    source: field_website/0/value
+  field_website/title:
+    plugin: get
+    source: field_website/0/title
+  field_foto_main_tmp:
+    plugin: sub_process
+    source: field_image
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: d7_file__images
+        source: field_image_fid
+      alt:
+        plugin: get
+        source: field_image_alt
+      title:
+        plugin: get
+        source: field_image_title
+  field_foto_banner_tmp:
+    plugin: sub_process
+    source: field_photo_banner
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: d7_file__images
+        source: field_photo_banner_fid
+      alt:
+        plugin: get
+        source: field_photo_banner_alt
+      title:
+        plugin: get
+        source: field_photo_banner_title
+  field_foto_gallery_tmp:
+    plugin: sub_process
+    source: field_photos
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: d7_file__images
+        source: field_photos_fid
+      alt:
+        plugin: get
+        source: field_photos_alt
+      title:
+        plugin: get
+        source: field_photos_title
+  field_foto:
+    plugin: merge
+    source:
+      - '@field_foto_main_tmp'
+      - '@field_foto_banner_tmp'
+      - '@field_foto_gallery_tmp'
+destination:
+  plugin: 'entity:node'
+  default_bundle: bedrijf
+migration_dependencies:
+  required:
+    - d7_user__zalen
+    - d7_file__images

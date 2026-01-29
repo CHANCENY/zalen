@@ -1,0 +1,77 @@
+uuid: c83a14cf-4666-4356-89eb-9bb52b1c548a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.extra_room_services.field_extra_service_image
+    - field.field.paragraph.extra_room_services.field_is_service_or_menu
+    - field.field.paragraph.extra_room_services.field_service_amount
+    - field.field.paragraph.extra_room_services.field_service_currency
+    - field.field.paragraph.extra_room_services.field_service_description
+    - field.field.paragraph.extra_room_services.field_service_image
+    - field.field.paragraph.extra_room_services.field_service_minimum_order
+    - field.field.paragraph.extra_room_services.field_service_short_description
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.extra_room_services
+  module:
+    - svg_image
+    - text
+id: paragraph.extra_room_services.default
+targetEntityType: paragraph
+bundle: extra_room_services
+mode: default
+content:
+  field_extra_service_image:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_is_service_or_menu:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_service_amount:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_service_currency:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_service_description:
+    type: text_textarea
+    weight: 6
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_service_minimum_order:
+    type: number
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_service_short_description:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_service_image: true
+  status: true

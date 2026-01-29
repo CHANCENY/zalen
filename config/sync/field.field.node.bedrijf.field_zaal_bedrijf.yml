@@ -1,0 +1,25 @@
+uuid: 3f0065c2-4dbe-40bc-a882-029ec6b3e657
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_zaal_bedrijf
+    - node.type.bedrijf
+id: node.bedrijf.field_zaal_bedrijf
+field_name: field_zaal_bedrijf
+entity_type: node
+bundle: bedrijf
+label: Zalen
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: beschikbare_zalen
+      display_name: entity_reference_zalen
+      arguments: {  }
+field_type: entity_reference

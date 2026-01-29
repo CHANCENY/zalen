@@ -1,0 +1,18 @@
+uuid: 97c6ca55-e7bc-407c-a97f-66487236ca8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.regio
+id: taxonomy_term.regio.name
+field_name: name
+entity_type: taxonomy_term
+bundle: regio
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

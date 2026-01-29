@@ -1,0 +1,5 @@
+label: 'Bereken betaling per uur'
+description: 'Vink dit vakje aan als u wilt dat de betaling wordt berekend op basis van het aantal uren'
+settings:
+  on_label: 'Per uur'
+  off_label: 'Per uur'

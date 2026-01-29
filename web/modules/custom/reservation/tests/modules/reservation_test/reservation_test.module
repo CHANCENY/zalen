@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Dummy module implementing reservation related hooks to test API interaction with
+ * the Reservation module.
+ */
+
+use Drupal\reservation\ReservationInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function reservation_test_entity_type_alter(array &$entity_types) {
+  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  if (\Drupal::languageManager()->isMultilingual()) {
+    // Enable language handling for reservation fields.
+    $translation = $entity_types['reservation']->get('translation');
+    $translation['reservation_test'] = TRUE;
+    $entity_types['reservation']->set('translation', $translation);
+  }
+}
+
+/**
+ * Implements hook_reservation_links_alter().
+ */
+function reservation_test_reservation_links_alter(array &$links, ReservationInterface &$entity, array &$context) {
+  // Allow tests to enable or disable this alter hook.
+  if (!\Drupal::state()->get('reservation_test_links_alter_enabled', FALSE)) {
+    return;
+  }
+
+  $links['reservation_test'] = [
+    '#theme' => 'links__reservation__reservation_test',
+    '#attributes' => ['class' => ['links', 'inline']],
+    '#links' => [
+      'reservation-report' => [
+        'title' => t('Report'),
+        'url' => Url::fromRoute('reservation_test.report', ['reservation' => $entity->id()], ['query' => ['token' => \Drupal::getContainer()->get('csrf_token')->get("reservation/{$entity->id()}/report")]]),
+      ],
+    ],
+  ];
+}

@@ -1,0 +1,11 @@
+/**
+ * @file
+ * Visual styles for AWTur's page-title component.
+ */
+
+.page-title {
+  font-size: 3em;
+  line-height: 1em;
+  border-bottom: 10px #ececec solid;
+  text-transform: capitalize;
+}

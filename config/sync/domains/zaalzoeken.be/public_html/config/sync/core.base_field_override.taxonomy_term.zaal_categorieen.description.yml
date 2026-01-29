@@ -1,0 +1,21 @@
+uuid: 5535e1c8-7b01-440c-983f-158d9ab91634
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zaal_categorieen
+  module:
+    - text
+id: taxonomy_term.zaal_categorieen.description
+field_name: description
+entity_type: taxonomy_term
+bundle: zaal_categorieen
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

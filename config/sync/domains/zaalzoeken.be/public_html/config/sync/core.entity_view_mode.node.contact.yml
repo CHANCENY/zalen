@@ -1,0 +1,11 @@
+uuid: eef66694-ded3-4955-a7ce-9a1038a813a1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.contact
+label: Contact
+description: ''
+targetEntityType: node
+cache: true

@@ -1,0 +1,18 @@
+uuid: 128122c4-0643-4da7-a4de-50dec8451a31
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zaal_categorieen
+id: taxonomy_term.zaal_categorieen.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: zaal_categorieen
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

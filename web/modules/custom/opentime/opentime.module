@@ -1,0 +1,87 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Form\FormElement;
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function opentime_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
+  if ($node->hasField('field_openingsuren')) {
+    $opentime_manager = \Drupal::service('opentime.manager');
+    $opening_hours = $opentime_manager->getOpeningHours($node);
+    $variables['opening_hours'] = $opening_hours;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function opentime_theme($existing, $type, $theme, $path) {
+  //$module_path = \Drupal::service('extension.list.module')->getPath('opentime');
+
+  return [
+    'opening_hours' => [
+      'template'  => 'opening-hours',
+      'variables' => [
+        'schedule' => [],
+        'labels'   => [],
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_field_widget_complete_form_alter().
+ */
+function opentime_field_widget_complete_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  // Enkel voor ons opening_hours_widget.
+  if ($context['widget']->getPluginId() !== 'opening_hours_widget') {
+    return;
+  }
+
+  // Referentie naar alle deltas (rijen).
+  /** @var array $rows */
+  $rows =& $field_widget_complete_form['widget'];
+
+  // 1) Standaard Engelse dag‐afkortingen, zodat ze vertaalbaar zijn.
+  $mapping = [
+    'monday'    => t('Mo'),
+    'tuesday'   => t('Tu'),
+    'wednesday' => t('We'),
+    'thursday'  => t('Th'),
+    'friday'    => t('Fr'),
+    'saturday'  => t('Sa'),
+    'sunday'    => t('Su'),
+  ];
+
+  foreach ($rows as &$item) {
+    // A) Dagen inkorten
+    if (isset($item['days']['#options'])) {
+      foreach ($item['days']['#options'] as $key => &$label) {
+        if (isset($mapping[$key])) {
+          $label = $mapping[$key];
+        }
+      }
+    }
+
+    // B) Tijdvelden in één flex‐container
+    if (isset($item['start_time'])) {
+      $item['start_time']['#prefix'] = '<div class="tijd-container">';
+    }
+    if (isset($item['end_time'])) {
+      $item['end_time']['#suffix'] = '</div>';
+    }
+
+    // C) Delete‑knop omzetten naar ‘×’
+    if (isset($item['_actions']['delete'])) {
+      $item['_actions']['delete']['#value'] = '×';
+      // Optioneel: aria-label voor screen readers
+      $item['_actions']['delete']['#attributes']['aria-label'] = t('Remove');
+      // En weight zo zetten dat het naast de tijden komt
+      $item['_actions']['delete']['#weight'] = 100;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+uuid: 548907a5-3665-4d83-8c53-513fb3d5a6d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.per-provincie
+  module:
+    - system
+  theme:
+    - awtur
+id: perprovincie
+theme: awtur
+region: footer_first
+weight: -17
+provider: null
+plugin: 'system_menu_block:per-provincie'
+settings:
+  id: 'system_menu_block:per-provincie'
+  label: 'Per provincie'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

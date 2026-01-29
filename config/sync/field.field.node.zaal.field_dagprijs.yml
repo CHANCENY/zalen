@@ -1,0 +1,23 @@
+uuid: 1f93086e-8709-4c31-a991-f97775f4c1bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dagprijs
+    - node.type.zaal
+id: node.zaal.field_dagprijs
+field_name: field_dagprijs
+entity_type: node
+bundle: zaal
+label: 'Daily price'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 1000000
+  prefix: €
+  suffix: ''
+field_type: integer

@@ -1,0 +1,23 @@
+uuid: 41e60af5-ee16-498b-8622-98e91f560a3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nabij_bushalte
+    - node.type.bedrijf
+id: node.bedrijf.field_nabij_bushalte
+field_name: field_nabij_bushalte
+entity_type: node
+bundle: bedrijf
+label: 'Near bus stop'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Bus stop'
+  off_label: X
+field_type: boolean

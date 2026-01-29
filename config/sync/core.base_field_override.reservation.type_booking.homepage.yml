@@ -1,0 +1,18 @@
+uuid: 0df95e8a-ecb8-4651-aaec-207a738544cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - reservation.type.type_booking
+id: reservation.type_booking.homepage
+field_name: homepage
+entity_type: reservation
+bundle: type_booking
+label: Homepage
+description: "The reservation author's home page address."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: uri

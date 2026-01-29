@@ -1,0 +1,9 @@
+display:
+  default:
+    display_title: Master
+    display_options:
+      fields:
+        changed:
+          settings:
+            future_format: 'in @interval'
+            past_format: 'vor @interval'

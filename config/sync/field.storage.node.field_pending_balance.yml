@@ -1,0 +1,21 @@
+uuid: fcbf9f88-fb60-4e0e-8bbc-b4c0c75bcc70
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_pending_balance
+field_name: field_pending_balance
+entity_type: node
+type: string
+settings:
+  max_length: 25
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

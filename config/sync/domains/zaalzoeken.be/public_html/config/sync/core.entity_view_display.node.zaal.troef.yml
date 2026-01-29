@@ -1,0 +1,279 @@
+uuid: 296f5a22-4f06-4c74-91d4-9988db989510
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.reservation.type_booking.full
+    - core.entity_view_mode.node.troef
+    - field.field.node.zaal.body
+    - field.field.node.zaal.field_bedrijf_zaal
+    - field.field.node.zaal.field_bezetting_tot
+    - field.field.node.zaal.field_bezetting_van
+    - field.field.node.zaal.field_comercielegelegenheden
+    - field.field.node.zaal.field_concertgelegenheden
+    - field.field.node.zaal.field_confirmatie
+    - field.field.node.zaal.field_dagprijs
+    - field.field.node.zaal.field_daily_currency
+    - field.field.node.zaal.field_extra_room_services
+    - field.field.node.zaal.field_feestgelegenheid
+    - field.field.node.zaal.field_form_booking
+    - field.field.node.zaal.field_foto
+    - field.field.node.zaal.field_hourly_currency
+    - field.field.node.zaal.field_media
+    - field.field.node.zaal.field_oppervlakte
+    - field.field.node.zaal.field_person_currency
+    - field.field.node.zaal.field_plattegrond
+    - field.field.node.zaal.field_prijs_eenheid
+    - field.field.node.zaal.field_prijs_per_persoon
+    - field.field.node.zaal.field_reference_reservations
+    - field.field.node.zaal.field_regels
+    - field.field.node.zaal.field_room_pricing_settings
+    - field.field.node.zaal.field_staanplaatsen
+    - field.field.node.zaal.field_status
+    - field.field.node.zaal.field_thema
+    - field.field.node.zaal.field_uitrusting
+    - field.field.node.zaal.field_uurprijs
+    - field.field.node.zaal.field_vergadergelegenheden
+    - field.field.node.zaal.field_zitplaatsen
+    - image.style.medium
+    - node.type.zaal
+  module:
+    - layout_builder
+    - options
+    - payment_invoice
+    - photoswipe
+    - reservation
+    - room_tariff
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.zaal.troef
+targetEntityType: node
+bundle: zaal
+mode: troef
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 20
+    region: content
+  field_bezetting_tot:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 18
+    region: content
+  field_bezetting_van:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_comercielegelegenheden:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_concertgelegenheden:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_confirmatie:
+    type: pay_key_button_field_default_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  field_dagprijs:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_feestgelegenheid:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_form_booking:
+    type: reservation_default
+    label: above
+    settings:
+      view_mode: full
+      pager_id: 0
+    third_party_settings: {  }
+    weight: 19
+    region: content
+  field_foto:
+    type: photoswipe_field_formatter
+    label: above
+    settings:
+      photoswipe_node_style_first: ''
+      photoswipe_node_style: ''
+      photoswipe_image_style: ''
+      photoswipe_reference_image_field: ''
+      photoswipe_caption: alt
+      photoswipe_caption_custom: ''
+      photoswipe_view_mode: default
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_media:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_oppervlakte:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_plattegrond:
+    type: photoswipe_field_formatter
+    label: above
+    settings:
+      photoswipe_node_style_first: ''
+      photoswipe_node_style: medium
+      photoswipe_image_style: ''
+      photoswipe_reference_image_field: ''
+      photoswipe_caption: alt
+      photoswipe_caption_custom: ''
+      photoswipe_view_mode: default
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_prijs_eenheid:
+    type: tariff_field_default_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_prijs_per_persoon:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_reference_reservations:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 23
+    region: content
+  field_staanplaatsen:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_status:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 24
+    region: content
+  field_thema:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_uitrusting:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_uurprijs:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_vergadergelegenheden:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_zitplaatsen:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  flag_bookmark:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_bedrijf_zaal: true
+  field_daily_currency: true
+  field_extra_room_services: true
+  field_hourly_currency: true
+  field_person_currency: true
+  field_regels: true
+  field_room_pricing_settings: true
+  langcode: true
+  layout_builder__layout: true
+  search_api_excerpt: true

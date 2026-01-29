@@ -1,0 +1,87 @@
+display:
+  default:
+    display_title: Головне
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Фільтр
+          reset_button_label: Скинути
+          exposed_sorts_label: 'Впорядкувати за'
+          sort_asc_label: Зрост
+          sort_desc_label: Спад
+      pager:
+        options:
+          tags:
+            previous: '‹ попередня'
+            next: 'наступна ›'
+            first: '« перша'
+            last: 'остання »'
+          expose:
+            items_per_page_label: 'Елементів на сторінку'
+            items_per_page_options_all_label: '- Усе -'
+            offset_label: Зміщення
+      fields:
+        reservation_bulk_form:
+          action_title: Дія
+        subject:
+          label: Тема
+          separator: ', '
+        uid:
+          separator: ', '
+        name:
+          label: Автор
+          separator: ', '
+        entity_id:
+          label: Опубліковане
+          separator: ', '
+        changed:
+          label: Оновлено
+          separator: ', '
+        operations:
+          label: Операції
+        name_1:
+          separator: ', '
+      filters:
+        subject:
+          expose:
+            label: Тема
+        combine:
+          expose:
+            label: 'Ім’я автора'
+        langcode:
+          expose:
+            label: Мова
+      use_more_text: ще
+  page_unapproved:
+    display_options:
+      filters:
+        subject:
+          expose:
+            label: Тема
+        combine:
+          expose:
+            label: "Ім'я автора"
+        langcode:
+          expose:
+            label: Мова
+      fields:
+        reservation_bulk_form:
+          action_title: Дія
+        subject:
+          label: Тема
+          separator: ', '
+        uid:
+          separator: ', '
+        name:
+          label: Автор
+          separator: ', '
+        entity_id:
+          label: Опубліковане
+          separator: ', '
+        changed:
+          label: Оновлено
+          separator: ', '
+        operations:
+          label: Операції
+        name_1:
+          separator: ', '

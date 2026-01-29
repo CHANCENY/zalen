@@ -1,0 +1,19 @@
+uuid: ced84809-1d60-4c9d-bf98-5789595a80bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_starting_overnight_date
+    - paragraphs.paragraphs_type.reservation_overnight_room
+id: paragraph.reservation_overnight_room.field_starting_overnight_date
+field_name: field_starting_overnight_date
+entity_type: paragraph
+bundle: reservation_overnight_room
+label: 'Starting Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

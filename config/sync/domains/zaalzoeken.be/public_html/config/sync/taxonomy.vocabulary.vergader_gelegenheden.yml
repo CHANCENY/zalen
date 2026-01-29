@@ -1,0 +1,9 @@
+uuid: 95edb634-9ca8-4e58-b3a6-e0cebf3813dd
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Vergader gelegenheden'
+vid: vergader_gelegenheden
+description: 'Vergaderzaal gelegenheden, doelen, mogelijkheden'
+weight: 0
+new_revision: false

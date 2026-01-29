@@ -1,0 +1,47 @@
+uuid: 4413fc69-a9dc-485e-87cc-33e298f76dcb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pricing_unit
+    - paragraphs.paragraphs_type.per_person_item
+    - paragraphs.paragraphs_type.price_unit
+id: paragraph.price_unit.field_pricing_unit
+field_name: field_pricing_unit
+entity_type: paragraph
+bundle: price_unit
+label: 'Person Unit'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      per_person_item: per_person_item
+    negate: 0
+    target_bundles_drag_drop:
+      per_day_price_rules:
+        weight: 9
+        enabled: false
+      per_day_unit:
+        weight: 10
+        enabled: false
+      per_hour:
+        weight: 11
+        enabled: false
+      per_hour_unit_rules:
+        weight: 12
+        enabled: false
+      per_person_item:
+        weight: 5
+        enabled: true
+      person_price_rules:
+        weight: 4
+        enabled: false
+      price_unit:
+        weight: 6
+        enabled: false
+field_type: entity_reference

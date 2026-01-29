@@ -1,0 +1,53 @@
+label: Zahlungen
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Anwenden
+          reset_button_label: Zurücksetzen
+          exposed_sorts_label: Sortierung
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
+      pager:
+        options:
+          tags:
+            previous: '‹ vorherige Seite'
+            next: 'nächste Seite ›'
+            first: '« erste Seite'
+            last: 'letzte Seite »'
+          expose:
+            items_per_page_label: 'Elemente pro Seite'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Versatz
+      fields:
+        changed_1:
+          label: 'Zuletzt aktualisiert'
+        payment_statuses_plugin_id_1:
+          label: 'Aktueller Status'
+        amount:
+          label: Betrag
+        payment_method__plugin_id:
+          label: Zahlungsmethode
+        name:
+          label: Bezahler
+        operations:
+          label: Aktionen
+      filters:
+        payment_statuses_plugin_id:
+          expose:
+            label: 'Aktueller Status'
+        payment_method__plugin_id:
+          expose:
+            label: Zahlungsmethode
+        uid:
+          expose:
+            label: Bezahler
+      arguments:
+        uid:
+          exception:
+            title: Alle
+      title: Zahlungen
+  page_1:
+    display_title: Administrationsseite

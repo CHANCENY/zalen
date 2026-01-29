@@ -1,0 +1,13 @@
+uuid: 1197bc71-8522-4619-b37d-fafec64d7c5d
+langcode: nl
+status: true
+dependencies:
+  module:
+    - reservation
+_core:
+  default_config_hash: 9DVMYoymGDKGrGxPVAFcFR6pIVqy-CgzF56IVOhs3jA
+id: reservation_save_action
+label: 'Save reservation'
+type: reservation
+plugin: 'entity:save_action:reservation'
+configuration: {  }

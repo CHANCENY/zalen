@@ -1,0 +1,12 @@
+title: Реєстрація
+description: 'Шаблон реєстраційної форми.'
+elements: "personal_information:\r\n  '#title': 'Ваша персональна інформація'\r\n  '#type': webform_section\r\n  first_name:\r\n    '#title': 'Ім\\u0027я'\r\n    '#type': textfield\r\n    '#required': true\r\n  last_name:\r\n    '#title': 'Прізвище'\r\n    '#type': textfield\r\n    '#required': true\r\ncontact_information:\r\n  '#title': 'Ваша контактна інформація'\r\n  '#type': webform_section\r\n  contact:\r\n    '#type': webform_contact\r\n    '#title': Контакт\r\n    '#title_display': invisible\r\n    '#name__access': false\r\n    '#company__access': false\r\nmailinglist:\r\n  '#title': 'Список розсилки'\r\n  '#type': webform_section\r\n  subscribe:\r\n    '#title': 'Підпишіть мене, будь ласка, на ваш список розсилки.'\r\n    '#type': checkbox\r\nadditional_information:\r\n  '#title': 'Додаткова інформація'\r\n  '#type': webform_section\r\n  '#open': true\r\n  notes:\r\n    '#title': Коментарі\r\n    '#type': textarea\r\nactions:\r\n  '#type': webform_actions\r\n  '#title': 'Кнопка(и) Надіслати'\r\n  '#submit__label': Зареєеструвати\n"
+settings:
+  confirmation_message: 'Дякуємо за реєстрацію.'
+handlers:
+  email_notification:
+    label: 'Сповіщення електронною поштою'
+    settings:
+      from_name: '[webform_submission:values:first_name] [webform_submission:values:last_name]'
+      subject: _default
+      body: _default

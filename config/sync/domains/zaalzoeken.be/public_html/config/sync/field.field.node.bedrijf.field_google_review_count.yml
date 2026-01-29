@@ -1,0 +1,23 @@
+uuid: 1c225932-9dea-4044-a4d7-806beaaac288
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_google_review_count
+    - node.type.bedrijf
+id: node.bedrijf.field_google_review_count
+field_name: field_google_review_count
+entity_type: node
+bundle: bedrijf
+label: 'Google review count'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

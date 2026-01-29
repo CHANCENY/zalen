@@ -1,0 +1,23 @@
+uuid: b018e81b-081d-46fb-98e9-553d9e96b43c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_currency
+    - paragraphs.paragraphs_type.per_hour
+  module:
+    - options
+id: paragraph.per_hour.field_currency
+field_name: field_currency
+entity_type: paragraph
+bundle: per_hour
+label: Currency
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: eur
+default_value_callback: ''
+settings: {  }
+field_type: list_string

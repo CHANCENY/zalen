@@ -1,0 +1,22 @@
+uuid: 0ea8d585-298d-4684-8588-fb2aaccb65e7
+langcode: nl
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - awtur
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: awtur_content
+theme: awtur
+region: content
+weight: -14
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

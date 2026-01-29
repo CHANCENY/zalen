@@ -1,0 +1,19 @@
+uuid: fdcf1906-0fb6-4302-a1e1-ba090ab47d46
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_migrated_photos
+    - node.type.bedrijf
+id: node.bedrijf.field_migrated_photos
+field_name: field_migrated_photos
+entity_type: node
+bundle: bedrijf
+label: 'Migrated Photos'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

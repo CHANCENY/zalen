@@ -1,0 +1,13 @@
+{% if multiple %}
+    <div class="items-fotos">
+      {#<div{{ attributes.addClass(classes, 'field__items') }}>#}
+        {% for item in items|slice(0, 5) %}
+          <div{{ item.attributes.addClass('item-foto-' ~ loop.index0) }}>{{ item.content }}</div>
+        {% endfor %}
+     {# </div> #}
+        {% set nr = items|length %}
+        {% for item in items|slice(5, nr) %}
+          <div{{ item.attributes.addClass('hidden') }}>{{ item.content }}</div>
+        {% endfor %}
+    </div>
+  {% endif %}

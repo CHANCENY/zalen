@@ -1,0 +1,11 @@
+uuid: fbea38d8-c293-4750-b6df-2b72ad9fa250
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.comfort
+label: Comfort
+description: ''
+targetEntityType: node
+cache: true

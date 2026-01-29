@@ -1,0 +1,6 @@
+display_configuration:
+  link_text: 'Selecteer mogelijke zaalopstellingen'
+widgets:
+  0c0a80c5-e229-40e1-8e35-1a7dc8af7dff:
+    settings:
+      submit_text: 'Opstellingen toevoegen'

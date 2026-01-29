@@ -1,0 +1,12 @@
+_core:
+  default_config_hash: aQM6wHes01iIf_OJ4Wghv8esWZjlJp5ytXKHMZwPiVE
+allowed_plugin_ids: {  }
+limit_allowed_plugins: false
+plugin_selector_id: plugin_radios
+plugin_selector_configuration:
+  show_selector_for_single_availability: null
+  description: null
+  label: null
+  required: false
+  collect_plugin_configuration: true
+  keep_previously_selected_plugins: true

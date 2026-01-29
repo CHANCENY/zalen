@@ -1,0 +1,17 @@
+ {{ attach_library('awtur/personal-bedrijven-dichtbij') }}
+
+  <div class="bedrijven-buurt">
+    <div class="bedrijven-buurt-label">
+      {{ fields.title.content }} 
+    </div>
+    <div class="bedrijven-buurt-foto"> 
+      {{ fields.field_foto.content }}
+    </div>
+    <div class="bedrijven-buurt-stad">
+      <ion-icon style="color:red" name="location-outline"></ion-icon>
+      {{ fields.field_adres_locality.content }}
+    </div>
+    <div class="bedrijven-buurt-node-link">
+      {{ fields.view_node.content }}
+    </div>
+  </div>

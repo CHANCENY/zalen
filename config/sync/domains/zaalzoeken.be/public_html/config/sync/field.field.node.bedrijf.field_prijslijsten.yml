@@ -1,0 +1,34 @@
+uuid: 7767ef7e-d7cd-4119-8581-e1d503554f09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prijslijsten
+    - node.type.bedrijf
+  module:
+    - content_translation
+    - file
+third_party_settings:
+  content_translation:
+    translation_sync:
+      description: description
+      target_id: '0'
+      display: '0'
+id: node.bedrijf.field_prijslijsten
+field_name: field_prijslijsten
+entity_type: node
+bundle: bedrijf
+label: 'Price lists'
+description: 'Additionally, you can upload price lists here. Examples: <em>menus, wine lists, special occasions...</em> Give your document a suitable name.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: 'prijslijst/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt doc docs pdf odt csv png jpg gif'
+  max_filesize: ''
+  description_field: true
+field_type: file

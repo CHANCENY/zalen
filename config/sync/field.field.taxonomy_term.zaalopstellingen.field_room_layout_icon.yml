@@ -1,0 +1,38 @@
+uuid: b94ae764-f04a-40f7-b7d6-ffd0d41d7e0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_room_layout_icon
+    - taxonomy.vocabulary.zaalopstellingen
+  module:
+    - image
+id: taxonomy_term.zaalopstellingen.field_room_layout_icon
+field_name: field_room_layout_icon
+entity_type: taxonomy_term
+bundle: zaalopstellingen
+label: 'Room Layout Icon'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: 'room-layout-icon/[current-date:html_eu_date]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

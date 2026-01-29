@@ -1,0 +1,2 @@
+template_mail: '<p>Hello [reservation:author:account-name],</p><p>&nbsp;</p><p>You have made payment of [payment_invoices:payment_currency][payment_invoices:payment_paid_amount] for &nbsp;the reservation.</p><p>&nbsp;</p><p>Thank you.</p>'
+template_mail_format: full_html

@@ -1,0 +1,39 @@
+drupal.reservation:
+  version: VERSION
+  js:
+    reservation-entity-form.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.form
+
+drupal.reservation-by-viewer:
+  version: VERSION
+  js:
+    js/reservation-by-viewer.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+
+drupal.reservation-new-indicator:
+  version: VERSION
+  js:
+    js/reservation-new-indicator.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+    - history/api
+    - core/drupal.displace
+drupal.reservation-service:
+  version: VERSION
+  js:
+    js/tags/tagify.js: {}
+    js/tags/tagify.polyfills.min.js: {}
+    js/tags/reservation-service.js: {}
+  css:
+    theme:
+      css/tags/tagify.css: {}
+  dependencies:
+    - core/jquery

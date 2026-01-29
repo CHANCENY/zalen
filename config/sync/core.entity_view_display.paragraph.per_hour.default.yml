@@ -1,0 +1,51 @@
+uuid: db4ea2f2-e143-4658-8ab0-823a6ab5f8c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.per_hour.field_currency
+    - field.field.paragraph.per_hour.field_hourly_pricing_rules
+    - field.field.paragraph.per_hour.field_minimum_hours_to_book
+    - field.field.paragraph.per_hour.field_per_hour_price
+    - paragraphs.paragraphs_type.per_hour
+  module:
+    - options
+id: paragraph.per_hour.default
+targetEntityType: paragraph
+bundle: per_hour
+mode: default
+content:
+  field_currency:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_hourly_pricing_rules:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_minimum_hours_to_book:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_per_hour_price:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

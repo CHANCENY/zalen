@@ -1,0 +1,9 @@
+uuid: d79fd338-3a75-45a2-8573-5176dab174a3
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Faciliteiten algemeen'
+vid: faciliteiten_algemeen
+description: 'Uitrustingen die de gelegenheid te bieden hebben'
+weight: 0
+new_revision: false

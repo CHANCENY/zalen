@@ -1,0 +1,11 @@
+uuid: 3e2de268-519b-43b3-83ec-e54eff9acb6e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.beknopt
+label: Beknopt
+description: ''
+targetEntityType: node
+cache: true

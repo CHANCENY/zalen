@@ -1,0 +1,20 @@
+uuid: ff1ead1c-8467-433d-9a3e-0f33c9cff57c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.kindvriendelijke_punten
+  module:
+    - path
+id: taxonomy_term.kindvriendelijke_punten.path
+field_name: path
+entity_type: taxonomy_term
+bundle: kindvriendelijke_punten
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

@@ -1,0 +1,23 @@
+uuid: 124e0a79-4635-4172-8cbf-e5ab2ee28dab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_google_rating
+    - node.type.bedrijf
+id: node.bedrijf.field_google_rating
+field_name: field_google_rating
+entity_type: node
+bundle: bedrijf
+label: 'Google rating'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

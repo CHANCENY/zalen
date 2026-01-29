@@ -1,0 +1,42 @@
+uuid: 8ae307cc-9256-4d3f-b83f-3281312fd27b
+langcode: nl
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+    - filter.format.webform_default
+  module:
+    - comment
+    - contact
+    - file
+    - filter
+    - flag
+    - media
+    - reservation
+    - search
+    - system
+_core:
+  default_config_hash: btW6TFHajhy7Eo6YUvdFiPh4TcPggo8GBXYctjV6zag
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'access user contact forms'
+  - 'access user profiles'
+  - 'cancel account'
+  - 'change own username'
+  - 'delete own files'
+  - 'edit own comments'
+  - 'edit own reservations'
+  - 'flag bookmark'
+  - 'post comments'
+  - 'post reservations'
+  - 'search content'
+  - 'unflag bookmark'
+  - 'use advanced search'
+  - 'use text format restricted_html'
+  - 'use text format webform_default'
+  - 'view media'

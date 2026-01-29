@@ -1,0 +1,20 @@
+uuid: 6a0a13d4-fb33-4137-b3c0-84f3cf7b5611
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_amount_used
+field_name: field_amount_used
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

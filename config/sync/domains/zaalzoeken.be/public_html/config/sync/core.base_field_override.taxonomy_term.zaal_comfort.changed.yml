@@ -1,0 +1,18 @@
+uuid: 0ccc4cd6-3425-4df3-9da7-a6b1c2ab350a
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zaal_comfort
+id: taxonomy_term.zaal_comfort.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: zaal_comfort
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

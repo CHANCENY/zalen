@@ -1,0 +1,47 @@
+uuid: afe9fcc3-fa85-4f4f-b115-0f866129bfe3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hourly_unit
+    - paragraphs.paragraphs_type.per_hour
+    - paragraphs.paragraphs_type.price_unit
+id: paragraph.price_unit.field_hourly_unit
+field_name: field_hourly_unit
+entity_type: paragraph
+bundle: price_unit
+label: 'Hour Unit'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      per_hour: per_hour
+    negate: 0
+    target_bundles_drag_drop:
+      per_day_price_rules:
+        weight: 9
+        enabled: false
+      per_day_unit:
+        weight: 10
+        enabled: false
+      per_hour:
+        weight: 7
+        enabled: true
+      per_hour_unit_rules:
+        weight: 8
+        enabled: false
+      per_person_item:
+        weight: 9
+        enabled: false
+      person_price_rules:
+        weight: 6
+        enabled: false
+      price_unit:
+        weight: 10
+        enabled: false
+field_type: entity_reference

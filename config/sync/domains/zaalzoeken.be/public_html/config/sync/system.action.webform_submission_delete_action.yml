@@ -1,0 +1,13 @@
+uuid: abc9a5c7-d224-43eb-bb6f-977bb018c1b1
+langcode: nl
+status: true
+dependencies:
+  module:
+    - webform
+_core:
+  default_config_hash: TBnl4vapW7sy5bRi7TcF-ueJnvz7aZNLif95ifvhfTQ
+id: webform_submission_delete_action
+label: 'Inzending verwijderen'
+type: webform_submission
+plugin: webform_submission_delete_action
+configuration: {  }

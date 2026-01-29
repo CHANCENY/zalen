@@ -1,0 +1,18 @@
+uuid: 4256fd65-57fb-4876-b219-91de5c0b3e00
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.vergader_gelegenheden
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.vergader_gelegenheden
+target_entity_type_id: taxonomy_term
+target_bundle: vergader_gelegenheden
+default_langcode: site_default
+language_alterable: true

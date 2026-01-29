@@ -1,0 +1,144 @@
+uuid: 29ac7448-df0f-46df-863e-d5b4e1bbb372
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.reservation.type_booking.field_additional_services
+    - field.field.reservation.type_booking.field_bezetting
+    - field.field.reservation.type_booking.field_boeking_id
+    - field.field.reservation.type_booking.field_calculate_payment_per_day
+    - field.field.reservation.type_booking.field_date_booking
+    - field.field.reservation.type_booking.field_evenement
+    - field.field.reservation.type_booking.field_per_hour_calc
+    - field.field.reservation.type_booking.field_per_person
+    - field.field.reservation.type_booking.field_per_person_options
+    - field.field.reservation.type_booking.field_reservation_information
+    - field.field.reservation.type_booking.reservation_body
+    - reservation.type.type_booking
+  module:
+    - flickity_fields
+    - options
+    - serial
+    - smart_date
+    - text
+id: reservation.type_booking.default
+targetEntityType: reservation
+bundle: type_booking
+mode: default
+content:
+  field_additional_services:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_bezetting:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_boeking_id:
+    type: serial_default_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_calculate_payment_per_day:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_date_booking:
+    type: smartdate_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      format: belgium_datetime
+      force_chronological: false
+      add_classes: false
+      time_wrapper: true
+      localize: false
+      parts:
+        - start
+        - end
+      duration:
+        separator: ' | '
+        unit: ''
+        decimals: 2
+        suffix: h
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_evenement:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_per_hour_calc:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_per_person:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_per_person_options:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_reservation_information:
+    type: flickity_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: true
+      flickity_settings: default_group
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  reservation_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

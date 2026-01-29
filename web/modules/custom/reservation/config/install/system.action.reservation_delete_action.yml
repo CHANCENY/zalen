@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - reservation
+id: reservation_delete_action
+label: 'Delete reservation'
+type: reservation
+plugin: entity:delete_action:reservation
+configuration: {  }

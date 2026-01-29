@@ -1,0 +1,29 @@
+uuid: 1b40cd6f-560d-400f-a2e8-14f62a3b5f1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.zalen_per_gebruiker
+  module:
+    - system
+    - views
+  theme:
+    - awtur
+id: views_block__zalen_per_gebruiker_blok_mijn_zalen_2
+theme: awtur
+region: content
+weight: -8
+provider: null
+plugin: 'views_block:zalen_per_gebruiker-blok_mijn_zalen'
+settings:
+  id: 'views_block:zalen_per_gebruiker-blok_mijn_zalen'
+  label: 'Mijn zalen'
+  label_display: visible
+  provider: views
+  views_label: 'Mijn zalen'
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/user/*/mijn-zalen-beheren'

@@ -1,0 +1,23 @@
+uuid: e9144211-c30d-4c51-9ed6-53b2af7fef6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_if_minimum_person_is
+    - paragraphs.paragraphs_type.person_price_rules
+id: paragraph.person_price_rules.field_if_minimum_person_is
+field_name: field_if_minimum_person_is
+entity_type: paragraph
+bundle: person_price_rules
+label: 'If booked people'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

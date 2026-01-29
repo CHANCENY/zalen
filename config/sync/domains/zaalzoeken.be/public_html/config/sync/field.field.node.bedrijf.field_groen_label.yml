@@ -1,0 +1,23 @@
+uuid: 3e788bb0-6a1b-4bee-9aec-a25041375384
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_groen_label
+    - node.type.bedrijf
+id: node.bedrijf.field_groen_label
+field_name: field_groen_label
+entity_type: node
+bundle: bedrijf
+label: 'Green label'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Groen label'
+  off_label: X
+field_type: boolean

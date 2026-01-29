@@ -1,0 +1,94 @@
+# Mollie
+# OAuth2 Authorize Mollie Form
+payment_provider.oauth2_authorize_mollie:
+  path: '/authorize/mollie'
+  defaults:
+    _form: 'Drupal\payment_provider\Form\MollieOAuth2AuthorizeForm'
+    _title: 'Your Authorize Mollie payment client'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _role: 'zaal_eigenaar + premium_zaal + magnus'
+  options:
+    no_cache: 'TRUE'
+#    parameters:
+#      oauth_authorize_token:
+#        type: entity:oauth_authorize_token
+#      user:
+#        type: entity:user
+
+# Mollie plugin Config Form
+payment_provider.mollie_config:
+  path: '/admin/config/services/plugin_mollie_config'
+  defaults:
+    _form: 'Drupal\payment_provider\Form\MollieConfigForm'
+    _title: 'Mollie payment provider plugin config form'
+  requirements:
+    _permission: 'administer'
+
+# Mollie plugin webhook
+payment_provider.mollie_webhook.payments:
+  path: '/payment_provider/mollie/webhook/payments'
+  defaults:
+    _controller: 'Drupal\payment_provider\Controller\MollieWebhookController::invokeStatusChangePayments'
+  requirements:
+    _access: 'TRUE'
+payment_provider.mollie_webhook.orders:
+  path: '/payment_provider/mollie/webhook/orders'
+  defaults:
+    _controller: 'Drupal\payment_provider\Controller\MollieWebhookController::invokeStatusChangeOrders'
+  requirements:
+    _access: 'TRUE'
+payment_provider.mollie_webhook.subscriptions:
+  path: '/payment_provider/mollie/webhook/subscriptions'
+  defaults:
+    _controller: 'Drupal\payment_provider\Controller\MollieWebhookController::invokeStatusChangeSubscriptions'
+  requirements:
+    _access: 'TRUE'
+payment_provider.mollie_webhook.other:
+  path: '/payment_provider/mollie/webhook/{pay}/{context}'
+  defaults:
+    _controller: 'Drupal\payment_provider\Controller\MollieWebhookController::invokeOtherEvents'
+#    pay: 'payment'
+  requirements:
+    _access: 'TRUE'
+
+# Reservation payment route
+payment_provider.payment.reservation:
+  path: '/payments/reservation/{reservation_id}'
+  defaults:
+    _controller: 'Drupal\payment_provider\Controller\PaymentWindow::paymentWindowDisplay'
+  requirements:
+    _access: 'TRUE'
+
+# Payment route checkout redirected.
+payment_provider.payment.vip_mollie:
+  path: '/payments/reservation/vip/{cache_id}/{payment_type}'
+  defaults:
+    _controller: 'Drupal\payment_provider\Controller\PaymentWindow::paymentVip'
+  requirements:
+    _access: 'TRUE'
+
+# Route for after payment redirect.
+payment_provider.payment.redirect:
+  path: '/payments/status/{cache_id}'
+  defaults:
+    _controller: 'Drupal\payment_provider\Controller\PaymentWindow::paymentStatusRedirect'
+  requirements:
+    _access: 'TRUE'
+
+# Route for webhook.
+payment_provider.payment.vip_mollie.webhook:
+  path: '/payments/webhook/{payment_id}'
+  defaults:
+    _controller: 'Drupal\payment_provider\Controller\PaymentWindow::paymentStatusRedirect'
+  requirements:
+    _access: 'TRUE'
+
+# Reservation payment route
+payment_provider.payment.reservation_booking_preview_amount:
+  path: '/reservation/booking/amount/preview'
+  defaults:
+    _controller: 'Drupal\payment_provider\Controller\PaymentWindow::reservationAmountPreview'
+  requirements:
+    _access: 'TRUE'
+

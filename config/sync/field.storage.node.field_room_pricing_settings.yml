@@ -1,0 +1,20 @@
+uuid: 6df6b1ba-537f-4c2d-9dec-f3cc610594fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - paragraphs
+id: node.field_room_pricing_settings
+field_name: field_room_pricing_settings
+entity_type: node
+type: entity_reference
+settings:
+  target_type: paragraph
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

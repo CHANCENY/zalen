@@ -1,0 +1,18 @@
+_core:
+  default_config_hash: 2PSjcW1NwF5Ckp-Yq4yjIEfAZbxrRlecBGuexzzDHg0
+type: room_tariff_currency
+name: 'Currency rates'
+description: 'Configuration currency rates from financial services.'
+status: true
+currency_data:
+  check_changed_in: ''
+  cron_refresh:
+    ECB:
+      status: true
+      check: false
+      used: {  }
+dependencies:
+  enforced:
+    module:
+      - room_tariff
+langcode: nl

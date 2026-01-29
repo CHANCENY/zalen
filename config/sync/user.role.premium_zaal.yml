@@ -1,0 +1,60 @@
+uuid: fa2b5c34-e9d1-4fd2-a8be-d86836680dcc
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.room_layout_form
+    - filter.format.basic_html
+    - filter.format.restricted_html
+    - media.type.audio
+    - media.type.document
+    - media.type.image
+    - media.type.remote_video
+    - media.type.video
+    - node.type.bedrijf
+    - node.type.invoices_receipt
+    - node.type.zaal
+  module:
+    - entity_browser
+    - file
+    - filter
+    - media
+    - node
+    - payment
+    - reservation
+id: premium_zaal
+label: VIP
+weight: 7
+is_admin: null
+permissions:
+  - 'access reservations'
+  - 'access room_layout_form entity browser pages'
+  - 'administer reservations'
+  - 'create bedrijf content'
+  - 'create document media'
+  - 'create image media'
+  - 'create remote_video media'
+  - 'create video media'
+  - 'create zaal content'
+  - 'delete own audio media'
+  - 'delete own bedrijf content'
+  - 'delete own document media'
+  - 'delete own files'
+  - 'delete own image media'
+  - 'delete own remote_video media'
+  - 'delete own video media'
+  - 'delete own zaal content'
+  - 'edit any invoices_receipt content'
+  - 'edit own audio media'
+  - 'edit own bedrijf content'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit own invoices_receipt content'
+  - 'edit own remote_video media'
+  - 'edit own video media'
+  - 'edit own zaal content'
+  - payment.payment.view.own
+  - 'use text format basic_html'
+  - 'use text format restricted_html'
+  - 'view own unpublished content'
+  - 'view own unpublished media'

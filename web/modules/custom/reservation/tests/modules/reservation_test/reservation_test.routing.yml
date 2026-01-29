@@ -1,0 +1,8 @@
+reservation_test.report:
+  path: '/reservation/{reservation}/report'
+  defaults:
+    _title: 'Report'
+    _controller: '\Drupal\reservation_test\Controller\ReservationTestController::reservationReport'
+  requirements:
+    _access: 'TRUE'
+    _csrf_token: 'TRUE'

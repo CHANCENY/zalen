@@ -1,0 +1,18 @@
+uuid: 3a83ae89-1f29-4045-8e73-16207b98f5ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.afstand_openbaar_vervoer
+id: taxonomy_term.afstand_openbaar_vervoer.name
+field_name: name
+entity_type: taxonomy_term
+bundle: afstand_openbaar_vervoer
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

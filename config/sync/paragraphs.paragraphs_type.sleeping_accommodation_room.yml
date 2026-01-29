@@ -1,0 +1,10 @@
+uuid: ac156c12-746e-4bf2-87ac-90e2ecf6f496
+langcode: en
+status: true
+dependencies: {  }
+id: sleeping_accommodation_room
+label: 'Sleeping Accommodation Room'
+icon_uuid: null
+icon_default: null
+description: 'This is paragraphs hold the rooms that are of overnight at location'
+behavior_plugins: {  }

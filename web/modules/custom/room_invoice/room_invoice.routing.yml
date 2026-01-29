@@ -1,0 +1,10 @@
+# Mollie
+# View invoices for user controller
+room_invoice.checkout_invoice:
+  path: '/invoices/{context_id}'
+  defaults:
+    _controller: 'Drupal\room_invoice\Controller\InvoiceRedirectController::invokeStatusCheckInvoice'
+    _title: 'Orders'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+

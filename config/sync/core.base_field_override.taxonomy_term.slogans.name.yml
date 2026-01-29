@@ -1,0 +1,18 @@
+uuid: e89fd86d-2c81-46f3-959b-eb19c917fb5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.slogans
+id: taxonomy_term.slogans.name
+field_name: name
+entity_type: taxonomy_term
+bundle: slogans
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

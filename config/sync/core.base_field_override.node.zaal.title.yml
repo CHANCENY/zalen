@@ -1,0 +1,18 @@
+uuid: 4d790a1d-729e-4cd6-865b-01e0a7e79a44
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.zaal
+id: node.zaal.title
+field_name: title
+entity_type: node
+bundle: zaal
+label: 'Name of the function room'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

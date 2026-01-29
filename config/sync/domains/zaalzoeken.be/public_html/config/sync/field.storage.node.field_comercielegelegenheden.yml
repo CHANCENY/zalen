@@ -1,0 +1,20 @@
+uuid: 288f2e3d-8d33-4b58-b723-25bef5e3aedb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_comercielegelegenheden
+field_name: field_comercielegelegenheden
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

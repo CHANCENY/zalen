@@ -1,0 +1,13 @@
+uuid: d0a1c457-18e3-4d0a-972f-bff6cca23a91
+langcode: nl
+status: true
+dependencies:
+  module:
+    - webform
+_core:
+  default_config_hash: Dl-1T9PDkraB7MyMUjTJAioPEx6UNvIB9gqmnB1CRkk
+id: webform_close_action
+label: 'Formulier sluiten'
+type: webform
+plugin: webform_close_action
+configuration: {  }

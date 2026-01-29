@@ -1,0 +1,29 @@
+uuid: 69c08649-6cd1-4c63-bf5d-3422d2ed5d97
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_vergadergelegenheden
+    - node.type.zaal
+    - taxonomy.vocabulary.vergader_gelegenheden
+id: node.zaal.field_vergadergelegenheden
+field_name: field_vergadergelegenheden
+entity_type: node
+bundle: zaal
+label: 'Meeting occasions'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      vergader_gelegenheden: vergader_gelegenheden
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,20 @@
+uuid: f06b44eb-6b7e-4fef-a0fc-6b87245ab860
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_bericht_voor_rolupdate
+  module:
+    - user
+id: user.user.field_bericht_voor_rolupdate
+field_name: field_bericht_voor_rolupdate
+entity_type: user
+bundle: user
+label: 'Bericht voor rolupdate'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

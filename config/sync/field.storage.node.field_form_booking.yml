@@ -1,0 +1,20 @@
+uuid: 3b71464b-6512-4af1-a089-df97904ae0cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - reservation
+id: node.field_form_booking
+field_name: field_form_booking
+entity_type: node
+type: reservation
+settings:
+  reservation_type: type_booking
+module: reservation
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

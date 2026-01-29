@@ -1,0 +1,23 @@
+{# field--opening-hours.html.twig #}
+
+{# path('<front>') {{ directory }} or {{ active_theme_path() }} #}
+{% set base_path = drupal_token('site:base-path') ~ '/' %}
+  {% set thema_pad = base_path ~ directory %} 
+
+<h3 class="bedrijf-open-tijd-hd"><img src="{{ thema_pad }}/images/icons/bedrijf/klok-vierkant.svg">{{ label }}</h3>
+<div class="bedrijf-open-tijd">
+  <div>
+    {% for item in items %}
+      {% if loop.first %}
+        <div class="bedrijf-open-tijd-dagen1">{{ item|first }}</div>
+      {% else %}
+        <div class="bedrijf-open-tijd-dagen2">
+          {{ item.content|without('first') }}
+        </div>
+      {% endif %}
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+</div>

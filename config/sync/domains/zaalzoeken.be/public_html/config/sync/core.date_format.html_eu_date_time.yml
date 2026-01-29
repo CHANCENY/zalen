@@ -1,0 +1,8 @@
+uuid: 3dc19631-8481-49cd-b43e-6bb251ed2fe8
+langcode: en
+status: true
+dependencies: {  }
+id: html_eu_date_time
+label: 'HTML EU date time'
+locked: false
+pattern: 'd-m-Y : H:i'

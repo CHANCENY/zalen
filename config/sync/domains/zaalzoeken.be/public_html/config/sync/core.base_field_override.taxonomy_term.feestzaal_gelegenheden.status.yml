@@ -1,0 +1,22 @@
+uuid: 5f0f0795-c454-47ac-9938-e4789c6041d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.feestzaal_gelegenheden
+id: taxonomy_term.feestzaal_gelegenheden.status
+field_name: status
+entity_type: taxonomy_term
+bundle: feestzaal_gelegenheden
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

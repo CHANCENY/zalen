@@ -1,0 +1,24 @@
+uuid: 99cc82e4-4d24-4cb6-ad46-ae7935942551
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - filter.format.plain_text
+    - paragraphs.paragraphs_type.sleeping_accommodation_room
+  module:
+    - text
+id: paragraph.sleeping_accommodation_room.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: sleeping_accommodation_room
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - plain_text
+field_type: text_long

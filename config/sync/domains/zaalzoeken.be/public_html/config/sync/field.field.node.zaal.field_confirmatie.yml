@@ -1,0 +1,31 @@
+uuid: a49fca45-2547-47ad-8f03-33bb461304ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_confirmatie
+    - node.type.zaal
+  module:
+    - payment_invoice
+id: node.zaal.field_confirmatie
+field_name: field_confirmatie
+entity_type: node
+bundle: zaal
+label: 'Confirmation period of the reservation'
+description: "<big><strong>Important!</strong></big>\r\n<ul>\r\nChoose a period in which you will confirm the booking.<br>\r\nIf you choose immediately, the expected payment will be processed immediately and the reservation will be a fact.<br>\r\nIf there is no confirmation within the set time, the booking will be cancelled.\r\n</ul>"
+required: true
+translatable: true
+default_value:
+  -
+    value: 86400
+default_value_callback: ''
+settings:
+  list_availability:
+    0: Instantly
+    60: 'Within 1 hour'
+    120: 'Within 2 hours'
+    360: 'Within 6 hours'
+    720: 'Within 12 hours'
+    1440: 'Within 24 hours'
+    2880: 'Within 48 hours'
+field_type: payment_button_availability

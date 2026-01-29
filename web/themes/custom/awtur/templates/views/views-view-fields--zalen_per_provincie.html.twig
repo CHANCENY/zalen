@@ -1,0 +1,171 @@
+{#
+/**
+ * @file
+ * Default view template to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ *
+ * @ingroup themeable
+ */
+#}
+<style>
+.provincie-view .view-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}    
+.provincie-container {
+  max-width: 280px;
+}  
+.provincie-container .item-list ul li {
+  padding: 0;
+}
+.provincie-container .item-list ul {
+  margin: 0;
+}
+.provincie-label h2 a {
+  color: #B78700;
+  /*color: #3b3b3b;*/
+  font-weight: 700;
+}
+.provincie-label h2 {
+  text-align: center;
+}
+.provincie-city {
+    color: white;
+    position: relative;
+    bottom: 40px;
+    font-size: clamp(0.75rem, 0.6937rem + 0.3vw, 0.9375rem);
+    text-shadow: 0 1px 0 #fff;
+    max-width: fit-content;
+    padding: 4px;
+    background-color: black;
+    border-radius: 0 8px 8px 0;
+    align-items: center;
+    display: flex;
+    gap: 2px
+}
+.provincie-zalen {
+  position: relative;
+  bottom: 35px;
+}
+.provincie-zalen details, .provincie-meer details {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid lightgray;
+}
+.provincie-zalen summary, .provincie-meer summary {
+  color: gray;
+  font-weight: bolder;
+  background-color: #f9f8fa;
+  padding: clamp(0.25rem, 0.1324rem + 0.5882vw, 0.5rem);
+}
+.provincie-meer-zalen {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 4px;
+}
+summary.provincie-meer-summary {
+  outline: none;
+  list-style: none;
+  background-color: unset;
+  padding: 0 8px;
+  margin: -24px 0 -8px 0;
+  color: burlywood;
+}
+.provincie-meer-summary summary::-webkit-details-marker {
+  display: none;
+}
+details.provincie-meer-details{
+  border: none;
+  margin: 0;
+}
+
+</style>
+
+<div class="provincie-container">
+  <div class="provincie-label">
+    <h2>{{ fields.title_1.content }}</h2>
+  </div>
+  <div class="provincie-foto">
+    {{ fields.field_foto.content }}
+  </div>
+  <div class="provincie-city">
+    <ion-icon style="color:white" name="location-outline"></ion-icon>
+    {{ fields.field_adres_locality.content }}
+  </div>
+  <div class="provincie-zalen">
+    {{ fields.field_zaal_bedrijf.content }}
+  </div>
+  
+  {% if fields.field_zaal_bedrijf_1.content|striptags|trim is not empty %}
+  <details class="provincie-meer-details">
+    <summary class="provincie-meer-summary">
+      <p class="provincie-meer-zalen">{{ 'meer zalen'|t }}<ion-icon name="caret-down-sharp"></ion-icon></p>
+    </summary>
+  <div class="provincie-meer">  
+    <div class="provincie-zalen-2">
+    {{ fields.field_zaal_bedrijf_1.content }}
+    </div>
+  </div>
+  {% endif %}
+  </details>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Get all the containers for rooms
+  const roomContainers = document.querySelectorAll(".provincie-container");
+
+  // Iterate through each room container
+  roomContainers.forEach((container) => {
+    // Get the first details element inside the current room container
+    const firstDetails = container.querySelector("details.provincie-eerstedrie");
+
+    // If the first details element exists, open it
+    if (firstDetails) {
+      firstDetails.open = true;
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,15 @@
+uuid: 0657f4be-cfa0-409a-8aaf-c7dc6a7b90c5
+langcode: en
+status: true
+dependencies: {  }
+name: mini_mini_37_x_37_
+label: 'Mini mini (37 X 37)'
+effects:
+  79b6b668-3bcb-4aed-96ca-ef9bc15db6ba:
+    uuid: 79b6b668-3bcb-4aed-96ca-ef9bc15db6ba
+    id: image_scale
+    weight: 1
+    data:
+      width: 37
+      height: 37
+      upscale: true

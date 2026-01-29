@@ -1,0 +1,14 @@
+uuid: c8ccf98b-b61d-4737-8699-3d8e6152f641
+langcode: en
+status: true
+dependencies: {  }
+name: red_teaser_350_x_240_
+label: 'Red teaser (370 X 270)'
+effects:
+  95ee0cca-20a3-454f-bc96-fbf4a341ed79:
+    uuid: 95ee0cca-20a3-454f-bc96-fbf4a341ed79
+    id: image_resize
+    weight: 1
+    data:
+      width: 370
+      height: 270

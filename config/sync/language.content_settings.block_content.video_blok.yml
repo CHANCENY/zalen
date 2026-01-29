@@ -1,0 +1,18 @@
+uuid: 550f6aa9-45d2-4862-b4e9-3980ff1a156d
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.video_blok
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.video_blok
+target_entity_type_id: block_content
+target_bundle: video_blok
+default_langcode: site_default
+language_alterable: true

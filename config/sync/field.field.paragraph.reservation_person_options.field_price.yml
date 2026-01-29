@@ -1,0 +1,23 @@
+uuid: 170ebd70-eac0-47b2-a1f2-8f3ce0d8c9f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_price
+    - paragraphs.paragraphs_type.reservation_person_options
+id: paragraph.reservation_person_options.field_price
+field_name: field_price
+entity_type: paragraph
+bundle: reservation_person_options
+label: Price
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

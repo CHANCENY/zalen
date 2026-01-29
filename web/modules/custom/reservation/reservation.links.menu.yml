@@ -1,0 +1,16 @@
+reservation.admin:
+  title: Reservations
+  route_name: reservation.admin
+  parent: system.admin_content
+  description: 'List and edit site reservations and the reservation approval queue.'
+entity.reservation_type.collection:
+  title: 'Reservation types'
+  route_name: entity.reservation_type.collection
+  parent: system.admin_structure
+  description: 'Manage form and displays settings of reservations.'
+reservation.emails_admin_settings:
+  title: 'Reservations Emails'
+  description: 'Manage reservation emails templates'
+  parent: system.admin_config_system
+  route_name: reservation.emails_templates_settings
+  weight: 100

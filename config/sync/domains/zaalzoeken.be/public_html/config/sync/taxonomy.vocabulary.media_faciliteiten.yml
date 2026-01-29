@@ -1,0 +1,9 @@
+uuid: 5160dcc0-f191-422a-9163-fcfe4eba1a53
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Media faciliteiten'
+vid: media_faciliteiten
+description: 'Media voorzieningen'
+weight: 0
+new_revision: false

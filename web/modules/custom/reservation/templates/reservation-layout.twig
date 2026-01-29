@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph.
+ *
+ * Available variables:
+ * - advance_link: advance payment link.
+ * - full_link: full payment link.
+ * - payment_breakdown: payment break down array.
+ * - reservation_information: paragraph of reservation.
+ * - room: room node
+ * - room_owner: room owner User
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--type--' ~ reservation_information.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not reservation_information.isPublished() ? 'paragraph--unpublished'
+]
+%}
+{% set paragraph = content.reservation_information %}
+<div{{ attributes.addClass(classes) }}>
+    <div class="reservation-box">
+      <h2 class="reservation-heading">Reservation Information</h2>
+      <div class="table-responsive">
+        <table class="table table-stripped">
+          <thead>
+          <tr>
+            <th>Booking Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Hours</th>
+            <th>Days</th>
+            <th>Occupants</th>
+            <th>Charges</th>
+            <th>Payment Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{ paragraph.get('field_unit_type').value|default('Hourly')|upper }}</td>
+            <td>{{ paragraph.get('field_starting_date').value }}</td>
+            <td>{{ paragraph.get('field_ending_date').value }}</td>
+            <td>{{ paragraph.get('field_hours').value|default('not applicable') }}</td>
+            <td>{{ paragraph.get('field_days').value|default('not applicable') }}</td>
+            <td>{{ paragraph.get('field_occupants').value|default('not applicable') }}</td>
+            <td>{{ getCurrencySymbol(paragraph.get('field_reservation_currency').value|default('eur')|upper) }}{{ paragraph.get('field_total_amount').value|default('not applicable') }}</td>
+            <td>{{ paragraph.get('field_payment_status').value|default('unknown')|upper }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+

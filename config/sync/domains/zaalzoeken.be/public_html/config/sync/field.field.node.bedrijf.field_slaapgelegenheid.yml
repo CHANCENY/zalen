@@ -1,0 +1,23 @@
+uuid: d303fa1e-76c3-4ae0-96a2-f0e2e3709c57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slaapgelegenheid
+    - node.type.bedrijf
+id: node.bedrijf.field_slaapgelegenheid
+field_name: field_slaapgelegenheid
+entity_type: node
+bundle: bedrijf
+label: 'Sleeping accommodation'
+description: 'Only check this if there is the possibility to stay overnight at the location itself.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Sleeping accommodation'
+  off_label: X
+field_type: boolean

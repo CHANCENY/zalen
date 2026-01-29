@@ -1,0 +1,18 @@
+uuid: ea8e8291-6e14-4c1c-982b-25a2ae6ef89f
+langcode: en
+status: true
+dependencies:
+  module:
+    - reservation
+id: reservation.field_per_person
+field_name: field_per_person
+entity_type: reservation
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

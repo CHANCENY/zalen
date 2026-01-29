@@ -1,0 +1,22 @@
+uuid: 4c71e0d4-4c3c-4377-a2d7-44aa42f269f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.restricted_html
+  module:
+    - file
+    - filter
+    - payment
+    - reservation
+id: magnus
+label: Magnus
+weight: 5
+is_admin: null
+permissions:
+  - 'access reservations'
+  - 'delete own files'
+  - payment.payment.view.own
+  - 'use text format basic_html'
+  - 'use text format restricted_html'

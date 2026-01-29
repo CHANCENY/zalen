@@ -1,0 +1,152 @@
+reservation.admin:
+  path: '/admin/content/reservation'
+  defaults:
+    _title: 'Reservations'
+    _form: '\Drupal\reservation\Form\ReservationAdminOverview'
+    type: 'new'
+  requirements:
+    _permission: 'administer reservations'
+
+reservation.admin_approval:
+  path: '/admin/content/reservation/approval'
+  defaults:
+    _title: 'Unapproved reservations'
+    _form: '\Drupal\reservation\Form\ReservationAdminOverview'
+    type: 'approval'
+  requirements:
+    _permission: 'administer reservations'
+
+entity.reservation.edit_form:
+  path: '/reservation/{reservation}/edit'
+  defaults:
+    _title: 'Edit'
+    _entity_form: 'reservation.default'
+  requirements:
+    _entity_access: 'reservation.update'
+    reservation: \d+
+
+reservation.approve:
+  path: '/reservation/{reservation}/approve'
+  defaults:
+    _title: 'Approve'
+    _controller: '\Drupal\reservation\Controller\ReservationController::reservationApprove'
+    entity_type: 'reservation'
+  requirements:
+    _entity_access: 'reservation.approve'
+    _csrf_token: 'TRUE'
+    reservation: \d+
+
+entity.reservation.canonical:
+  path: '/reservation/{reservation}'
+  defaults:
+    _title_callback: '\Drupal\reservation\Controller\ReservationController::reservationPermalinkTitle'
+    _controller: '\Drupal\reservation\Controller\ReservationController::reservationPermalink'
+  requirements:
+    _entity_access: 'reservation.view'
+    reservation: \d+
+
+entity.reservation.delete_form:
+  path: '/reservation/{reservation}/delete'
+  defaults:
+    _title: 'Delete'
+    _entity_form: 'reservation.delete'
+  requirements:
+    _entity_access: 'reservation.delete'
+    reservation: \d+
+
+reservation.multiple_delete_confirm:
+  path: '/admin/content/reservation/delete'
+  defaults:
+    _title: 'Delete'
+    _form: '\Drupal\reservation\Form\ConfirmDeleteMultiple'
+    entity_type_id: 'reservation'
+  requirements:
+    _entity_delete_multiple_access: 'reservation'
+
+entity.reservation.delete_multiple_form:
+  path: '/admin/content/reservation/delete'
+  defaults:
+    _title: 'Delete'
+    _form: '\Drupal\reservation\Form\ConfirmDeleteMultiple'
+    entity_type_id: 'reservation'
+  requirements:
+    _entity_delete_multiple_access: 'reservation'
+
+reservation.reply:
+  path: '/reservation/reply/{entity_type}/{entity}/{field_name}/{pid}'
+  defaults:
+    _controller: '\Drupal\reservation\Controller\ReservationController::getReplyForm'
+    _title: 'Add new reservation'
+    pid: ~
+  requirements:
+    _custom_access: '\Drupal\reservation\Controller\ReservationController::replyFormAccess'
+  options:
+    parameters:
+      entity:
+        type: entity:{entity_type}
+
+reservation.new_reservations_node_links:
+  path: '/reservations/render_new_reservations_node_links'
+  defaults:
+    _controller: '\Drupal\reservation\Controller\ReservationController::renderNewReservationsNodeLinks'
+  requirements:
+    _permission: 'access content'
+
+reservation.node_redirect:
+  path: '/reservation/{node}/reply'
+  defaults:
+    _controller: '\Drupal\reservation\Controller\ReservationController::redirectNode'
+  requirements:
+    _entity_access: 'node.view'
+    _module_dependencies: 'node'
+    node: \d+
+
+entity.reservation_type.collection:
+  path: '/admin/structure/reservation'
+  defaults:
+    _entity_list: 'reservation_type'
+    _title: 'Reservation types'
+  requirements:
+    _permission: 'administer reservation types'
+  options:
+    _admin_route: TRUE
+
+entity.reservation_type.delete_form:
+  path: '/admin/structure/reservation/manage/{reservation_type}/delete'
+  defaults:
+    _entity_form: 'reservation_type.delete'
+    _title: 'Delete'
+  requirements:
+    _entity_access: 'reservation_type.delete'
+  options:
+    _admin_route: TRUE
+
+entity.reservation_type.add_form:
+  path: '/admin/structure/reservation/types/add'
+  defaults:
+    _entity_form: 'reservation_type.add'
+    _title: 'Add reservation type'
+  requirements:
+    _permission: 'administer reservation types'
+  options:
+    _admin_route: TRUE
+
+entity.reservation_type.edit_form:
+  path: '/admin/structure/reservation/manage/{reservation_type}'
+  defaults:
+    _entity_form: 'reservation_type.edit'
+    _title: 'Edit'
+  requirements:
+    _entity_access: 'reservation_type.update'
+  options:
+    _admin_route: TRUE
+
+reservation.emails_templates_settings:
+  path: '/admin/structure/reservation/email/templates'
+  defaults:
+    _controller: '\Drupal\reservation\Controller\EmailTemplateController::emailFormTemplateLayout'
+    _title: 'Email Templates'
+  requirements:
+    _permission: 'administrator'
+  options:
+    _admin_route: TRUE

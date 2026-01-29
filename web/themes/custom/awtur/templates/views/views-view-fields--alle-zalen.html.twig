@@ -1,0 +1,175 @@
+{#
+/**
+ * @file
+ * Default view template to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ *
+ * @ingroup themeable
+ */
+#}
+{#{% for field in fields -%}
+  {{ field.separator }}
+  {%- if field.wrapper_element -%}
+    <{{ field.wrapper_element }}{{ field.wrapper_attributes }}>
+  {%- endif %}
+  {%- if field.label -%}
+    {%- if field.label_element -%}
+      <{{ field.label_element }}{{ field.label_attributes }}>{{ field.label }}{{ field.label_suffix }}</{{ field.label_element }}>
+    {%- else -%}
+      {{ field.label }}{{ field.label_suffix }}
+    {%- endif %}
+  {%- endif %}
+  {%- if field.element_type -%}
+    <{{ field.element_type }}{{ field.element_attributes }}>{{ field.content }}</{{ field.element_type }}>
+  {%- else -%}
+    {{ field.content }}
+  {%- endif %}
+  {%- if field.wrapper_element -%}
+    </{{ field.wrapper_element }}>
+  {%- endif %}
+{%- endfor %}#}
+
+
+{{ attach_library('awtur/personal-views-fields-alle-zalen') }}
+
+<div  class = "alle-zalen-view">
+
+  <div class = "alle-zalen-label-foto">
+    <h2>{{ fields.title_1.content }}</h2>
+    <div class = "alle-zalen-img">
+    {{ fields.field_foto.content }}
+    </div>
+  </div>
+
+  <div class="alle-zalen-label-city-price">
+    <div class="alle-zalen-label-city">
+      <span class="alle-zalen-zaallabel">{{ fields.title.content }}</span><br>
+      <span class="alle-zalen-city">{{ fields.field_adres_locality.content }}</span>
+    </div>
+    <div class="alle-zalen-price">
+      {% if fields.field_uurprijs.content|striptags|trim is not empty %}
+        <div class = "alle-zalen-order-price">
+          <span class = "price-vanaf">{{ 'from'|t }} {{ getCurrencySymbol(row._entity.field_hourly_currency.value|default('eur'))}}{{ fields.field_uurprijs.content }} </span><br>
+          <span class = "price-variation">{{ 'per hour'|t }}</span>
+        </div>
+      {% elseif fields.field_dagprijs.content|striptags|trim is not empty %}
+        <div class = "alle-zalen-order-price">
+          {{ 'from'|t }}<span class = "price-vanaf"> {{ getCurrencySymbol(row._entity.field_daily_currency.value|default('eur'))}}{{ fields.field_dagprijs.content }}</span><br>
+          <span class = "price-variation">{{ 'per day'|t }}</span>
+        </div>
+      {% elseif fields.field_prijs_per_persoon.content|striptags|trim is not empty  %}
+        <div class = "alle-zalen-order-price">
+          {{ 'from'|t }}<span class = "price-vanaf"> {{ getCurrencySymbol(row._entity.field_person_currency.value|default('eur'))}}{{ fields.field_prijs_per_persoon.content }}</span><br>
+          <span class = "price-variation">{{ 'per person'|t }} </span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="alle-zalen-gelegenheden">
+
+    {% if fields.field_feestgelegenheid.content|render|striptags|trim %}
+    {% set feesten = fields.field_feestgelegenheid.content|striptags()|split(',') %}
+    {% endif %}
+    {% if fields.field_concertgelegenheden.content|render|striptags|trim %}
+    {% set concerten = fields.field_concertgelegenheden.content|striptags()|split(',') %}
+    {% endif %}
+    {% if fields.field_comercielegelegenheden.content|render|striptags|trim %}
+    {% set commercen = fields.field_comercielegelegenheden.content|striptags()|split(',') %}
+    {% endif%}
+    {% if fields.field_vergadergelegenheden.content|render|striptags|trim %}
+    {% set vergaderen = fields.field_vergadergelegenheden.content|striptags()|split(',') %}
+    {% endif %}
+
+    <ul class="alle-zalen-gelegenheden-lijst">
+      {% if feesten %}
+        {% for feest in feesten %}
+          <li>{{ feest }}</li>
+        {% endfor %}
+      {% endif %}
+      {% if concerten  %}
+        {% for concert in concerten %}
+          <li>{{ concert }}</li>
+        {% endfor %}
+      {% endif %}
+      {% if commercen %}
+        {% for commerce in commercen %}
+          <li>{{ commerce }}</li>
+        {% endfor %}
+      {% endif %}
+      {% if vergaderen %}
+        {% for vergader in vergaderen %}
+          <li>{{ vergader }}</li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+  </div>
+
+    <div class="alle-zalen-capaciteit-troeven">
+      <div class = "alle-zalen-capaciteit">
+        <div class = "feature-tot">{{ fields.field_bezetting_tot.content }}<span class="alle-zalen-bullet">{{ '&#x2022;' }}</span></div>
+        <div class = "feature-oppervlakte">{{ fields.field_oppervlakte.content }}{{ 'm²' }}</div>
+      </div>
+    <div class = "features">
+        {% if fields.field_nabij_bushalte.content|render|striptags|trim %}
+          <div {{ 'class = ' ~ fields.field_nabij_bushalte.class }}>
+          <p>{{ fields.field_nabij_bushalte.content }}</p>
+          </div>
+        {% endif %}
+        {% if fields.field_nabij_metrohalte.content|render|striptags|trim %}
+          <div {{ 'class = ' ~ fields.field_nabij_metrohalte.class }}>
+          <p>{{ fields.field_nabij_metrohalte.content }}</p>
+          </div>
+        {% endif %}
+        {% if fields.field_nabij_tramhalte.content|render|striptags|trim %}
+          <div {{ 'class = ' ~ fields.field_nabij_tramhalte.class }}>
+          <p>{{ fields.field_nabij_tramhalte.content }}</p>
+          </div>
+        {% endif %}
+        {% if fields.field_nabij_trein_station.content|render|striptags|trim %}
+          <div {{ 'class = ' ~ fields.field_nabij_trein_station.class }}>
+          <p>{{ fields.field_nabij_trein_station.content }}</p>
+          </div>
+        {% endif %}
+        {% if fields.field_kindvriendelijk.content|render|striptags|trim %}
+          <div {{ 'class = ' ~ fields.field_kindvriendelijk.class }}>
+          <p>{{ fields.field_kindvriendelijk.content }}</p>
+          </div>
+        {% endif %}
+        {% if fields.field_groen_label.content|render|striptags|trim %}
+          <div {{ 'class = ' ~ fields.field_groen_label.class }}>
+          <p>{{ fields.field_groen_label.content }}</p>
+          </div>
+        {% endif %}
+        {% if fields.field_beperkingen.content|render|striptags|trim %}
+          <div {{ 'class = ' ~ fields.field_beperkingen.class }}>
+          <p>{{ fields.field_beperkingen.content }}</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>

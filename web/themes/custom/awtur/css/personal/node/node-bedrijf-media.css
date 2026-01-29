@@ -1,0 +1,65 @@
+/* ----BEDRIJF View mode MEDIA styles---- */
+.bedrijf-media{
+  padding: 8px;
+ }  
+.bedrijfs-fotos-items {
+  display: grid;
+  grid-template-rows: 350px;
+  gap: 2%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin: 32px 0;
+}
+.bedrijf-media .field.field--name-field-video{
+  text-align: center;
+  line-height: 0;
+}
+.bedrijfs-fotos-items img{
+  border-radius: 8px;
+}
+.bedrijf-media .bedrijf-media-film {
+  width: clamp(15.625rem, 7.5893rem + 42.8571vw, 34.375rem);
+  margin: 64px auto 0;
+}
+.bedrijf-media .bedrijf-media-film iframe{
+  width: clamp(15.625rem, 7.5893rem + 42.8571vw, 34.375rem);
+  height: clamp(9.375rem, 4.2857rem + 27.1429vw, 21.25rem);
+  border-radius: 8px 8px 0 0;
+  border: clamp(0.625rem, 0.4911rem + 0.7143vw, 0.9375rem) solid #060B1A;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+span.bedrijf-media-balk,
+span.bedrijf-media-voetsteun {
+  height: clamp(1.75rem, 1.375rem + 2vw, 2.625rem);
+  display: block;
+  background-color: #CFD0D3;
+  position: relative;
+  bottom: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+span.bedrijf-media-balk {
+  border-radius: 0 0 8px 8px;
+  
+}
+span.bedrijf-media-voetsteun {
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  width: 20%;
+  margin: auto;
+  bottom: 10px;
+  background-color: #CFD0D3; 
+}
+.bedrijf-media h3{
+  color: #808080;
+  text-align: center;
+}
+video{
+  max-width: 100%;
+}
+.bedrijf-media-additional .field__items {
+display: flex;
+gap: 8px;
+justify-content: center;
+text-align: center;
+margin-top: 64px;
+padding: 8px;
+}
+

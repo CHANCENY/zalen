@@ -1,0 +1,98 @@
+{{ attach_library('awtur/multiselect-sumoselect') }}
+{{ attach_library('awtur/extensive-filter') }}
+
+{% set base_path = drupal_token('site:base-path') ~ '/' %}
+{% set thema_pad = base_path ~ directory %} {# path('<front>') {{ directory }} or {{ active_theme_path() }} #}
+
+<div class="extensive-filter">
+  <header>
+    <h2>{{ "Extensive search"|t }}
+  </header>
+  {# Fieldgroup gelegenheden(occasions) #}
+  <fieldset>
+    <legend class="legend-icon"><img src="{{ thema_pad }}/images/icons/filters/occasion.svg" alt="gelegenheden icoon">{{ "Occasions"|t }}</legend>
+    <div class="vier-filters">
+        {{ form.commerciele_gelegenheden_keuze }}
+        {{ form.vergader_gelegenheden_keuze }}
+        {{ form.concert_gelegenheden_keuze }}
+        {{ form.feest_gelegenheid_keuze }}
+    </div>
+  </fieldset>  
+  {# Fieldgroup Prijzen(prices) #}
+  <fieldset>
+    <legend class="legend-icon"><img src="{{ thema_pad }}/images/icons/filters/price.svg" alt="gelegenheden icoon">{{ "Prices"|t }}</legend>
+    <div class="drie-filters groter-kleiner-dan">
+      {{ form.field_dagprijs_value_wrapper }}
+      {{ form.field_prijs_per_persoon_value_wrapper }}
+      {{ form.field_uurprijs_value_wrapper }}
+    </div>
+  </fieldset>
+  {# Fieldgroup Ruimte(capacity) #}
+  <fieldset>
+    <legend class="legend-icon"><img src="{{ thema_pad }}/images/icons/filters/space.svg" alt="gelegenheden icoon">{{ "Space"|t }}</legend>
+    <div class="vier-filters groter-kleiner-dan">
+      {{ form.field_oppervlakte_value_wrapper }}
+      {{ form.field_bezetting_tot_value_wrapper }}
+      {{ form.field_staanplaatsen_value_wrapper }}
+      {{ form.field_zitplaatsen_value_wrapper }}
+    </div>
+  </fieldset>
+  {# Fieldgroup Nabij openbaar vervoer(close to public transport) #}
+  <fieldset>
+    <legend class="legend-icon"><img src="{{ thema_pad }}/images/icons/filters/public-transport.svg" alt="gelegenheden icoon">{{ "Near public transport"|t }}</legend>
+    <div class="vier-filters">
+      {{ form.field_afstand_bus_target_id }}
+      {{ form.field_afstand_tramhalte_target_id }}
+      {{ form.field_afstand_metro_target_id }}
+      {{ form.field_afstand_trein_station_target_id }}
+    </div>
+  </fieldset>
+  {# Fieldgroup Parkeren(park) #}
+  <fieldset>
+    <legend class="legend-icon"><img src="{{ thema_pad }}/images/icons/filters/parking.svg" alt="parking icoon">{{ "Parking"|t }}</legend>
+    <div class="drie-filters groter-kleiner-dan">
+      {{ form.field_fietsen_value_wrapper }}
+      {{ form.field_wagens_value_wrapper }}
+      {{ form.field_motoren_value_wrapper }}
+    </div>
+  </fieldset>
+  {# Fieldgroup Comfort(comfort) #}
+  <fieldset>
+    <legend class="legend-icon"><img src="{{ thema_pad }}/images/icons/filters/comfort.svg" alt="comfort icoon">{{ "Comfort"|t }}</legend>
+    <div class="vier-filters">
+      {{ form.field_thema_target_id }}
+      {{ form.field_media_target_id }}
+      {{ form.field_uitrusting_target_id }}
+      {{ form.field_slaapgelegenheid_value }}
+    </div>
+  </fieldset>
+  {# Fieldgroup Troeven(quality assets) #}
+  <fieldset>
+    <legend class="legend-icon"><img src="{{ thema_pad }}/images/icons/filters/trumps.svg" alt="troeven icoon">{{ "Quality assets"|t }}</legend>
+    <div class="drie-filters">
+      {{ form.field_kindvriendelijkheid_target_id }}
+      {{ form.field_mindervaliden_target_id }}
+      {{ form.field_milieu_target_id }}
+    </div>
+  </fieldset>
+  <div class="">
+{{ form.actions }}
+</div> 
+
+</div>
+
+{#<script>
+/*  document.addEventListener("DOMContentLoaded", function() {
+  var colors = ['label-color-1', 'label-color-2', 'label-color-3', 'label-color-4'];
+  var colorSequence = ['label-color-1', 'label-color-4', 'label-color-3', 'label-color-2']; // Balanced color sequence
+  var colorIndex = 0;
+
+  var labels = document.querySelectorAll('.extensive-filter label');
+  labels.forEach(function(label) {
+    var currentColor = colorSequence[colorIndex];
+    label.classList.add(currentColor);
+
+    colorIndex = (colorIndex + 1) % colorSequence.length;
+  });
+});*/
+</script>#}

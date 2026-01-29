@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains payment_provider.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+/**
+ * Implements hook_help().
+ */
+function payment_provider_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the payment_provider module.
+    case 'help.page.payment_provider':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Contains provider for payments to invoice.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function room_tariff_update_8013() {
+  $field_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node');
+
+  if (isset($field_storage_definitions['oauth_authorize_token'])) {
+    $field_storage_definition = $field_storage_definitions['oauth_authorize_token'];
+    $schema = $field_storage_definition->getSchema();
+
+    \Drupal::database()->schema()->addField('oauth_authorize_token', 'organization_id_2', [
+      'type' => 'varchar',
+      'length' => 128,
+      'not null' => FALSE,
+    ]);
+  }
+}

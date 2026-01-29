@@ -1,0 +1,20 @@
+uuid: 09036721-1b44-4fa6-acbb-0c0bff505f49
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.vergader_gelegenheden
+  module:
+    - path
+id: taxonomy_term.vergader_gelegenheden.path
+field_name: path
+entity_type: taxonomy_term
+bundle: vergader_gelegenheden
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

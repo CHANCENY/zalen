@@ -1,0 +1,2 @@
+template_mail: '<p>Hi [node:author:account-name],</p><p>Payment for reservation id [reservation:field_boeking_id], was successfully received. This payment confirms the reservation. You can find the reservation details in your account under the "Room Reservations" tab.</p><p>&nbsp;</p><p>Thank you.</p>'
+template_mail_format: full_html

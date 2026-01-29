@@ -1,0 +1,33 @@
+uuid: 55ac2ffd-74cc-4872-9829-ab22d9e71a10
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: bedrijf_de
+label: 'Bedrijf DE'
+type: 'canonical_entities:node'
+pattern: '/Unternehmen/[node:title]'
+selection_criteria:
+  48d77500-190b-49ea-bb38-32b1ad9994b0:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 48d77500-190b-49ea-bb38-32b1ad9994b0
+    context_mapping:
+      node: node
+    bundles:
+      bedrijf: bedrijf
+  dc3aee6d-e5cc-41f0-90a8-05ec32e24b8d:
+    id: language
+    negate: false
+    uuid: dc3aee6d-e5cc-41f0-90a8-05ec32e24b8d
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      de: de
+selection_logic: and
+weight: -10
+relationships:
+  'node:langcode:language':
+    label: Language

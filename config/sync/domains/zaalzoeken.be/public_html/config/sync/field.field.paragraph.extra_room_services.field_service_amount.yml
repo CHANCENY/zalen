@@ -1,0 +1,23 @@
+uuid: 1883e371-63a6-4664-a921-582e6617a543
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_service_amount
+    - paragraphs.paragraphs_type.extra_room_services
+id: paragraph.extra_room_services.field_service_amount
+field_name: field_service_amount
+entity_type: paragraph
+bundle: extra_room_services
+label: Amount
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

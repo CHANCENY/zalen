@@ -1,0 +1,6 @@
+# Link to config form Mollie plugin payment provider in menu /admin/config/services
+payment_provider.config_form_mollie_plugin:
+  title: 'Config Mollie'
+  description: 'Config form for plugin Mollie payment provider'
+  route_name: payment_provider.mollie_config
+  parent: system.admin_config_services

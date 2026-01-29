@@ -1,0 +1,86 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main content
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+{#{{ attach_library('room_carusel/carusel') }}#}
+<style>
+.circle {
+  width: 135px;
+  height:135px;
+  border-radius: 50%;
+  background: linear-gradient(226.33deg, #FFF5A8 6.96%, #BD8100 35.02%, #E0BE58 75.16%, #F1DC83 96.8%);
+  position: relative;
+  left: 32px
+}
+svg {
+  padding:4px;
+}
+</style>
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  <div class="circle">
+  <svg  viewBox="0 0 100 100" width="135" height="135">
+  <defs>
+    <path id="circle"
+      d="
+        M 50, 50
+        m -37, 0
+        a 37,37 0 1,1 74,0
+        a 37,37 0 1,1 -74,0"/>
+  </defs>
+    <circle cx="50" cy="50" r="18" fill="#cccccc" />
+    <text x="50%" y="50%" text-anchor="middle" fill="#c69016" font-size="25px" dy=".3em">Z</text>
+  <text font-size="15" fill="white" letter-spacing="2.5" >
+    <textPath xlink:href="#circle">
+       Home.video Home.Video
+    </textPath>
+  </text>
+</svg>
+</div>
+
+  {% block content %}
+    <div{{ content_attributes.addClass('content') }}>
+      {{ content }}
+    </div>
+  {% endblock %}
+</div>
+
+ 

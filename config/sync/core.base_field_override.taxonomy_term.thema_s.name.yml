@@ -1,0 +1,18 @@
+uuid: 8bde04e6-fe75-488e-84c2-a1829c33c24c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.thema_s
+id: taxonomy_term.thema_s.name
+field_name: name
+entity_type: taxonomy_term
+bundle: thema_s
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

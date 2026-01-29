@@ -1,0 +1,20 @@
+uuid: 0e760771-9b69-4111-84c0-690e05474abb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.afstand_openbaar_vervoer
+  module:
+    - path
+id: taxonomy_term.afstand_openbaar_vervoer.path
+field_name: path
+entity_type: taxonomy_term
+bundle: afstand_openbaar_vervoer
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

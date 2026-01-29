@@ -1,0 +1,19 @@
+uuid: cdd4970e-32c8-4f3e-9e7a-0990733e7c21
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hours_booked
+    - node.type.invoices_receipt
+id: node.invoices_receipt.field_hours_booked
+field_name: field_hours_booked
+entity_type: node
+bundle: invoices_receipt
+label: 'Hours booked'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

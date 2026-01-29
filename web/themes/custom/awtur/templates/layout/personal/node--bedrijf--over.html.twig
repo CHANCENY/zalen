@@ -1,0 +1,17 @@
+
+{{ attach_library('awtur/personal-bedrijf-over') }}
+
+<div class="tab-node-bedrijf">
+  {# Make sure body_text is always a string to avoid errors with striptags filter #}
+  {% set body_text = node.body.value is defined and node.body.value is not empty ? node.body.value|striptags : '' %}
+  {% set max_length = 300 %}
+  {% set show_read_more = body_text|length > max_length %}
+  <p id="bedrijf-body-text-partial">{{ body_text|slice(0, max_length) ~ (show_read_more ? '...' : '') }}</p>
+  <p id="bedrijf-body-text-full">{{ body_text }}</p>
+  {% if show_read_more %}
+    <p class="body-bedrijf-read-more" id="bodyReadMoreTag" onclick="changeReadMore()">{{ 'meer weten'|t }}</p>
+  {% else %}
+    <p class="body-bedrijf-no-more">{{ 'niets meer'|t }}</p>
+  {% endif %}
+</div>
+

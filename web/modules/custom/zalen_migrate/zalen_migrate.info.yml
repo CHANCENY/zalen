@@ -1,0 +1,11 @@
+name: Zalen Migrate
+type: module
+description: Custom D7 → D10 migraties voor Zaalzoeken.
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:migrate
+  - drupal:migrate_drupal
+  - migrate_plus:migrate_plus
+  - migrate_tools:migrate_tools
+

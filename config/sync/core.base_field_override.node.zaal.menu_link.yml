@@ -1,0 +1,20 @@
+uuid: 6ca2969b-153a-4cb6-9ce0-735624b4d385
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.zaal
+id: node.zaal.menu_link
+field_name: menu_link
+entity_type: node
+bundle: zaal
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

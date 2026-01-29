@@ -1,0 +1,19 @@
+uuid: fa1b45d5-f1d2-4328-b46f-9c21a99b7115
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_room_ref
+field_name: field_room_ref
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

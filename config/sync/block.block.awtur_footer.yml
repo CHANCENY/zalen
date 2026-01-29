@@ -1,0 +1,27 @@
+uuid: b45046f3-efbc-4741-9bd1-3277ee8fbcfb
+langcode: nl
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - awtur
+_core:
+  default_config_hash: 8zRjTNbfNAJ94lQpZDu6MkyD87GYJ2zpH9VQPVmRbcM
+id: awtur_footer
+theme: awtur
+region: footer_fifth
+weight: -18
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: Footer-menu
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

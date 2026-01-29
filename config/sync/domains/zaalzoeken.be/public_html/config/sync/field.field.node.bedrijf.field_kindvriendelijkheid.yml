@@ -1,0 +1,29 @@
+uuid: 14c50b76-8cb9-47ec-84ad-e05952229a59
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_kindvriendelijkheid
+    - node.type.bedrijf
+    - taxonomy.vocabulary.kindvriendelijke_punten
+id: node.bedrijf.field_kindvriendelijkheid
+field_name: field_kindvriendelijkheid
+entity_type: node
+bundle: bedrijf
+label: 'Child friendliness'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      kindvriendelijke_punten: kindvriendelijke_punten
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

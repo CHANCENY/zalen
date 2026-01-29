@@ -1,0 +1,20 @@
+uuid: ffd86503-409f-4ea0-aca9-5fad08032bec
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_if_days_booked
+field_name: field_if_days_booked
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

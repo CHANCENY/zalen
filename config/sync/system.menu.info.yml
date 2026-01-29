@@ -1,0 +1,8 @@
+uuid: 30e64f17-22cd-46c0-8f59-26a7403e370a
+langcode: nl
+status: true
+dependencies: {  }
+id: info
+label: Info
+description: 'Informatie links'
+locked: false

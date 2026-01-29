@@ -1,0 +1,20 @@
+uuid: b985abee-7ab5-49c5-befe-5e7d3176d070
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_minimum_persons
+field_name: field_minimum_persons
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

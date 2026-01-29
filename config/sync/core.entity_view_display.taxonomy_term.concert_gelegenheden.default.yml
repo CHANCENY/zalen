@@ -1,0 +1,22 @@
+uuid: e405595f-ac9b-435e-a620-2347486f4ec7
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.concert_gelegenheden
+  module:
+    - text
+id: taxonomy_term.concert_gelegenheden.default
+targetEntityType: taxonomy_term
+bundle: concert_gelegenheden
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

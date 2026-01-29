@@ -1,0 +1,19 @@
+uuid: 2221d802-7e03-4dc0-96c5-6c001709e53d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slogan
+    - node.type.bedrijf
+id: node.bedrijf.field_slogan
+field_name: field_slogan
+entity_type: node
+bundle: bedrijf
+label: Slogan
+description: 'The <i>slogan</i> appears as a subtitle. This can be a classic slogan, a message, a discount... More information and inspiration can be found at <a href="[site:url]/slogan-inspiration">slogan info.</a>'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

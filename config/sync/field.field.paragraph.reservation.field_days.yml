@@ -1,0 +1,23 @@
+uuid: 5e82baa5-920e-4c04-b99e-01567ab01dc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_days
+    - paragraphs.paragraphs_type.reservation
+id: paragraph.reservation.field_days
+field_name: field_days
+entity_type: paragraph
+bundle: reservation
+label: days
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

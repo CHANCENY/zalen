@@ -1,0 +1,64 @@
+name: AWTur
+type: theme
+base theme: false
+description: 'Theme for Zalen be. A flexible, recolorable theme with many regions and a responsive, mobile-first layout.'
+logo: 'logo.svg'
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+package: Custom
+version: VERSION
+libraries:
+  - awtur/classy.base
+  - awtur/classy.messages
+  - core/normalize
+  - awtur/global-styling 
+  - awtur/tat-update-style
+  - awtur/jan-belba
+libraries-extend:
+  core/drupal.dialog:
+    - awtur/classy.dialog
+  core/drupal.dropbutton:
+    - awtur/classy.dropbutton
+  core/drupal.progress:
+    - awtur/classy.progress
+  file/drupal.file:
+    - awtur/classy.file
+  filter/drupal.filter.admin:
+    - awtur/filter
+  filter/drupal.filter:
+    - awtur/filter
+  media/media_embed_ckeditor_theme:
+    - awtur/classy.media_embed_ckeditor_theme
+  media_library/view:
+    - awtur/classy.media_library
+  media_library/widget:
+    - awtur/classy.media_library
+  user/drupal.user:
+    - awtur/user
+
+ckeditor_stylesheets:
+  - css/base/elements.css
+  - css/components/captions.css
+  - css/components/table.css
+  - css/components/text-formatted.css
+  - css/classy/components/media-embed-error.css
+regions:
+  header: Header
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  featured_top: 'Featured top'
+  content: Content
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  featured_bottom_first: 'Featured bottom first'
+  featured_bottom_second: 'Featured bottom second'
+  featured_bottom_third: 'Featured bottom third'
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'
+  footer_fourth: 'Footer fourth'
+  footer_fifth: 'Footer fifth'

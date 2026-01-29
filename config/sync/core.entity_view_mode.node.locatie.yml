@@ -1,0 +1,11 @@
+uuid: 04158c1e-35aa-4c30-8cbf-84a240a083cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.locatie
+label: Locatie
+description: ''
+targetEntityType: node
+cache: true

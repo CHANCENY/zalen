@@ -1,0 +1,11 @@
+uuid: 60662b78-ba34-4ef6-95e7-cba951f402a1
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.registratie_vip
+label: 'Registratie VIP'
+description: ''
+targetEntityType: user
+cache: true

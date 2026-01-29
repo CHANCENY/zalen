@@ -1,0 +1,15 @@
+uuid: 9a7d0bde-fc8f-4652-86da-d9fb30a9e6b2
+langcode: nl
+status: true
+dependencies: {  }
+id: belgium_datetime
+label: 'Belgium datetime'
+date_format: 'D, j M Y'
+time_format: H»i
+time_hour_format: ''
+allday_label: 'Hele dag'
+separator: ' - '
+join: ', '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

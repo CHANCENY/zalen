@@ -1,0 +1,21 @@
+uuid: 5adb69c6-4cfb-47b8-a295-7653ae5ff984
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.paragraph_view_mode
+    - paragraphs.paragraphs_type.sleeping_accommodation_room
+  module:
+    - paragraph_view_mode
+id: paragraph.sleeping_accommodation_room.paragraph_view_mode
+field_name: paragraph_view_mode
+entity_type: paragraph
+bundle: sleeping_accommodation_room
+label: 'Paragraph view mode'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: paragraph_view_mode

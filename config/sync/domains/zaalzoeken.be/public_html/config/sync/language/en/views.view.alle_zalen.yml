@@ -1,0 +1,16 @@
+display:
+  default:
+    display_options:
+      sorts:
+        field_lat_long_proximity:
+          expose:
+            label: Closest
+        field_dagprijs_value:
+          expose:
+            label: 'Price per day'
+        field_uurprijs_value:
+          expose:
+            label: 'Price per hour'
+        field_prijs_per_persoon_value:
+          expose:
+            label: 'Price per person'

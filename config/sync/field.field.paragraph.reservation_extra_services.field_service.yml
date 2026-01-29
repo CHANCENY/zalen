@@ -1,0 +1,53 @@
+uuid: d3e91c0b-b614-4a6b-8f94-982f78fdbf55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_service
+    - paragraphs.paragraphs_type.extra_room_services
+    - paragraphs.paragraphs_type.reservation_extra_services
+id: paragraph.reservation_extra_services.field_service
+field_name: field_service
+entity_type: paragraph
+bundle: reservation_extra_services
+label: Service
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      extra_room_services: extra_room_services
+    negate: 0
+    target_bundles_drag_drop:
+      extra_room_services:
+        weight: 10
+        enabled: true
+      per_day_price_rules:
+        weight: 12
+        enabled: false
+      per_day_unit:
+        weight: 13
+        enabled: false
+      per_hour:
+        weight: 14
+        enabled: false
+      per_hour_unit_rules:
+        weight: 15
+        enabled: false
+      per_person_item:
+        weight: 16
+        enabled: false
+      person_price_rules:
+        weight: 11
+        enabled: false
+      price_unit:
+        weight: 17
+        enabled: false
+      reservation_extra_services:
+        weight: 18
+        enabled: false
+field_type: entity_reference

@@ -1,0 +1,29 @@
+uuid: 14588dca-f945-4705-b935-50f0bd75e75f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_afstand_bus
+    - node.type.bedrijf
+    - taxonomy.vocabulary.afstand_openbaar_vervoer
+id: node.bedrijf.field_afstand_bus
+field_name: field_afstand_bus
+entity_type: node
+bundle: bedrijf
+label: 'Distance to bus stop'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      afstand_openbaar_vervoer: afstand_openbaar_vervoer
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

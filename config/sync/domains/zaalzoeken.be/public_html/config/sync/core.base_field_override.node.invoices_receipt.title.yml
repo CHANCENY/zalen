@@ -1,0 +1,18 @@
+uuid: ba9d9f94-5f5c-4f0f-a054-963b95083b85
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.invoices_receipt
+id: node.invoices_receipt.title
+field_name: title
+entity_type: node
+bundle: invoices_receipt
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

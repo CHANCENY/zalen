@@ -1,0 +1,20 @@
+uuid: 584fe91d-9375-4faf-80d9-550e55ff3ff3
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.thema_s
+  module:
+    - path
+id: taxonomy_term.thema_s.path
+field_name: path
+entity_type: taxonomy_term
+bundle: thema_s
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

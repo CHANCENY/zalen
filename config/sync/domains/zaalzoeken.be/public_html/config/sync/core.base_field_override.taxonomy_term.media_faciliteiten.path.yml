@@ -1,0 +1,20 @@
+uuid: 0d518ab1-1a9a-4f19-a1d0-aedf60fffd9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.media_faciliteiten
+  module:
+    - path
+id: taxonomy_term.media_faciliteiten.path
+field_name: path
+entity_type: taxonomy_term
+bundle: media_faciliteiten
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

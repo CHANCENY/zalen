@@ -1,0 +1,23 @@
+uuid: 986cac36-fd9a-47e2-9e82-74a8e8623061
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_day_amount
+    - paragraphs.paragraphs_type.per_day_unit
+id: paragraph.per_day_unit.field_day_amount
+field_name: field_day_amount
+entity_type: paragraph
+bundle: per_day_unit
+label: 'Day Amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,29 @@
+uuid: 945861f5-a9a8-4e42-bccf-95c1f0c8f4e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.zaal-groepen
+  module:
+    - system
+  theme:
+    - awtur
+id: zaalgroepen_2
+theme: awtur
+region: featured_top
+weight: -16
+provider: null
+plugin: 'system_menu_block:zaal-groepen'
+settings:
+  id: 'system_menu_block:zaal-groepen'
+  label: 'Zaal groepen'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

@@ -1,0 +1,299 @@
+uuid: 30272a07-63f4-401d-8bc6-7f55637daa4c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.zaal.body
+    - field.field.node.zaal.field_bedrijf_zaal
+    - field.field.node.zaal.field_bezetting_tot
+    - field.field.node.zaal.field_bezetting_van
+    - field.field.node.zaal.field_comercielegelegenheden
+    - field.field.node.zaal.field_concertgelegenheden
+    - field.field.node.zaal.field_confirmatie
+    - field.field.node.zaal.field_dagprijs
+    - field.field.node.zaal.field_daily_currency
+    - field.field.node.zaal.field_extra_room_services
+    - field.field.node.zaal.field_feestgelegenheid
+    - field.field.node.zaal.field_form_booking
+    - field.field.node.zaal.field_foto
+    - field.field.node.zaal.field_hourly_currency
+    - field.field.node.zaal.field_media
+    - field.field.node.zaal.field_oppervlakte
+    - field.field.node.zaal.field_person_currency
+    - field.field.node.zaal.field_plattegrond
+    - field.field.node.zaal.field_prijs_eenheid
+    - field.field.node.zaal.field_prijs_per_persoon
+    - field.field.node.zaal.field_reference_reservations
+    - field.field.node.zaal.field_regels
+    - field.field.node.zaal.field_room_layouts
+    - field.field.node.zaal.field_room_pricing_settings
+    - field.field.node.zaal.field_staanplaatsen
+    - field.field.node.zaal.field_status
+    - field.field.node.zaal.field_thema
+    - field.field.node.zaal.field_uitrusting
+    - field.field.node.zaal.field_uurprijs
+    - field.field.node.zaal.field_vergadergelegenheden
+    - field.field.node.zaal.field_zitplaatsen
+    - image.style.thumbnail
+    - node.type.zaal
+  module:
+    - inline_entity_form
+    - path
+    - payment_invoice
+    - reservation
+    - svg_image
+    - text
+    - zaal_condities
+id: node.zaal.default
+targetEntityType: node
+bundle: zaal
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 20
+    region: content
+    settings:
+      rows: 5
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 23
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_bezetting_tot:
+    type: number
+    weight: 14
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_bezetting_van:
+    type: number
+    weight: 13
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_comercielegelegenheden:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_concertgelegenheden:
+    type: options_buttons
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_confirmatie:
+    type: pay_key_button_field_default_input_widget
+    weight: 24
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_dagprijs:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_extra_room_services:
+    type: inline_entity_form_simple
+    weight: 29
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: true
+      collapsed: true
+      revision: false
+    third_party_settings: {  }
+  field_feestgelegenheid:
+    type: options_buttons
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_form_booking:
+    type: reservation_default
+    weight: 25
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_foto:
+    type: image_image
+    weight: 15
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_media:
+    type: options_buttons
+    weight: 17
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_oppervlakte:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_plattegrond:
+    type: image_image
+    weight: 18
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_prijs_per_persoon:
+    type: number
+    weight: 9
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_reference_reservations:
+    type: options_select
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_room_layouts:
+    type: room_layout_capacity_widget
+    weight: 51
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_room_pricing_settings:
+    type: inline_entity_form_simple
+    weight: 28
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: true
+      collapsed: true
+      revision: false
+    third_party_settings: {  }
+  field_staanplaatsen:
+    type: number
+    weight: 12
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_status:
+    type: options_select
+    weight: 27
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_thema:
+    type: options_buttons
+    weight: 19
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_uitrusting:
+    type: options_buttons
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_uurprijs:
+    type: number
+    weight: 8
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_vergadergelegenheden:
+    type: options_buttons
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_zitplaatsen:
+    type: number
+    weight: 11
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  flag:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 31
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 32
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 21
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 22
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_bedrijf_zaal: true
+  field_daily_currency: true
+  field_hourly_currency: true
+  field_person_currency: true
+  field_prijs_eenheid: true
+  field_regels: true
+  promote: true
+  sticky: true

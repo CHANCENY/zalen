@@ -1,0 +1,20 @@
+uuid: 33ee5d49-7971-4997-ae87-d1a0e9578c59
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_fietsen
+field_name: field_fietsen
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

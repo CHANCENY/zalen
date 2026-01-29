@@ -1,0 +1,18 @@
+uuid: 0cc60b98-e4b8-474e-a5a1-734c537e8905
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bedrijf
+id: node.bedrijf.title
+field_name: title
+entity_type: node
+bundle: bedrijf
+label: 'Name of the location'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

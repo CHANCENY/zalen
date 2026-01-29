@@ -1,0 +1,45 @@
+uuid: 1c19589f-710b-4f7b-aef0-f949fb9ac820
+langcode: nl
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.registratie_vip
+    - field.field.user.user.field_bedrijf_adres
+    - field.field.user.user.field_bericht_voor_rolupdate
+    - field.field.user.user.field_betaling_accepteren_via_mo
+    - field.field.user.user.field_ondernemingsnummer
+    - field.field.user.user.field_streek
+    - field.field.user.user.field_vip_abonnement_vervaldatum
+    - field.field.user.user.user_picture
+  module:
+    - user
+_core:
+  default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
+id: user.user.registratie_vip
+targetEntityType: user
+bundle: user
+mode: registratie_vip
+content:
+  account:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_betaling_accepteren_via_mo:
+    type: options_buttons
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  contact: true
+  field_bedrijf_adres: true
+  field_bericht_voor_rolupdate: true
+  field_ondernemingsnummer: true
+  field_streek: true
+  field_vip_abonnement_vervaldatum: true
+  langcode: true
+  language: true
+  path: true
+  timezone: true
+  user_picture: true

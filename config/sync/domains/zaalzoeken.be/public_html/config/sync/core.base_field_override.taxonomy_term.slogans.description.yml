@@ -1,0 +1,21 @@
+uuid: 0b895d0a-ce8f-49d2-aba3-05b31526d898
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.slogans
+  module:
+    - text
+id: taxonomy_term.slogans.description
+field_name: description
+entity_type: taxonomy_term
+bundle: slogans
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -1,0 +1,10 @@
+uuid: eaed13a9-fdb3-48bc-917c-b120ce776eec
+langcode: en
+status: true
+dependencies: {  }
+id: person_price_rules
+label: 'Person Price Rules'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,47 @@
+uuid: e76f3345-1c16-4c58-9509-ee5e880a6bb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pricing_rules
+    - paragraphs.paragraphs_type.per_day_price_rules
+    - paragraphs.paragraphs_type.per_day_unit
+id: paragraph.per_day_unit.field_pricing_rules
+field_name: field_pricing_rules
+entity_type: paragraph
+bundle: per_day_unit
+label: 'Pricing Rules'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      per_day_price_rules: per_day_price_rules
+    negate: 0
+    target_bundles_drag_drop:
+      per_day_price_rules:
+        weight: 9
+        enabled: true
+      per_day_unit:
+        weight: 10
+        enabled: false
+      per_hour:
+        weight: 11
+        enabled: false
+      per_hour_unit_rules:
+        weight: 12
+        enabled: false
+      per_person_item:
+        weight: 13
+        enabled: false
+      person_price_rules:
+        weight: 8
+        enabled: false
+      price_unit:
+        weight: 14
+        enabled: false
+field_type: entity_reference

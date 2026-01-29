@@ -1,0 +1,43 @@
+uuid: ee1d25f6-feb2-4dc7-b200-58a1c6e51c83
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.mini_preview
+    - field.field.taxonomy_term.zaalopstellingen.field_gebruik
+    - field.field.taxonomy_term.zaalopstellingen.field_room_layout_icon
+    - field.field.taxonomy_term.zaalopstellingen.field_weergave_opstelling
+    - image.style.thumbnail
+    - taxonomy.vocabulary.zaalopstellingen
+  module:
+    - layout_builder
+    - svg_image
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.zaalopstellingen.mini_preview
+targetEntityType: taxonomy_term
+bundle: zaalopstellingen
+mode: mini_preview
+content:
+  field_room_layout_icon:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: 80
+        height: 80
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true
+  field_gebruik: true
+  field_weergave_opstelling: true
+  langcode: true

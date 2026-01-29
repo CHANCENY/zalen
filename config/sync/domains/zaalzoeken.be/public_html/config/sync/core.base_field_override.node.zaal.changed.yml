@@ -1,0 +1,18 @@
+uuid: 09702c11-19ef-4543-ae3a-89eb37c1bcd2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.zaal
+id: node.zaal.changed
+field_name: changed
+entity_type: node
+bundle: zaal
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

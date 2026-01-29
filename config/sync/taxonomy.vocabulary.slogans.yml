@@ -1,0 +1,9 @@
+uuid: 63d502dd-962a-429c-b13c-289e13b48020
+langcode: nl
+status: true
+dependencies: {  }
+name: Slogans
+vid: slogans
+description: 'Voorbeeld lijst van slogans'
+weight: 0
+new_revision: false

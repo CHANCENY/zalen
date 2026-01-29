@@ -1,0 +1,325 @@
+.exposed-main-form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.exposed-main-form .SumoSelect > p.CaptionCont, .exposed-main-form input.form-text {
+  border-radius: 5px;
+}
+.exposed-main-form .gelegenheidstabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  width: fit-content;
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  padding: 16px 16px 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  position: relative;
+  top: 32px;
+  z-index: 10;
+}
+.exposed-main-form .gelegenheidsTab{
+  display: flex;
+  align-items: center;
+  padding: 8px 8px 3px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 4px solid transparent;
+}
+.exposed-main-form .gelegenheidstabs img {
+  width: 18px;
+  height: auto;
+  transition: filter 0.3s ease-in-out;
+}
+.exposed-main-form .gelegenheidsTab.active img {
+  filter: brightness(0) invert(42%) sepia(94%) saturate(577%) hue-rotate(0deg) brightness(95%) contrast(101%);
+}
+.exposed-main-form .gelegenheidstabs span {
+  margin-left: 8px;
+  font-size: clamp(0.6875rem, 0.5446rem + 0.7143vw, 0.8125rem);
+  font-weight: 700;
+}
+.exposed-main-form .gelegenheidsTab.active {
+  color: #B78700; 
+  border-bottom: 5px solid #B78700; 
+}
+.exposed-main-form .gelegenheidsTab:hover {
+  cursor: pointer;
+  color:#B78700;
+}
+.exposed-main-form .gelegenheidsTab:hover img {
+  filter: brightness(0) invert(42%) sepia(94%) saturate(577%) hue-rotate(0deg) brightness(95%) contrast(101%);
+}
+.exposed-quick-form-wrapper {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 32px 20px;
+  background-color: #ffffff;
+  width: fit-content;
+}
+.exposed-quick-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 8px;
+}
+#views-exposed-form-alle-zalen-page-alle-zalen {
+    padding: 0 4px;
+   }
+@media screen and (max-width: 360px) {
+  .gelegenheidstabs {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+}
+.active span{
+  color: #B78700;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+.exposed-quick-form .form-select span.placeholder {
+  color: #B78700 !important;
+  padding-left: 32px;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-style: normal;
+}
+.exposed-quick-form span.placeholder:hover {
+  cursor: pointer;
+}
+.exposed-quick-form .sumo_feest_gelegenheid_keuze .placeholder,
+.exposed-quick-form .sumo_commerciele_gelegenheden_keuze .placeholder,
+.exposed-quick-form .sumo_concert_gelegenheden_keuze .placeholder,
+.exposed-quick-form .sumo_vergader_gelegenheden_keuze .placeholder
+ {
+  background-repeat: no-repeat;
+  background-position: left 5px center;
+  background-size: 20px 20px;
+}
+.exposed-quick-form .sumo_feest_gelegenheid_keuze .placeholder {
+  background-image: url('../../images/icons/exposed-views/feest-gelegenheid.svg');
+}
+.exposed-quick-form .sumo_commerciele_gelegenheden_keuze .placeholder {
+  background-image: url('../../images/icons/exposed-views/commerce-gelegenheid.svg');
+}
+.exposed-quick-form .sumo_concert_gelegenheden_keuze .placeholder {
+  background-image: url('../../images/icons/exposed-views/concert-gelegenheid.svg');
+}
+.exposed-quick-form .sumo_vergader_gelegenheden_keuze .placeholder {
+  background-image: url('../../images/icons/exposed-views/vergader-gelegenheid.svg');
+}
+.exposed-quick-form .tab-gelegenheid {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.exposed-quick-form .SumoSelect:hover>.CaptionCont>label>i::after {
+  color: burlywood;
+}
+.exposed-quick-form .exposed-range-area input::placeholder, .exposed-quick-form .exposed-nearby-city input::placeholder,
+.exposed-quick-form-wrapper input.form-text {
+  color: #ccc;
+  font-style: italic;
+  font-weight: 100;
+  font-size: clamp(0.75rem, 0.6196rem + 0.8696vw, 1rem);
+  background: white;
+  position: relative;
+}
+.exposed-quick-form-wrapper .form-item label {
+  color: black;
+  margin-left: 8px;
+}
+#feestToonMij label:first-child, #commerceToonMij label:first-child, #entertainmentToonMij label:first-child,
+#vergaderToonMij label:first-child {
+  color: #B78700;
+}
+.exposed-quick-form .exposed-range-area, .exposed-quick-form .exposed-nearby-city {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+.exposed-quick-form .exposed-range-area input:focus, .exposed-quick-form .exposed-nearby-city input:focus,
+.exposed-quick-form .exposed-range-area input:hover, .exposed-quick-form .exposed-nearby-city input:hover,
+ .exposed-dates .exposed-start-date input:hover, .exposed-dates .exposed-end-date input:hover {
+  box-shadow: 0 0 2px #cd8723;
+  border-radius: 8px;
+  border: none;
+}
+.exposed-quick-form .exposed-range-area input:active, .exposed-quick-form .exposed-nearby-city input:active {
+  background-color: blanchedalmond !important;
+}
+.exposed-dates .exposed-herzet input {
+  background: #ABABAB;
+  padding: 4px 8px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: none;
+}
+.exposed-quick-form input[data-drupal-selector="edit-nabijheid-plaats-postcode-value"] {
+  max-width: clamp(3.875rem, 2.7574rem + 5.5882vw, 6.25rem);
+  font-size: clamp(0.75rem, 0.648rem + 0.5102vw, 1.0625rem);
+  color: #777;
+  }
+.exposed-quick-form input[data-drupal-selector="edit-nabijheid-plaats-postcode-source-configuration-origin-address"] {
+  max-width: clamp(6.5625rem, -6.8586rem + 67.1053vw, 22.5rem);
+  font-size: clamp(0.75rem, 0.648rem + 0.5102vw, 1.0625rem);
+  color: #777;
+}
+.exposed-quick-form input[data-drupal-selector="edit-nabijheid-plaats-postcode-value"] {
+  min-width: 90px;
+}
+.exposed-quick-form .exposed-nearby-city img {
+  position: absolute;
+  width: 26px;
+}
+.exposed-quick-form-wrapper label[for="edit-feest-gelegenheid-keuze"],
+.exposed-quick-form-wrapper label[for="edit-nabijheid-plaats-postcode-value"],
+.exposed-quick-form-wrapper label[for="edit-nabijheid-plaats-postcode-source-configuration-origin-address"],
+.exposed-quick-form-wrapper label[for="edit-commerciele-gelegenheden-keuze"],
+.exposed-quick-form-wrapper label[for="edit-concert-gelegenheden-keuze"],
+.exposed-quick-form-wrapper label[for="edit-vergader-gelegenheden-keuze"],
+.exposed-quick-form-wrapper label[for="edit-field-date-booking-start-value"],
+.exposed-quick-form-wrapper label[for="edit-field-date-booking-end-value"] {
+  display: flex;
+  gap: 2px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.exposed-submit-reset-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.exposed-quick-form-wrapper .exposed-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}  
+.exposed-quick-form-wrapper p.CaptionCont.SelectBox.form-select {
+  padding: 6px;
+}
+.exposed-quick-form-wrapper .SumoSelect>.CaptionCont>label>i {
+  top: 14px !important;
+}
+.input-search-filter-start {
+  position: relative;
+}
+.exposed-quick-form .exposed-range-area input::placeholder {
+  padding-left: 32px;
+  background-image: url('../../images/icons/exposed-views/road-route.svg');
+  background-repeat: no-repeat;
+  font-size: 14px;
+  background-position: left 5px center;
+  background-size: 20px 20px;
+}
+.exposed-quick-form .exposed-nearby-city input::placeholder {
+  padding-left: 32px;
+  background-image: url('../../images/icons/exposed-views/address-location.svg');
+  background-repeat: no-repeat;
+  font-size: 14px;
+  background-position: left 5px center;
+  background-size: 20px 20px;
+}
+.exposed-dates input.form-text, .exposed-quick-form .SumoSelect {
+  min-width: 260px;
+}
+.exposed-dates .input-search-filter::placeholder {
+  color: #aaa;
+  font-size: 12px;
+  padding-left: 20px; 
+  background-image: url('../../images/icons/filters/calendar.svg');
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  background-size: 20px 20px;
+}
+.input-search-filter:hover {
+  cursor: n-resize;
+}
+.exposed-main-form .exposed-submit-reset-buttons .button {
+  background: #e0be58;
+  box-shadow: 0 1px 3px rgba(92, 90, 90, 0.25);
+  border: none;
+  border-radius: 6px;
+  position: relative;
+  bottom: 28px;
+  padding: 12px 64px;
+}
+#views-exposed-form-alle-zalen-blok-sort-zalen {
+  position: relative;
+  bottom: 80px;
+}
+.views-sort-cheapest {
+  justify-self: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 15px;
+  padding: 8px 16px;
+  background-color: #f9f8fa;
+  width: fit-content;
+}
+.views-sort-cheapest ul {
+  list-style-type: none;
+  display: flex;
+  gap: clamp(0.5rem, 0.2647rem + 1.1765vw, 1rem);
+  flex-wrap: wrap;
+  row-gap: 32px;
+  justify-content: center;
+}
+.views-sort-cheapest li a {
+  border: 1px #b78700 solid;
+  border-radius: 8px;
+  color: #b78700;
+  padding: 8px 8px;
+}
+.views-sort-cheapest li a:hover {
+  color: #876565;
+}
+.views-sort-cheapest li a:focus {
+  background-color:#f5eedb;
+}
+.views-sort-cheapest li a:active {
+  background-color:#a2bce4;
+}
+.form-item-sort-by label {
+  color: black;
+  justify-self: center;
+  margin-bottom: 32px;
+}
+.sidebar-filters .sidebar-filter-label{
+  font-weight: 700;
+  font-size: 14px;
+  color: black;
+}
+.sidebar-filters .sidebar-filter-partion {
+  border-bottom: 1px #E0BE58 solid;
+  margin-bottom: 16px;
+}
+.sidebar-filters .bef-number {
+  width: 130px;
+  border-radius: 5px;
+  position: relative;
+}
+.sidebar-filters .sidebar-filter-placeholder {
+  font-size: 10px;
+  opacity: 0.5;
+  letter-spacing: 1px;
+  position:relative;
+  bottom: 20px;
+  left: 4px;
+}
+.sidebar-filters .form-type-textfield {
+  margin: 0 0 16px 0;
+}
+.sidebar-filters label {
+  font-weight: 400;
+  font-size: 13px;
+  margin: 0 4px 2px;
+  color: #3b3b3b;
+}
+.sidebar-filters [type=checkbox] {
+  margin: 0 8px 0 0;
+}

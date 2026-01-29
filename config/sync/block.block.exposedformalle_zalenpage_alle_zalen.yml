@@ -1,0 +1,28 @@
+uuid: d7044132-6426-42bf-9d3f-46c1b14a86d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.alle_zalen
+  module:
+    - system
+    - views
+  theme:
+    - awtur
+id: exposedformalle_zalenpage_alle_zalen
+theme: awtur
+region: header
+weight: -16
+provider: null
+plugin: 'views_exposed_filter_block:alle_zalen-page_alle_zalen'
+settings:
+  id: 'views_exposed_filter_block:alle_zalen-page_alle_zalen'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/node/*/edit\r\n/user/*\r\n/user/register\r\n/mijn-zalen-beheren\r\n/zalen\r\n"

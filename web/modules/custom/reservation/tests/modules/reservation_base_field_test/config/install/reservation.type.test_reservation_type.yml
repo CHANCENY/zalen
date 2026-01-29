@@ -1,0 +1,6 @@
+langcode: en
+status: true
+id: test_reservation_type
+label: Test reservation type
+target_entity_type_id: reservation_test_base_field
+description: 'Test reservation type.'

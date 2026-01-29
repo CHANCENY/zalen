@@ -1,0 +1,13 @@
+uuid: 8fea1a19-c212-49f1-b8aa-bd11daa8a3bf
+langcode: nl
+status: true
+dependencies:
+  module:
+    - webform
+_core:
+  default_config_hash: MKmZlPRk3OJKNcYdYxSeZGQUh7LMah6MRShfkzch4bk
+id: webform_submission_make_lock_action
+label: 'Inzending vergrendelen'
+type: webform_submission
+plugin: webform_submission_make_lock_action
+configuration: {  }

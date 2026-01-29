@@ -1,0 +1,11 @@
+uuid: 328a7918-e073-49fc-8e16-ff0166aabae1
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.mini_preview
+label: 'Mini preview'
+description: ''
+targetEntityType: taxonomy_term
+cache: true

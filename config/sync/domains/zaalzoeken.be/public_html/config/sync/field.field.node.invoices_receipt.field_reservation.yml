@@ -1,0 +1,29 @@
+uuid: 83aec8c9-f089-4ef5-a753-1942b691e1fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reservation
+    - node.type.invoices_receipt
+    - reservation.type.type_booking
+id: node.invoices_receipt.field_reservation
+field_name: field_reservation
+entity_type: node
+bundle: invoices_receipt
+label: Reservation
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:reservation'
+  handler_settings:
+    target_bundles:
+      type_booking: type_booking
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

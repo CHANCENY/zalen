@@ -1,0 +1,48 @@
+uuid: 459a6555-12ba-49ef-9d7b-7574eca71ca3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_bedrijf_adres
+  module:
+    - address
+    - user
+id: user.user.field_bedrijf_adres
+field_name: field_bedrijf_adres
+entity_type: user
+bundle: user
+label: 'Bedrijf adres'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries:
+    BE: BE
+  langcode_override: nl
+  field_overrides:
+    givenName:
+      override: optional
+    additionalName:
+      override: hidden
+    familyName:
+      override: optional
+    organization:
+      override: required
+    addressLine1:
+      override: required
+    addressLine2:
+      override: hidden
+    postalCode:
+      override: required
+    sortingCode:
+      override: hidden
+    dependentLocality:
+      override: hidden
+    locality:
+      override: required
+    administrativeArea:
+      override: hidden
+  fields: {  }
+field_type: address

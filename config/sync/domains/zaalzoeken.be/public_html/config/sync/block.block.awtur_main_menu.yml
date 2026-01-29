@@ -1,0 +1,27 @@
+uuid: f7b97f44-f5cc-44a3-baf3-48e12bb93a9a
+langcode: nl
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - awtur
+_core:
+  default_config_hash: ChCx7DYNUrPTt5uiRdQAPDKJQMc-_SyAQTrZh8H0o-c
+id: awtur_main_menu
+theme: awtur
+region: secondary_menu
+weight: -15
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: Hoofdnavigatie
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

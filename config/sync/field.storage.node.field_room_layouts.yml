@@ -1,0 +1,19 @@
+uuid: ad9fee31-d60f-4f31-b8b0-24654a054710
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - zaal_condities
+id: node.field_room_layouts
+field_name: field_room_layouts
+entity_type: node
+type: room_layout_capacity
+settings: {  }
+module: zaal_condities
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

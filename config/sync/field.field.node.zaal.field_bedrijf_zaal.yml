@@ -1,0 +1,25 @@
+uuid: 78e5bb7e-591e-4ea1-b8fe-0b866b0e4b5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bedrijf_zaal
+    - node.type.zaal
+id: node.zaal.field_bedrijf_zaal
+field_name: field_bedrijf_zaal
+entity_type: node
+bundle: zaal
+label: Bedrijf
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: beschikbare_zalen
+      display_name: entity_reference_bedrijf
+      arguments: {  }
+field_type: entity_reference

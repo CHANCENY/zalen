@@ -1,0 +1,18 @@
+uuid: 22b92bf7-429e-4fe0-9084-c7c4c0ff411c
+langcode: en
+status: true
+dependencies:
+  config:
+    - reservation.type.type_booking
+id: reservation.type_booking.mail
+field_name: mail
+entity_type: reservation
+bundle: type_booking
+label: Email
+description: "The reservation author's email address."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

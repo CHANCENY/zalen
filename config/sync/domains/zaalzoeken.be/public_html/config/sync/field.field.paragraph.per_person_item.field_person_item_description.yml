@@ -1,0 +1,24 @@
+uuid: 2045363d-45e1-46c2-89a9-db50b1bf770f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_person_item_description
+    - filter.format.plain_text
+    - paragraphs.paragraphs_type.per_person_item
+  module:
+    - text
+id: paragraph.per_person_item.field_person_item_description
+field_name: field_person_item_description
+entity_type: paragraph
+bundle: per_person_item
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - plain_text
+field_type: text_long

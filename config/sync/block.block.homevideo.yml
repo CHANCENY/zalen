@@ -1,0 +1,30 @@
+uuid: 98af3600-3e87-424a-a762-05fbd6be48cd
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:video_blok:6688ff7d-25c4-41dc-a70b-738fb033c419'
+  module:
+    - block_content
+    - system
+  theme:
+    - awtur
+id: homevideo
+theme: awtur
+region: content
+weight: -13
+provider: null
+plugin: 'block_content:6688ff7d-25c4-41dc-a70b-738fb033c419'
+settings:
+  id: 'block_content:6688ff7d-25c4-41dc-a70b-738fb033c419'
+  label: 'Home video'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

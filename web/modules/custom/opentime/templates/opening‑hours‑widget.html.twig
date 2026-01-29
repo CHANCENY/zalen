@@ -1,0 +1,19 @@
+{# modules/custom/opentime/templates/opening-hours-widget.html.twig #}
+
+{# 
+/**
+ * @file
+ * Theme override for my Opening Hours widget.
+ */
+#}
+<div class="bedrijf-open-tijd-widget">
+  {{ element['#title'] is defined ? '<h4>' ~ element['#title'] ~ '</h4>' : ''|raw }}
+  <div class="bedrijf-open-tijd-dagen">
+    {# Stel de checkbox- of selecties-rendering zelf samen: #}
+    {{ element.days }}
+  </div>
+  <div class="bedrijf-open-tijd-tijden">
+    {{ element.start_time }}
+    {{ element.end_time }}
+  </div>
+</div>

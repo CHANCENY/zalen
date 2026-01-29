@@ -1,0 +1,18 @@
+uuid: 4f87648d-f3cd-4b2c-ba43-deca45a05df8
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.faciliteiten_algemeen
+id: taxonomy_term.faciliteiten_algemeen.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: faciliteiten_algemeen
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

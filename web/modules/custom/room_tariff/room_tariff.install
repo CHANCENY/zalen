@@ -1,0 +1,157 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the room_tariff module.
+ */
+
+/**
+ * Check installation requirements and do status reporting.
+ * Implements hook_requirements().
+ */
+function room_tariff_requirements($phase) {
+  $has_curl = function_exists('curl_init');
+  $requirements = [];
+  $requirements['curl'] = [
+    'title' => t('cURL'),
+    'value' => $has_curl ? t('Enabled') : t('Not found'),
+  ];
+  if (!$has_curl) {
+    $requirements['curl']['severity'] = REQUIREMENT_ERROR;
+    $requirements['curl']['description'] = t('The Room Tariff module requires the <a href="https://secure.php.net/manual/en/curl.setup.php">PHP cURL library</a>. For more information, see the <a href="https://www.drupal.org/docs/system-requirements/php-requirements#curl">online information on installing the PHP cURL extension</a>.');
+  }
+  return $requirements;
+}
+
+// Code for update database table field_prijs_eenheid
+
+function room_tariff_update_8001() {
+  // Update the field schema to include the new columns.
+  $field_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node');
+
+  if (isset($field_storage_definitions['field_prijs_eenheid'])) {
+    $field_storage_definition = $field_storage_definitions['field_prijs_eenheid'];
+    $schema = $field_storage_definition->getSchema();
+
+
+      \Drupal::database()->schema()->addField('node__field_prijs_eenheid', 'field_prijs_eenheid_special_offer', [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ]);
+      \Drupal::database()->schema()->addField('node_revision__field_prijs_eenheid', 'field_prijs_eenheid_special_offer', [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ]);
+
+      \Drupal::database()->schema()->addField('node__field_prijs_eenheid', 'field_prijs_eenheid_services_images', [
+        'type' => 'text',
+        'not null' => FALSE,
+      ]);
+      \Drupal::database()->schema()->addField('node_revision__field_prijs_eenheid', 'field_prijs_eenheid_services_images', [
+        'type' => 'text',
+        'not null' => FALSE,
+      ]);
+
+      \Drupal::database()->schema()->addField('node__field_prijs_eenheid', 'field_prijs_eenheid_service_description', [
+        'type' => 'text',
+        'not null' => FALSE,
+      ]);
+      \Drupal::database()->schema()->addField('node_revision__field_prijs_eenheid', 'field_prijs_eenheid_service_description', [
+        'type' => 'text',
+        'not null' => FALSE,
+      ]);
+
+      \Drupal::database()->schema()->addField('node__field_prijs_eenheid', 'field_prijs_eenheid_services_minimum_order', [
+        'type' => 'int',
+        'not null' => FALSE,
+      ]);
+      \Drupal::database()->schema()->addField('node_revision__field_prijs_eenheid', 'field_prijs_eenheid_services_minimum_order', [
+        'type' => 'int',
+        'not null' => FALSE,
+      ]);
+
+  }
+}
+
+function room_tariff_update_8010() {
+  $field_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node');
+
+  if (isset($field_storage_definitions['field_prijs_eenheid'])) {
+    $field_storage_definition = $field_storage_definitions['field_prijs_eenheid'];
+    $schema = $field_storage_definition->getSchema();
+
+    \Drupal::database()->schema()->addField('node__field_prijs_eenheid', 'field_prijs_eenheid_person_label', [
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => FALSE,
+    ]);
+    \Drupal::database()->schema()->addField('node_revision__field_prijs_eenheid', 'field_prijs_eenheid_person_label', [
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => FALSE,
+    ]);
+
+    \Drupal::database()->schema()->addField('node__field_prijs_eenheid', 'field_prijs_eenheid_person_images', [
+      'type' => 'text',
+      'not null' => FALSE,
+    ]);
+    \Drupal::database()->schema()->addField('node_revision__field_prijs_eenheid', 'field_prijs_eenheid_person_images', [
+      'type' => 'text',
+      'not null' => FALSE,
+    ]);
+
+    \Drupal::database()->schema()->addField('node__field_prijs_eenheid', 'field_prijs_eenheid_person_description', [
+      'type' => 'text',
+      'not null' => FALSE,
+    ]);
+    \Drupal::database()->schema()->addField('node_revision__field_prijs_eenheid', 'field_prijs_eenheid_person_description', [
+      'type' => 'text',
+      'not null' => FALSE,
+    ]);
+  }
+}
+
+/**
+ * Adds optional and child-friendly flags to price unit field.
+ */
+function room_tariff_update_8014() {
+  $field_storage_definitions = \Drupal::service('entity_field.manager')
+    ->getFieldStorageDefinitions('node');
+
+  if (isset($field_storage_definitions['field_prijs_eenheid'])) {
+    $database = \Drupal::database();
+    $schema = $database->schema();
+
+    $fields_to_add = [
+      'field_prijs_eenheid_is_optional' => [
+        'description' => 'Indicates if the price unit is optional',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'field_prijs_eenheid_child_friendly' => [
+        'description' => 'Indicates if the price unit is child-friendly',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ];
+
+    $tables = [
+      'node__field_prijs_eenheid',
+      'node_revision__field_prijs_eenheid',
+    ];
+
+    foreach ($tables as $table) {
+      foreach ($fields_to_add as $field_name => $spec) {
+        if (!$schema->fieldExists($table, $field_name)) {
+          $schema->addField($table, $field_name, $spec);
+        }
+      }
+    }
+  }
+}

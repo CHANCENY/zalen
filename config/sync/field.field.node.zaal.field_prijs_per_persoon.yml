@@ -1,0 +1,23 @@
+uuid: 6de75e08-b840-4b2e-9a65-73ca15cb88dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prijs_per_persoon
+    - node.type.zaal
+id: node.zaal.field_prijs_per_persoon
+field_name: field_prijs_per_persoon
+entity_type: node
+bundle: zaal
+label: 'Price per person'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 13000
+  prefix: €
+  suffix: ''
+field_type: integer

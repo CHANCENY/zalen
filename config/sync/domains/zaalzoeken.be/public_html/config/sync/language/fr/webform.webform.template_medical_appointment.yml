@@ -1,0 +1,9 @@
+settings:
+  confirmation_title: Merci
+handlers:
+  email_notification:
+    label: 'Notification par courriel'
+    settings:
+      from_name: '[webform_submission:values:name:raw]'
+      subject: '[webform_submission:values:subject:raw]'
+      body: '[webform_submission:values:message:value]'

@@ -1,0 +1,10 @@
+uuid: a8fdafe4-77e1-4ad8-8591-bea5edf4e297
+langcode: nl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 7klS5IWXrwzVaPpYZFAs6wcx8U2FF1X73OfrtTsvuvE
+id: fallback
+label: 'Fallback datumnotatie'
+locked: true
+pattern: 'D, m/d/Y - H:i'

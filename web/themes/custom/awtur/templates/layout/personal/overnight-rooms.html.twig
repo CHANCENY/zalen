@@ -1,0 +1,63 @@
+<article class="node block-zalen node--type-zaal node--view-mode-beknopt clearfix">
+  <header>
+    {% set path = path('view.overnight_room.page_1', {'arg_0': data.id.value}) %}
+
+    <h2{{ title_attributes.addClass('node__title') }}>
+      <a href="{{ path }}" rel="bookmark">{{ data.get('field_room_type').value }}</a>
+    </h2>
+  </header>
+
+  <div class="photoswipe-gallery" data-once="photoswipe">
+    {% if data.get('field_overnight_room_image').value %}
+      <div class="items-fotos-beknopt">
+        {% for image in data.get('field_overnight_room_image').value %}
+
+          {% if loop.index <= 3 %}
+          {% set file = getUri(image.target_id) %}
+          <div class="item-foto-beknopt-{{ loop.index - 1 }}">
+            <a href="{{ file }}" class="photoswipe" data-overlay-title="{{ data.get('field_room_type').value }}">
+              <img src="{{ file }}" alt="{{ data.get('field_room_type').value }}" loading="lazy">
+            </a>
+          </div>
+            {% if loop.index == 3 %}
+              <div class="number-fotos-beknopt field__item">{{ (image|length) - 2 }}+</div>
+            {% endif %}
+          {% endif %}
+
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="block-part-edition clearfix">
+    <div class="zalen-blok-prijs">
+      <span class="hover-text">
+        <p class="prijs-vanaf">{{ 'startprijzen' }}</p>
+        {% if data.get('field_price_per_night').value %}
+          <p>{{ 'per nacht: ' }}{{ getCurrencySymbol(data.get('field_room_currency').value) }}{{ data.get('field_price_per_night').value }}</p>
+        {% endif %}
+      </span>
+
+      {% if data.get('field_price_per_night').value %}
+        <div class="uur-groen">
+          <p class="prijs-label" id="prijsGroen">{{ 'Nacht' }}</p>
+          <p class="prijs-vanaf">{{ 'vanaf' }}</p>
+          <p class="veld-inhoud">{{ getCurrencySymbol(data.get('field_room_currency').value) }}{{ data.get('field_price_per_night').value }}<span class="blok-zalen-info">{{ '&#8505;' }}</span></p>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if data.get('field_breakfast_included').value %}
+    <div class="zalen-blok-capaciteit">
+      <span class="hover-text">
+         <p>{{ 'Ontbijt inbegrepen: ' }}{{ data.get('field_breakfast_included').value  == '1' ? 'Yes' : 'No' }}</p>
+      </span>
+        <div class="dag-paars">
+          <p class="prijs-label" id="prijsGroen">{{ 'Ontbijt' }}</p>
+          <p class="prijs-vanaf">{{ 'inbegrepen' }}</p>
+          <p class="veld-inhoud">{{ data.get('field_breakfast_included').value == '1' ? 'Yes' : 'No' }}<span class="blok-zalen-info">{{ '&#8505;' }}</span></p>
+        </div>
+    </div>
+    {% endif %}
+  </div>
+</article>

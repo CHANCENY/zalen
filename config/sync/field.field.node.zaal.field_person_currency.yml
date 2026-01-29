@@ -1,0 +1,21 @@
+uuid: d02e2994-3c6d-4350-bd37-a7cdf37f3d2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_person_currency
+    - node.type.zaal
+id: node.zaal.field_person_currency
+field_name: field_person_currency
+entity_type: node
+bundle: zaal
+label: 'Person Currency'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: eur
+default_value_callback: ''
+settings: {  }
+field_type: string

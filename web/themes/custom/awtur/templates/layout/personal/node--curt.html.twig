@@ -1,0 +1,66 @@
+<style>
+  .provincie-details-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 4px 8px;
+    flex-wrap: wrap;
+}
+  .curt-price-icon {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+  }
+  .curt-price-icon ion-icon, .provincie-oppervlakte-symbol {
+    color: burlywood;
+    /*font-size: clamp(1.25rem, 1.1324rem + 0.5882vw, 1.5rem);*/
+  }
+  .provincie-max-bezetting ion-icon {
+    color: burlywood;
+    /*font-size: clamp(1.25rem, 1.1324rem + 0.5882vw, 1.5rem);*/
+  }
+  .provincie-max-bezetting {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+.provincie-label ion-icon {
+  font-size: 24px;
+  float: inline-end;
+  transform: rotate(135deg);
+  transition: 500ms ease-in-out;
+}
+.provincie-label ion-icon:hover {
+  transform: rotate(45deg);
+}
+</style>
+
+<article>
+<details class="provincie-eerstedrie">
+  <summary class="provincie-label">{{ label }}<a href="{{ url }}" rel="bookmark"><ion-icon name="link-sharp" title="naar de zaal"></ion-icon></a></summary>
+  <div class="provincie-details-content">  
+    <div class="provincie-max-bezetting">
+      {{ content.field_oppervlakte }}<span class="provincie-oppervlakte-symbol"><b>{{ '&#x33A1;' }}</b></span>
+    </div>
+    <div class="provincie-max-bezetting">
+      {{ 'max.'|t }}{{ content.field_bezetting_tot }}<ion-icon name="people-outline" size="normal"></ion-icon>
+    </div>
+    <div class="curt-price">
+      {% if content.field_uurprijs.0 is not empty %}
+      <div class = "curt-price-item">
+        <span class = "curt-price-icon">{{ content.field_uurprijs.0 }}<ion-icon name="time-outline"></ion-icon></span>
+    </div>
+      {% elseif content.field_dagprijs.0 is not empty %}
+      <div class = "curt-price-item">
+        <span class = "curt-price-icon">{{ content.field_dagprijs.0 }}<ion-icon name="today-outline"></ion-icon></span>
+    </div>
+      {% elseif content.field_prijs_per_persoon.0 is not empty  %}
+      <div class = "curt-price-item">
+        <span class = "curt-price-icon">{{ content.field_prijs_per_persoon.0 }}<ion-icon name="restaurant-outline"></ion-icon></span>
+    </div>
+    {% endif %}
+</details>
+</article>
+
+

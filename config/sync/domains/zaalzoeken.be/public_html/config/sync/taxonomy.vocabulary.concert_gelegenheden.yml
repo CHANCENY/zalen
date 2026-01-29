@@ -1,0 +1,9 @@
+uuid: cd4a6a25-5dde-4cdb-9258-1575cd536a6b
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Concert gelegenheden'
+vid: concert_gelegenheden
+description: 'Concert gelegenheden, doelen, mogelijkheden'
+weight: 0
+new_revision: false

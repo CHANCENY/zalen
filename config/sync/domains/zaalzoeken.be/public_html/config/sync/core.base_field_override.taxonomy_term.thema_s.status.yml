@@ -1,0 +1,22 @@
+uuid: 26b287ae-5189-4c5b-aa6e-de8364681bab
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.thema_s
+id: taxonomy_term.thema_s.status
+field_name: status
+entity_type: taxonomy_term
+bundle: thema_s
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

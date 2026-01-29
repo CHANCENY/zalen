@@ -1,0 +1,29 @@
+uuid: 1d3df0bb-244e-4c87-93d3-50fd4e24c206
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_afstand_tramhalte
+    - node.type.bedrijf
+    - taxonomy.vocabulary.afstand_openbaar_vervoer
+id: node.bedrijf.field_afstand_tramhalte
+field_name: field_afstand_tramhalte
+entity_type: node
+bundle: bedrijf
+label: 'Distance to tram stop'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      afstand_openbaar_vervoer: afstand_openbaar_vervoer
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

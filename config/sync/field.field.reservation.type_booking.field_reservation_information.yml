@@ -1,0 +1,56 @@
+uuid: 74429ae1-a9c3-4355-bfc4-95cb9a86b340
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.reservation.field_reservation_information
+    - paragraphs.paragraphs_type.reservation
+    - reservation.type.type_booking
+id: reservation.type_booking.field_reservation_information
+field_name: field_reservation_information
+entity_type: reservation
+bundle: type_booking
+label: 'Reservation Information'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      reservation: reservation
+    negate: 0
+    target_bundles_drag_drop:
+      extra_room_services:
+        weight: 11
+        enabled: false
+      per_day_price_rules:
+        weight: 13
+        enabled: false
+      per_day_unit:
+        weight: 14
+        enabled: false
+      per_hour:
+        weight: 15
+        enabled: false
+      per_hour_unit_rules:
+        weight: 16
+        enabled: false
+      per_person_item:
+        weight: 17
+        enabled: false
+      person_price_rules:
+        weight: 12
+        enabled: false
+      price_unit:
+        weight: 18
+        enabled: false
+      reservation:
+        weight: 19
+        enabled: true
+      reservation_extra_services:
+        weight: 20
+        enabled: false
+field_type: entity_reference

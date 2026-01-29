@@ -1,0 +1,20 @@
+uuid: eacb0215-b634-4916-835f-584aad3a695c
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_minimum_day_to_book
+field_name: field_minimum_day_to_book
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

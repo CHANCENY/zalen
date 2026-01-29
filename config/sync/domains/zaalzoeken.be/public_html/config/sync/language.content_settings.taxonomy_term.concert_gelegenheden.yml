@@ -1,0 +1,18 @@
+uuid: 1f7c1316-6e68-433e-a983-cd0f5cf8aabf
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.concert_gelegenheden
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.concert_gelegenheden
+target_entity_type_id: taxonomy_term
+target_bundle: concert_gelegenheden
+default_langcode: site_default
+language_alterable: true

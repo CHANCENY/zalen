@@ -1,0 +1,23 @@
+uuid: 61990bd9-7e4b-4edb-a28d-5c151f56e672
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_booking_count
+    - paragraphs.paragraphs_type.reservation_extra_services
+id: paragraph.reservation_extra_services.field_booking_count
+field_name: field_booking_count
+entity_type: paragraph
+bundle: reservation_extra_services
+label: 'Booking Count'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

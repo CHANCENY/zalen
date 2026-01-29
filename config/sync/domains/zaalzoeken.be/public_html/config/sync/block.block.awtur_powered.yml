@@ -1,0 +1,22 @@
+uuid: 16cdf67b-e5e1-4cca-aab8-33ef78df6162
+langcode: nl
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - awtur
+_core:
+  default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
+id: awtur_powered
+theme: awtur
+region: footer_fifth
+weight: -17
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Gebouwd met Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

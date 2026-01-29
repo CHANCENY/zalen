@@ -1,0 +1,5 @@
+name: 'Location Scraper'
+type: module
+description: 'Automatically assigns realistic random values to location nodes.'
+core_version_requirement: ^10
+package: Custom

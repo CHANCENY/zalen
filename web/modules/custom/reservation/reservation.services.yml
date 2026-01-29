@@ -1,0 +1,63 @@
+services:
+  reservation.breadcrumb:
+    class: Drupal\reservation\ReservationBreadcrumbBuilder
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
+
+  reservation.manager:
+    class: Drupal\reservation\ReservationManager
+    arguments: ['@entity_type.manager', '@config.factory', '@string_translation', '@module_handler', '@current_user', '@entity_field.manager', '@entity_display.repository']
+
+  reservation.statistics:
+    class: Drupal\reservation\ReservationStatistics
+    arguments: ['@database', '@current_user', '@entity_type.manager', '@state', '@database.replica']
+    tags:
+      - { name: backend_overridable }
+
+  reservation.lazy_builders:
+    class: Drupal\reservation\ReservationLazyBuilders
+    arguments: ['@entity_type.manager', '@entity.form_builder', '@current_user', '@reservation.manager', '@module_handler', '@renderer']
+
+  reservation.link_builder:
+    class: Drupal\reservation\ReservationLinkBuilder
+    arguments: ['@current_user', '@reservation.manager', '@module_handler', '@string_translation', '@entity_type.manager']
+
+
+  reservation.mail_handler:
+    class: Drupal\reservation\Mail\MailHandler
+    arguments: ['@plugin.manager.mail', '@language_manager', '@language.default', '@string_translation']
+
+  reservation.manager_html_mail:
+    class: Drupal\reservation\Mail\HtmlMailManager
+    arguments: ['@container.namespaces', '@cache.discovery', '@module_handler', '@config.factory', '@logger.factory', '@string_translation', '@renderer']
+
+  reservation.user_manager_mail:
+    class: Drupal\reservation\Mail\UserManagerMail
+    arguments: ['@reservation.mail_handler', '@request_stack', '@config.factory']
+
+  reservation.user_owner_mail:
+    class: Drupal\reservation\Mail\UserOwnerMail
+    arguments: ['@reservation.mail_handler', '@request_stack', '@config.factory']
+
+  reservation.user_author_mail:
+    class: Drupal\reservation\Mail\UserAuthorMail
+    arguments: ['@reservation.mail_handler', '@request_stack', '@config.factory']
+  reservation.twig_extension:
+    class: Drupal\reservation\Twig\Extension\TwigFunctionExtension
+    arguments: [ '@file_url_generator', '@entity_type.manager' ]
+    tags:
+      - { name: twig.extension }
+  reservation.currencies:
+    class: Drupal\reservation\Currency\Currency
+    arguments: []
+  reservation.twig.extension.intl:
+    class: Twig\Extra\Intl\IntlExtension
+    tags:
+      - { name: twig.extension }
+  reservation.user_autocomplete_matcher:
+    class: Drupal\reservation\Service\ParagraphAutocompleteMatcher
+    arguments: [ '@plugin.manager.entity_reference_selection' ]
+    decorates: entity.autocomplete_matcher
+    decoration_priority: 10
+

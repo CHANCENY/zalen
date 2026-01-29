@@ -1,0 +1,23 @@
+uuid: f6b7b8c4-bd63-4c9c-a41d-5d2ba81a35af
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_if_hours_exceed
+    - paragraphs.paragraphs_type.per_hour_unit_rules
+id: paragraph.per_hour_unit_rules.field_if_hours_exceed
+field_name: field_if_hours_exceed
+entity_type: paragraph
+bundle: per_hour_unit_rules
+label: 'If Hours Exceed '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

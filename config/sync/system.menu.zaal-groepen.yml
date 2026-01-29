@@ -1,0 +1,8 @@
+uuid: f0c2375b-7922-47cc-9d9e-df959f2f5712
+langcode: nl
+status: true
+dependencies: {  }
+id: zaal-groepen
+label: 'Zaal groepen'
+description: 'Linken naar zalen per groep'
+locked: false

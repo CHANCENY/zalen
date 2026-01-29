@@ -1,0 +1,22 @@
+uuid: ce2810a6-d7d5-4f9f-8e58-c0ed890fed1c
+langcode: nl
+status: true
+dependencies:
+  theme:
+    - awtur
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: awtur_local_tasks
+theme: awtur
+region: content
+weight: -17
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabbladen
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

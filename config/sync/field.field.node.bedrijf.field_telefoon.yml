@@ -1,0 +1,21 @@
+uuid: 8daf215f-d2a0-49fd-b1f2-724cc92b9288
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_telefoon
+    - node.type.bedrijf
+  module:
+    - telephone
+id: node.bedrijf.field_telefoon
+field_name: field_telefoon
+entity_type: node
+bundle: bedrijf
+label: Telephone
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

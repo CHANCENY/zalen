@@ -1,0 +1,16 @@
+uuid: bb1963fd-1dda-437e-acc2-2ea699e61fbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zaalopstellingen
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: taxonomy_term.zaalopstellingen
+target_entity_type_id: taxonomy_term
+target_bundle: zaalopstellingen
+default_langcode: site_default
+language_alterable: true

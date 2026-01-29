@@ -1,0 +1,2 @@
+template_mail: '<p>Hi [reservation:author:account-name],</p><p>Pay instructions via Mollie for [reservation:field_boeking_id:value]. You can visit <a href="[reservation:payment-url]">payment link</a> to start your payment process.</p><p>Copy: [reservation:payment-url]</p><p>&nbsp;</p><p>Thank you.</p>'
+template_mail_format: full_html

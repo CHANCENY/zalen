@@ -1,0 +1,22 @@
+uuid: f075ffee-c25e-447b-a458-33ab2bd6364b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.regio
+id: taxonomy_term.regio.status
+field_name: status
+entity_type: taxonomy_term
+bundle: regio
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

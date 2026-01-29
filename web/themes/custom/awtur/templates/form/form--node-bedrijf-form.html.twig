@@ -1,0 +1,272 @@
+{# varable: {{ language_id }} choosen language in the language dropdown #}
+{# form-node-bedrijf-form.twig #}
+
+{{ attach_library('awtur/form-bedrijf-edit') }}
+{{ attach_library('awtur/multiselect-sumoselect') }}
+
+<form{{ attributes }}>
+ 
+<div class="bedrijf-form" id="bedrijf-form-wrapper">
+
+  {# Titel van het formulier (optioneel) #}
+  <h1>{{ 'Create Location'|t }}</h1>
+
+  {{ element.form_build_id }}
+  {{ element.form_id }}
+  {{ element.form_token }}
+
+  {# ================= Language ================= #}
+  <fieldset class="form-section" id="bedrijf-language-langcode">
+    <legend>{{ 'Language of the content'|t }}</legend>
+    
+    {{ element.langcode }}
+  </fieldset>
+
+  {# ================= GENERAL INFORMATION ================= #}
+  <fieldset class="form-section" id="section-algemeen">
+    <legend>{{ 'General information'|t }}</legend>
+
+    <div class="form-group form-item--title required">
+      {{ element.title }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_slogan }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_logo }}
+    </div>
+
+    <div class="input-openingsuren">
+      {{ element.field_openingsuren }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_sluit_periode }}
+    </div>
+  </fieldset>
+
+
+  {# ================= ADDRESS $ LOCATION ================= #}
+  <fieldset class="form-section" id="section-locatie">
+    <legend>{{ 'Address & Location'|t }}</legend>
+
+    <div class="form-group bedrijf-field-aanpreekvorm">
+      <div class="element-field-aanspreekvorm">
+        {{ element.field_aanspreekvorm }}
+      </div>
+
+      <div class="element-field-contactpersoon">
+        {{ element.field_contact_persoon }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ element.field_avatar }}
+    </div>
+
+    <div class="form-group bedrijf-field-telefoon">
+      {{ element.field_telefoon }}
+    </div>
+
+    <div class="form-group bedrijf-field-gsm">
+      {{ element.field_gsm }}
+    </div>
+
+    <div class="form-group form-item--adres required">
+      {{ element.field_adres }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_stadsgewest }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_google_rating }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_google_review_count }}
+    </div>
+  </fieldset>
+
+
+  {# ================= PUBLIC TRANSPORT ================= #}
+  <fieldset class="form-section" id="section-vervoer">
+    <legend>{{ 'Public transport & Distances'|t }}</legend>
+
+    <div class="form-group">
+      {{ element.field_afstand_bus }}
+    </div>
+    <div class="form-group">
+      {{ element.field_afstand_tramhalte }}
+    </div>
+    <div class="form-group">
+      {{ element.field_afstand_trein_station }}
+    </div>
+    <div class="form-group">
+      {{ element.field_afstand_metro }}
+    </div>
+  </fieldset>
+
+
+  {# ================= PARKING / PARKING OPTIONS ================= #}
+  <fieldset class="form-section" id="section-parking">
+    <legend>{{ 'Parking options'|t }}</legend>
+
+    <div class="form-group">
+      {{ element.field_fietsen }}
+    </div>
+    <div class="form-group">
+      {{ element.field_motoren }}
+    </div>
+    <div class="form-group">
+      {{ element.field_wagens }}
+    </div>
+  </fieldset>
+
+
+  {# ================= FACILITIES ================= #}
+  <fieldset class="form-section" id="section-faciliteiten">
+    <legend>{{ 'Facilities and Amenities'|t }}</legend>
+
+    <div class="form-group">
+      {{ element.field_faciliteiten }}
+    </div>
+    <div class="form-group">
+      {{ element.field_buiten_voorzieningen }}
+    </div>
+    <div class="form-group">
+      {{ element.field_kindvriendelijkheid }}
+    </div>
+    <div class="form-group">
+      {{ element.field_mindervaliden }}
+    </div>
+  </fieldset>
+
+
+  {# ================= DUURZAAMHEID ================= #}
+  <fieldset class="form-section" id="section-duurzaamheid">
+    <legend>{{ 'Sustainability & Environment'|t }}</legend>
+
+    <div class="form-group">
+      {{ element.field_milieu }}
+    </div>
+    <div class="form-group">
+      {{ element.field_keurmerken }}
+    </div>
+  </fieldset>
+
+
+  {# ================= MEDIA & FILES ================= #}
+  <fieldset class="form-section" id="section-media">
+    <legend>{{ 'Media & Files'|t }}</legend>
+
+    <div class="form-group">
+      {{ element.field_prijslijsten }}
+    </div>
+    
+    <div class="form-group">
+      {{ element.field_foto }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_video }}
+    </div>
+  </fieldset>
+
+{#  #}{# =============== OFFER OVERNIGHT ==============#}
+  <fieldset class="form-section {{ element.field_slaapgelegenheid['#access'] ? '' : 'upgrade-vip' }}" id="section-overnight">
+    <legend>{{ "Overnight Accommodation"|t }}</legend>
+    <div class="form-section">
+      {{ element.field_slaapgelegenheid }}
+    </div>
+    <div class="form-section">
+      {{ element.field_overnight_room }}
+    </div>
+    <div class="upgrade-plan">
+      {{ element.upgrade_plan }}
+    </div>
+  </fieldset>
+
+
+  {# ================= OTHER TEXT/DESCRIPTION ================= #}
+  <fieldset class="form-section" id="section-overig">
+    <legend>{{ 'Other info'|t }}</legend>
+
+    <div class="form-group">
+      {{ element.body }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_website }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_google_rating }}
+    </div>
+
+    <div class="form-group">
+      {{ element.field_google_review_count }}
+    </div>
+
+  </fieldset>
+
+  {# ================= ACTIONS ================= #}
+  <div class="form-actions" id="bedrijf-form-actions">
+    {{ element.actions }}
+  </div>
+
+  {# ============= Section only vissible for admins ============= #}
+ {% if user.isAuthenticated() and 'administrator' in user.roles %}
+  {# ================= HIDDEN ELEMENTS ================= #}
+
+  <fieldset class="form-section" id="section-inviible-elements">
+    <legend>{{ 'Hidden elements for non admin users'|t }}</legend>
+
+    <div class="bedrijf-invisible-elements">
+      <div class="form-group">
+        {{ element.field_groen_label }}
+      </div>
+      <div class="form-group">
+        {{ element.field_beperkingen }}
+      </div>
+      <div class="form-group">
+        {{ element.field_kindvriendelijk }}
+      </div>
+      <div class="form-group">
+        {{ element.field_nabij_bushalte }}
+      </div>
+      <div class="form-group">
+        {{ element.field_nabij_metrohalte }}
+      </div>
+      <div class="form-group">
+        {{ element.field_nabij_tramhalte }}
+      </div>
+      <div class="form-group">
+        {{ element.field_nabij_trein_station }}
+      </div>
+    </div>
+  </fieldset>
+
+  {# ================= ADVANCED GROUPS ================= #}
+  <fieldset class="form-section" id="bedrijf-section-advanced-settings">
+    <legend>{{ 'Form status'|t }}</legend>
+
+      <div class="bedrijf-form-afvanced">
+        {#{{ element.advanced.group.1 }}
+        {{ element.advanced.group.2 }}#}
+        
+        {{ element.advanced.group }}
+        
+      </div>
+
+  </fieldset>
+ {% endif %}
+ 
+ {{ element.footer }}
+</div>
+
+</form>
+

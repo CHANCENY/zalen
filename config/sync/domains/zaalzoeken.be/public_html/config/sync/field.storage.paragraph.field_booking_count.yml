@@ -1,0 +1,20 @@
+uuid: aac75a26-d566-40d7-8e02-88bcfcc38d38
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_booking_count
+field_name: field_booking_count
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,27 @@
+  .tab-node-bedrijf{
+    font-size: clamp(0.875rem, 0.8184rem + 0.3774vw, 1.125rem);
+    color: darkslategrey;
+    padding: 16px;
+    background: #fbfbfb;
+    border: 6px #eee solid;
+    border-top: 2px #ddd solid;
+    border-bottom: 2px #ddd solid;
+    border-radius: 9px;
+    margin: 64px 0;
+  }
+  .body-bedrijf-read-more, .body-bedrijf-no-more{
+    padding: 16px 16px 0; 
+    color: #ff5f5f;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .read-more-tag{
+    color: green;
+  }
+  .body-bedrijf-no-more{
+    filter: blur();
+  }
+  #bedrijf-body-text-full{
+    display: none;
+  }
+  

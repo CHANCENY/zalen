@@ -1,0 +1,58 @@
+uuid: 35832675-9cc8-4e5f-8049-8a2149a21b64
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.per_hour.field_currency
+    - field.field.paragraph.per_hour.field_hourly_pricing_rules
+    - field.field.paragraph.per_hour.field_minimum_hours_to_book
+    - field.field.paragraph.per_hour.field_per_hour_price
+    - paragraphs.paragraphs_type.per_hour
+  module:
+    - inline_entity_form
+id: paragraph.per_hour.default
+targetEntityType: paragraph
+bundle: per_hour
+mode: default
+content:
+  field_currency:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_hourly_pricing_rules:
+    type: inline_entity_form_complex
+    weight: 3
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+      removed_reference: optional
+    third_party_settings: {  }
+  field_minimum_hours_to_book:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_per_hour_price:
+    type: number
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

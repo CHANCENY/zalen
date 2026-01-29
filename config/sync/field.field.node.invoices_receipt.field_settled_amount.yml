@@ -1,0 +1,19 @@
+uuid: 8c35f842-de8c-4604-9186-5923b281ea61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_settled_amount
+    - node.type.invoices_receipt
+id: node.invoices_receipt.field_settled_amount
+field_name: field_settled_amount
+entity_type: node
+bundle: invoices_receipt
+label: 'Settled amount'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,18 @@
+uuid: 72311883-b807-4904-858b-5c990e008f24
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - file
+    - filter
+    - reservation
+id: adverteerder
+label: Adverteerder
+weight: 6
+is_admin: null
+permissions:
+  - 'access reservations'
+  - 'delete own files'
+  - 'use text format basic_html'

@@ -1,0 +1,139 @@
+uuid: 6b64efed-ac5f-4df3-92f1-7c30e48fc23c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.reservation.field_amount_used
+    - field.field.paragraph.reservation.field_days
+    - field.field.paragraph.reservation.field_ending_date
+    - field.field.paragraph.reservation.field_hours
+    - field.field.paragraph.reservation.field_occupants
+    - field.field.paragraph.reservation.field_overnight_rooms
+    - field.field.paragraph.reservation.field_payment_status
+    - field.field.paragraph.reservation.field_person_type_options
+    - field.field.paragraph.reservation.field_price_units
+    - field.field.paragraph.reservation.field_reservation_currency
+    - field.field.paragraph.reservation.field_services
+    - field.field.paragraph.reservation.field_starting_date
+    - field.field.paragraph.reservation.field_total_amount
+    - field.field.paragraph.reservation.field_unit_type
+    - paragraphs.paragraphs_type.reservation
+id: paragraph.reservation.default
+targetEntityType: paragraph
+bundle: reservation
+mode: default
+content:
+  field_amount_used:
+    type: number
+    weight: 13
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_days:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_ending_date:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_hours:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_occupants:
+    type: number
+    weight: 8
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_overnight_rooms:
+    type: entity_reference_autocomplete
+    weight: 12
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_payment_status:
+    type: options_select
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_person_type_options:
+    type: entity_reference_autocomplete
+    weight: 10
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_price_units:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_reservation_currency:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_services:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_starting_date:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_total_amount:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_unit_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

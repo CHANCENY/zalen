@@ -1,0 +1,9 @@
+uuid: d028ab4d-2edd-4878-b571-a8d39982ec50
+langcode: nl
+status: true
+dependencies: {  }
+name: Regio
+vid: regio
+description: 'Lijst met stedelijke gewesten België'
+weight: 0
+new_revision: false

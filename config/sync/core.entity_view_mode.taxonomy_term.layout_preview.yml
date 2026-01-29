@@ -1,0 +1,11 @@
+uuid: dbf33d92-c3f1-4001-95e3-08607f56afb5
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.layout_preview
+label: 'Layout preview'
+description: ''
+targetEntityType: taxonomy_term
+cache: true

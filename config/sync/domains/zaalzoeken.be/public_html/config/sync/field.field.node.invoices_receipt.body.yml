@@ -1,0 +1,24 @@
+uuid: 6b242fc2-c9c0-45fc-a265-61ebb762accb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.invoices_receipt
+  module:
+    - text
+id: node.invoices_receipt.body
+field_name: body
+entity_type: node
+bundle: invoices_receipt
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

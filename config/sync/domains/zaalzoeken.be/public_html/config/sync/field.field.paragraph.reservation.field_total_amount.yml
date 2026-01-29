@@ -1,0 +1,23 @@
+uuid: 9a9f97a7-78d6-414e-a1fc-4d1a3d38d846
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_total_amount
+    - paragraphs.paragraphs_type.reservation
+id: paragraph.reservation.field_total_amount
+field_name: field_total_amount
+entity_type: paragraph
+bundle: reservation
+label: 'Total Amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

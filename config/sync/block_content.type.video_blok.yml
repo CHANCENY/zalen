@@ -1,0 +1,8 @@
+uuid: 139d092e-ac07-44bd-ab56-49b11ec00652
+langcode: en
+status: true
+dependencies: {  }
+id: video_blok
+label: 'Video blok'
+revision: false
+description: 'Blok met tittel, boddy en video of foto veld'

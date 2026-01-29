@@ -1,0 +1,2702 @@
+uuid: 44e944e1-ece9-410f-b4c6-e2f34c318b87
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_foto
+    - field.storage.node.field_zaal_bedrijf
+    - image.style.provincie_teaser
+    - node.type.bedrijf
+    - taxonomy.vocabulary.regio
+  content:
+    - 'taxonomy_term:regio:0001e0b4-af50-4bfd-9d71-9f42275772ae'
+    - 'taxonomy_term:regio:0174bde2-33c2-4be6-8816-09cd2440656b'
+    - 'taxonomy_term:regio:03199148-7e9d-4b85-b897-b7fb8da71efc'
+    - 'taxonomy_term:regio:05613d33-5fdb-4428-8234-0ddfe67f3c19'
+    - 'taxonomy_term:regio:05e3a4e6-c995-4579-8445-85d6792d9763'
+    - 'taxonomy_term:regio:05ed110d-4397-46ea-8cf9-3e1d9d75e2ee'
+    - 'taxonomy_term:regio:07901ba8-5670-4299-8bae-fde921429cf0'
+    - 'taxonomy_term:regio:07a40730-50b9-4759-ac2a-902860d6e2cc'
+    - 'taxonomy_term:regio:07e17e20-282e-4d7e-8e4a-024745f602f1'
+    - 'taxonomy_term:regio:090ecb80-bfe1-4ce0-97b5-40ac6e1eecef'
+    - 'taxonomy_term:regio:09d4f8c8-d113-4078-9bae-267e00ad9a68'
+    - 'taxonomy_term:regio:09fa44a0-358e-4730-905c-b07a0ae6bc69'
+    - 'taxonomy_term:regio:0ac41e97-e7c2-4cce-b63b-0f5b70b32218'
+    - 'taxonomy_term:regio:0c7e7c9d-41f4-4269-b26a-25ff416cab1d'
+    - 'taxonomy_term:regio:0d79e6b5-398d-444a-aea8-250e36f2626f'
+    - 'taxonomy_term:regio:0e260eeb-1117-43dc-8895-31ef8ea65e4b'
+    - 'taxonomy_term:regio:0efc544b-c122-4819-b06d-8d213cf35eb0'
+    - 'taxonomy_term:regio:0f481feb-3835-488b-b28c-8a450e426206'
+    - 'taxonomy_term:regio:118d3479-1f82-40e5-a0d9-0492bfcc4e16'
+    - 'taxonomy_term:regio:124f5315-4eb7-4c04-9817-7d6be7c1c8e2'
+    - 'taxonomy_term:regio:12e5f4e1-2e64-4dc3-a439-986b99771dce'
+    - 'taxonomy_term:regio:12f9fbc8-1d0d-4105-b7e4-2f5f6d2da9ad'
+    - 'taxonomy_term:regio:1435026f-b8e0-45cd-a645-6c10439db757'
+    - 'taxonomy_term:regio:14e3a6d6-53ef-4cd3-baf7-fd2d173ebf1b'
+    - 'taxonomy_term:regio:19bafcf5-9e8d-4462-b07d-305be1143a2c'
+    - 'taxonomy_term:regio:1aa6beda-98ff-4339-9a54-e2b8cc547126'
+    - 'taxonomy_term:regio:1d2731ce-286d-42ab-ad95-06083b564368'
+    - 'taxonomy_term:regio:1debd1ad-7260-404e-95e4-703182a5cfbb'
+    - 'taxonomy_term:regio:1e0af3b1-e98a-467d-932f-c9c211a9abf1'
+    - 'taxonomy_term:regio:1e6d2d42-6c91-4156-9960-ba8e486116d3'
+    - 'taxonomy_term:regio:1f57b36c-e336-4ae2-91cf-84bcf9222006'
+    - 'taxonomy_term:regio:2113e3c5-6c77-4bf9-9ccc-7d304f811b1e'
+    - 'taxonomy_term:regio:21c654bb-5968-444e-94d9-71ada5446f02'
+    - 'taxonomy_term:regio:23720b88-06ee-4a5f-a0d7-49d53c37b97f'
+    - 'taxonomy_term:regio:251820cf-6535-4629-bb9d-73a77def7d3f'
+    - 'taxonomy_term:regio:251cca2d-4cce-4efa-8d57-f7b97479f314'
+    - 'taxonomy_term:regio:25b12729-bd13-451e-a433-cbf270dd35ef'
+    - 'taxonomy_term:regio:27720315-93e2-43ac-a148-568081af1959'
+    - 'taxonomy_term:regio:280814c4-8f35-4172-86c0-cb49ab9690a3'
+    - 'taxonomy_term:regio:2a37c505-8d32-471f-99e3-2a91137810ea'
+    - 'taxonomy_term:regio:2aaa8b42-0a5b-4a47-919b-f1d09b586ee6'
+    - 'taxonomy_term:regio:2be54419-7ef9-4836-8627-4a0dcb07adcb'
+    - 'taxonomy_term:regio:2c92f8c9-a757-4980-b3ca-fa7229d73f8e'
+    - 'taxonomy_term:regio:349bd1b0-c10b-4a05-ba23-59154d1d7429'
+    - 'taxonomy_term:regio:37a762b1-b1ff-4451-9424-7b673e5328c9'
+    - 'taxonomy_term:regio:3a461635-4689-4a34-8fe2-c9193ede6042'
+    - 'taxonomy_term:regio:3bbd9a4b-efaf-4dfb-856c-741552e487e3'
+    - 'taxonomy_term:regio:3dab7f1b-16fa-4e22-b986-b3feef1bdb18'
+    - 'taxonomy_term:regio:3dfce061-c4e6-4970-9af5-c3c555fcf52b'
+    - 'taxonomy_term:regio:3fd26601-72bd-4177-ac89-d39472c64d7b'
+    - 'taxonomy_term:regio:3ff795da-a7d9-41b0-af91-7baa4cdc3841'
+    - 'taxonomy_term:regio:43ce731d-6f58-45bf-aa63-e0dbbe334055'
+    - 'taxonomy_term:regio:44267a9f-e489-4f2a-9398-d96733936377'
+    - 'taxonomy_term:regio:458dad6a-e07e-48a1-a625-fed2905a0a7a'
+    - 'taxonomy_term:regio:47878075-f888-4ae0-b6a3-ea9f3a8017e0'
+    - 'taxonomy_term:regio:4a56d848-79fc-4dcb-ae4f-f30551c072e4'
+    - 'taxonomy_term:regio:4ba22ac8-2943-4a3d-ac75-67947c373efe'
+    - 'taxonomy_term:regio:4c79f7ca-baf2-4ab0-9950-af3990867ea3'
+    - 'taxonomy_term:regio:4d77d769-5177-460f-9568-a608593d0dd4'
+    - 'taxonomy_term:regio:4eebf69d-fade-4ee4-bf20-e1c27b83e7ea'
+    - 'taxonomy_term:regio:4f1bfa2d-f2f6-4ede-9e2d-af3398efca5a'
+    - 'taxonomy_term:regio:4fc717bd-7c45-45fe-9c9c-0afd0baee690'
+    - 'taxonomy_term:regio:50b610f1-0644-469c-b84c-dc6b4276c32d'
+    - 'taxonomy_term:regio:510744c1-6125-44cd-867f-3f7241f133f6'
+    - 'taxonomy_term:regio:514236b1-a082-4a14-a326-3141bca2a672'
+    - 'taxonomy_term:regio:51c9eec7-5dad-4643-bc8d-5e0f11692a31'
+    - 'taxonomy_term:regio:53048bb0-7158-48cf-8db8-e88c088914f5'
+    - 'taxonomy_term:regio:53ff78bc-3eab-42f7-9307-7469acd6dfbf'
+    - 'taxonomy_term:regio:541233b3-1c6d-40b1-888e-3af1f8d7d596'
+    - 'taxonomy_term:regio:551fd6b1-fbaf-4e3c-a044-f00e0c4afef3'
+    - 'taxonomy_term:regio:55e99681-c475-4e09-9543-176e5c510f0d'
+    - 'taxonomy_term:regio:5714a9a1-62b6-4397-bd66-c7e615e54e24'
+    - 'taxonomy_term:regio:59be14fe-2c12-4a24-8121-8c02ae0efa06'
+    - 'taxonomy_term:regio:5b9529be-abe6-43b8-873c-f9951c01b74d'
+    - 'taxonomy_term:regio:5eb34604-d4ba-4052-89be-c6a36371c9a1'
+    - 'taxonomy_term:regio:5eb88e3e-7765-4a23-be6a-1689acd45374'
+    - 'taxonomy_term:regio:5fd01eb5-09b7-468c-b36e-b4081b07beaf'
+    - 'taxonomy_term:regio:60995857-c275-4ea7-b58f-5a8633e7f3f8'
+    - 'taxonomy_term:regio:653b403a-6968-4cba-bd76-61dbe6d325bd'
+    - 'taxonomy_term:regio:6712b50a-233c-43f5-b57f-66b8e4de2fc3'
+    - 'taxonomy_term:regio:67b182b4-b528-4f79-9086-e4be20e4fb6f'
+    - 'taxonomy_term:regio:67e9a8e3-fc33-42b6-a075-743b07c797d4'
+    - 'taxonomy_term:regio:67eb30e3-4518-43f5-a1be-52f25dd84c5c'
+    - 'taxonomy_term:regio:6876943a-cca8-4bf3-9eec-6082c60f5509'
+    - 'taxonomy_term:regio:6a7fa498-3d98-41cb-8517-0a1aa7df9178'
+    - 'taxonomy_term:regio:6aab72ff-dce1-481b-bb47-6f5f4371b441'
+    - 'taxonomy_term:regio:6b205171-4a1f-48d7-acfb-0ce374e0a6b9'
+    - 'taxonomy_term:regio:6b5fa71d-5be6-4a3e-b5d6-845bccfe070e'
+    - 'taxonomy_term:regio:6c964b4a-2ebc-4d49-9163-15f5d41e3341'
+    - 'taxonomy_term:regio:6d656c88-a448-4730-b349-6e8d03f8364f'
+    - 'taxonomy_term:regio:7055d9d1-7945-4f32-864d-e9b084093fa0'
+    - 'taxonomy_term:regio:70af661a-8b04-4dc8-b564-95ac083d2cf1'
+    - 'taxonomy_term:regio:729f051a-ed02-43bb-b80b-620d8cfaa57d'
+    - 'taxonomy_term:regio:73dc79de-2224-46f9-b257-ca4d053a4df5'
+    - 'taxonomy_term:regio:7618f21c-8f12-4fc3-afbb-0d12cdeca6a4'
+    - 'taxonomy_term:regio:762e8653-0527-4d28-b546-a6e4ffcec835'
+    - 'taxonomy_term:regio:763c1bfe-9777-43d4-92c5-982758027f9c'
+    - 'taxonomy_term:regio:76c5044b-8bbc-42b8-a340-6e4022d09128'
+    - 'taxonomy_term:regio:78b00d14-d5b1-4cf6-8b7e-d52882799dab'
+    - 'taxonomy_term:regio:7908af23-a57c-4688-86cd-9787f1147544'
+    - 'taxonomy_term:regio:792f5661-a088-4729-a182-7d3008fea78e'
+    - 'taxonomy_term:regio:79f2c9d2-5080-4dc8-8b36-b18b3b225caa'
+    - 'taxonomy_term:regio:7e2b3a4a-eb5b-4f69-b899-32d02434f63f'
+    - 'taxonomy_term:regio:80a38567-894c-4add-97b3-f866e82b1f13'
+    - 'taxonomy_term:regio:8247d83e-e3de-4489-b58b-7dc738d37182'
+    - 'taxonomy_term:regio:827addb3-8d71-4d12-8f3e-127dcd966db6'
+    - 'taxonomy_term:regio:86c5e43f-42b1-4227-bc4d-1f0e2dc8feeb'
+    - 'taxonomy_term:regio:87260441-6a89-40f9-a8ee-4ed91bae5b0a'
+    - 'taxonomy_term:regio:88526816-135f-492e-82ff-6110c26aec79'
+    - 'taxonomy_term:regio:89ae337b-dcb4-4310-8628-5ce5965e2f92'
+    - 'taxonomy_term:regio:8ac151be-e51c-437f-a912-1306cf903d66'
+    - 'taxonomy_term:regio:8cadba53-0d28-4569-810c-e2ff0cd642bf'
+    - 'taxonomy_term:regio:8cbbc03c-1fcb-45bd-8ba1-76bad87f8960'
+    - 'taxonomy_term:regio:8e8c27c6-39bd-49b3-8f8a-bcf7bbc5f8b8'
+    - 'taxonomy_term:regio:90572d17-0c99-4169-a5fa-28332d8da9cb'
+    - 'taxonomy_term:regio:9270e143-aa1e-41db-9272-6391c1f91e9f'
+    - 'taxonomy_term:regio:93ddae17-5c47-4a0c-97eb-ebf3c11c11b3'
+    - 'taxonomy_term:regio:945fcc3b-61d0-4aba-807d-d427f6f4563e'
+    - 'taxonomy_term:regio:94d1ca75-db75-4e2e-a520-1a753aebf0f8'
+    - 'taxonomy_term:regio:9970c2d1-59b0-492c-b7c3-1b3891cea0e0'
+    - 'taxonomy_term:regio:9aba122f-002b-4aa9-9af0-306635223f98'
+    - 'taxonomy_term:regio:9c20d3db-efc8-401a-bc5b-4422cf8d80b9'
+    - 'taxonomy_term:regio:9fe9d0bb-a847-46a8-ab0f-79f8f20074e9'
+    - 'taxonomy_term:regio:a2069cc2-88f5-4edd-827c-094595626d7f'
+    - 'taxonomy_term:regio:a225628d-9c42-4068-a52c-217fb37b0a9f'
+    - 'taxonomy_term:regio:a32721c8-6a43-4ece-86dd-218d829ac6ad'
+    - 'taxonomy_term:regio:a38ad029-a6ee-49a4-82b2-7e3d38cda1ea'
+    - 'taxonomy_term:regio:a3e45d47-970d-423b-9d9b-5288bd67ebb3'
+    - 'taxonomy_term:regio:a44152b0-e3f0-4046-89a5-37ad552c9d07'
+    - 'taxonomy_term:regio:a807170b-6844-4300-b17e-a8ea45e92966'
+    - 'taxonomy_term:regio:a870c21a-96ed-4daf-8ced-3f1400c75077'
+    - 'taxonomy_term:regio:a9e5b067-77e7-4f74-bc60-bb4111a761f1'
+    - 'taxonomy_term:regio:aa7dd69c-d5f2-4f03-8e9e-979a40816199'
+    - 'taxonomy_term:regio:ac8a1c38-a296-4684-9e8d-a992d3094527'
+    - 'taxonomy_term:regio:ac95f85e-35fc-44cf-b59f-991c75396179'
+    - 'taxonomy_term:regio:ad672d00-c273-420f-8e02-43aa631c25b1'
+    - 'taxonomy_term:regio:ad78c78f-a9c5-4504-b7ab-40dd6a324a2b'
+    - 'taxonomy_term:regio:ae21b917-6086-44c7-a636-52b0e385cb6e'
+    - 'taxonomy_term:regio:ae9162af-758a-4d43-b0c8-93f0c98f23a2'
+    - 'taxonomy_term:regio:af9fe59b-78ad-4103-9ab0-1b0e6fec7294'
+    - 'taxonomy_term:regio:b0e0772f-d666-444f-9402-de8819f0c5ad'
+    - 'taxonomy_term:regio:b16602b4-adbb-412d-bee4-7b4fdfd3f648'
+    - 'taxonomy_term:regio:b1c03337-aec9-4fad-9633-b3530536a2d0'
+    - 'taxonomy_term:regio:b1ef0cf7-5866-473b-a15c-b8f1274e69fa'
+    - 'taxonomy_term:regio:b3861239-ad72-4f6d-a996-572b68d7195b'
+    - 'taxonomy_term:regio:b3b8fc67-8de6-47c3-ab28-7f58fd73418b'
+    - 'taxonomy_term:regio:b46b8b12-21dd-4749-ac6a-ea2c2c998d31'
+    - 'taxonomy_term:regio:b4a32d06-5b93-48d1-b53c-567d38d41687'
+    - 'taxonomy_term:regio:b4c1fff2-2fe2-40be-83b4-b23c75e9c4ef'
+    - 'taxonomy_term:regio:b4c237a3-8a22-4058-8403-6d40bec44d0a'
+    - 'taxonomy_term:regio:b53246e4-69bc-43c7-97d6-888ced48a70a'
+    - 'taxonomy_term:regio:b5a0a3b2-0a9a-4921-8976-162cc8b17b10'
+    - 'taxonomy_term:regio:ba495c33-e70e-4276-98cb-74f6e00086d2'
+    - 'taxonomy_term:regio:ba915fb8-99a5-49bd-84db-091110353953'
+    - 'taxonomy_term:regio:bb6955ff-0815-4c92-b133-9729576de4ab'
+    - 'taxonomy_term:regio:bdfe23f1-1b02-4c8c-ae67-66c1866a8a9a'
+    - 'taxonomy_term:regio:be87ab4f-dee4-4f23-98d7-218f5eb1ffd6'
+    - 'taxonomy_term:regio:c0321572-0c49-4add-a4d6-3398c5538f14'
+    - 'taxonomy_term:regio:c10522ef-c3ee-467c-b090-fcdedd32431b'
+    - 'taxonomy_term:regio:c1b08448-7f34-45ad-ad76-72c5afc0b2f7'
+    - 'taxonomy_term:regio:c20c1fe5-6c69-4466-b1c6-1c28dd97857e'
+    - 'taxonomy_term:regio:c4f883b5-2b28-4191-a44f-728e61a2010a'
+    - 'taxonomy_term:regio:c5ec715d-3762-4f01-a1dc-74b4acc5b71e'
+    - 'taxonomy_term:regio:c664ecee-df6c-4835-b43b-d9763353b416'
+    - 'taxonomy_term:regio:c8d976da-1c04-4be2-b8f1-d320d5360b3e'
+    - 'taxonomy_term:regio:cc5ee696-e5fe-4b99-88ac-a1f5c849d5e2'
+    - 'taxonomy_term:regio:cd704c16-b072-4714-b33d-928485049b4e'
+    - 'taxonomy_term:regio:ce366e80-8f6a-445e-aead-c035ce58072d'
+    - 'taxonomy_term:regio:ce84f38f-dd20-4749-8a14-8eda8f2157e7'
+    - 'taxonomy_term:regio:cf756eaf-7eaa-4b53-adcf-b2ffdf6531a5'
+    - 'taxonomy_term:regio:d1326ba9-02be-4051-83b8-04b17d28e7e5'
+    - 'taxonomy_term:regio:d360e185-fdf1-4aab-8092-2e37630b40ac'
+    - 'taxonomy_term:regio:d4768f4b-3461-4719-9f54-2b268dd349b5'
+    - 'taxonomy_term:regio:d6554eeb-b9f9-42a1-b570-9ab2687891a2'
+    - 'taxonomy_term:regio:d779cc0e-7045-43c1-b5cb-9563cdad4be3'
+    - 'taxonomy_term:regio:d7b8d27a-795b-4d19-aa15-110fd8ea5c70'
+    - 'taxonomy_term:regio:db299e5c-0b38-438f-b7a3-a511ef14fe5f'
+    - 'taxonomy_term:regio:dc363f49-b886-4149-b515-f6bdb24c4422'
+    - 'taxonomy_term:regio:dea62b65-8652-4690-94ad-c9e7a3e1d003'
+    - 'taxonomy_term:regio:df31e1b0-d6e1-41d2-8aa5-9361759f059f'
+    - 'taxonomy_term:regio:df925fef-2b87-4a89-96fd-97cede435a59'
+    - 'taxonomy_term:regio:e1811265-456c-4b64-922b-565a8efa75e0'
+    - 'taxonomy_term:regio:e1d395a9-24a5-4e33-9e8e-dafd87073517'
+    - 'taxonomy_term:regio:e474eec0-cc65-47ac-bafa-8c4f52882e78'
+    - 'taxonomy_term:regio:e47d2e28-547c-446a-95b4-07cd58e95bf1'
+    - 'taxonomy_term:regio:e48a6db1-d5c7-4fe8-936e-276f057a82a5'
+    - 'taxonomy_term:regio:e5bb2593-9fbc-4368-946b-113b7159013f'
+    - 'taxonomy_term:regio:e695b82b-c993-4108-9d17-80fb2275f9be'
+    - 'taxonomy_term:regio:e724b151-f050-447f-a0eb-ca26fafbc874'
+    - 'taxonomy_term:regio:e95e7c92-bf98-4cf6-b009-1d2d42c6a476'
+    - 'taxonomy_term:regio:eaa2e709-dd33-44c8-bb36-6fe08e63d059'
+    - 'taxonomy_term:regio:ec396114-eeac-47c9-8bf6-85d1418fd87c'
+    - 'taxonomy_term:regio:ec6ebe93-dd76-43dd-a294-d7c74a2b3941'
+    - 'taxonomy_term:regio:ecfc997d-a115-4e0f-b8d4-2a7810ca4d2b'
+    - 'taxonomy_term:regio:ed57114d-8373-4ad2-8d1a-52856ff5edd6'
+    - 'taxonomy_term:regio:eed7b30f-fa05-4e6c-8b2e-ac1ac4c97b98'
+    - 'taxonomy_term:regio:ef92ee78-e57f-45fd-86bc-cd9b24853f45'
+    - 'taxonomy_term:regio:f094688e-d1be-4db1-938d-a3e9dd21f096'
+    - 'taxonomy_term:regio:f25a6152-63f4-494e-8604-4a702a884a5f'
+    - 'taxonomy_term:regio:f4a93596-0a35-4571-81a7-8a7521f978a4'
+    - 'taxonomy_term:regio:f56dfe40-f3b0-402f-84ac-78dd1fd5ed33'
+    - 'taxonomy_term:regio:f5cbfff8-23e7-4cd7-af75-896c411ed60a'
+    - 'taxonomy_term:regio:f6415900-ab1a-4517-b445-6ec534898bfa'
+    - 'taxonomy_term:regio:f7aa21a5-96f7-452f-b8d1-b31b352bb9d4'
+    - 'taxonomy_term:regio:f9f9239d-9e71-4dca-b5ae-85e5fa7c8585'
+    - 'taxonomy_term:regio:fb160fba-dc5e-46b4-ac24-cbaf862e971f'
+    - 'taxonomy_term:regio:fcf9bcc4-9f39-42b8-95af-457fdd9c308f'
+    - 'taxonomy_term:regio:ffc254d1-e986-41d0-aab5-0ed8526c5901'
+  module:
+    - address
+    - image
+    - node
+    - taxonomy
+    - user
+id: zalen_per_provincie
+label: 'Zalen per provincie'
+module: views
+description: 'Alle zalen, per provincie en Brussel'
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Alle zalen '
+      fields:
+        title_1:
+          id: title_1
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_foto:
+          id: field_foto
+          table: node__field_foto
+          field: field_foto
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: image
+          settings:
+            image_link: content
+            image_style: provincie_teaser
+            image_loading:
+              attribute: lazy
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 1
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_adres_locality:
+          id: field_adres_locality
+          table: node__field_adres
+          field: field_adres_locality
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: subdivision
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          display_name: false
+        field_zaal_bedrijf:
+          id: field_zaal_bedrijf
+          table: node__field_zaal_bedrijf
+          field: field_zaal_bedrijf
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_entity_view
+          settings:
+            view_mode: curt
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 3
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ''
+          field_api_classes: false
+        field_zaal_bedrijf_1:
+          id: field_zaal_bedrijf_1
+          table: node__field_zaal_bedrijf
+          field: field_zaal_bedrijf
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_entity_view
+          settings:
+            view_mode: curt
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 3
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ''
+          field_api_classes: false
+      pager:
+        type: mini
+        options:
+          offset: 0
+          items_per_page: 32
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          pagination_heading_level: h4
+      exposed_form:
+        type: basic
+        options:
+          submit_button: 'Zaal zoeken'
+          reset_button: true
+          reset_button_label: Herzetten
+          exposed_sorts_label: 'Sorteer volgens'
+          expose_sort_order: false
+          sort_asc_label: Afg
+          sort_desc_label: Opg
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts: {  }
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+      row:
+        type: fields
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships:
+        reverse__node__field_zaal_bedrijf:
+          id: reverse__node__field_zaal_bedrijf
+          table: node_field_data
+          field: reverse__node__field_zaal_bedrijf
+          relationship: none
+          group_type: group
+          admin_label: field_zaal_bedrijf
+          entity_type: node
+          plugin_id: entity_reverse
+          required: false
+      css_class: provincie-view
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: '@total locaties gevonden'
+      footer: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_1:
+    id: page_1
+    display_title: Provincies
+    display_plugin: page
+    position: 13
+    display_options:
+      title: Provincies
+      sorts: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        fields: true
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+        footer: false
+      relationships: {  }
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: '@total Zaal bedrijven gevonden'
+      footer: {  }
+      display_extenders: {  }
+      path: provincies
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_antwerpse_zalen:
+    id: page_antwerpse_zalen
+    display_title: Antwerpen
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'Antwerpse zalen'
+      sorts: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            299: 299
+            243: 243
+            441: 441
+            309: 309
+            244: 244
+            442: 442
+            310: 310
+            245: 245
+            312: 312
+            443: 443
+            313: 313
+            314: 314
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        sorts: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: antwerpse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_brusselse_zalen:
+    id: page_brusselse_zalen
+    display_title: Brussel
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'Brusselse zalen'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            287: 287
+            447: 447
+            453: 453
+            452: 452
+            455: 455
+            456: 456
+            454: 454
+            445: 445
+            457: 457
+            458: 458
+            459: 459
+            462: 462
+            463: 463
+            464: 464
+            465: 465
+            444: 444
+            450: 450
+            451: 451
+            449: 449
+            461: 461
+            460: 460
+            468: 468
+            466: 466
+            467: 467
+            246: 246
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: brusselse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_henegouwse_zalen:
+    id: page_henegouwse_zalen
+    display_title: Henegouwen
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'Henegouwse zalen'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            304: 304
+            270: 270
+            317: 317
+            318: 318
+            271: 271
+            319: 319
+            320: 320
+            272: 272
+            321: 321
+            322: 322
+            323: 323
+            324: 324
+            273: 273
+            329: 329
+            328: 328
+            327: 327
+            326: 326
+            325: 325
+            330: 330
+            331: 331
+            275: 275
+            333: 333
+            334: 334
+            335: 335
+            332: 332
+            276: 276
+            337: 337
+            336: 336
+            338: 338
+            339: 339
+            340: 340
+            341: 341
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: henegouwse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_limburgse_zalen:
+    id: page_limburgse_zalen
+    display_title: limburg
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'Limburgse zalen'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            305: 305
+            250: 250
+            346: 346
+            342: 342
+            343: 343
+            344: 344
+            345: 345
+            347: 347
+            251: 251
+            348: 348
+            349: 349
+            350: 350
+            351: 351
+            352: 352
+            353: 353
+            252: 252
+            356: 356
+            355: 355
+            354: 354
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: limburgse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_luikse_zalen:
+    id: page_luikse_zalen
+    display_title: Luik
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'Luikse zalen'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            300: 300
+            359: 359
+            360: 360
+            361: 361
+            362: 362
+            277: 277
+            364: 364
+            363: 363
+            366: 366
+            367: 367
+            368: 368
+            369: 369
+            370: 370
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: luikse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_luxemburgse_zalen:
+    id: page_luxemburgse_zalen
+    display_title: Luxemburg
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'Luxemburgse zalen'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            303: 303
+            285: 285
+            371: 371
+            372: 372
+            281: 281
+            373: 373
+            374: 374
+            282: 282
+            375: 375
+            376: 376
+            377: 377
+            283: 283
+            378: 378
+            379: 379
+            380: 380
+            284: 284
+            383: 383
+            382: 382
+            381: 381
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: luxemburgse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_naamse_zalen:
+    id: page_naamse_zalen
+    display_title: Namen
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'Naamse zalen'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            306: 306
+            267: 267
+            385: 385
+            386: 386
+            387: 387
+            384: 384
+            268: 268
+            388: 388
+            389: 389
+            390: 390
+            391: 391
+            269: 269
+            392: 392
+            393: 393
+            394: 394
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: naamse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_oost_vlaamse_zalen:
+    id: page_oost_vlaamse_zalen
+    display_title: Oost-Vlaanderen
+    display_plugin: page
+    position: 1
+    display_options:
+      title: Oost-vlaamse-zalen
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            302: 302
+            254: 254
+            395: 395
+            396: 396
+            397: 397
+            398: 398
+            253: 253
+            255: 255
+            256: 256
+            399: 399
+            400: 400
+            257: 257
+            401: 401
+            402: 402
+            258: 258
+            403: 403
+            404: 404
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: oost-vlaamse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_vlaams_brabantse_zalen:
+    id: page_vlaams_brabantse_zalen
+    display_title: Vlaams-Brabant
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'Vlaams brabantse zalen'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            307: 307
+            247: 247
+            405: 405
+            406: 406
+            248: 248
+            407: 407
+            408: 408
+            410: 410
+            409: 409
+            411: 411
+            413: 413
+            412: 412
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: vlaams-brabantse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_waals_brabantse_zalen:
+    id: page_waals_brabantse_zalen
+    display_title: Waals-Brabant
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'Waals brabantse zalen'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            308: 308
+            249: 249
+            419: 419
+            414: 414
+            415: 415
+            416: 416
+            417: 417
+            418: 418
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: waals-brabantse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_waalse_zalen:
+    id: page_waalse_zalen
+    display_title: Wallonië
+    display_plugin: page
+    position: 13
+    display_options:
+      title: Wallonië
+      sorts: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            288: 288
+            304: 304
+            270: 270
+            317: 317
+            318: 318
+            271: 271
+            319: 319
+            320: 320
+            272: 272
+            321: 321
+            322: 322
+            323: 323
+            324: 324
+            273: 273
+            329: 329
+            328: 328
+            327: 327
+            326: 326
+            325: 325
+            330: 330
+            331: 331
+            275: 275
+            333: 333
+            334: 334
+            335: 335
+            332: 332
+            276: 276
+            337: 337
+            336: 336
+            338: 338
+            339: 339
+            340: 340
+            341: 341
+            278: 278
+            280: 280
+            279: 279
+            357: 357
+            358: 358
+            300: 300
+            359: 359
+            360: 360
+            361: 361
+            362: 362
+            277: 277
+            364: 364
+            363: 363
+            365: 365
+            366: 366
+            367: 367
+            368: 368
+            369: 369
+            370: 370
+            303: 303
+            285: 285
+            371: 371
+            372: 372
+            281: 281
+            373: 373
+            374: 374
+            282: 282
+            375: 375
+            376: 376
+            377: 377
+            283: 283
+            378: 378
+            379: 379
+            380: 380
+            284: 284
+            383: 383
+            382: 382
+            381: 381
+            306: 306
+            267: 267
+            385: 385
+            386: 386
+            387: 387
+            384: 384
+            268: 268
+            388: 388
+            389: 389
+            390: 390
+            391: 391
+            269: 269
+            392: 392
+            393: 393
+            394: 394
+            308: 308
+            249: 249
+            419: 419
+            414: 414
+            415: 415
+            416: 416
+            417: 417
+            418: 418
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        fields: true
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: true
+        footer: false
+      relationships: {  }
+      display_description: ''
+      footer: {  }
+      display_extenders: {  }
+      path: waalse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'
+  page_west_vlaamse_zalen:
+    id: page_west_vlaamse_zalen
+    display_title: West-Vlaanderen
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'West vlaamse zalen'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            bedrijf: bedrijf
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_stadsgewest_target_id:
+          id: field_stadsgewest_target_id
+          table: node__field_stadsgewest
+          field: field_stadsgewest_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            301: 301
+            259: 259
+            423: 423
+            422: 422
+            421: 421
+            420: 420
+            260: 260
+            424: 424
+            425: 425
+            261: 261
+            427: 427
+            429: 429
+            426: 426
+            428: 428
+            262: 262
+            432: 432
+            433: 433
+            430: 430
+            431: 431
+            263: 263
+            436: 436
+            435: 435
+            434: 434
+            264: 264
+            437: 437
+            438: 438
+            265: 265
+            266: 266
+            439: 439
+            440: 440
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: regio
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+      relationships: {  }
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      path: west-vlaamse-zalen
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_zaal_bedrijf'

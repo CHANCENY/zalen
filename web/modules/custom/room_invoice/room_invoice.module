@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Contains room_invoice.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+/**
+ * Implements hook_help().
+ */
+function room_invoice_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the room_tariff module.
+    case 'help.page.room_invoice':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Invoice for zalen node for guest-houses and other accommodation with rooms.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+

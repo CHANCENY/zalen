@@ -1,0 +1,130 @@
+{#
+    /**
+     * @file
+     * Default view template to display all the fields in a row.
+     *
+     * Available variables:
+     * - view: The view in use.
+     * - fields: A list of fields, each one contains:
+     *   - content: The output of the field.
+     *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+     *   - class: The safe class ID to use.
+     *   - handler: The Views field handler controlling this field.
+     *   - inline: Whether or not the field should be inline.
+     *   - wrapper_element: An HTML element for a wrapper.
+     *   - wrapper_attributes: List of attributes for wrapper element.
+     *   - separator: An optional separator that may appear before a field.
+     *   - label: The field's label text.
+     *   - label_element: An HTML element for a label wrapper.
+     *   - label_attributes: List of attributes for label wrapper.
+     *   - label_suffix: Colon after the label.
+     *   - element_type: An HTML element for the field content.
+     *   - element_attributes: List of attributes for HTML element for field content.
+     *   - has_label_colon: A boolean indicating whether to display a colon after
+     *     the label.
+     *   - element_type: An HTML element for the field content.
+     *   - element_attributes: List of attributes for HTML element for field content.
+     * - row: The raw result from the query, with all data it fetched.
+     *
+     * @see template_preprocess_views_view_fields()
+     *
+     * @ingroup themeable
+     */
+    #}
+{{ attach_library('awtur/user-my-reservations') }}
+  
+{% set base_path = drupal_token('site:base-path') ~ '/' %}
+{% set thema_pad = base_path ~ directory %}{# path('<front>') {{ directory }} or {{ active_theme_path() }} #}
+
+
+<div class="personal-reservations">
+
+  <div class="reservation-loca-status">
+    <img src="{{ thema_pad }}/images/icons/user-pages/wreath-hall.svg"
+     alt="Evenementlocatie, inkom met zuilen omringd door lauwerkrans"/>
+    <div>
+      {{ fields.title.content }}
+    </div>
+    <div class="reservation-status">
+      {% if 'Evenement afgelopen' in booking_status %}
+        <span class="status-tooltip event-finish">
+          <img src="{{ thema_pad }}/images/icons/user-pages/cross-flags.svg"
+           alt="Twee kruisende vlaggen, Evenement afgelopen" />
+          <span class="hover-status-text">{{ booking_status }}</span>
+        </span>
+      {% elseif  'Reservatie in behandeling' in booking_status %}  
+        <span class="status-tooltip event-pending">
+          <img src="{{ thema_pad }}/images/icons/user-pages/hourglass.svg"
+           alt="Zandloper, reservatie in behandeling" />
+          <span class="hover-status-text">{{ booking_status }}</span>
+        </span>
+      {% elseif  'Reservatie bevestigd' in booking_status %}  
+        <span class="status-tooltip event-approved">
+          <img src="{{ thema_pad }}/images/icons/user-pages/checked-square.svg"
+           alt="Vierkan met check vink, reservatie bevestigd" />
+          <span class="hover-status-text">{{ booking_status }}</span>
+        </span>  
+      {% elseif  'Reservatie verworpen' in booking_status %}  
+        <span class="status-tooltip event-rejected">
+          <img src="{{ thema_pad }}/images/icons/user-pages/rejected.svg"
+           alt="Vierkan met check vink, reservatie bevestigd" />
+          <span class="hover-status-text">{{ booking_status }}</span>
+        </span>    
+      {% else %}
+        {{ booking_status }}
+      {% endif %}
+    </div>
+  </div>
+  
+  <div class="reservation-book-id">
+    {{ "Reservatie ID: "|t }}{{ fields.field_boeking_id.content }}
+  </div>
+
+  <div class="reservation-data">
+    <div>
+      {{ fields.field_foto.content}}
+    </div>
+    <div>
+      <div class="reservation-hall">
+        <img src="{{ thema_pad }}/images/icons/user-pages/hall.svg"/>
+        <div>
+          {{ fields.title_1.content }}
+        </div>
+      </div>
+      <div>
+        <div class="reservation-datetime">
+          <div class="reservation-startime">
+            <span class="reservation-start-end">{{ "Aanvang"|t }}</span>
+            {{ fields.field_date_booking_value.content }}
+          </div>
+          <div class="reservation-endtime">
+            <span class="reservation-start-end">{{ "Einde"|t }}</span>
+            {{ fields.field_date_booking_end_value.content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reservation-details">
+    <div class="reservation-occu-event">
+      <img src="{{ thema_pad }}/images/icons/user-pages/occasions.svg"/>
+      <div>
+        {{ fields.field_evenement.content }}
+      </div>
+    </div>
+    <div class="reservation-occu-event">
+      <img src="{{ thema_pad }}/images/icons/user-pages/persons.svg"/>
+      <div>
+        {{ fields.field_bezetting.content }}
+      </div>
+    </div>
+  </div>
+
+  <div class="reservation-operation-button">
+    {{ fields.operations.content }}
+  </div>
+
+</div>
+
+

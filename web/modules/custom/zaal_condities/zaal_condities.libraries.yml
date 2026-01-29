@@ -1,0 +1,13 @@
+checkbox_radio:
+  js:
+    js/checkbox-like-radio.js: {}
+  dependencies:
+    - core/drupal
+
+widget:
+  js:
+    js/room_layout_widget.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    

@@ -1,0 +1,21 @@
+uuid: de06a857-51fb-42cb-8c1e-85e3d041c118
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_room_layouts
+    - node.type.zaal
+  module:
+    - zaal_condities
+id: node.zaal.field_room_layouts
+field_name: field_room_layouts
+entity_type: node
+bundle: zaal
+label: 'Room layouts'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: room_layout_capacity

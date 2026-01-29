@@ -1,0 +1,45 @@
+uuid: b118f120-8382-4468-8cbf-b2eb31e22a50
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_foto
+    - node.type.zaal
+  module:
+    - content_translation
+    - image
+third_party_settings:
+  content_translation:
+    translation_sync:
+      title: title
+      file: '0'
+      alt: '0'
+id: node.zaal.field_foto
+field_name: field_foto
+entity_type: node
+bundle: zaal
+label: "Zaal foto's"
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: 'zaal/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg pdf'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

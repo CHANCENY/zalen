@@ -1,0 +1,22 @@
+uuid: 88fbb7d9-52cf-4209-85b7-5def9d37cccb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zaal_categorieen
+id: taxonomy_term.zaal_categorieen.status
+field_name: status
+entity_type: taxonomy_term
+bundle: zaal_categorieen
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

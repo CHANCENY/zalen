@@ -1,0 +1,22 @@
+uuid: a5508905-6c95-4e51-b5ba-804556a8207f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bedrijf
+id: node.bedrijf.promote
+field_name: promote
+entity_type: node
+bundle: bedrijf
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

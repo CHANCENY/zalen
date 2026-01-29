@@ -1,0 +1,13 @@
+uuid: 6bd47eb0-d61c-4265-b21e-f8f3284d13b8
+langcode: nl
+status: true
+dependencies:
+  module:
+    - reservation
+_core:
+  default_config_hash: 7FsdQ4qXWDoofQgY9yVDtlJhNQW5cf011VEk4gjBLyc
+id: reservation_unpublish_action
+label: 'Unpublish reservation'
+type: reservation
+plugin: 'entity:unpublish_action:reservation'
+configuration: {  }

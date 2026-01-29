@@ -1,0 +1,22 @@
+uuid: 939fabee-b7d2-4364-b8a7-dc3a70ba76c5
+langcode: nl
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - awtur
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: awtur_messages
+theme: awtur
+region: highlighted
+weight: -16
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

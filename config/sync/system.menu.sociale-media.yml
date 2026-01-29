@@ -1,0 +1,8 @@
+uuid: 877c8590-2b57-4f3f-adfd-fbe9f2b62d35
+langcode: nl
+status: true
+dependencies: {  }
+id: sociale-media
+label: 'Sociale  media'
+description: 'Links naar sociale media'
+locked: false

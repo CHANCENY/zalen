@@ -1,0 +1,20 @@
+uuid: 53559d8f-d1eb-4238-b1fa-9a20b9c2ab19
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_thema
+field_name: field_thema
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

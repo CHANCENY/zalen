@@ -1,0 +1,21 @@
+uuid: adbc3af1-d51f-446e-a8ef-3b797a1eea3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.concert_gelegenheden
+  module:
+    - text
+id: taxonomy_term.concert_gelegenheden.description
+field_name: description
+entity_type: taxonomy_term
+bundle: concert_gelegenheden
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

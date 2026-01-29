@@ -1,0 +1,39 @@
+entity.reservation.canonical_tab:
+  route_name: entity.reservation.canonical
+  title: 'View reservation'
+  base_route: entity.reservation.canonical
+entity.reservation.edit_form_tab:
+  route_name: entity.reservation.edit_form
+  title: 'Edit'
+  base_route: entity.reservation.canonical
+  weight: 0
+entity.reservation.delete_form_tab:
+  route_name: entity.reservation.delete_form
+  title: 'Delete'
+  base_route: entity.reservation.canonical
+  weight: 10
+
+reservation.admin:
+  title: Reservations
+  route_name: reservation.admin
+  base_route: system.admin_content
+
+reservation.admin_new:
+  title: 'Published reservations'
+  route_name: reservation.admin
+  parent_id: reservation.admin
+
+reservation.admin_approval:
+  title: 'Unapproved reservations'
+  route_name: reservation.admin_approval
+  class: Drupal\reservation\Plugin\Menu\LocalTask\UnapprovedReservations
+  parent_id: reservation.admin
+  weight: 1
+  cache_tags:
+    - reservation_list
+
+# Default tab for reservation type editing.
+entity.reservation_type.edit_form:
+  title: 'Edit'
+  route_name: entity.reservation_type.edit_form
+  base_route: entity.reservation_type.edit_form

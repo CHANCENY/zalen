@@ -1,0 +1,5 @@
+label: 'Calculer le paiement par personne'
+description: 'Cochez cette case si vous souhaitez que le paiement soit calculé en fonction du nombre de personnes'
+settings:
+  on_label: 'Par personne'
+  off_label: 'Par personne'

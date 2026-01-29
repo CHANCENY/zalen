@@ -1,0 +1,12 @@
+title: Підписатися
+description: 'Шаблон вебформи для підписки на список розсилки.'
+elements: "first_name:\r\n  '#title': 'Ім\\u0027я'\r\n  '#type': textfield\r\n  '#required': true\r\nlast_name:\r\n  '#title': 'Прізвище'\r\n  '#type': textfield\r\n  '#required': true\r\nemail:\r\n  '#title': Електронна адреса\r\n  '#type': email\r\n  '#required': true\r\nactions:\r\n  '#type': webform_actions\r\n  '#title': 'Кнопка(и) Надіслати'\r\n  '#submit__label': Підписатися\n"
+settings:
+  confirmation_message: 'Дякуємо за підписку.'
+handlers:
+  email_notification:
+    label: 'Сповіщення електронною поштою'
+    settings:
+      from_name: '[webform_submission:values:first_name] [webform_submission:values:last_name]'
+      subject: _default
+      body: _default

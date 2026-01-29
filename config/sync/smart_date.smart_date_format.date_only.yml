@@ -1,0 +1,17 @@
+uuid: 5b18b5bc-f32a-4561-8324-fecd99065392
+langcode: nl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 7nuRA2AaypQtPD_xr-tJAwYM67JCE408LQngMZ9rKWw
+id: date_only
+label: 'Emkel Datum'
+date_format: 'D,M j Y'
+time_format: ''
+time_hour_format: ''
+allday_label: ''
+separator: ' - '
+join: ', '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

@@ -1,0 +1,13 @@
+uuid: 171d8cbf-8db3-49ee-afed-c31fe9deb86e
+langcode: nl
+status: true
+dependencies:
+  module:
+    - flag
+_core:
+  default_config_hash: Z9dGFmjyQgZjDwdsI-Mmgd2tZkUsjYi7cOSUPqjXPtw
+id: flag_delete_flagging
+label: 'Favoriet verwijderen'
+type: flagging
+plugin: flag_delete_flagging
+configuration: {  }

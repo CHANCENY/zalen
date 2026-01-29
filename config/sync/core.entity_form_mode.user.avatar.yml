@@ -1,0 +1,11 @@
+uuid: 38e11e70-b147-4fc9-bc58-c59f5b69d172
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.avatar
+label: Avatar
+description: ''
+targetEntityType: user
+cache: true

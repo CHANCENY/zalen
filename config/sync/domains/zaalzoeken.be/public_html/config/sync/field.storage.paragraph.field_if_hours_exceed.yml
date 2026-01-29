@@ -1,0 +1,20 @@
+uuid: 07562c86-ccda-4cfc-b91a-f127b1af0b87
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_if_hours_exceed
+field_name: field_if_hours_exceed
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

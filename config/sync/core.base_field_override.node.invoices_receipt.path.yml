@@ -1,0 +1,20 @@
+uuid: e0739c6a-7e58-484c-917a-e5eda670a422
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.invoices_receipt
+  module:
+    - path
+id: node.invoices_receipt.path
+field_name: path
+entity_type: node
+bundle: invoices_receipt
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

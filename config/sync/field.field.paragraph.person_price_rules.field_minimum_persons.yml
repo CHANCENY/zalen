@@ -1,0 +1,23 @@
+uuid: ebc0ac51-9ddc-41e1-9dc7-095a2060816f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_minimum_persons
+    - paragraphs.paragraphs_type.person_price_rules
+id: paragraph.person_price_rules.field_minimum_persons
+field_name: field_minimum_persons
+entity_type: paragraph
+bundle: person_price_rules
+label: 'Minimum persons'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

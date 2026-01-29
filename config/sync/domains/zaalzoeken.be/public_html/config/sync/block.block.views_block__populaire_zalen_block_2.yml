@@ -1,0 +1,29 @@
+uuid: f801dac4-d3b6-4033-b5f8-b4cac0f2880f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.populaire_zalen
+  module:
+    - system
+    - views
+  theme:
+    - awtur
+id: views_block__populaire_zalen_block_2
+theme: awtur
+region: content
+weight: -6
+provider: null
+plugin: 'views_block:populaire_zalen-block_2'
+settings:
+  id: 'views_block:populaire_zalen-block_2'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

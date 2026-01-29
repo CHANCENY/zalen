@@ -1,0 +1,20 @@
+uuid: 44deaf91-569c-4f99-bf27-c34c44d1d1ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.invoices_receipt
+id: node.invoices_receipt.menu_link
+field_name: menu_link
+entity_type: node
+bundle: invoices_receipt
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

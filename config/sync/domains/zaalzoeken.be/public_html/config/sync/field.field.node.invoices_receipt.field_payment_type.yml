@@ -1,0 +1,19 @@
+uuid: e35f0bf8-e8c8-4b0b-a163-a164f1678321
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_payment_type
+    - node.type.invoices_receipt
+id: node.invoices_receipt.field_payment_type
+field_name: field_payment_type
+entity_type: node
+bundle: invoices_receipt
+label: 'Payment type'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,49 @@
+{#{{ attach_library('awtur/personal-node-bedrijf-teaser') }}#}
+{{ attach_library('awtur/personal-bedrijf-locatie') }}
+
+{% set base_path = drupal_token('site:base-path') ~ '/' %}
+{% set thema_pad = base_path ~ directory %} {# path('<front>') {{ directory }} or {{ active_theme_path() }} #}
+
+<article class="tab-bedrijf-locatie">
+  <div  class="tab-bedrijf-locatie-afstanden">
+    <div  class="tab-bedrijf-locatie-afstand">
+        <p><img src="{{ thema_pad }}/images/icons/bedrijf/zalen-bus.svg" class="tab-bedrijf-locatie-icon-afstand-bus">{{ 'Bus:'|t }}
+            {% if content.field_afstand_bus.0 %}
+            <b>{{ content.field_afstand_bus.0 }}</b>
+              {% else %}
+              {{ '++KM'|t }}
+            {% endif %}  
+        </p>
+    </div>
+    <div class="tab-bedrijf-locatie-afstand">
+      <p><img src="{{ thema_pad }}/images/icons/bedrijf/zalen-tram.svg" class="tab-bedrijf-locatie-icon-afstand-tram">{{ 'Tram: '|t }}
+          {% if content.field_afstand_tram.0 %}
+          <b>{{ content.field_afstand_tram.0 }}</b>
+            {% else %}
+            {{ '++KM'|t }}
+          {% endif %}  
+      </p>
+    </div>
+    <div class="tab-bedrijf-locatie-afstand">
+        <p><img src="{{ thema_pad }}/images/icons/bedrijf/locatie-metros.svg" class="tab-bedrijf-locatie-icon-afstand-metro">{{ 'Metro: '|t }}
+            {% if content.field_afstand_metro.0 %}
+            <b>{{ content.field_afstand_metro.0 }}</b>
+              {% else %}
+              {{ '++KM'|t }}
+            {% endif %}  
+        </p>
+    </div>
+    <div class="tab-bedrijf-locatie-afstand">
+        <p><img src="{{ thema_pad }}/images/icons/bedrijf/zalen-trein.svg" class="tab-bedrijf-locatie-icon-afstand-trein">{{ 'Trein: '|t }}
+            {% if content.field_afstand_trein_station.0 %}
+            <b>{{ content.field_afstand_trein_station.0 }}</b>
+              {% else %}
+              {{ '++KM'|t }}
+            {% endif %}  
+        </p>
+    </div>
+  </div> 
+  <div class="tab-bedrijf-locatie-map">
+    {{ content.field_lat_long.0 }}
+  </div>   
+</article>

@@ -1,0 +1,65 @@
+uuid: 10868061-8396-4e1e-9728-1965ef892b98
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overnight_rooms
+    - paragraphs.paragraphs_type.reservation
+    - paragraphs.paragraphs_type.reservation_overnight_room
+id: paragraph.reservation.field_overnight_rooms
+field_name: field_overnight_rooms
+entity_type: paragraph
+bundle: reservation
+label: 'Overnight Rooms'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      reservation_overnight_room: reservation_overnight_room
+    negate: 0
+    target_bundles_drag_drop:
+      extra_room_services:
+        weight: 14
+        enabled: false
+      per_day_price_rules:
+        weight: 16
+        enabled: false
+      per_day_unit:
+        weight: 17
+        enabled: false
+      per_hour:
+        weight: 18
+        enabled: false
+      per_hour_unit_rules:
+        weight: 19
+        enabled: false
+      per_person_item:
+        weight: 20
+        enabled: false
+      person_price_rules:
+        weight: 15
+        enabled: false
+      price_unit:
+        weight: 21
+        enabled: false
+      reservation:
+        weight: 22
+        enabled: false
+      reservation_extra_services:
+        weight: 23
+        enabled: false
+      reservation_overnight_room:
+        weight: 24
+        enabled: true
+      reservation_person_options:
+        weight: 25
+        enabled: false
+      sleeping_accommodation_room:
+        weight: 26
+        enabled: false
+field_type: entity_reference

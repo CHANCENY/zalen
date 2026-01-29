@@ -1,0 +1,23 @@
+uuid: 50c068bb-c0fa-4af0-a10d-ce4a7a8d2c79
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_roms_count
+    - paragraphs.paragraphs_type.reservation_overnight_room
+id: paragraph.reservation_overnight_room.field_roms_count
+field_name: field_roms_count
+entity_type: paragraph
+bundle: reservation_overnight_room
+label: 'Roms Count'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,19 @@
+uuid: 09375102-36ca-4b54-8bed-a58b76dacf7f
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_price_units
+field_name: field_price_units
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: paragraph
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,18 @@
+uuid: 40137ed8-81ed-4f12-aee4-2ade142b4803
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_child_friendly
+field_name: field_child_friendly
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

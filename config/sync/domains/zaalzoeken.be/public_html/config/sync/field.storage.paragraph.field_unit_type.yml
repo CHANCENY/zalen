@@ -1,0 +1,30 @@
+uuid: 30fa10f9-a637-47a9-aaff-2f331787652b
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_unit_type
+field_name: field_unit_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: hourly
+      label: Hourly
+    -
+      value: person
+      label: Person
+    -
+      value: day
+      label: Day
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

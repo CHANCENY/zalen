@@ -1,0 +1,49 @@
+/*----CSS FOR THE VIEW blok_bedrijven_dichtbij----*/
+
+.bedrijf-buurt-view {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-evenly;
+}
+.bedrijven-buurt-label {
+ background-color: black;
+ color: white;
+ border-radius: 8px;
+ position: relative;
+ font-size: clamp(0.75rem, 0.6937rem + 0.3vw, 0.9375rem);
+ max-width: fit-content;
+ padding: 8px;
+ top: 38px;
+ float: right;
+ z-index: 1;
+}
+.bedrijven-buurt-foto img {
+  object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    width: 300px;
+    height: 260px;
+}
+.bedrijven-buurt-stad {
+ color: white;
+ position: relative;
+ bottom: 37px;
+ font-size: clamp(0.75rem, 0.6937rem + 0.3vw, 0.9375rem);
+ max-width: fit-content;
+ padding: 4px;
+ background: black;
+ border-radius: 0 8px 8px 0;
+}
+.bedrijven-buurt-node-link{
+  background-color: #edeaea;
+  color: grey;
+  border-radius: 0 0 8px 8px;
+  height: 32px;
+  position: relative;
+  bottom: 37px
+}
+.bedrijven-buurt-node-link a {
+  color: #0B96DA;
+  text-align: center;
+  line-height: 1.9;
+}

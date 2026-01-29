@@ -1,0 +1,20 @@
+uuid: a11e230a-efda-424a-bb46-bc34e26daaf1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_kindvriendelijkheid
+field_name: field_kindvriendelijkheid
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

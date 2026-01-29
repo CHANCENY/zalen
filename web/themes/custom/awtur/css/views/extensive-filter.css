@@ -1,0 +1,182 @@
+.extensive-filter {
+  padding-inline: clamp(1rem, 0.6735rem + 1.6327vw, 2rem);
+}
+.extensive-filter .vier-filters{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  column-gap: 8px;
+}
+.extensive-filter .drie-filters{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  column-gap: 8px;
+}
+.extensive-filter .SumoSelect>.CaptionCont>label>i::after {
+  top:0;
+}
+.extensive-filter .SumoSelect > p.CaptionCont > span {
+  font-weight: normal;
+  color: #ccc;
+}
+.extensive-filter input.form-text {
+  max-width: 90px;
+  font-size: clamp(0.8125rem, 0.7559rem + 0.3774vw, 1.0625rem);
+  height: clamp(2rem, 1.8235rem + 0.8824vw, 2.375rem);
+}
+.extensive-filter .fieldset-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.extensive-filter .form-item label {
+  color: inherit;
+  font-weight: normal;
+  margin-bottom: 8px;
+  font-size: clamp(0.75rem, 0.6888rem + 0.3061vw, 0.9375rem);
+}
+.extensive-filter legend.legend-icon {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    padding-inline: 4px;
+    font-size: inherit;
+    font-weight: 600;
+}
+.extensive-filter .legend-icon img {
+  width: 36px;
+  filter: opacity(0.5);
+}
+@media screen and (max-width:650px) {
+  /*.vier-filters{
+      grid-template-columns: 1fr 1fr;
+      column-gap: 4px;
+  }*/
+  .groter-kleiner-dan .SumoSelect > p.CaptionCont > span{
+      font-size:x-small;
+  }
+}
+label[for="edit-commerciele-gelegenheden-keuze"]::after {
+  background-image: url(../../images/icons/filters/commerce.svg);
+}
+label[for="edit-vergader-gelegenheden-keuze"]::after {
+  background-image: url(../../images/icons/filters/vergader.svg);
+}
+label[for="edit-concert-gelegenheden-keuze"]::after {
+  background-image: url(../../images/icons/filters/concerto.svg);
+}
+label[for="edit-feest-gelegenheid-keuze"]::after {
+  background-image: url(../../images/icons/filters/feest.svg);
+}
+#edit-field-fietsen-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/bike.svg);
+}
+#edit-field-wagens-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/car.svg);
+}
+#edit-field-motoren-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/motorbike.svg);
+}
+#edit-field-dagprijs-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/dayprice.svg);
+}
+#edit-field-uurprijs-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/hourprice.svg);
+}
+#edit-field-prijs-per-persoon-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/person-price.svg);
+}
+#edit-field-zitplaatsen-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/seats.svg);
+}
+#edit-field-oppervlakte-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/surface.svg);
+}
+#edit-field-bezetting-tot-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/crowd.svg);
+}
+#edit-field-staanplaatsen-value-wrapper span.fieldset-legend::after {
+  background-image: url(../../images/icons/filters/staan.svg);
+}
+label[for="edit-field-afstand-bus-target-id"]::after {
+  background-image: url(../../images/icons/filters/nabij-bus.svg);
+}
+label[for="edit-field-afstand-tramhalte-target-id"]::after {
+  background-image: url(../../images/icons/filters/nabij-tram.svg);
+}
+label[for="edit-field-afstand-metro-target-id"]::after {
+  background-image: url(../../images/icons/filters/nabij-metro.svg);
+}
+label[for="edit-field-afstand-trein-station-target-id"]::after {
+  background-image: url(../../images/icons/filters/nabij-trein.svg);
+}
+label[for="edit-field-thema-target-id"]::after {
+  background-image: url(../../images/icons/filters/thema.svg);
+}
+label[for="edit-field-media-target-id"]::after {
+  background-image: url(../../images/icons/filters/media.svg);
+}
+label[for="edit-field-uitrusting-target-id"]::after {
+  background-image: url(../../images/icons/filters/uitrusting.svg);
+}
+label[for="edit-field-slaapgelegenheid-value"]::after {
+  background-image: url(../../images/icons/filters/slapen.svg);
+}
+label[for="edit-field-kindvriendelijkheid-target-id"]::after {
+  background-image: url(../../images/icons/filters/kinderen.svg);
+}
+label[for="edit-field-mindervaliden-target-id"]::after {
+  background-image: url(../../images/icons/filters/mindervalide.svg);
+}
+label[for="edit-field-milieu-target-id"]::after {
+  background-image: url(../../images/icons/filters/groene-troef.svg);
+}
+#edit-field-fietsen-value-wrapper span.fieldset-legend::after, #edit-field-wagens-value-wrapper span.fieldset-legend::after,
+#edit-field-motoren-value-wrapper span.fieldset-legend::after, #edit-field-prijs-per-persoon-value-wrapper span.fieldset-legend::after,
+#edit-field-uurprijs-value-wrapper span.fieldset-legend::after, #edit-field-dagprijs-value-wrapper span.fieldset-legend::after,
+#edit-field-zitplaatsen-value-wrapper span.fieldset-legend::after, #edit-field-oppervlakte-value-wrapper span.fieldset-legend::after,
+#edit-field-bezetting-tot-value-wrapper span.fieldset-legend::after, #edit-field-staanplaatsen-value-wrapper span.fieldset-legend::after,
+label[for="edit-commerciele-gelegenheden-keuze"]::after, label[for="edit-vergader-gelegenheden-keuze"]::after,
+label[for="edit-concert-gelegenheden-keuze"]::after, label[for="edit-feest-gelegenheid-keuze"]::after,
+label[for="edit-field-afstand-bus-target-id"]::after, label[for="edit-field-afstand-tramhalte-target-id"]::after,
+label[for="edit-field-afstand-metro-target-id"]::after, label[for="edit-field-afstand-trein-station-target-id"]::after,
+label[for="edit-field-thema-target-id"]::after, label[for="edit-field-media-target-id"]::after,
+label[for="edit-field-uitrusting-target-id"]::after, label[for="edit-field-slaapgelegenheid-value"]::after,
+label[for="edit-field-kindvriendelijkheid-target-id"]::after, label[for="edit-field-mindervaliden-target-id"]::after,
+label[for="edit-field-milieu-target-id"]::after {
+  content: "";
+  display: flex;
+  float: right;
+  width: 32px;
+  height: 22px;
+  background-repeat: no-repeat;
+  margin: 0 0 4px 8px;
+  filter: drop-shadow(1px 2px 2px rgb(0 0 0 / 0.4)) opacity(0.5);
+}
+label[for="edit-commerciele-gelegenheden-keuze"], #edit-field-uurprijs-value-wrapper legend, #edit-field-bezetting-tot-value-wrapper legend,
+label[for="edit-field-afstand-trein-station-target-id"], #edit-field-wagens-value-wrapper legend, label[for="edit-field-uitrusting-target-id"] {
+  background-color: #f8edf8;
+}
+
+label[for="edit-vergader-gelegenheden-keuze"], #edit-field-oppervlakte-value-wrapper legend, label[for="edit-field-afstand-metro-target-id"],
+#edit-field-fietsen-value-wrapper legend, label[for="edit-field-media-target-id"], label[for="edit-field-milieu-target-id"] {
+  background-color: #E5FFD1;
+}
+
+label[for="edit-concert-gelegenheden-keuze"], #edit-field-dagprijs-value-wrapper legend, #edit-field-zitplaatsen-value-wrapper legend,
+label[for="edit-field-afstand-tramhalte-target-id"], #edit-field-motoren-value-wrapper legend, label[for="edit-field-thema-target-id"],
+label[for="edit-field-mindervaliden-target-id"] {
+  background-color: #CFF1FF;
+}
+
+label[for="edit-feest-gelegenheid-keuze"], #edit-field-prijs-per-persoon-value-wrapper legend, #edit-field-staanplaatsen-value-wrapper legend,
+label[for="edit-field-afstand-bus-target-id"], label[for="edit-field-slaapgelegenheid-value"], label[for="edit-field-kindvriendelijkheid-target-id"] {
+  background-color: #FFF4C0;
+}
+.extensive-filter label, .extensive-filter legend {
+  border-radius: 16px;
+  padding: 4px 8px;
+  font-size: clamp(0.75rem, 0.6888rem + 0.3061vw, 0.9375rem);
+}
+

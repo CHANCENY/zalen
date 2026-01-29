@@ -1,0 +1,620 @@
+/**
+ * @file
+ * Visual styles for AWTur's forms.
+ */
+
+/* Password field. */
+.password-field {
+  margin: 0;
+}
+
+/* Form elements. */
+form {
+  margin: 0;
+  padding: 0;
+}
+/**
+ * Prevent regression due to explicit line-height applied to these elements in
+ * normalize.css 7.0.0.
+ */
+button {
+  line-height: 1.21875rem;
+}
+input {
+  line-height: normal;
+}
+select {
+  line-height: 1.5;
+}
+/**
+ * 1. Prevent regression due to fieldset styling that was removed in
+ *    normalize.css 6.0.0.
+ */
+fieldset {
+  min-width: 0;
+  margin: 1em 0;
+  padding: 0.35em 0.625em 0.75em; /* 1 */
+  border: 1px solid #c0c0c0; /* 1 */
+}
+details, fieldset, .filter-wrapper {
+  border-radius: 4px;
+}
+.filter-wrapper {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  overflow: unset !important;
+}
+.filter-help a {
+  font-size: 0.857em;
+}
+.filter-wrapper .form-item label {
+  margin-right: 10px; /* LTR */
+}
+[dir="rtl"] .filter-wrapper .form-item label {
+  margin-right: 0;
+  margin-left: 10px;
+}
+summary {
+  color: #fff;
+  font-weight: bold;
+  background: rgba(190, 140, 80, 0.2);
+  text-shadow: 0 1px 0 #fff;
+  padding: 16px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+summary::after {
+  content: '';
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid #999;
+  border-inline: 7px solid transparent;
+  transition: 0.2s;
+}
+details[open] > summary {
+  border-bottom: 2px solid #fff9f1;
+}
+details[open] > summary::after {
+  transform: rotate(-180deg);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+summary:focus {
+  outline-color: #ca7000;
+}
+details summary a {
+  color: #3b3b3b;
+}
+details summary a:hover,
+details summary a:active,
+details summary a:focus {
+  color: #000;
+}
+details .details-description {
+  font-style: italic;
+}
+label {
+  display: table;
+  font-weight: bold;
+}
+label[for] {
+  cursor: pointer;
+}
+input,
+textarea,
+select {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+}
+input {
+  box-sizing: border-box;
+  /* Keep form elements from overflowing their containers. */
+  max-width: 100%;
+  margin: 2px 0;
+  padding: 4px;
+}
+input,
+textarea {
+  font-size: 0.929em;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 40rem #ffff inset !important;
+  -webkit-text-fill-color: #777 !important;
+  box-shadow: 0 0 0px 40rem #fff inset !important;
+}
+
+/**
+ * Prevent regression due to -webkit-appearance being set to button and
+ * font-family being set to inherit normalize.css 4.1.0.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: push-button;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+}
+textarea {
+  line-height: 1.5;
+}
+textarea.form-textarea {
+  padding: 4px;
+}
+input.form-text,
+input.form-tel,
+input.form-email,
+input.form-url,
+input.form-search,
+input.form-file,
+input.form-number,
+input.form-color,
+textarea.form-textarea {
+  padding: 5px 15px;
+  font-weight: bold;
+  color: #3b3b3b;
+  border: 1px solid #e0be59;
+  border-radius: 5px;
+  outline: none;
+  /*background: linear-gradient(0deg, #f9f9f9, transparent);*/
+}
+input.form-text:focus,
+input.form-tel:focus,
+input.form-email:focus,
+input.form-url:focus,
+input.form-search:focus,
+input.form-file:focus,
+input.form-number:focus,
+input.form-color:focus,
+textarea.form-textarea:focus {
+  border: 3px #cd8723 solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+textarea.form-textarea {
+  margin-top: 3px;
+  padding: 7px;
+  font-weight: normal;
+  border-radius: 3px;
+  border: 1px #e0be59 solid;
+}
+textarea.form-textarea:focus {
+  border: 1px #777 solid;
+}
+input[type="file"] {
+  visibility: hidden;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+}
+input[type="file"]:before {
+  content: "";
+  position: absolute;
+  visibility: visible;
+  box-sizing: border-box;
+  background-origin: content-box;
+  width: 50px;
+  height: 50px;
+  border: 2px #bbb dotted;
+  /*background: url(../../images/icons/bigpaperclip.svg) no-repeat center;*/
+  background: url(../../images/icons/file-upload-icon.svg) no-repeat center;
+  background-size: contain;
+  background-size: 30px;
+}
+input[type="file"]:hover:before {
+  border: 2px #000 solid;
+}
+input.form-submit:hover,
+input.form-submit:focus {
+  background: #FF9800;
+}
+.password-suggestions ul li {
+  margin-left: 1.2em; /* LTR */
+}
+[dir="rtl"] .password-suggestions ul li {
+  margin-right: 1.2em;
+  margin-left: 0;
+}
+.form-item label,
+.form-wrapper .label {
+  /*margin-left: 15px;*/
+  /*margin-bottom: -1px;*/
+  color: #777;
+  font-size: 0.929em;
+}
+.form-wrapper .field-multiple-table .label {
+  font-size: inherit;
+}
+/*style form checkbox*/
+input[type="checkbox"] {
+  visibility: hidden;
+}
+input[type="checkbox"]:before {
+  content: '';
+  visibility: visible;
+  display: block;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #adb5bd;
+  border-radius: 0.25em;
+  margin-right: 0.5em;
+  margin-top: -0.1em;
+  background: rgba(255, 255, 255, 0.2);
+}
+input[type="checkbox"]:checked:before {
+  border-color: #a52a2a;
+  background-color: rgba(205, 135, 35, 0.6);
+}
+input[type="checkbox"]:hover:before {
+  box-shadow: 0 0 0 0.2em rgba(255, 152, 0, 0.3);
+}
+input[type="checkbox"]:not(:disabled):not(:checked):hover:before {
+  box-shadow: 0 0 0 0.2em rgba(0, 123, 255, 0.2);
+}
+input[type="checkbox"]:disabled:before {
+  border-color: #eee;
+  background-color: #eee;
+}
+/*style form checkbox end*/
+/*style form radio*/
+input[type="radio"] {
+  visibility: hidden;
+}
+input[type="radio"]:before {
+  content: '';
+  visibility: visible;
+  display: block;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #adb5bd;
+  border-radius: 0.5em;
+  margin-right: 0.5em;
+  margin-top: -0.1em;
+  background: rgba(255, 255, 255, 0.2);
+}
+input[type="radio"]:checked:before {
+  border-color: #a52a2a;
+  background-color: rgba(205, 135, 35, 0.6);
+}
+input[type="radio"]:hover:before {
+  box-shadow: 0 0 0 0.2em rgba(255, 152, 0, 0.3);
+}
+input[type="radio"]:not(:disabled):not(:checked):hover:before {
+  box-shadow: 0 0 0 0.2em rgba(0, 123, 255, 0.2);
+}
+input[type="radio"]:disabled:before {
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  border-color: #eee;
+  background-color: #eee;
+}
+/*style form radio end*/
+/* fix size on resize */
+@media screen and (min-width: 60em) {
+  input, textarea, input[type="checkbox"], input[type="radio"] {
+    font-size: 16px;
+  }
+}
+/* fix size on resize end */
+.form-type-radio label,
+.form-type-checkbox label {
+  margin-left: 4px; /* LTR */
+}
+[dir="rtl"] .form-type-radio label,
+[dir="rtl"] .form-type-checkbox label {
+  margin-right: 4px;
+  margin-left: 0;
+}
+.form-type-radio .description,
+.form-type-checkbox .description {
+  margin-left: 20px; /* LTR */
+}
+[dir="rtl"] .form-type-radio .description,
+[dir="rtl"] .form-type-checkbox .description {
+  margin-right: 2px;
+  margin-left: 0;
+}
+.form-actions {
+  padding-top: 10px;
+}
+
+/* Node Form */
+#edit-body {
+  margin-bottom: 2em;
+}
+.node-form label,
+.node-form .description,
+.node-form .form-wrapper .label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.node-form .form-wrapper .field-multiple-table .label {
+  font-family: inherit;
+}
+/*.node-form .form-wrapper {
+  margin-bottom: 2em;
+  display: contents;/*jan test
+}*/
+.node-form .entity-content-form-footer,
+.node-form .field--name-status {
+  margin-bottom: 0;
+}
+.node-form .form-actions {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Contact Form */
+.contact-form #edit-name {
+  width: 75%;
+  border-radius: 4px;
+}
+.contact-form #edit-mail {
+  width: 75%;
+  border-radius: 4px;
+}
+.contact-form #edit-subject {
+  width: 75%;
+  border-radius: 4px;
+}
+.contact-form #edit-message {
+  width: 76.3%;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+/* Disabled form elements */
+.form-disabled input,
+.form-disabled select,
+.form-disabled textarea {
+  color: #717171;
+  border-color: #bbb;
+  background: #ededed;
+}
+.form-disabled label {
+  color: #717171;
+}
+
+/* Comment form */
+.comment-form label {
+  float: left; /* LTR */
+  width: 120px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.929em;
+}
+[dir="rtl"] .comment-form label {
+  float: right;
+}
+.comment-form input,
+.comment-form .form-select {
+  margin: 0;
+  border-radius: 4px;
+}
+.comment-form .form-type-textarea label {
+  float: none;
+}
+.comment-form .form-item,
+.comment-form .form-radios,
+.comment-form .form-type-checkbox,
+.comment-form .form-select {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.comment-form .form-type-checkbox,
+.comment-form .form-radios {
+  margin-left: 120px; /* LTR */
+}
+[dir="rtl"] .comment-form .form-type-checkbox,
+[dir="rtl"] .comment-form .form-radios,
+[dir="rtl"] .comment-form .form-item .description {
+  margin-right: 120px;
+  margin-left: 0;
+}
+.comment-form .form-type-checkbox label,
+.comment-form .form-radios label {
+  float: none;
+  margin-top: 0;
+}
+.comment-form input.form-file {
+  width: auto;
+}
+.layout-no-sidebars .comment-form .form-text {
+  width: 800px;
+}
+.layout-one-sidebar .comment-form .form-text {
+  width: 500px;
+}
+.layout-two-sidebars .comment-form .form-text {
+  width: 320px;
+}
+.comment-form .form-item .description {
+  margin-left: 120px; /* LTR */
+  font-size: 0.786em;
+  line-height: 1.2;
+}
+.comment-form .form-textarea {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.comment-form details.filter-wrapper .details-wrapper,
+.comment-form .text-format-wrapper .form-item {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.filter-wrapper label {
+  float: none;
+  width: auto;
+}
+.filter-wrapper .form-select {
+  min-width: 120px;
+}
+.comment-form details.filter-wrapper .tips {
+  font-size: 0.786em;
+}
+#comment-body-add-more-wrapper .form-type-textarea label {
+  margin-bottom: 0.4em;
+}
+#edit-actions input {
+  margin-right: 0.6em; /* LTR */
+  display: inline-block;
+  margin-left: auto;
+  padding-bottom: 6px;
+}
+[dir="rtl"] #edit-actions input {
+  margin-right: 0;
+  margin-left: 0.6em;
+}
+
+/* Form error styles. */
+.form-item textarea.error + .cke {
+  border: 2px solid red;
+}
+
+/* Form error message styles. */
+.form-item--error-message {
+  color: #e32700;
+}
+
+/**
+ * Improve form element usability on narrow devices.
+ */
+@media all and (max-width: 600px) {
+  .form-actions .button {
+    display: block;
+    float: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 10px 0 0;
+    padding-bottom: 6px;
+  }
+
+  .js .dropbutton .dropbutton-action > input,
+  .js .dropbutton .dropbutton-action > a,
+  .js .dropbutton .dropbutton-action > button {
+    padding-left: 3em;
+    text-align: center;
+  }
+}
+
+/*--------------------number input----------------*/
+/* wrapper that holds input + controls */
+.awtur-number-wrap {
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 4px;
+  overflow: visible;
+  vertical-align: middle;
+  border: 1px solid #E0BE58;
+  border-right: none;
+}
+
+/* the actual input: remove right border, let wrapper show border */
+.awtur-number-wrap input[type="number"] {
+  border: none; 
+  outline: none;
+  padding: 8px 12px;
+  height: 32px;
+  font-size: clamp(0.8125rem, 0.7243rem + 0.4412vw, 1rem);
+  line-height: 1;
+  text-align: center;
+  width: 82px;              
+  color: #000;
+  -moz-appearance: textfield;
+}
+
+/* hide native webkit spinbuttons completely (we add custom ones) */
+.awtur-number-wrap input.awtur-hide-native-spinner::-webkit-outer-spin-button,
+.awtur-number-wrap input.awtur-hide-native-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* controls area on the right */
+.awtur-number-controls {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 36px;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+/* the two buttons (top/bottom) */
+.awtur-ni-btn {
+  border: none;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 0.9rem;
+  line-height: 1;
+  color: white;
+  background-color: #E0BE58;
+}
+
+/* visual background for split effect: use two slightly different shades */
+.awtur-ni-up {
+  margin-bottom: 1px;
+  border-top-right-radius: 4px; 
+
+}
+
+/* the lower part: slightly darker so you see split */
+.awtur-ni-down {
+  margin-top: 1px;
+  border-bottom-right-radius: 4px;
+}
+
+/* hover / focus styles */
+.awtur-ni-btn:hover,
+.awtur-ni-btn:active {
+  filter: brightness(0.95);
+}
+
+/* optional: when wrapper receives focus via input, show outline */
+.awtur-number-wrap:focus-within {
+  box-shadow: 0 0 0 3px rgba(189,129,0,0.12);
+}
+
+/*-----------------------------------------------
+  🔹 Compacte weergave voor kleine schermen
+-----------------------------------------------*/
+@media (max-width: 480px) {
+  .awtur-number-wrap {
+    border-radius: 3px;
+  }
+
+  .awtur-number-wrap input[type="number"] {
+    width: 64px;
+    padding: 6px 8px;
+    height: 24px;
+    font-size: 0.875rem;
+  }
+
+  .awtur-number-controls {
+    width: 28px;
+    height: 28px;
+  }
+
+  .awtur-ni-btn {
+    font-size: 0.75rem;
+  }
+
+  .awtur-ni-up {
+    margin-bottom: 0.5px;
+    border-top-right-radius: 3px;
+  }
+
+  .awtur-ni-down {
+    margin-top: 0.5px;
+    border-bottom-right-radius: 3px;
+  }
+}

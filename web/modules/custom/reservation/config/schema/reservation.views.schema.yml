@@ -1,0 +1,85 @@
+# Schema for the views plugins of the Reservation module.
+
+views.argument.argument_reservation_user_uid:
+  type: views_argument
+  label: 'Reservationed user ID'
+
+views.field.reservation_depth:
+  type: views_field
+  label: 'Reservation depth'
+
+views.field.reservation_entity_link:
+  type: views_field
+  label: 'Reservation link'
+  mapping:
+    teaser:
+      type: boolean
+      label: 'Show teaser-style link'
+
+views.field.reservation_bulk_form:
+  type: views_field_bulk_form
+  label: 'Reservation bulk form'
+
+views.field.reservationed_entity:
+  type: views.field.field
+  label: 'Reservationed entity'
+
+views.field.reservation_last_timestamp:
+  type: views.field.date
+  label: 'Last reservation date'
+
+views.field.reservation_link_approve:
+  type: views.field.reservation_link
+  label: 'Reservation approve link'
+
+views.field.reservation_link_reply:
+  type: views.field.reservation_link
+  label: 'Reservation reply link'
+
+views.field.node_new_reservations:
+  type: views.field.numeric
+  label: 'Number of new reservations'
+  mapping:
+    link_to_reservation:
+      type: boolean
+      label: 'Link this field to new reservations'
+
+views.field.reservation_ces_last_reservation_name:
+  type: views_field
+  label: 'Name of last reservation poster'
+
+views.field.reservation_ces_last_updated:
+  type: views_field
+  label: 'Newer of last reservation / node updated'
+
+views.filter.node_reservation:
+  type: views.filter.in_operator
+  label: 'Reservation node status'
+
+views.filter.reservation_ces_last_updated:
+  type: views.filter.date
+  label: 'Newer of last reservation / node updated'
+
+views.filter.reservation_user_uid:
+  type: views_filter
+  label: 'Node user posted reservation'
+
+views.row.reservation_rss:
+  type: views_row
+  label: 'Reservation'
+  mapping:
+    view_mode:
+      type: string
+      label: 'Display type'
+
+views.sort.reservation_ces_last_reservation_name:
+  type: views_sort
+  label: 'Last reservation name'
+
+views.sort.reservation_ces_last_updated:
+  type: views.sort.date
+  label: 'Newer of last reservation / entity updated'
+
+views.sort.reservation_thread:
+  type: views_sort
+  label: 'Thread'

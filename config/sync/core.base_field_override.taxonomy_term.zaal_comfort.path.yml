@@ -1,0 +1,20 @@
+uuid: f148ca22-c013-4fd6-8894-391fecbdffcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zaal_comfort
+  module:
+    - path
+id: taxonomy_term.zaal_comfort.path
+field_name: path
+entity_type: taxonomy_term
+bundle: zaal_comfort
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

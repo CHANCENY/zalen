@@ -1,0 +1,29 @@
+uuid: 6fb210c1-2ad2-4040-a8ac-591117a59a1e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stadsgewest
+    - node.type.bedrijf
+    - taxonomy.vocabulary.regio
+id: node.bedrijf.field_stadsgewest
+field_name: field_stadsgewest
+entity_type: node
+bundle: bedrijf
+label: 'Urban area'
+description: 'This information is used in search functions on this site and in search engines.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      regio: regio
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

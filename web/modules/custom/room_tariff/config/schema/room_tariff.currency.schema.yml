@@ -1,0 +1,41 @@
+#
+#room_tariff.currency:
+#  type: config_object
+#  label: 'Configuration schema for currency rates'
+#  mapping:
+#    type:
+#      type: text
+#      label: 'General currency settigs'
+#    name:
+#      type: text
+#      label: 'Name'
+#    description:
+#      type: text
+#      label: 'Description'
+#    status:
+#      type: boolean
+#      label: 'General status'
+#    currency_data:
+#      type: mapping
+#      label: 'Currency data'
+#      mapping:
+#        cron_refresh:
+#          type: room_tariff.currency.cron_refresh
+#          label: 'Currency cron refresh data for one organization'
+#room_tariff.currency.cron_refresh:
+#  type: config_object
+#  label: 'Configuration schema cron refresh currency exchange rate for a single financial organization'
+#  mapping:
+#    status:
+#      type: boolean
+#      label: 'Should the refresh currency exchange rate be updated?'
+#    used:
+#      type: mapping
+#      label: 'Where is the field used?'
+#      mapping:
+#        entity:
+#          type: text
+#          label: 'Entity id'
+#        field_name:
+#          type: text
+#          label: 'Field id'

@@ -1,0 +1,10 @@
+# schema config for mollie payment
+payment.mollie.config:
+  type: config_object
+  label: 'Mollie payment mode'
+  mapping:
+    test_mode:
+      type: text
+      label: 'Mollie API parameter - is test mode enabled?'
+
+

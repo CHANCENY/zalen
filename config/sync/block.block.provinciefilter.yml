@@ -1,0 +1,29 @@
+uuid: 6b08a179-a970-4026-945d-f4835ee10586
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.provincie-filter
+  module:
+    - system
+  theme:
+    - awtur
+id: provinciefilter
+theme: awtur
+region: featured_top
+weight: -15
+provider: null
+plugin: 'system_menu_block:provincie-filter'
+settings:
+  id: 'system_menu_block:provincie-filter'
+  label: 'Per Provincie '
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

@@ -1,0 +1,28 @@
+uuid: 5405a0a1-0149-4fd9-bd9c-41ef60ec77be
+langcode: nl
+status: true
+dependencies:
+  module:
+    - comment
+    - contact
+    - flag
+    - media
+    - search
+    - system
+_core:
+  default_config_hash: pq_mEIu_B4widZN7Ap81iCJSjShFFdcL0jEiCi8VrDk
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'access user contact forms'
+  - 'access user profiles'
+  - 'edit own comments'
+  - 'flag bookmark'
+  - 'search content'
+  - 'unflag bookmark'
+  - 'use advanced search'
+  - 'view media'

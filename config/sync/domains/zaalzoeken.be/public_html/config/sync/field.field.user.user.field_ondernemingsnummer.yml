@@ -1,0 +1,22 @@
+uuid: d1316f11-ea68-471e-b8ca-3a6d9b90e659
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_ondernemingsnummer
+  module:
+    - user
+id: user.user.field_ondernemingsnummer
+field_name: field_ondernemingsnummer
+entity_type: user
+bundle: user
+label: Ondernemingsnummer
+description: 'Ondernemings nummers in Belgie, starten BE, gevolgd door een cijfer 0 of 1, gevolgd door 9 cijfers (uw BTW nummer). '
+required: true
+translatable: false
+default_value:
+  -
+    value: BE
+default_value_callback: ''
+settings: {  }
+field_type: string

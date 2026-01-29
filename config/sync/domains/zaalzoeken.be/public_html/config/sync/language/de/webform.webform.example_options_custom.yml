@@ -1,0 +1,17 @@
+title: 'Beispiel: Benutzerdefinierte Optionen'
+description: 'Beispiel für ein benutzerdefiniertes Optionselement.'
+categories:
+  - Beispiel
+elements: |
+  states:
+    '#type': 'webform_options_custom:us_states'
+    '#title': 'U.S.-Bundesstaaten'
+    '#required': true
+  button:
+    '#type': 'webform_options_custom:buttons'
+    '#title': 'Buttons'
+    '#required': true
+    '#options':
+      one: Eins -- Dies ist die Nummer 1.
+      two: Zwei -- Dies ist die Nummer 2.
+      three:  Drei -- Dies ist die Nummer 3.

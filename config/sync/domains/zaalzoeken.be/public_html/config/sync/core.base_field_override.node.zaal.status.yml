@@ -1,0 +1,22 @@
+uuid: b428f1b7-7139-490f-bb5f-6b97a82df4ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.zaal
+id: node.zaal.status
+field_name: status
+entity_type: node
+bundle: zaal
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,23 @@
+uuid: d287a493-7a9e-420e-a675-038fa01a6c90
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_set_amount
+    - paragraphs.paragraphs_type.per_day_price_rules
+id: paragraph.per_day_price_rules.field_set_amount
+field_name: field_set_amount
+entity_type: paragraph
+bundle: per_day_price_rules
+label: 'Set Amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

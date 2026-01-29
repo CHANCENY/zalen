@@ -1,0 +1,21 @@
+uuid: 36841fb0-96b6-40dd-8378-c9e4dbe73ece
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_ondernemingsnummer
+field_name: field_ondernemingsnummer
+entity_type: user
+type: string
+settings:
+  max_length: 40
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,66 @@
+#descrip-availability-day {
+	margin-top: -400px;
+	width: 250px;
+	position: absolute;
+	background: #fffbf5;
+	border-radius: 10px;
+	box-shadow: 3px 0 10px 0 rgba(0, 0, 0, 0.6);
+    z-index: 100;
+}
+.day-claim {
+	background: #f8dcdc;
+    outline: 1px #FFC107 solid;
+}
+#descrip-availability-day th {
+    padding: 2px;
+    color: #333;
+    background: #dab37a;
+}
+#descrip-availability-day td {
+    padding: 3px 0;
+}
+#descrip-availability-day > div > p {
+    margin: 0 10px 5px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #5f9ea0;
+    background: #f5f5dc;
+    border: 1px #bbb solid;
+    border-radius: 10px;
+}
+#descrip-availability-day > div > div {
+    width: 100%;
+	text-align: center;
+}
+#descrip-availability-day div > div {
+	display: inline-block;
+    /* float: left; */
+    border-bottom: 1px transparent  solid;
+}
+#descrip-availability-day input[type="button"] {
+	display: block;
+    margin: 0 auto -15px;
+    /* text-decoration: none; */
+    outline: none;
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    color: #000;
+    border: 1px #bbb solid;
+    border-radius: 10px;
+    background: #ffe4bb;
+    cursor: pointer;
+}
+/* #descrip-availability-day p + div {
+    overflow: hidden;
+    background-image: url(../../room_custom_setting/img/icons/day_and_night.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: 0.2s;
+} */

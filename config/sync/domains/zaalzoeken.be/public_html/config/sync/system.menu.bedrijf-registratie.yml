@@ -1,0 +1,8 @@
+uuid: 5dc650c2-d93b-44bc-994c-142daa9fccb1
+langcode: nl
+status: true
+dependencies: {  }
+id: bedrijf-registratie
+label: 'Bedrijf registratie'
+description: 'Links with register choice'
+locked: false

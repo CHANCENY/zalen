@@ -1,0 +1,475 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the AWTur theme.
+ */
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\views\Form\ViewsForm;
+use Drupal\Core\Url;
+use Drupal\views\ViewExecutable;
+use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
+
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Adds body classes if certain regions have content.
+ */
+function awtur_preprocess_html(&$variables) {
+  // Add information about the number of sidebars.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = 'layout-two-sidebars';
+  }
+  elseif (!empty($variables['page']['sidebar_first'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-first';
+  }
+  elseif (!empty($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-second';
+  }
+  else {
+    $variables['attributes']['class'][] = 'layout-no-sidebars';
+  }
+
+  if (!empty($variables['page']['featured_top'])) {
+    $variables['attributes']['class'][] = 'has-featured-top';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page title templates.
+ */
+function awtur_preprocess_page_title(&$variables) {
+  // Since the title and the shortcut link are both block level elements,
+  // positioning them next to each other is much simpler with a wrapper div.
+  if (!empty($variables['title_suffix']['add_or_remove_shortcut']) && $variables['title']) {
+    // Add a wrapper div using the title_prefix and title_suffix render
+    // elements.
+    $variables['title_prefix']['shortcut_wrapper'] = [
+      '#markup' => '<div class="shortcut-wrapper clearfix">',
+      '#weight' => 100,
+    ];
+    $variables['title_suffix']['shortcut_wrapper'] = [
+      '#markup' => '</div>',
+      '#weight' => -99,
+    ];
+    // Make sure the shortcut link is the first item in title_suffix.
+    $variables['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ */
+function awtur_preprocess_maintenance_page(&$variables) {
+  // By default, site_name is set to Drupal if no db connection is available
+  // or during site installation. Setting site_name to an empty string makes
+  // the site and update pages look cleaner.
+  // @see template_preprocess_maintenance_page
+  if (!$variables['db_is_active']) {
+    $variables['site_name'] = '';
+  }
+
+  // AWTur has custom styling for the maintenance page.
+  $variables['#attached']['library'][] = 'awtur/maintenance_page';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function awtur_preprocess_node(&$variables) {
+  // Remove the "Add new comment" link on teasers or when the comment form is
+  // displayed on the page.
+  if ($variables['teaser'] || !empty($variables['content']['comments']['comment_form'])) {
+    unset($variables['content']['links']['comment']['#links']['comment-add']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function awtur_preprocess_block(&$variables) {
+  // Add a clearfix class to system branding blocks.
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['attributes']['class'][] = 'clearfix';
+  }
+  // Add block region value to content so this can be used in suggestions_menu
+  if ($variables['plugin_id'] == 'system_menu_block:zaal-groepen') {
+    helper_get_block_region_value($variables);
+  }
+  // Add block region value to content so this can be used in preprocess_menu__account
+  if ($variables['plugin_id'] == 'system_menu_block:account' && !\Drupal::currentUser()->isAnonymous()) {
+    helper_get_block_region_menu_account_value($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu.html.twig.
+ */
+function awtur_preprocess_menu(&$variables) {
+  $variables['attributes']['class'][] = 'clearfix';
+}
+
+/**
+ * Implements hook_theme_suggestions_form_alter().
+ */
+function awtur_theme_suggestions_form_alter(array &$suggestions, array $variables, $hook) {
+
+  if (empty($variables['element']['#form_id'])) {
+    return;
+  }
+  $form_id = $variables['element']['#form_id'];
+
+  $suggestions[] = $hook . '__' . $variables['element']['#form_id'];
+
+  if ($form_id === 'search_block_form') {
+    $suggestions[] = 'form__search_block_form';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function awtur_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // Add classes to the search form.
+  if (in_array($form_id, ['search_block_form', 'search_form'])) {
+    $key = ($form_id == 'search_block_form') ? 'actions' : 'basic';
+    if (!isset($form[$key]['submit']['#attributes'])) {
+      $form[$key]['submit']['#attributes'] = new Attribute();
+    }
+    $form[$key]['submit']['#attributes']->addClass('search-form__submit');
+  }
+
+  $form_object = $form_state->getFormObject();
+  // Add class to the Media Library views form.
+  if ($form_object instanceof ViewsForm && strpos($form_object->getBaseFormId(), 'views_form_media_library') === 0) {
+    // The conditional below exists because the media-library-views-form class
+    // is currently added by Classy, but Umami will eventually not use Classy as
+    // a base theme.
+    // @todo remove conditional, keep class addition in
+    //   https://drupal.org/node/3110137
+    // @see https://www.drupal.org/node/3109287
+    // @see classy_form_alter()
+    if (!isset($form['#attributes']['class']) || !in_array('media-library-views-form', $form['#attributes']['class'])) {
+      $form['#attributes']['class'][] = 'media-library-views-form';
+    }
+  }
+
+
+
+}
+
+/**
+ * Implements hook_preprocess_links__media_library_menu().
+ *
+ * This targets the menu of available media types in the media library's modal
+ * dialog.
+ *
+ * @todo Do this in the relevant template once
+ *   https://www.drupal.org/project/drupal/issues/3088856 is resolved.
+ */
+function awtur_preprocess_links__media_library_menu(array &$variables) {
+  foreach ($variables['links'] as &$link) {
+    // This conditional exists because the media-library-menu__link class is
+    // currently added by Classy, but AWTur will eventually not use Classy as a
+    // base theme.
+    // @todo remove conditional, keep class addition in
+    //   https://drupal.org/node/3110137
+    // @see https://www.drupal.org/node/3109287
+    // @see classy_preprocess_links__media_library_menu()
+    if (!isset($link['link']['#options']['attributes']['class']) || !in_array('media-library-menu__link', $link['link']['#options']['attributes']['class'])) {
+      $link['link']['#options']['attributes']['class'][] = 'media-library-menu__link';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_image_widget().
+ *
+ * @todo Revisit in https://drupal.org/node/3117430
+ */
+function awtur_preprocess_image_widget(&$variables) {
+  if (!empty($variables['element']['fids']['#value'])) {
+    $file = reset($variables['element']['#files']);
+    $variables['data']["file_{$file->id()}"]['filename']['#suffix'] = ' <span class="file-size">(' . format_size($file->getSize()) . ')</span> ';
+  }
+}
+
+/**
+ * Implements template_preprocess_links().
+ *
+ * This makes it so array keys of #links items are added as a class. This
+ * functionality was removed in Drupal 8.1, but still necessary in some
+ * instances.
+ *
+ * @todo remove in https://drupal.org/node/3120962
+ */
+function awtur_preprocess_links(&$variables) {
+  if (!empty($variables['links'])) {
+    foreach ($variables['links'] as $key => $value) {
+      if (!is_numeric($key)) {
+        $class = Html::getClass($key);
+        $variables['links'][$key]['attributes']->addClass($class);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for menu templates.
+ */
+function awtur_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+  //if ($variables['element']['#form_id'] == 'search_block_form') {
+  //  $suggestions[] = 'form__search_block_form';
+  //}
+  //$test_menu_name = $variables['menu_name'];
+  //(menu__zaal_groepen)
+  if ($variables['menu_name'] == 'zaal-groepen' && isset($variables['attributes']['region'])) {
+    if ($variables['attributes']['region'] == 'featured_top') {
+      $suggestions[] = 'menu__' . str_replace('-','_',$variables['menu_name']) . '__' . $variables['attributes']['region'];
+    };
+  };
+}
+/**
+ * helper function pass block region value to content so this can be used in MYTHEME_theme_suggestions_menu_alter.
+ */
+function helper_get_block_region_value(&$variables) {
+  // Add a block region value.
+  //$test_plugin_id = $variables['plugin_id'];
+  //$test_elements_id = $variables['elements']['#id'];
+  if (isset($variables['elements']['#id'])) {
+    $region = \Drupal\block\Entity\Block::load($variables['elements']['#id'])->getRegion();
+    $variables['content']['#attributes']['region'] = $region;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for the "account" menu, shown in "secondary_menu".
+ *
+ * This prepares information about the current user, such as whether they are logged in,
+ * and if so, whether they have a user picture.
+ * The Twig template can then decide to show a real picture or a fallback icon.
+ */
+function awtur_preprocess_menu__account(array &$variables) {
+  // Only proceed if this is the "account" menu in the "secondary_menu" region.
+  if (
+    isset($variables['menu_name'])
+    && $variables['menu_name'] === 'account'
+    && isset($variables['attributes']['region'])
+    && $variables['attributes']['region'] === 'secondary_menu'
+  ) {
+    // Get the current user account (session) and the full user entity.
+    $current_user = \Drupal::currentUser();
+    $user_entity = \Drupal\user\Entity\User::load($current_user->id());
+
+    // Initialize some default values in 'account_inform'.
+    $variables['account_inform']['is_logged_in'] = FALSE;
+    $variables['account_inform']['profile_picture'] = NULL;
+    $variables['account_inform']['username'] = '';
+    $variables['account_inform']['booking_quantity'] = '0';
+    $variables['account_inform']['approved_bookings'] = '0';
+
+    // Check if the user is authenticated (not anonymous).
+    if ($current_user->isAuthenticated()) {
+      $variables['account_inform']['is_logged_in'] = TRUE;
+      $variables['account_inform']['username'] = $current_user->getAccountName();
+
+      // If the user entity is loaded and has a user picture, prepare an image_style render array.
+      if ($user_entity && !$user_entity->get('user_picture')->isEmpty()) {
+        $picture_file = $user_entity->get('user_picture')->entity;
+        $uri = $picture_file->getFileUri();
+
+        $variables['account_inform']['profile_picture'] = [
+          '#theme' => 'image_style',
+          '#style_name' => 'medium',
+          '#uri' => $uri,
+          '#alt' => '',
+          '#attributes' => [
+            'class' => 'profile-picture',
+            'title' => $current_user->getAccountName(),
+          ],
+        ];
+      }
+      // If the user is logged in but has no picture, we simply leave 'profile_picture' as NULL.
+      // The Twig template can display a fallback image in that case.
+    }
+  }
+}
+
+/**
+ * helper function pass block region value to content (menu__account) so this can be used in MYTHEME_preprocess_HOOK.
+ */
+function helper_get_block_region_menu_account_value(&$variables) {
+  if (isset($variables['elements']['#id'])) {
+    $region = \Drupal\block\Entity\Block::load($variables['elements']['#id'])->getRegion();
+    $variables['content']['#attributes']['region'] = $region;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function awtur_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+  $suggestions[] = 'field__node__' . $variables['element']['#field_name'] . '__' . $variables['element']['#bundle'] . '__' . $variables['element']['#view_mode'];
+}
+
+/**
+ * Implements hook_preprocess_page().
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ */
+function awtur_preprocess_page(array &$variables) {
+    $current_user = \Drupal::currentUser();
+    $user = \Drupal\user\Entity\User::load($current_user->id());
+    if ($user->hasField('field_bericht_voor_rolupdate')){
+      $message = $user->get('field_bericht_voor_rolupdate')->value;
+      if ($message){
+        Drupal::messenger()->addStatus($message);
+        $user->set('field_bericht_voor_rolupdate', NULL);
+        $user->save();
+      }
+    }
+}
+
+/**
+ * Implements hook_preprocess_views_exposed_form().
+ */
+function awtur_preprocess_views_exposed_form(&$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $variables['current_path'] = $current_path;
+}
+
+/**
+ * Implements hook_preprocess_views_view_fields().
+ */
+function awtur_preprocess_views_view_fields(array &$variables) {
+  $view = $variables['view'];
+  $display_id = $view->current_display;
+  $view_id = $view->id();
+
+  if ($view_id === 'reservations_recent' && $display_id === 'page_eigen_boekingen') {
+
+    // The reservation entity from the row.
+    $row = $variables['row'];
+    $reservation = $row->_entity;
+    if (!$reservation) {
+      return;
+    }
+
+    // Get the room node ID.
+    // Let 'entity_id' be the field that refers to the room.
+    $node_id = $reservation->get('entity_id')->target_id ?? 0;
+
+    // Read field_confirmation from the hall node.
+    $confirm_hours = 0;
+    if ($node_id) {
+      $node = Node::load($node_id);
+      if ($node && $node->hasField('field_confirmatie')) {
+        $confirm_value = $node->get('field_confirmatie')->value ?? 0;
+        $confirm_hours = (int) $confirm_value;
+      }
+    }
+
+    $status = (int) $reservation->get('status')->value;
+
+    $created_ts = (int) $reservation->getCreatedTime();
+
+    $fields = $variables['fields'];
+    $end_ts = 0;
+    if (isset($fields['field_date_booking_end_value'])) {
+      $raw_end = $fields['field_date_booking_end_value']->raw ?? '0';
+      $end_ts = (int) $raw_end;
+    }
+
+    $now = time();
+    $booking_status = 'Onbekend';
+
+    if ($status === 1) {
+      if ($end_ts > $now) {
+        $booking_status = 'Reservatie bevestigd';
+      }
+      else {
+        $booking_status = 'Evenement afgelopen';
+      }
+    }
+    else {
+      $deadline = $created_ts + $confirm_hours;
+      if ($deadline > $now) {
+        $booking_status = 'Reservatie in behandeling';
+      }
+      else {
+        $booking_status = 'Reservatie verworpen';
+      }
+    }
+
+    // Make variable available for TWIG
+    $variables['booking_status'] = $booking_status;
+    $variables['created_ts'] = $created_ts;
+    $variables['confirm_hours'] = $confirm_hours;
+  }
+}
+
+function awtur_theme() {
+  return [
+    'my_per_person_item' => [
+      'render element' => 'element',
+      'template' => 'my-per-person-item',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_form().
+ */
+function awtur_preprocess_form(&$variables) {
+  $language_id = \Drupal::languageManager()->getCurrentLanguage('language_content')->getId();
+  $variables['language_id'] = $language_id;
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function awtur_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  // Only target taxonomy‐term theme hooks.
+  if ($hook !== 'taxonomy_term') {
+    return;
+  }
+
+  // 1) Grab the view mode, either from the render array or directly.
+  //    When a taxonomy_term is being rendered by entity_view(), #view_mode is always set.
+  $view_mode = $variables['elements']['#view_mode']
+    ?? ($variables['view_mode'] ?? NULL);
+
+  if (empty($view_mode)) {
+    return;
+  }
+
+  // 2) Add the generic view-mode suggestion:
+  //    taxonomy_term__mini_preview → taxonomy-term--mini-preview.html.twig
+  $suggestions[] = 'taxonomy_term__' . $view_mode;
+
+  // 3) If we have a real term entity, extract bundle & ID and add two more:
+  if (!empty($variables['elements']['#taxonomy_term'])
+      && $variables['elements']['#taxonomy_term'] instanceof \Drupal\taxonomy\Entity\Term) {
+
+    /** @var \Drupal\taxonomy\Entity\Term $term */
+    $term   = $variables['elements']['#taxonomy_term'];
+    $bundle = $term->bundle();
+    $tid    = $term->id();
+
+    // taxonomy_term__zaalopstellingen__mini_preview →
+    //   taxonomy-term--zaalopstellingen--mini-preview.html.twig
+    $suggestions[] = 'taxonomy_term__' . $bundle . '__' . $view_mode;
+
+    // taxonomy_term__577__mini_preview →
+    //   taxonomy-term--577--mini-preview.html.twig
+    $suggestions[] = 'taxonomy_term__' . $tid . '__' . $view_mode;
+  }
+}
+
+

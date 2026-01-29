@@ -1,0 +1,188 @@
+{{ attach_library('awtur/personal-zaal') }}
+{{ attach_library('awtur/foto-grid') }}
+
+{% set thema_pad = drupal_url('themes/custom/awtur') %}
+
+<article class="node-zaal-full">
+
+  <header class="zaal-full">
+    <div class="zaal-full-label">
+      <img src="{{ thema_pad }}/images/icons/zaal/zaal-label-icon.svg" alt="blauwe zwaan">
+      <h1>{{ label }}</h1>
+    </div>
+    <div class="node__meta">
+      {{ metadata }}
+    </div>
+  </header>
+
+  <div class="zaal-full-statistics">
+    {{ content.flag_bookmark }}{{ content.links }}
+  </div>
+
+
+  {# price #}
+  <div class="union-booking-cost">
+
+    {% if  content.field_dagprijs.0 %}
+    <div class="price-from">
+      <img src="{{ thema_pad }}/images/icons/zaal/day-price-icon.svg" alt="lichtblauw dagprijs icoon">
+      <div>
+        <span id="booking-dagprijs">{{ 'Dagprijs' }}</span></br>
+        {{ 'vanaf ' }}<span class="booking-euro-prijs">{{ getCurrencySymbol(content.field_daily_currency.0['#context'].value|default('euro')) }}{{ content.field_dagprijs.0 }}</span>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if content.field_prijs_per_persoon.0 %}
+    <div class="price-from">
+      <img src="{{ thema_pad }}/images/icons/zaal/person-price-icon.svg" alt="oranje geel icoon, prijs per persoon">
+      <div>
+        <span id="booking-persoonprijs">{{ 'Per persoon' }}</span></br>
+        {{ 'vanaf ' }}<span class="booking-euro-prijs">{{ getCurrencySymbol(content.field_person_currency.0['#context'].value|default('eur')) }}{{ content.field_prijs_per_persoon.0 }}</span>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if content.field_uurprijs.0 %}
+    <div class="price-from">
+      <img src="{{ thema_pad }}/images/icons/zaal/clock-price-icon.svg" alt="groen uurprijs klok icoon">
+      <div>
+        <span id="booking-uurprijs">{{ 'Uurprijs' }}</span></br>
+        {{ 'vanaf ' }}<span class="booking-euro-prijs">{{ getCurrencySymbol(content.field_hourly_currency.0['#context'].value|default('eur')) }}{{ content.field_uurprijs.0 }}</span>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+
+  {# photo #}
+  <div class="">
+    {{ content.field_foto }}
+  </div>
+
+  {# properties #}
+  <div class="union-properties">
+    <div class="">
+      <span class="property-label">{{ 'Zitten'|t }}</span>
+      <div class="union-property">{{ content.field_zitplaatsen.0 }}{{ '.P' }}</div>
+    </div>
+    <div class="">
+      <span class="property-label">{{ 'Staan'|t }}</span>
+      <div class="union-property">{{ content.field_staanplaatsen.0 }}{{ '.P' }}</div>
+    </div>
+    <div class="">
+      <span class="property-label">{{ 'Oppervlakte'|t }}</span>
+      <div class="union-property">{{ content.field_oppervlakte.0 }}{{ '.&#x33A1;' }}</div>
+    </div>
+    <div class="">
+      <span class="property-label">{{ 'Vanaf'|t }}</span>
+      <div class="union-property">{{ content.field_bezetting_van.0 }}{{ '.P' }}</div>
+    </div>
+    <div class="">
+      <span class="property-label">{{ 'Maximaal'|t }}</span>
+      <div class="union-property">{{ content.field_bezetting_tot.0 }}{{ '.P' }}</div>
+    </div>
+  </div>
+
+  {#-----Zaal layouts, room layouts-----#}
+  <div class="zaal-comfort-room-layouts">
+    <h3>{{ 'Possible Room Layouts'|t }}</h3>
+    {{ content.field_room_layouts }}
+  </div>
+
+  {#-----Zaal Media, Comfort and Thema-----#}
+  <div class="zaal-comfort-linken">
+    <div>
+      <div class="tab-zaal-comfort-links">
+        <div class="zaalcomfortlinks" onclick="zaalComfortContent(event, 'zaal-comfort-themas')">
+          <img src="{{ thema_pad }}/images/icons/zaal/thema-icon.svg" alt="opsomming thema van de zaal"></br>
+          {{ 'Thema'| t }}
+        </div>
+        <div class="zaalcomfortlinks" id="defaultComfortLink" onclick="zaalComfortContent(event, 'zaal-comfort-comforts')">
+          <img src="{{ thema_pad }}/images/icons/zaal/comfort-icon.svg" alt="comfort opsomming waarover de zaal beschikt"></br>
+          {{ 'Comfort'| t }}
+        </div>
+        <div  class="zaalcomfortlinks" onclick="zaalComfortContent(event, 'zaal-comfort-media')">
+          <img src="{{ thema_pad }}/images/icons/zaal/media-icon.svg" alt="de kindervriendelijke troeven van de locatie op zalen.be"></br>
+          {{ 'Media'| t }}
+        </div>
+      </div>
+    </div>
+    <div>
+      <div id="zaal-comfort-themas" class="zaal-tabcomfort">
+        {{ content.field_thema }}
+      </div>
+      <div id="zaal-comfort-comforts" class="zaal-tabcomfort">
+        {{ content.field_uitrusting }}
+      </div>
+      <div id="zaal-comfort-media" class="zaal-tabcomfort">
+        {{ content.field_media }}
+      </div>
+    </div>
+  </div>
+
+  {#-----Body and floorplan-----#}
+  <div class="node-zaal-body-plan">
+    <div class="node-zaal-body">
+      {% if content.body.0 %}
+        {# Zorg ervoor dat zaal_body altijd een string is #}
+        {% set zaal_body = content.body.0['#text'] is defined and content.body.0['#text'] is not empty ? content.body.0['#text']|striptags : '' %}
+      {% endif %}
+      {% set max_length = 300 %}
+      {% set show_read_more = zaal_body|length > max_length %}
+      <p id="zaal-body-text-partial">{{ zaal_body|slice(0, max_length) ~ (show_read_more ? '...' : '') }}</p>
+      <p id="zaal-body-text-full">{{ zaal_body }}</p>
+      {% if show_read_more %}
+        <p class="body-zaal-read-more" id="zaalReadMoreTag" onclick="zaalReadMore()">{{ 'meer weten'|t }}</p>
+      {% else %}
+        <p class="body-zaal-no-more">{{ 'niets meer'|t }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  </div>
+  <div class="zaal-plan">
+    {{ content.field_plattegrond.0 }}
+    <p>{{ 'Plattegrond'|t }}</p>
+  </div>
+  </div>
+
+  {# -----OCCASIONS----- #}
+  <div class="node-zaal-occasions">
+    {% if not node.field_comercielegelegenheden.isEmpty %}
+      <div class="zaal-occasions" id="node-commerce-occasion">
+        <p>{{ 'Commercieel'|t }}</p>
+        {{ content.field_comercielegelegenheden }}
+      </div>
+    {% endif %}
+    {% if not node.field_concertgelegenheden.isEmpty %}
+      <div class="zaal-occasions" id="node-concert-occasion">
+        <p>{{ 'Entertainment'|t }}</p>
+        {{ content.field_concertgelegenheden }}
+      </div>
+    {% endif %}
+    {% if not node.field_feestgelegenheid.isEmpty %}
+      <div class="zaal-occasions" id="node-feest-occasion">
+        <p>{{ 'Feesten'|t }}</p>
+        {{ content.field_feestgelegenheid }}
+      </div>
+    {% endif %}
+    {% if not node.field_vergadergelegenheden.isEmpty %}
+      <div class="zaal-occasions" id="node-vergader-occasion">
+        <p>{{ 'Vergaderen'|t }}</p>
+        {{ content.field_vergadergelegenheden }}
+      </div>
+    {% endif %}
+
+  </div>
+
+
+  {{ content.field_prijs_eenheid }}
+  {{ content.field_regels }}
+  {{ content.field_confirmatie }}
+  {{ content.field_form_booking|without('label') }}
+  </div>
+</article>
+
+
+

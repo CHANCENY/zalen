@@ -1,0 +1,23 @@
+uuid: 1ab727cd-a250-4b82-994d-c71c6cd7e4e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_service_currency
+    - paragraphs.paragraphs_type.extra_room_services
+  module:
+    - options
+id: paragraph.extra_room_services.field_service_currency
+field_name: field_service_currency
+entity_type: paragraph
+bundle: extra_room_services
+label: Currency
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: eur
+default_value_callback: ''
+settings: {  }
+field_type: list_string

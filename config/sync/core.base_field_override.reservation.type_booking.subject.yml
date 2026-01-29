@@ -1,0 +1,18 @@
+uuid: 094f58ab-0cf2-435f-860e-c91c5bc1a42b
+langcode: en
+status: true
+dependencies:
+  config:
+    - reservation.type.type_booking
+id: reservation.type_booking.subject
+field_name: subject
+entity_type: reservation
+bundle: type_booking
+label: Subject
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

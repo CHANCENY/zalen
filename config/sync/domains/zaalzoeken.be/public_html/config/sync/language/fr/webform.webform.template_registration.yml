@@ -1,0 +1,10 @@
+title: Inscription
+description: "Un gabarit webform d'inscription."
+settings:
+  confirmation_message: 'Merci pour votre inscription.'
+handlers:
+  email_notification:
+    label: 'Notification par courriel'
+    settings:
+      subject: _default
+      body: _default

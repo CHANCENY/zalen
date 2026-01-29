@@ -1,0 +1,9 @@
+uuid: 0d638ea6-f8e2-4e06-adb4-3fd032a39776
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Zaal comfort'
+vid: zaal_comfort
+description: 'Elementen die het comfort van de zaal verhogen'
+weight: 0
+new_revision: false

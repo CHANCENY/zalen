@@ -1,0 +1,58 @@
+uuid: 2af866d8-8f93-4aa8-aa9b-7516af24e2a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.per_day_unit.field_day_amount
+    - field.field.paragraph.per_day_unit.field_day_currency
+    - field.field.paragraph.per_day_unit.field_minimum_day_to_book
+    - field.field.paragraph.per_day_unit.field_pricing_rules
+    - paragraphs.paragraphs_type.per_day_unit
+  module:
+    - inline_entity_form
+id: paragraph.per_day_unit.default
+targetEntityType: paragraph
+bundle: per_day_unit
+mode: default
+content:
+  field_day_amount:
+    type: number
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_day_currency:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_minimum_day_to_book:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_pricing_rules:
+    type: inline_entity_form_complex
+    weight: 3
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+      removed_reference: optional
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

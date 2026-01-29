@@ -1,0 +1,2 @@
+template_mail: '<p>Hi [node:author:account-name],</p><p>Your room [reservation:title] has been booked on date of [reservation:booking-start-date], to [reservation:booking-end-date], for a [reservation:field_evenement], with [reservation:field_bezetting:value] persons.&nbsp;</p><p><strong>Additional information:&nbsp;</strong> [reservation:body]</p><p><br>Reserved by: [current-user:display-name]</p><p>Thank you.</p>'
+template_mail_format: full_html

@@ -1,0 +1,18 @@
+{
+  "name": "drupal/flickity",
+  "description": "Provides Flickity library integration with Drupal.",
+  "type": "drupal-module",
+  "homepage": "https://drupal.org/project/flickity",
+  "authors": [
+    {
+      "name": "Nicholas James (swim)",
+      "homepage": "https://www.drupal.org/u/swim",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://drupal.org/project/issues/flickity"
+  },
+  "minimum-stability": "dev"
+}
+

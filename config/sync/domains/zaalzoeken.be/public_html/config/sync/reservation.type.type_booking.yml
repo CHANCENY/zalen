@@ -1,0 +1,8 @@
+uuid: 72746af1-3196-4138-9770-b856443bb49d
+langcode: en
+status: true
+dependencies: {  }
+id: type_booking
+label: 'Type booking'
+target_entity_type_id: node
+description: 'Default booking form'

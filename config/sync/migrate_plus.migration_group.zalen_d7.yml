@@ -1,0 +1,17 @@
+uuid: bae3c72b-7562-47d5-92e1-cdc0db9c9767
+langcode: nl
+status: true
+dependencies:
+  enforced:
+    module:
+      - zalen_migrate
+_core:
+  default_config_hash: Ns9tJ60ULuaf19bezqd9e5tmSF7T1bnjR8NJaJx4HDQ
+id: zalen_d7
+label: 'Zalen D7 → D10'
+description: 'Custom curated migrations from legacy D7.'
+source_type: 'Drupal 7'
+module: null
+shared_configuration:
+  source:
+    key: migrate

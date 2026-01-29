@@ -1,0 +1,51 @@
+label: Оплати
+display:
+  default:
+    display_title: Головне
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Застосувати
+          reset_button_label: Скинути
+          exposed_sorts_label: 'Впорядкувати за'
+          sort_asc_label: Зрост
+          sort_desc_label: Спад
+      pager:
+        options:
+          tags:
+            previous: '‹ попередня'
+            next: 'наступна ›'
+            first: '« перша'
+            last: 'остання »'
+          expose:
+            items_per_page_label: 'Елементів на сторінку'
+            items_per_page_options_all_label: '- Усе -'
+            offset_label: Зміщення
+      fields:
+        changed_1:
+          label: 'Востаннє оновлено'
+        payment_statuses_plugin_id_1:
+          label: 'Поточний стан'
+        amount:
+          label: Величина
+        payment_method__plugin_id:
+          label: 'Спосіб оплати'
+        name:
+          label: Платник
+        operations:
+          label: Операції
+      filters:
+        payment_statuses_plugin_id:
+          expose:
+            label: 'Поточний стан'
+        payment_method__plugin_id:
+          expose:
+            label: 'Спосіб оплати'
+        uid:
+          expose:
+            label: Платник
+      arguments:
+        uid:
+          exception:
+            title: Все
+      title: Оплати

@@ -1,0 +1,11 @@
+uuid: 100af9fe-1bcc-4783-ac17-7f14ddbdf0c2
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.registratie_standaard
+label: 'Registratie standaard'
+description: ''
+targetEntityType: user
+cache: true

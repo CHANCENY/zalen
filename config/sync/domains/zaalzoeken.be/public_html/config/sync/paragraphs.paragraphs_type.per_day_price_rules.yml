@@ -1,0 +1,10 @@
+uuid: 87b799f0-fefb-42ed-af71-f0c46f22de1e
+langcode: en
+status: true
+dependencies: {  }
+id: per_day_price_rules
+label: Rules
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

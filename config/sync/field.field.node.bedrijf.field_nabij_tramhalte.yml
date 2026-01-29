@@ -1,0 +1,23 @@
+uuid: 24093b1e-c88b-4625-9cb0-175f6ffb20bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nabij_tramhalte
+    - node.type.bedrijf
+id: node.bedrijf.field_nabij_tramhalte
+field_name: field_nabij_tramhalte
+entity_type: node
+bundle: bedrijf
+label: 'Near tram stop'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Tram stop'
+  off_label: X
+field_type: boolean

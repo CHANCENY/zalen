@@ -1,0 +1,23 @@
+uuid: a740a188-518f-47aa-a84d-e140924eef85
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_amount_used
+    - paragraphs.paragraphs_type.reservation
+id: paragraph.reservation.field_amount_used
+field_name: field_amount_used
+entity_type: paragraph
+bundle: reservation
+label: 'Amount Used'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

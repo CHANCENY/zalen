@@ -1,0 +1,19 @@
+uuid: 23a44c5f-4680-416a-ac17-03313525d839
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - telephone
+id: node.field_whatsapp
+field_name: field_whatsapp
+entity_type: node
+type: telephone
+settings: {  }
+module: telephone
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,239 @@
+<style>
+article.block-zalen{
+  max-width: 320px;
+  background-color: #FAFAFA;
+  padding: 0 4px 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  border-radius: 10px;
+}
+.zaal-per-auteur-view .view-content{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  background: #FFFFFF;
+  box-shadow: 8px 8px 44px rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  padding: 32px 0;
+  margin-top: 64px;
+}
+/*----DIV Marquee----*/
+.block-part-occasion{
+  --gap: 1rem;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  margin: 8px 0 ;
+  z-index: 1; /*change*/
+}
+.block-part-occasion:hover > .occasions-marquee-scroll {
+  animation-play-state: running;
+  cursor: none;
+}
+/*-------marquee ul--------*/
+.occasions-marquee-scroll{
+  flex-shrink: 0;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+  display: inline-flex;
+  padding-left: 100%;
+  animation: scroll 10s linear infinite;
+  animation-play-state: paused;
+  position: relative;/*change*/
+  z-index: 1;
+}
+/*-----------marquee li---------------*/
+.marquee-items{
+  font-size: 15px;
+  list-style: none;
+  padding: 2px 16px;
+  margin-top: 8px;
+  border-radius: 8px;
+  color: white;
+}
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+ }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+ }
+}
+.marquee-items:nth-child(3n+1){
+  background-color: #FF5F5F;
+}
+.marquee-items:nth-child(3n+2){
+  background-color: #91C965;
+}
+.marquee-items:nth-child(3n+3){
+  background-color: #e9a744;
+}
+.marquee-items:nth-child(3n+4){
+  background-color: #DBA4D5;
+}
+.marquee-items:nth-child(3n+5){
+  background-color: #84B2F9;
+}
+.hover-text{
+  visibility: hidden;
+  width: 130px;
+  background-color: #343434;
+  color: #fff;
+  font-size: clamp(0.6875rem, 0.5804rem + 0.2857vw, 0.8125rem);
+  text-align: center;
+  border-radius: 6px;
+  padding: 4px;
+  position: absolute;
+  z-index: 10;
+  top: 90%;
+  left: 50%;
+  margin-left: -60px;
+}
+.zalen-blok-prijs:hover .hover-text, .zalen-blok-capaciteit:hover .hover-text{
+  visibility: visible;
+}
+img.hover-icon {
+  position: absolute;
+  width: 200px;
+  height: 32px;
+  bottom: 0px; 
+  left: 20%;
+  opacity: 0.4;
+}
+.block-part-occasion:hover > .hover-icon {
+  display: none;
+}
+.blok-zalen-info{
+  font-size: 10px;
+  padding: 0 3px;
+  float: right;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+</style>
+
+{%
+  set classes = [
+    'node',
+    'block-zalen',
+    'node--type-' ~ node.bundle|clean_class,
+     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+
+{{ attach_library('awtur/personal-view-block-zaal') }}
+<article{{ attributes.addClass(classes) }}>
+  <header>
+    <h2{{ title_attributes.addClass('node__title') }}>
+        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      </h2>
+      {% if display_submitted %}
+      <div class="node__meta">
+        {{ metadata }}
+      </div>
+      {% endif %}
+   </header>
+     
+    {{ content.field_foto }}
+   
+  <div class="block-part-edition clearfix">
+    <div class="zalen-blok-prijs">    
+      <span class="hover-text">
+        <p class="prijs-vanaf">{{ 'startprijzen' }}</p>
+        {% if content.field_uurprijs.0 %}
+        <p>{{ 'per uur: ' }}{{ content.field_uurprijs.0 }}</p>
+        {% endif %}
+        {% if content.field_dagprijs.0 %}
+        <p>{{ 'per dag: ' }}{{ content.field_dagprijs.0 }}</p>
+        {% endif %}
+        {% if content.field_prijs_per_persoon.0 %}
+        <p>{{ 'per persoon: ' }}{{ content.field_prijs_per_persoon.0 }}</p>
+        {% endif %}
+      </span>     
+      {% if content.field_uurprijs.0 %}
+        <div class="uur-groen">
+          <p class="prijs-label" id="prijsGroen">{{ 'Uurprijs' }}</p>
+          <p class="prijs-vanaf">{{ 'vanaf' }}</p>
+          <p class="veld-inhoud">{{ content.field_uurprijs.0 }}<span class="blok-zalen-info">{{ '&#8505;' }}</span></p>
+        </div>
+      
+      {% elseif content.field_dagprijs.0 %}
+        <div class="dag-paars">
+          <p class="prijs-label" id="prijsPaars">{{ 'Dagprijs' }}</p>
+          <p class="prijs-vanaf">{{ 'vanaf' }}</p>
+          <p class="veld-inhoud">{{ content.field_dagprijs.0 }}<span class="blok-zalen-info">{{ '&#8505;' }}</span><p>
+        </div>
+        
+      {% elseif  content.field_prijs_per_persoon.0 %}
+        <div class="persoon-blauw">
+          <p class="prijs-label" id="prijsBlauw">{{ 'Persoon' }}</p>
+          <p class="prijs-vanaf">{{ 'vanaf' }}</p>
+          <p class="veld-inhoud">{{ content.field_prijs_per_persoon.0 }}<span class="blok-zalen-info">{{ '&#8505;' }}</span></p>
+        </div>  
+      {% endif %}  
+    </div>
+    
+    <div class="zalen-blok-capaciteit">
+      <span class="hover-text">
+        <p class="prijs-vanaf">{{ 'zaal capaciteit' }}</p>
+        {% if content.field_bezetting_tot.0 %}
+        <p>{{ content.field_bezetting_van.0 }}{{ ' tot '|t }}{{ content.field_bezetting_tot.0 }}{{ ' P'|t }}</p>
+        {% endif %}
+        {% if content.field_oppervlakte.0 %}
+        <p>{{ content.field_oppervlakte.0 }}{{ ' &#13217;' }}</p>
+        {% endif %}
+        {% if content.field_zitplaatsen.0 %}
+        <p>{{ content.field_zitplaatsen.0 }}{{ ' zittende'|t }}</p>
+        {% endif %}
+        {% if content.field_staanplaatsen.0 %}
+        <p>{{ content.field_staanplaatsen.0 }}{{ ' staande'|t }}</p>
+        {% endif %}
+      </span>     
+    {% if content.field_bezetting_tot.0 %}
+      <div class="bezetting-oranje">
+        <p class="prijs-label" id="bezettingOranje">{{ 'Bezetting tot' }}</p>
+        <p class="prijs-vanaf">{{ 'Personen' }}</p>
+        <p class="veld-inhoud">{{ content.field_bezetting_tot.0 }}<span class="blok-zalen-info">{{ '&#8505;' }}</span></p>
+      </div>
+    {% endif %}
+    </div>
+      
+        
+    
+      
+  </div>
+
+    <div class="block-part-occasion">
+      {% if content.field_feestgelegenheid %}
+        {% set feest_gelegenheid = content.field_feestgelegenheid %}
+      {% endif %}
+      {% if content.field_vergadergelegenheden %}
+        {% set vergader_gelegenheid = content.field_vergadergelegenheden %}
+      {% endif %}
+      {% if content.field_concertgelegenheden %}
+        {% set concert_gelegenheid = content.field_concertgelegenheden %}
+      {% endif %}
+        {% if content.field_comercielegelegenheden %}
+      {% set commerciele_gelegenheid = content.field_comercielegelegenheden %}
+      {% endif %}
+      
+      {% set gelegenheden = [] %}
+      {% set occasions = gelegenheden|merge([feest_gelegenheid, vergader_gelegenheid, commerciele_gelegenheid, concert_gelegenheid]) %}
+      
+      <ul class="occasions-marquee-scroll" data-marquee="marquee-{{ node.id }}" id="marque-{{ node.id }}">
+        {% for occasionList in occasions|children %}
+        {% for occasion in occasionList|children %}
+          <li class="marquee-items" aria-hidden="true">{{ occasion }}</li>
+        {% endfor %}
+        {% endfor %}
+      </ul>
+      <img  class="hover-icon" src="{{ drupal_url( directory ) }}/images/hover-icon.svg"> 
+    </div> 
+    
+</article>

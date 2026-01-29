@@ -1,0 +1,23 @@
+uuid: c4707036-05c5-4fc5-9ab0-6144faa505bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_per_person_item_price
+    - paragraphs.paragraphs_type.per_person_item
+id: paragraph.per_person_item.field_per_person_item_price
+field_name: field_per_person_item_price
+entity_type: paragraph
+bundle: per_person_item
+label: 'Set Amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

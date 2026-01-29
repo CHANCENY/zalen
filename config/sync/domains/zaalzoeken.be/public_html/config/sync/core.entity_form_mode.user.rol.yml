@@ -1,0 +1,11 @@
+uuid: 71296089-2410-43e2-b130-a24435b28d48
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.rol
+label: Rol
+description: ''
+targetEntityType: user
+cache: true

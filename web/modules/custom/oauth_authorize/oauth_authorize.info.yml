@@ -1,0 +1,9 @@
+name: OAuth authorize tokens
+type: module
+description: 'Add list OAuth authorize tokens for invoice working.'
+package: Custom Reservation
+core_version_requirement: ^9.3 || ^10
+version: 0.1
+dependencies:
+  - drupal:datetime
+  - drupal:user

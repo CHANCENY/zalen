@@ -1,0 +1,81 @@
+/**
+ * @file
+ * Visual styles for AWTur's language-switcher.
+ */
+
+/* Block has its own content wrapper. */
+
+/*div#block-awtur-languageswitcher {
+  margin-top: -8px;
+  padding: 30px 0;
+  float: right;
+}
+div#block-awtur-languageswitcher h2 {
+  position: absolute !important;
+  overflow: hidden;
+  clip: rect(1px,1px,1px,1px);
+  width: 1px;
+  height: 1px;
+  word-wrap: normal;
+}
+div#block-awtur-languageswitcher ul {
+  margin-top: 56px;
+  padding: 0 10px;
+  font-size: 0;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 9px;
+  border: 2px #d88100 solid;
+}
+@media all and (min-width: 461px) {
+  div#block-awtur-languageswitcher ul {
+    margin-top: 0px;}
+}
+div#block-awtur-languageswitcher ul li {
+  display: inline-block;
+  vertical-align: middle;
+}
+div#block-awtur-languageswitcher ul li a {
+  display: block;
+  white-space: nowrap;
+  width: 18px;
+  height: 18px;
+  border: 2px #ddd solid;
+  border-radius: 100%;
+  opacity: 0.5;
+  filter: alpha(Opacity=50);
+}
+div#block-awtur-languageswitcher ul li.is-active a {
+  opacity: 1;
+  padding: 2px;
+  border: 1px #d88100 solid;
+}
+div#block-awtur-languageswitcher ul li.nl a {
+  background: url(../../images/icons/fl_netherlands.svg) no-repeat center;}
+div#block-awtur-languageswitcher ul li.uk a {
+  background: url(../../images/icons/fl_ukraine.svg) no-repeat center;}
+div#block-awtur-languageswitcher ul li.en a {
+  background: url(../../images/icons/fl_unitedkingdom.svg) no-repeat center;}
+div#block-awtur-languageswitcher ul li.fr a {
+  background: url(../../images/icons/fl_france.svg) no-repeat center;}
+  div#block-awtur-languageswitcher ul li.de a {
+    background: url(../../images/icons/fl_germany.svg) no-repeat center;}
+div#block-awtur-languageswitcher ul li.is-active a {
+  background-origin: content-box;
+}
+
+
+a.language-link:before {
+  content: "";
+}
+a.language-link:hover:before {
+  content: attr(hreflang);
+  display: block;
+  position: relative;
+  font-size: 14px;
+  color: #fff;
+  margin-top: -26px;
+  background: #000;
+  border-radius: 3px;
+transition: margin-top 0.2s;
+}
+*/

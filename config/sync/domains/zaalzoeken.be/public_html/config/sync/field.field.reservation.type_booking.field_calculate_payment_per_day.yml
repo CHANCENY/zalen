@@ -1,0 +1,21 @@
+uuid: 4d7ebaa2-48f5-4edb-83f3-1ad14bbccf8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.reservation.field_calculate_payment_per_day
+    - reservation.type.type_booking
+id: reservation.type_booking.field_calculate_payment_per_day
+field_name: field_calculate_payment_per_day
+entity_type: reservation
+bundle: type_booking
+label: 'Calculate payment per day'
+description: 'Check this box if you want the payment to be calculated based on the number of days'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

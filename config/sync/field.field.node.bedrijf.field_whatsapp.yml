@@ -1,0 +1,21 @@
+uuid: 8e3facff-9ad8-405d-a755-166c7bccff85
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_whatsapp
+    - node.type.bedrijf
+  module:
+    - telephone
+id: node.bedrijf.field_whatsapp
+field_name: field_whatsapp
+entity_type: node
+bundle: bedrijf
+label: Whatsapp
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

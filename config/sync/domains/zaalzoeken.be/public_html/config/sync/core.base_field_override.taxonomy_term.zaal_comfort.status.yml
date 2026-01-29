@@ -1,0 +1,22 @@
+uuid: b890c598-fa6c-42bc-b82f-d072ff22ec3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zaal_comfort
+id: taxonomy_term.zaal_comfort.status
+field_name: status
+entity_type: taxonomy_term
+bundle: zaal_comfort
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,14 @@
+uuid: 22bd155c-4598-4827-a395-daf337375cb4
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.magnus
+  module:
+    - user
+id: user_add_role_action.magnus
+label: 'Add the Magnus role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: magnus

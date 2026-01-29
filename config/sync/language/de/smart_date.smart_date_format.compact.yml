@@ -1,0 +1,9 @@
+label: Kompakt
+date_format: 'Smart date Format'
+time_format: 'g:ia'
+time_hour_format: 'H:i'
+separator: ' Smart date Format '
+join: ' Smart date Format '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

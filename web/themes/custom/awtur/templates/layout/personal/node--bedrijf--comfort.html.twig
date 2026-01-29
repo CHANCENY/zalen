@@ -1,0 +1,80 @@
+{{ attach_library('awtur/personal-bedrijf-comfort') }}
+
+{% set base_path = drupal_token('site:base-path') ~ '/' %}
+{% set thema_pad = base_path ~ directory %} {# path('<front>') {{ directory }} or {{ active_theme_path() }} #}
+
+<article class="bedrijf-comfort">
+
+   <div class="bedrijf-comfort-linken">
+    <div>
+      <div class="tab-bedrijf-comfort-links">
+        <div class="comfortlinks defaultFaciliteiten" id="defaultFaciliteiten" onclick="openComfortContent(event, 'comfort-faciliteiten')">
+          <img src="{{ thema_pad }}/images/banners/zalen-faciliteiten.png" alt="de faciliteiten an de locatie op zalen.be"></br>
+          {{ 'Faciliteiten' | t }}
+        </div>
+        <div class="comfortlinks" onclick="openComfortContent(event, 'comfort-buiten-voorzieningen')">
+          <img src="{{ thema_pad }}/images/banners/zalen-aanhorigheden.png" alt="de aanhorigheden waarover delocatie op zalen.be beschikt"></br>
+          {{ 'Aanhorigheden' | t }}
+        </div>
+        <div  class="comfortlinks" onclick="openComfortContent(event, 'comfort-kindvriendelijkheid')">
+          <img src="{{ thema_pad }}/images/banners/zalen-kindvriendelijk.png" alt="de kindervriendelijke troeven van de locatie op zalen.be"></br>
+          {{ 'Kindvriendelijkheid' | t }}
+        </div>
+        <div class="comfortlinks" onclick="openComfortContent(event, 'comfort-milieu')">
+          <img src="{{ thema_pad }}/images/banners/zalen-groen.png" alt="de eco vriendelijkheid van de locatie op zalen.be"></br>
+          {{ 'Milieu' | t }}
+        </div>
+        <div class="comfortlinks" onclick="openComfortContent(event, 'comfort-beperkingen')">
+          <img src="{{ thema_pad }}/images/banners/zalen-mindervaliden.png" alt="de faciliteiten voor mindervaliden op deze locatie op zalen.be"></br>
+          {{ 'Mindervaliden' | t }}
+        </div>
+        <div class="comfortlinks" onclick="openComfortContent(event, 'comfort-slaapgelegenheid')">
+          <img src="{{ thema_pad }}/images/banners/zalen-overnachten.png" alt="locatie op zalen.be beschikt over slaapgelegenheid"></br>
+          {{ 'Overnachten' | t }}
+        </div>
+      </div> 
+    </div> 
+    <div>
+      <div id="comfort-faciliteiten" class="tabcomfort comfort-terms">
+        {{ content.field_faciliteiten }}
+      </div>
+      <div id="comfort-buiten-voorzieningen" class="tabcomfort comfort-terms">
+        {{ content.field_buiten_voorzieningen }}
+      </div>
+      <div id="comfort-kindvriendelijkheid" class="tabcomfort comfort-terms">
+        {{ content.field_kindvriendelijkheid }}
+      </div>
+      <div id="comfort-beperkingen" class="tabcomfort comfort-terms">
+        {{ content.field_mindervaliden }}
+      </div>
+      <div id="comfort-milieu" class="tabcomfort comfort-terms">
+        {{ content.field_milieu }}
+      </div>
+      <div id="comfort-slaapgelegenheid" class="tabcomfort comfort-terms">
+        {% if node.field_slaapgelegenheid.value == 1 %}
+          <img src="{{ thema_pad }}/images/banners/slaap-duo-kleur.svg" alt="locatie op zalen.be beschikt over slaapgelegenheid">
+          <p><b>{{ label }}</b>{{ 'biedt slaapgelenheid aan'|t }}</p>
+          {% else %}
+            <img src="{{ thema_pad }}/images/banners/niet-slapen-icoon.svg" alt="locatie op zalen.be beschikt over slaapgelegenheid">
+            <p><b>{{ label }}</b>{{ 'heeft geen slaapgelegenheid, accomodatie in de buurt'|t }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>  
+
+  <div class="bedrijf-comfort-mobiliteit">
+    <div class="bedrijf-comfort-voertuig">
+      <img src="{{ thema_pad }}/images/icons/zalen-circel-fiets.svg" alt="fiets icoon, blauwe circel decoratie">
+      {{ content.field_fietsen }}
+    </div>
+    <div class="bedrijf-comfort-voertuig">
+      <img src="{{ thema_pad }}/images/icons/zalen-circel-motor.svg" alt="motor icoon, gele circel decoratie">
+      {{ content.field_motoren }}
+    </div>
+    <div class="bedrijf-comfort-voertuig">
+      <img src="{{ thema_pad }}/images/icons/zalen-circel-wagen.svg" alt="wagen icoon, groene circel decoratie">
+      {{ content.field_wagens }}
+    </div>
+  </div>
+    
+  </article>

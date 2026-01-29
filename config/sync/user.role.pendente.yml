@@ -1,0 +1,47 @@
+uuid: 8751d5a7-cb31-4aa6-90cc-1cf485048909
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.room_layout_form
+    - filter.format.basic_html
+    - media.type.video
+    - node.type.bedrijf
+    - node.type.zaal
+  module:
+    - comment
+    - contact
+    - entity_browser
+    - filter
+    - flag
+    - media
+    - node
+    - system
+id: pendente
+label: Pendente
+weight: 9
+is_admin: null
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access room_layout_form entity browser pages'
+  - 'access site-wide contact form'
+  - 'cancel account'
+  - 'change own username'
+  - 'create bedrijf content'
+  - 'create video media'
+  - 'create zaal content'
+  - 'delete own bedrijf content'
+  - 'delete own video media'
+  - 'delete own zaal content'
+  - 'edit own bedrijf content'
+  - 'edit own comments'
+  - 'edit own video media'
+  - 'edit own zaal content'
+  - 'flag bookmark'
+  - 'post comments'
+  - 'skip comment approval'
+  - 'unflag bookmark'
+  - 'use text format basic_html'
+  - 'view own unpublished content'
+  - 'view own unpublished media'

@@ -1,0 +1,21 @@
+uuid: 354bea45-155f-407a-8c2e-772c4233fc5f
+langcode: en
+status: true
+dependencies: {  }
+name: reservation_teaser
+label: 'Reservation teaser(180 x 120)'
+effects:
+  5e4b01bf-8831-42cc-9603-cad8cc58478b:
+    uuid: 5e4b01bf-8831-42cc-9603-cad8cc58478b
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 180
+      height: 120
+      anchor: center-center
+  a10bdd1e-2f48-4952-bef3-07c0427d347f:
+    uuid: a10bdd1e-2f48-4952-bef3-07c0427d347f
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

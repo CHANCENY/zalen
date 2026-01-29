@@ -1,0 +1,18 @@
+uuid: af14db09-2212-4a46-86a4-9723cbd8a285
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.commerciele_gelegenheden
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.commerciele_gelegenheden
+target_entity_type_id: taxonomy_term
+target_bundle: commerciele_gelegenheden
+default_langcode: site_default
+language_alterable: true

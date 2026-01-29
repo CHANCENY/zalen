@@ -1,0 +1,23 @@
+uuid: 16b0d91e-256b-4afd-9479-cee7b84e6b51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_per_person_item_currency
+    - paragraphs.paragraphs_type.per_person_item
+  module:
+    - options
+id: paragraph.per_person_item.field_per_person_item_currency
+field_name: field_per_person_item_currency
+entity_type: paragraph
+bundle: per_person_item
+label: Currency
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: eur
+default_value_callback: ''
+settings: {  }
+field_type: list_string

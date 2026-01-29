@@ -1,0 +1,21 @@
+uuid: 7c6d1cfd-45b7-4335-8ca7-1dfe0880ed14
+langcode: nl
+status: true
+dependencies:
+  module:
+    - reservation
+    - text
+_core:
+  default_config_hash: Da9pmJNGT8KSfWDw-2N0Jg1pAQceFufAsMguzMrXw9g
+id: reservation.reservation_body
+field_name: reservation_body
+entity_type: reservation
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: true
+custom_storage: false

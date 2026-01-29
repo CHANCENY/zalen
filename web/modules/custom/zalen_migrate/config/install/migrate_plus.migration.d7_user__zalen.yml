@@ -1,0 +1,38 @@
+id: d7_user__zalen
+label: 'Users (D7 → D10) – only update pendente users'
+migration_group: zalen_d7
+status: true
+
+source:
+  plugin: d7_user
+
+process:
+
+  _skip_if_not_pendente:
+    plugin: skip_if_not_pendente
+    source: mail
+
+  name: name
+  mail: mail
+  pass: pass
+  created: created
+  changed: changed
+  access: access
+  login: login
+  status: status
+
+  langcode:
+    plugin: default_value
+    default_value: nl
+
+  roles:
+    plugin: default_value
+    default_value: [pendente]
+
+destination:
+  plugin: 'entity:user'
+  update: true
+
+
+
+

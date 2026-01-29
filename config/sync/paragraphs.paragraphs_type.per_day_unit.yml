@@ -1,0 +1,10 @@
+uuid: 247df1fa-e1db-44a8-927c-20aa3df96f87
+langcode: en
+status: true
+dependencies: {  }
+id: per_day_unit
+label: 'Day Unit'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

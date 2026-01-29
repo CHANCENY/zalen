@@ -1,0 +1,253 @@
+{{ attach_library('awtur/jquery-sumoselect') }}
+
+{% if q is not empty %}
+  {#
+    This ensures that, if clean URLs are off, the 'q' is added first,
+    as a hidden form element, so that it shows up first in the POST URL.
+  #}
+{{ q }}
+{% endif %}
+
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+
+{# Here start the filtering in the sidebar left #}
+{% if '/alle-zalen' in current_path %}
+<div class="sidebar-filters">
+  <div class="sidebar-filter-partion sidebar-filter-price">
+    <p class="sidebar-filter-label">{{ 'Prices'|t }}</p>
+    <div>
+      {#{{ 'Per dag'|t }}#}
+      {{ form.field_dagprijs_value }}
+      <span class="sidebar-filter-placeholder">{{ 'Maximum'|t }}</span>
+    </div>
+    <div>
+      {#{{ 'Per persoon'|t }}#}
+      {{ form.field_prijs_per_persoon_value }}
+      <span class="sidebar-filter-placeholder">{{ 'Maximum'|t }}</span>
+    </div>
+    <div>
+      {#{{ 'Per uur'|t }}#}
+      {{ form.field_uurprijs_value }}
+      <span class="sidebar-filter-placeholder">{{ 'Maximum'|t }}</span>
+    </div>
+  </div>
+{#<fieldset>
+  <legend>Prijs</legend>
+  <div>
+    <input type="checkbox" class="prijzenCheckbox" id="dagprijsCheck" name="dagprijs" value="Dagprijs" onclick="togglePriceSection('dagprijsToonMij')">
+    <label for="dagprijsCheck" style="color:SlateGray">Per dag</label>
+    <div id="dagprijsToonMij" class="hidden price-section">
+      {{ form.field_dagprijs_value }} 
+    </div>  
+
+    <input type="checkbox" class="prijzenCheckbox" id="perPersoonCheck" name="perpersoon" value="Per persoon" onclick="togglePriceSection('perPersoonToonMij')">
+    <label for="perPersoonCheck" style="color:SlateGray">Per persoon</label>
+    <div id="perPersoonToonMij" class="hidden price-section">
+      {{ form.field_prijs_per_persoon_value }}
+    </div>  
+
+    <input type="checkbox" class="prijzenCheckbox" id="uurprijsCheck" name="uurprijs" value="Uurprijs" onclick="togglePriceSection('uurprijsToonMij')">
+    <label for="uurprijsCheck" style="color:SlateGray">Per uur</label>
+    <div id="uurprijsToonMij" class="hidden price-section">
+      {{ form.field_uurprijs_value }}
+    </div>  
+        
+  </div>  
+</fieldset>#}
+{# <script>
+  let activeSection = null;
+
+  function togglePriceSection(sectionId) {
+    if (activeSection === sectionId) {
+      // Clicked on the currently active section, so hide it and uncheck the checkbox
+      activeSection = null;
+    } else {
+      // Clicked on a different section, update the active section
+      activeSection = sectionId;
+    }
+
+    // Iterate over all sections and show/hide them based on the active section
+    let sections = document.getElementsByClassName("price-section");
+    for (let i = 0; i < sections.length; i++) {
+      let section = sections[i];
+      if (section.id === activeSection) {
+        section.classList.remove("hidden");
+      } else {
+        section.classList.add("hidden");
+      }
+    }
+
+    // Update the checkbox states and reset the values of input fields
+    let checkboxes = document.getElementsByClassName("prijzenCheckbox");
+    for (let i = 0; i < checkboxes.length; i++) {
+      let checkbox = checkboxes[i];
+      let sectionId = checkbox.id.replace("Check", "ToonMij");
+      let section = document.getElementById(sectionId);
+      if (sectionId === activeSection) {
+        checkbox.checked = true;
+        section.classList.remove("hidden");
+      } else {
+        checkbox.checked = false;
+        section.classList.add("hidden");
+        resetInputValue(sectionId);
+      }
+    }
+  }
+
+  function resetInputValue(sectionId) {
+    let inputField = document.querySelector(`#${sectionId} input[type="text"]`);
+    if (inputField) {
+      inputField.value = "";
+    }
+  }
+</script>
+#}
+
+
+  {{ form.field_testemail }} {#- ----Input Location of Postcode--- -#}
+
+
+  <div class="sidebar-filter-partion sidebar-filter-trump">
+    <p class="sidebar-filter-label">{{ 'Pros'|t }}</p>
+    <div class="">
+      {{ form.field_groen_label_value }}
+    </div>
+   
+    <div class="">
+      {{ form.field_kindvriendelijk_value }}
+    </div>
+
+    <div class="">
+      {{ form.field_beperkingen_value }}
+    </div>
+
+    <div class="">
+      {{ form.field_slaapgelegenheid_value }}
+    </div>
+  </div>
+
+  <div class="sidebar-filter-partion sidebar-filter-capaciteit">
+    <p class="sidebar-filter-label">{{ 'Capacity'|t }}</p>
+
+    <div class="">
+      {{ form.field_bezetting_tot_value }}
+      <span class="sidebar-filter-placeholder">{{ 'More then'|t }}</span>
+    </div>
+
+    <div class="">
+      {{ form.field_zitplaatsen_value }}
+      <span class="sidebar-filter-placeholder">{{ 'At least'|t }}</span>
+    </div>
+
+    <div class="">
+      {{ form.field_oppervlakte_value }}
+      <span class="sidebar-filter-placeholder">{{ 'At least'|t }}</span>
+    </div>
+  </div>
+
+  <div class="sidebar-filter-partion sidebar-filter-publiek-transport">
+    <p class="sidebar-filter-label">{{ 'Public transport'|t }}</p>
+    <div class="">
+      {{ form.field_nabij_bushalte_value }}
+    </div>
+
+    <div class="">
+      {{ form.field_nabij_metrohalte_value }}
+    </div>
+
+    <div class="">
+      {{ form.field_nabij_tramhalte_value }}
+    </div>
+
+    <div class="">
+      {{ form.field_nabij_trein_station_value }}
+    </div>
+  </div>
+
+  <div class="sidebar-filter-partion sidebar-filter-parkeren">
+    <p class="sidebar-filter-label">{{ 'Parking'|t }}</p>
+    
+    <div class="">
+      {{ form.field_fietsen_value }}
+      <span class="sidebar-filter-placeholder">{{ 'Minimum'|t }}</span>
+    </div>
+
+    <div class="">
+      {{ form.field_motoren_value }}
+      <span class="sidebar-filter-placeholder">{{ 'Minimum'|t }}</span>
+    </div>
+
+    <div class="">
+      {{ form.field_wagens_value }}
+      <span class="sidebar-filter-placeholder">{{ 'Minimum'|t }}</span>
+    </div>
+  </div>
+
+  
+  <div class="sidebar-filter-partion sidebar-filter-tuin">
+    <p class="sidebar-filter-label">{{ 'Garden'|t }}</p>
+
+    <div class="">
+      {{ form.field_buiten_voorzieningen_target_id }}
+    </div>
+  </div>
+
+  <div class="sidebar-filter-partion sidebar-filter-comfort">
+    <p class="sidebar-filter-label">{{ 'Comfort'|t }}</p>
+
+    <div class="">
+      {{ form.field_uitrusting_target_id }}
+    </div>
+  </div>
+
+  <div>
+    {{ form.actions.reset }}
+  </div>
+</div>
+{% endif %}
+
+{# The div below and his content are been hidden, we need the fields in the template for the view filter to work, but we 
+ only need it 1 time on the page #}
+ <div class="hidden">
+  <div class="" id="">
+    {{ form.field_date_booking_start_value }}
+  </div>
+  <div class="" id="">
+    {{ form.field_date_booking_end_value }}
+  </div>
+  
+  <div class="" id="">
+    {{ form.field_testemail }} {#- ----Test Email--- -#}
+  </div>
+ 
+  <div class="">
+    {{ form.nabijheid_plaats_postcode_wrapper }}
+  </div>
+
+  <div class="">
+    {{ form.vergader_gelegenheden_keuze }}
+  </div>
+
+  <div class="">
+    {{ form.feest_gelegenheid_keuze }}
+  </div>
+
+  <div class="">
+    {{ form.concert_gelegenheden_keuze }}
+  </div>
+
+  <div class="">
+    {{ form.commerciele_gelegenheden_keuze }}
+  </div>
+
+  <div>
+    {{ form.sort_by }}
+  </div>
+
+  <div>{{ form.actions.submit }}</div>
+</div>
+
+
+

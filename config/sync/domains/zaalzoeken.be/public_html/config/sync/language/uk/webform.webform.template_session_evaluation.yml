@@ -1,0 +1,12 @@
+title: 'Оцінка сеансу'
+description: 'Шаблон вебформи для оцінки сеансу.'
+elements: "overall:\r\n  '#type': radios\r\n  '#title': 'Як пройшов сеанс в цілому?'\r\n  '#options_display': side_by_side\r\n  '#options': likert_quality\r\n  '#required': true\r\nspeaker:\r\n  '#type': webform_likert\r\n  '#title': 'Будь ласка, оцініть спікера загалом...'\r\n  '#questions':\r\n    mastery: 'Володіння цією темою'\r\n    presentation: 'Презентаційні навички'\r\n    quality: 'Якість слайдів та наочних матеріалів'\r\n  '#answers': likert_quality\r\n  '#na_answer': true\r\n  '#required': true\r\nlearn:\r\n  '#type': radios\r\n  '#title': 'Чи навчилися ви на цьому занятті чогось, що можна використати в реальному житті?'\r\n  '#options_display': side_by_side\r\n  '#options':\r\n    'Yes': 'Так'\r\n    'No': 'Ні'\r\n    N/A: Н/Д\r\n  '#required': true\r\ncomments:\r\n  '#type': textarea\r\n  '#title': Коментарі\r\n  '#description': 'Що найбільше сподобалось? Що б ви змінили? Порада спікеру, щоб зробити цей сеанс кращим?'\n"
+settings:
+  confirmation_message: 'Дякуємо за відгук.'
+handlers:
+  email_notification:
+    label: 'Сповіщення електронною поштою'
+    settings:
+      from_name: '[webform_submission:values:first_name] [webform_submission:values:last_name]'
+      subject: _default
+      body: _default

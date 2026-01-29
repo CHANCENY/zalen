@@ -1,0 +1,18 @@
+uuid: d32707c6-9621-4d95-8b0f-25b7621c1502
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.legende_kalender
+id: taxonomy_term.legende_kalender.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: legende_kalender
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

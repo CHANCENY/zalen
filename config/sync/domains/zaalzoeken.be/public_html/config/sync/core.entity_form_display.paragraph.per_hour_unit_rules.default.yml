@@ -1,0 +1,30 @@
+uuid: 6edf74a5-5d0b-4e1b-8947-d89d3126e0e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.per_hour_unit_rules.field_amount
+    - field.field.paragraph.per_hour_unit_rules.field_if_hours_exceed
+    - paragraphs.paragraphs_type.per_hour_unit_rules
+id: paragraph.per_hour_unit_rules.default
+targetEntityType: paragraph
+bundle: per_hour_unit_rules
+mode: default
+content:
+  field_amount:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_if_hours_exceed:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

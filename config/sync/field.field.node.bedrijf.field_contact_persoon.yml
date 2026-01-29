@@ -1,0 +1,21 @@
+uuid: 4fccb426-c323-4257-9195-cd0847b3856a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_persoon
+    - node.type.bedrijf
+id: node.bedrijf.field_contact_persoon
+field_name: field_contact_persoon
+entity_type: node
+bundle: bedrijf
+label: 'Contact person'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: Nabuco
+default_value_callback: ''
+settings: {  }
+field_type: string

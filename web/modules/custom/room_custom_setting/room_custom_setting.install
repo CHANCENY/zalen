@@ -1,0 +1,94 @@
+<?php
+
+declare(strict_types = 1);
+
+/**
+ * @file
+ * Install, not update and not uninstall functions for the Reservation module.
+ */
+use Drupal\field\Entity\FieldStorageConfig;
+/**
+ * Implements hook_schema()
+ */
+function room_custom_setting_schema() {
+  $schema['reservat_custom_each'] = [ // Название таблицы
+    'description' => 'custom settings booking for each node.', // Описание таблицы
+    'fields' => [ // Массив с колонками таблицы
+
+      'id' => [
+        'description' => 'ID',
+        'type' => 'serial',// Тип данных используется как правило, только для автоинкремента
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+       ],
+
+      'nid' => [// Название колонки
+        'description' => 'This is a unique serial number of the node.',
+        'type' => 'int',// Тип данных
+        'unsigned' => TRUE,// Unsigned, по умолчанию FALSE
+        'not null' => TRUE,// Проверка на 0
+      ],
+
+      'module' => [
+        'description' => 'The name of the module declaring the variable.',
+        'type' => 'varchar_ascii',
+        'length' => FieldStorageConfig::NAME_MAX_LENGTH,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+
+      'text' => [
+        'description' => 'Help text.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+
+      'default_date' => [
+        'description' => 'The Default date of this node.',
+        'type' => 'varchar_ascii',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+
+      'default_date_value' => [
+        'description' => 'The Default date value of this node.',
+        'type' => 'varchar_ascii',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+
+      'increment' => [
+        'description' => 'Allowed duration increments.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+
+      'duration' => [
+        'description' => 'Default duration.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ],
+
+      'terms_of_use' => [
+        'description' => 'Terms of use to this node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+
+    ],
+
+    'primary key' => ['id'],
+    'indexes' => ['nid' => ['nid']],
+
+  ];
+  return $schema;
+}

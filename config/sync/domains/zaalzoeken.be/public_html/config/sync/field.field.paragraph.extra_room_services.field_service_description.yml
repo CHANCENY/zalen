@@ -1,0 +1,24 @@
+uuid: 975c175c-1143-467b-9274-d405f35fdae0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_service_description
+    - filter.format.plain_text
+    - paragraphs.paragraphs_type.extra_room_services
+  module:
+    - text
+id: paragraph.extra_room_services.field_service_description
+field_name: field_service_description
+entity_type: paragraph
+bundle: extra_room_services
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - plain_text
+field_type: text_long

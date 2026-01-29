@@ -1,0 +1,106 @@
+uuid: aaa67ac1-ae4a-4d6e-9e81-0b82dd0f2b19
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.per_person_item.field_child_friendly
+    - field.field.paragraph.per_person_item.field_optional_item
+    - field.field.paragraph.per_person_item.field_per_person_item_currency
+    - field.field.paragraph.per_person_item.field_per_person_item_image
+    - field.field.paragraph.per_person_item.field_per_person_item_price
+    - field.field.paragraph.per_person_item.field_per_person_mini_persons
+    - field.field.paragraph.per_person_item.field_person_item_description
+    - field.field.paragraph.per_person_item.field_person_option_image
+    - field.field.paragraph.per_person_item.field_person_pricing_rules
+    - field.field.paragraph.per_person_item.field_short_description
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.per_person_item
+  module:
+    - inline_entity_form
+    - svg_image
+    - text
+id: paragraph.per_person_item.default
+targetEntityType: paragraph
+bundle: per_person_item
+mode: default
+content:
+  field_child_friendly:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_optional_item:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_per_person_item_currency:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_per_person_item_price:
+    type: number
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_per_person_mini_persons:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_person_item_description:
+    type: text_textarea
+    weight: 5
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_person_option_image:
+    type: image_image
+    weight: 4
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_person_pricing_rules:
+    type: inline_entity_form_complex
+    weight: 8
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: true
+      collapsed: true
+      revision: false
+      removed_reference: optional
+    third_party_settings: {  }
+  field_short_description:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_per_person_item_image: true
+  status: true

@@ -1,0 +1,13 @@
+uuid: f2f9044a-aebe-487e-b4f0-29bf99243219
+langcode: nl
+status: false
+dependencies:
+  module:
+    - reservation
+_core:
+  default_config_hash: _W1I3YOBmMGRIno4Qzs1uAp3DgqoUUqfAwW9BGS-_GE
+id: reservation.full
+label: 'Full reservation'
+description: ''
+targetEntityType: reservation
+cache: true

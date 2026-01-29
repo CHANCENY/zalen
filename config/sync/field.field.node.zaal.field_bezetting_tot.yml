@@ -1,0 +1,23 @@
+uuid: b7300c80-bce0-44bf-bb7f-0954cb85aea8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bezetting_tot
+    - node.type.zaal
+id: node.zaal.field_bezetting_tot
+field_name: field_bezetting_tot
+entity_type: node
+bundle: zaal
+label: 'Occupancy up to'
+description: 'Maximum occupancy'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 100000
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,10 @@
+uuid: 677ae055-d3ca-4eb2-a81e-d382a6ed68ea
+langcode: nl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: BCM-vV1zzRaLHN18dqAR_CuGOj8AFJvTx7BKl_8Gcxc
+id: tools
+label: Hulpmiddelen
+description: 'Links voor hulpmiddelen, vaak toegevoegd door modules'
+locked: true

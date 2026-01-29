@@ -1,0 +1,25 @@
+uuid: b8a8a39e-afec-4e8b-9aca-a4e3214e9c89
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.sociale-media
+  module:
+    - system
+  theme:
+    - awtur
+id: socialemedia
+theme: awtur
+region: footer_second
+weight: -19
+provider: null
+plugin: 'system_menu_block:sociale-media'
+settings:
+  id: 'system_menu_block:sociale-media'
+  label: 'Sociale  media'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

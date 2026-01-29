@@ -1,0 +1,2 @@
+template_mail: '<div><p>Your request for booking [reservation:field_boeking_id], room [node:title] on date from [reservation:field_date_booking], end date and time [reservation:field_date_booking], for a [reservation:field_evenement], with [reservation:field_bezetting] people.</p><p>&nbsp;</p><p><strong>Additional information:</strong> [reservation:body] was confirmed by [node:title]. You will receive an email with payment instructions from our partner Mollie who will arrange payments for your reservation.</p></div>'
+template_mail_format: full_html

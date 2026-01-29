@@ -1,0 +1,20 @@
+uuid: a01d9cd7-3c7f-4bed-a9b9-8a2f1a272afa
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - reservation
+id: node.field_reservation
+field_name: field_reservation
+entity_type: node
+type: entity_reference
+settings:
+  target_type: reservation
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

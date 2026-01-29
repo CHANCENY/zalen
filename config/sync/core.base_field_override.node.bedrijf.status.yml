@@ -1,0 +1,22 @@
+uuid: ff76a5e4-b868-495e-9a93-34eb38c73c4c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bedrijf
+id: node.bedrijf.status
+field_name: status
+entity_type: node
+bundle: bedrijf
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

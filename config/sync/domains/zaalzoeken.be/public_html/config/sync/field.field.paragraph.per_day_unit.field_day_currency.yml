@@ -1,0 +1,21 @@
+uuid: 5e742fc3-2ff1-4179-a613-35307aae538c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_day_currency
+    - paragraphs.paragraphs_type.per_day_unit
+  module:
+    - options
+id: paragraph.per_day_unit.field_day_currency
+field_name: field_day_currency
+entity_type: paragraph
+bundle: per_day_unit
+label: 'Day Currency'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

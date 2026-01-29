@@ -1,0 +1,21 @@
+uuid: 1f2afb3f-18f5-4daf-8d59-c89d3db40fdc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hourly_currency
+    - node.type.zaal
+id: node.zaal.field_hourly_currency
+field_name: field_hourly_currency
+entity_type: node
+bundle: zaal
+label: 'Hourly Currency'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: eur
+default_value_callback: ''
+settings: {  }
+field_type: string

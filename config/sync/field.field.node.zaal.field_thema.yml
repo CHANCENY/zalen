@@ -1,0 +1,29 @@
+uuid: e1333ac0-4154-4a4a-b3a1-79087d3edc1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_thema
+    - node.type.zaal
+    - taxonomy.vocabulary.thema_s
+id: node.zaal.field_thema
+field_name: field_thema
+entity_type: node
+bundle: zaal
+label: Theme
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      thema_s: thema_s
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

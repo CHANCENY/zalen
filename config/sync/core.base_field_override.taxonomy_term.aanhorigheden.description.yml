@@ -1,0 +1,21 @@
+uuid: 15e046a3-b6dd-4c62-b935-ca2bc6c2854c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.aanhorigheden
+  module:
+    - text
+id: taxonomy_term.aanhorigheden.description
+field_name: description
+entity_type: taxonomy_term
+bundle: aanhorigheden
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

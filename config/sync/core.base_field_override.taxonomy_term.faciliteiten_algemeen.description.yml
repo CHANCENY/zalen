@@ -1,0 +1,21 @@
+uuid: bd476d39-4a88-4bd4-a119-f55e4ba73b4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.faciliteiten_algemeen
+  module:
+    - text
+id: taxonomy_term.faciliteiten_algemeen.description
+field_name: description
+entity_type: taxonomy_term
+bundle: faciliteiten_algemeen
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -1,0 +1,14 @@
+uuid: 9052e8ee-5df6-42d2-a9cf-4b7a21edb36e
+langcode: nl
+status: true
+dependencies:
+  config:
+    - user.role.betalende_gebruiker
+  module:
+    - user
+id: user_add_role_action.betalende_gebruiker
+label: 'De rol betalende gebruiker toewijzen aan de geselecteerde gebruiker(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: betalende_gebruiker

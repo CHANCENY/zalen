@@ -1,0 +1,23 @@
+uuid: 37bcb316-b50d-41bd-93cf-bfd3d1aa99c4
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - paragraphs
+id: paragraph.field_service_image
+field_name: field_service_image
+entity_type: paragraph
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

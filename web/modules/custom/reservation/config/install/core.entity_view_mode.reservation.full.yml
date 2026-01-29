@@ -1,0 +1,9 @@
+langcode: en
+status: false
+dependencies:
+  module:
+    - reservation
+id: reservation.full
+label: 'Full reservation'
+targetEntityType: reservation
+cache: true

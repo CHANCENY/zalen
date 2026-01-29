@@ -1,0 +1,10 @@
+name: Reservation
+type: module
+description: 'Allows users to reservation on content.'
+package: Custom Reservation
+core_version_requirement: ^9.3 || ^10
+version: 0.1
+dependencies:
+  - drupal:field
+  - drupal:text
+configure: reservation.admin

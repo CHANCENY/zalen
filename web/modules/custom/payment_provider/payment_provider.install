@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * @file
+ * Contains payment_provider.install. Install, update and uninstall hooks for Mollie for Drupal.
+ */
+
+use Mollie\Api\MollieApiClient;
+use Mollie\OAuth2\Client\Provider\Mollie;
+
+
+/**
+ * Implements hook_requirements().
+ */
+function payment_provider_requirements($phase) {
+  $requirements = [];
+
+  switch ($phase) {
+    case 'install':
+      if (!class_exists(Mollie::class)) {
+        $requirements['mollie_OAuth2_provider'] = [
+          'title' => 'Missing Mollie Provider for OAuth 2.0 Client',
+          'description' => 'The Mollie Provider for OAuth 2.0 Client is missing. Run "composer require mollie/oauth2-mollie-php ^2.0" in the root of the project to install it. In this case, you do not need to install the previous "Mollie API client".',
+          'severity' => REQUIREMENT_ERROR,
+        ];
+      }
+      // TODO: This does not work when enabling the module using Drush (9.5.x).
+      if (!class_exists(MollieApiClient::class)) {
+        $requirements['mollie_client'] = [
+          'title' => 'Missing Mollie API client',
+          'description' => 'The Mollie API client is missing. Run "composer require mollie/mollie-api-php" in the root of the project to install it.',
+          'severity' => REQUIREMENT_ERROR,
+        ];
+      };
+      break;
+
+    case 'runtime':
+      if (!class_exists(MollieApiClient::class)) {
+        $requirements['mollie_client'] = [
+          'title' => 'Mollie API client',
+          'value' => 'Missing',
+          'description' => 'The Mollie API client is missing. Run "composer require mollie/mollie-api-php" in the root of the project to install it.',
+          'severity' => REQUIREMENT_ERROR,
+        ];
+      } else {
+        $version = MollieApiClient::CLIENT_VERSION;
+        $requirements['mollie_client'] = [
+          'title' => 'Mollie API client',
+          'value' => $version,
+          'description' => 'Mollie API client version ' . $version . ' is installed.',
+          'severity' => REQUIREMENT_OK,
+        ];
+      };
+      break;
+
+    default:
+      break;
+  }
+
+  return $requirements;
+}
+
+

@@ -1,0 +1,5 @@
+label: 'Calculer le paiement par heure'
+description: "Cochez cette case si vous souhaitez que le paiement soit calculé en fonction du nombre d'heures"
+settings:
+  on_label: 'Par heure'
+  off_label: 'Par heure'

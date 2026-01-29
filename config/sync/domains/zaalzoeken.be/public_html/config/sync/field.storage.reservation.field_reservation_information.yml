@@ -1,0 +1,20 @@
+uuid: 0d489e36-4231-42a5-b6d3-d51144fdc053
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - reservation
+id: reservation.field_reservation_information
+field_name: field_reservation_information
+entity_type: reservation
+type: entity_reference
+settings:
+  target_type: paragraph
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

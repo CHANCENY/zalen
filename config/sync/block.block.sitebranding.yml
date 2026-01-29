@@ -1,0 +1,23 @@
+uuid: 90de94bf-32b4-4cec-a495-c8bb0ccb2774
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - awtur
+id: sitebranding
+theme: awtur
+region: secondary_menu
+weight: -16
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

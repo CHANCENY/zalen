@@ -1,0 +1,9 @@
+uuid: caa453d5-08fc-4d16-8cdc-35bb3d83fbcd
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Commerciële gelegenheden'
+vid: commerciele_gelegenheden
+description: 'Commerciële gelegenheden, doelen, mogelijkheden'
+weight: 0
+new_revision: false

@@ -1,0 +1,23 @@
+uuid: 84076d2b-8cd8-4218-9954-134cca7135ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_reserve_count
+    - paragraphs.paragraphs_type.reservation_person_options
+id: paragraph.reservation_person_options.field_reserve_count
+field_name: field_reserve_count
+entity_type: paragraph
+bundle: reservation_person_options
+label: 'Reserve Count'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

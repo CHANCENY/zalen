@@ -1,0 +1,22 @@
+uuid: 3f76f186-8376-4f00-b31e-795da6346199
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.media_faciliteiten
+id: taxonomy_term.media_faciliteiten.status
+field_name: status
+entity_type: taxonomy_term
+bundle: media_faciliteiten
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

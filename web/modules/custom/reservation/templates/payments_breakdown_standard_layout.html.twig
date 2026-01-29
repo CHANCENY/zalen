@@ -1,0 +1,27 @@
+{{ include ('@reservation/templates/reservation-layout.twig', {}, with_context: true) }}
+<div class="payments-summary">
+  <div class="reservation-box">
+    <h2 class="reservation-heading">Payment Breakdown</h2>
+    <div class="table-responsive">
+      <table class="table table-stripped">
+        <thead>
+        <tr>
+          <th>Full Amount</th>
+          <th>Advance Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{ getCurrencySymbol(content.reservation_information.get('field_reservation_currency').value|default('euro')|upper) }}{{ content.payment_breakdown.booking_amount }}</td>
+          <td>{{ getCurrencySymbol(content.reservation_information.get('field_reservation_currency').value|default('euro')|upper) }}{{ content.payment_breakdown.advance_payment }}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">{{ content.form }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

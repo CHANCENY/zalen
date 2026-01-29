@@ -1,0 +1,29 @@
+{{ include ('@reservation/templates/reservation-layout.twig', {}, with_context: true) }}
+{% set paragraph = content.reservation_information %}
+
+{% if paragraph.get('field_payment_status').value|default('unknown')|upper != 'PAID' %}
+<div class="payments-summary">
+  <div class="reservation-box">
+    <h2 class="reservation-heading">Payment Breakdown</h2>
+    <div class="table-responsive">
+      <table class="table table-stripped">
+        <thead>
+        <tr>
+          <th>Full Amount</th>
+          <th>Advance Amount</th>
+          <th colspan="2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{ getCurrencySymbol(content.reservation_information.get('field_reservation_currency').value|default('euro')|upper) }}{{ content.payment_breakdown.total_full }}</td>
+          <td>{{ getCurrencySymbol(content.reservation_information.get('field_reservation_currency').value|default('euro')|upper) }}{{ content.payment_breakdown.total_advance }}</td>
+          <td><a target="_blank" href="{{ content.advance_link }}">Pay advance amount.</a></td>
+          <td><a target="_blank" href="{{ content.full_link }}">Pay full amount.</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endif %}

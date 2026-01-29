@@ -1,0 +1,20 @@
+uuid: c4923334-2a7f-4339-bcd6-a023ca102e45
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_bezetting_tot
+field_name: field_bezetting_tot
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

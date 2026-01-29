@@ -1,0 +1,23 @@
+uuid: 8b379c95-bff2-4c4c-ae04-4137c03e0aa9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_is_service_or_menu
+    - paragraphs.paragraphs_type.extra_room_services
+  module:
+    - options
+id: paragraph.extra_room_services.field_is_service_or_menu
+field_name: field_is_service_or_menu
+entity_type: paragraph
+bundle: extra_room_services
+label: 'Is Service or Menu'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: service
+default_value_callback: ''
+settings: {  }
+field_type: list_string

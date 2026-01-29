@@ -1,0 +1,8 @@
+uuid: 4d4501bf-665e-43b7-b9a1-442c44da8b11
+langcode: nl
+status: true
+dependencies: {  }
+id: per-provincie
+label: 'Provincie footer'
+description: 'Zalen per provincie, voor in de footer'
+locked: false

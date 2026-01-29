@@ -1,0 +1,18 @@
+.zaal-comfort-room-layouts {
+  margin-top: 64px;
+} 
+.zaal-comfort-room-layouts .field__items {
+  display:flex;
+  flex-wrap: wrap;
+}
+.zaalopstelling-card {
+  border: 3px solid #378cb0;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #fffff8;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+   rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+.zaalopstelling-card__image {
+    justify-items: center;
+}

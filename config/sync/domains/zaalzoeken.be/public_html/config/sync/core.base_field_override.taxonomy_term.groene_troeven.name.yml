@@ -1,0 +1,18 @@
+uuid: e3a859fb-0ce8-4c8c-a976-6bb8cb200eaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.groene_troeven
+id: taxonomy_term.groene_troeven.name
+field_name: name
+entity_type: taxonomy_term
+bundle: groene_troeven
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

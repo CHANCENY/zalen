@@ -1,0 +1,5 @@
+reservation_type_add:
+  route_name: entity.reservation_type.add_form
+  title: 'Add reservation type'
+  appears_on:
+    - entity.reservation_type.collection

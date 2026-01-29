@@ -1,0 +1,19 @@
+uuid: 4a74dc7a-ce26-4bb9-b1b0-2c79399ec861
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pending_balance
+    - node.type.invoices_receipt
+id: node.invoices_receipt.field_pending_balance
+field_name: field_pending_balance
+entity_type: node
+bundle: invoices_receipt
+label: 'Pending balance'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,11 @@
+uuid: be98bdbc-9049-4093-bed0-54c6b86def5b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.email_builder
+label: 'Email builder'
+description: ''
+targetEntityType: node
+cache: true

@@ -1,0 +1,118 @@
+uuid: 7127d678-ec96-4c7f-91ca-0b861075f320
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.per_person_item.field_child_friendly
+    - field.field.paragraph.per_person_item.field_optional_item
+    - field.field.paragraph.per_person_item.field_per_person_item_currency
+    - field.field.paragraph.per_person_item.field_per_person_item_image
+    - field.field.paragraph.per_person_item.field_per_person_item_price
+    - field.field.paragraph.per_person_item.field_per_person_mini_persons
+    - field.field.paragraph.per_person_item.field_person_item_description
+    - field.field.paragraph.per_person_item.field_person_option_image
+    - field.field.paragraph.per_person_item.field_person_pricing_rules
+    - field.field.paragraph.per_person_item.field_short_description
+    - paragraphs.paragraphs_type.per_person_item
+  module:
+    - file
+    - options
+    - svg_image
+    - text
+id: paragraph.per_person_item.default
+targetEntityType: paragraph
+bundle: per_person_item
+mode: default
+content:
+  field_child_friendly:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_optional_item:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_per_person_item_currency:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_per_person_item_image:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_per_person_item_price:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_per_person_mini_persons:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_person_item_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_person_option_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_person_pricing_rules:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_short_description:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden: {  }

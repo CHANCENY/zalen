@@ -1,0 +1,22 @@
+uuid: 84df3ecc-a8a3-4561-98df-09f1abb65333
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.commerciele_gelegenheden
+id: taxonomy_term.commerciele_gelegenheden.status
+field_name: status
+entity_type: taxonomy_term
+bundle: commerciele_gelegenheden
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

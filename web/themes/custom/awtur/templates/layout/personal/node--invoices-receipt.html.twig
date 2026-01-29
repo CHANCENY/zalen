@@ -1,0 +1,83 @@
+<style>
+.invoice-payment{ max-width:750px; padding: 16px; margin:0 auto 32px auto;
+border-left: 10px solid #F1F1F4; border-radius: 5px; font-family:
+  Helvetica, Arial, sans-serif; color: #24262C}
+.invoice-payment h3{ font-weight:700;}
+.invoice-payment-info{ display:flex; justify-content: space-between;}
+.invoice-underline{ border-bottom: 1px solid cadetblue;}
+.invoice-amount{ word-spacing: 10px; color: seagreen;}
+span.invoice-settled-amount {float: right;}
+.invoice-currency{ margin-right: 3px;}
+</style>
+
+<article class="invoice-payment">
+
+  <div class="invoice-underline">
+    <h3>{{ 'Betaal info'|t }}</h3>
+    <div class="invoice-payment-info">
+      <div>
+        {{ content.field_reservation }}
+      </div>
+      <div class="invoice-amount">
+        <span class="invoice-currency">&#8364;</span>{{ content.field_booking_amount }}
+      </div>
+    </div>
+  </div>
+
+  <div class="invoice-underline">
+    <h3>{{ 'Betaal details'|t }}</h3>
+    <div class="invoice-payment-info">
+      <div>
+        {{ content.field_payment_type }}
+      </div>
+      <div>
+        {{ content.field_payment_status }}
+      </div>
+      <div class="invoice-amount">
+        {{ 'Settled amount'|t }}<br>
+        <span class="invoice-settled-amount"><span class="invoice-currency">{{ '&#8364;' }}</span>{{ node.field_settled_amount.value }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="invoice-underline">
+    <h3>{{ 'Saldo'|t }}</h3>
+    <div class="invoice-payment-info">
+      <div>
+        {{ 'Saldo, te regelen met de locatie:'|t }}
+      </div>
+      <div class="invoice-amount">
+        <span class="invoice-currency">{{ '&#8364;' }}</span>{{ content.field_pending_balance }}
+      </div>
+    </div>
+  </div>
+ 
+  {% set roles = user.getroles(TRUE) %} 
+  {% if ('zaal_eigenaar' in roles) or ('premium_zaal' in roles) or ('administrator' in roles) %}
+  <div class="invoice-underline">
+    <h3>{{ 'Platform fee'|t }}</h3>
+    <div class="invoice-payment-info">
+      <div>
+        {{ 'Verrekende commisie:'|t }}
+      </div>
+      <div class="invoice-amount">
+        <span class="invoice-currency">{{ '&#8364;' }}</span>{{ content.field_platform_fee }}
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3>{{ 'Faktuur'|t }}</h3>
+    <div class="invoice-payment-info">
+      <div>
+        {{ 'Download link:'|t }}
+      </div>
+      <div class="">
+        {{ content.field_invoice_pdf }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+</article>       
+

@@ -1,0 +1,19 @@
+uuid: 3f0e06d0-7f39-42cb-ade0-4a79db78b56a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_booking_amount
+    - node.type.invoices_receipt
+id: node.invoices_receipt.field_booking_amount
+field_name: field_booking_amount
+entity_type: node
+bundle: invoices_receipt
+label: 'Booking amount'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

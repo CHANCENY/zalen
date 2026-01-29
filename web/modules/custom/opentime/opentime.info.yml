@@ -1,0 +1,5 @@
+name: 'opentime'
+type: module
+description: 'Implements a time field, weekly repeated days and a closing period.'
+package: Custom
+core_version_requirement: ^10 || ^11

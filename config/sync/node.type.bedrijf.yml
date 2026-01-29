@@ -1,0 +1,17 @@
+uuid: 88fc1aa2-6b6b-4d91-9089-67faec2b7df6
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Bedrijf
+type: bedrijf
+description: 'Gebruik <i>bedrijf</i> om algemende informatie per bedrijf toe te voegen.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

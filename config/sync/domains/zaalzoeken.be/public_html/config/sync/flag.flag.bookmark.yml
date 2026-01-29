@@ -1,0 +1,45 @@
+uuid: fece11bb-9aa4-48c3-97ba-a40ff4499481
+langcode: nl
+status: true
+dependencies:
+  module:
+    - node
+  enforced:
+    module:
+      - flag_bookmark
+_core:
+  default_config_hash: vuzrLaRZ3xV-FmT127t2gLy_p8JDLMWtsKsnCwdWR2Y
+id: bookmark
+label: Verlanglijst
+bundles:
+  - bedrijf
+  - zaal
+entity_type: node
+global: false
+flag_short: Verlanglijst
+flag_long: 'Plaats deze zaal tijdelijk op de verlanglijst'
+flag_message: 'De zaal werd op je verlanglijst toegevoegd'
+unflag_short: 'Verwijder uit de lijst'
+unflag_long: 'Deze zaal werd op de verlanglijst verwijderd'
+unflag_message: 'Succesvol verwijderd uit je verlanglijst'
+unflag_denied_text: ''
+weight: 0
+flag_type: 'entity:node'
+link_type: confirm
+flagTypeConfig:
+  show_in_links:
+    beknopt: beknopt
+    curt: curt
+    full: full
+    teaser: teaser
+  show_as_field: true
+  show_on_form: true
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+linkTypeConfig:
+  flag_confirmation: 'Flag this content?'
+  unflag_confirmation: 'Unflag this content?'
+  flag_create_button: 'Create flagging'
+  flag_delete_button: 'Delete flagging'
+  form_behavior: default

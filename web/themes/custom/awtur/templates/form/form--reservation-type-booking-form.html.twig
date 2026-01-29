@@ -1,0 +1,59 @@
+{#<style>
+.reservation-details {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
+}
+</style>
+
+{{ element.form_build_id }}
+{{ element.form_token }}
+{{ element.form_id }}
+
+<form {{ attributes }}>
+  
+  <h2>{{ 'Check beschikbaarheid'|t }}</h2>
+
+  <div class="availability-calendar">
+  {{ element.availability_calendar }}
+  </div>
+  
+  <h2>{{ 'Reserveer uw zaal'|t }}</h2>
+  <div class="reservation-subject">
+    {{ element.subject }}
+  </div>
+
+  <div class="reservation-date-booking">
+    {{ element.field_date_booking }}
+  </div>
+
+  <div class="reservation-details">
+    <div class="reservation-evenement">
+      {{ element.field_evenement }}
+    </div>
+
+    <div class="reservation-bezetting">
+      {{ element.field_bezetting }}
+    </div>
+  </div>
+
+  <div class="reservation-body">
+    {{ element.reservation_body }}
+  </div>
+
+  <div class="reservation-booking-button">
+   
+  </div>
+
+  <div class="reservation-actions">
+    {{ element.actions }}
+  </div>
+    
+  </form>
+#}
+ {#{{ element.field_booking_button }}#}
+
+<form {{ attributes }}>
+
+  {{ children }} 
+</form>

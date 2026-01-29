@@ -1,0 +1,14 @@
+uuid: 78c3978d-062e-43b7-8467-fcf17ce90d43
+langcode: en
+status: true
+dependencies: {  }
+name: views_teaser_350_x_300_
+label: 'views teaser (300 X 260)'
+effects:
+  fb0726ea-267a-425a-bfaf-0ecd5a04cd7a:
+    uuid: fb0726ea-267a-425a-bfaf-0ecd5a04cd7a
+    id: image_resize
+    weight: 1
+    data:
+      width: 300
+      height: 260

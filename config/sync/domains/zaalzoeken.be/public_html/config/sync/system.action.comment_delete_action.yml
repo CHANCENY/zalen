@@ -1,0 +1,13 @@
+uuid: ebd7017c-d006-49ca-a767-7ec5d762773a
+langcode: nl
+status: true
+dependencies:
+  module:
+    - comment
+_core:
+  default_config_hash: vpBH8OmL4sdesCdeZLsW8KOutB5gkbreWJbfjhfFKaQ
+id: comment_delete_action
+label: 'Reactie verwijderen'
+type: comment
+plugin: 'entity:delete_action:comment'
+configuration: {  }

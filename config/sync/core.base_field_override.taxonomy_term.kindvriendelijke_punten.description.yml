@@ -1,0 +1,21 @@
+uuid: 27d3dff9-e09c-42b9-a185-afb329872fbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.kindvriendelijke_punten
+  module:
+    - text
+id: taxonomy_term.kindvriendelijke_punten.description
+field_name: description
+entity_type: taxonomy_term
+bundle: kindvriendelijke_punten
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

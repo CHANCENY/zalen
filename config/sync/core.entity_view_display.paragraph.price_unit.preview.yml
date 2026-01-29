@@ -1,0 +1,48 @@
+uuid: 1f0e83db-8ee6-4144-89f7-aaddf12f445a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.price_unit.field_hourly_unit
+    - field.field.paragraph.price_unit.field_per_day_unit
+    - field.field.paragraph.price_unit.field_pricing_type
+    - field.field.paragraph.price_unit.field_pricing_unit
+    - paragraphs.paragraphs_type.price_unit
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: paragraph.price_unit.preview
+targetEntityType: paragraph
+bundle: price_unit
+mode: preview
+content:
+  field_hourly_unit:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_per_day_unit:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_pricing_unit:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_pricing_type: true

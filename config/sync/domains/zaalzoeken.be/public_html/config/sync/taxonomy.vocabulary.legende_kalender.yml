@@ -1,0 +1,9 @@
+uuid: dd5f5724-2fa8-4f86-809c-5fe603e93557
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Legende kalender'
+vid: legende_kalender
+description: 'Legende voor de onbeschikbaarheid in de kalender weergave'
+weight: 0
+new_revision: false

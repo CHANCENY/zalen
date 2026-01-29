@@ -1,0 +1,41 @@
+id: d7_reservation_entity_form_display_subject
+label: Reservation subject form display configuration
+migration_tags:
+  - Drupal 7
+  - Configuration
+source:
+  plugin: reservation_type
+  constants:
+    entity_type: reservation
+    field_name: subject
+    form_mode: default
+    options:
+      type: string_textfield
+      weight: 10
+process:
+  entity_type: 'constants/entity_type'
+  field_name: 'constants/field_name'
+  form_mode: 'constants/form_mode'
+  options: 'constants/options'
+  bundle:
+    -
+      plugin: migration_lookup
+      source: type
+      migration: d7_reservation_type
+    -
+      plugin: skip_on_empty
+      method: row
+  hidden:
+    plugin: static_map
+    source: reservation_subject_field
+    map:
+      # If reservation_subject_field = FALSE, then hidden = TRUE.
+      0: true
+      # If reservation_subject_field = TRUE, then hidden = FALSE.
+      1: false
+    default_value: false
+destination:
+  plugin: component_entity_form_display
+migration_dependencies:
+  required:
+    - d7_reservation_type

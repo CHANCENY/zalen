@@ -1,0 +1,7 @@
+# plugin payment provider (as mollie, etc..)
+services:
+  plugin.manager.payment_provider:
+    class: Drupal\payment_provider\PaymentProviderPluginManager
+    parent: default_plugin_manager
+
+

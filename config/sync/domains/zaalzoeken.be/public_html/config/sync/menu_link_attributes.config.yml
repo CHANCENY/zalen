@@ -1,0 +1,22 @@
+attributes:
+  container_class:
+    label: 'Container class(es)'
+    description: 'CSS class for the menu list item (&lt;li&gt;). Separate multiple classes by space.'
+  class:
+    label: 'Link class(es)'
+    description: 'CSS class for the link (&lt;a href&gt;). Separate multiple classes by space.'
+  target:
+    label: 'Link target'
+    description: ''
+    options:
+      blank: 'New window (blank)'
+      self: 'Same window (self)'
+    default_value: ''
+  data-dialog-type:
+    label: 'Data Dialog Type'
+    description: 'Used by Drupal AJAX modal system (e.g. "modal").'
+    default_value: null
+  data-dialog-options:
+    label: 'Data Dialog Options'
+    description: 'JSON-formatted options for modal (e.g. {"width":600}).'
+    default_value: ''

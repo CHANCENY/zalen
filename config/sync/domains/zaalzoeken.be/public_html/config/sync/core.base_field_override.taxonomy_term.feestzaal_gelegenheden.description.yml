@@ -1,0 +1,21 @@
+uuid: 61314bac-e3a9-40ba-8b92-9de281d17b62
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.feestzaal_gelegenheden
+  module:
+    - text
+id: taxonomy_term.feestzaal_gelegenheden.description
+field_name: description
+entity_type: taxonomy_term
+bundle: feestzaal_gelegenheden
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

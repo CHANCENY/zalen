@@ -1,0 +1,20 @@
+uuid: b3ce73e2-943d-4903-9bda-c062168d7993
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.concert_gelegenheden
+  module:
+    - path
+id: taxonomy_term.concert_gelegenheden.path
+field_name: path
+entity_type: taxonomy_term
+bundle: concert_gelegenheden
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

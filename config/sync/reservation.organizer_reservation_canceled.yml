@@ -1,0 +1,2 @@
+template_mail: '<p>Hi [reservation:author:account-name],</p><p>Your reservation with booking id: [reservation:field_boeking_id], was unfortunately not confirmed by [node:title]. You can place the reservation again or choose a different location.</p><p>&nbsp;</p><p>Thank you.</p>'
+template_mail_format: full_html

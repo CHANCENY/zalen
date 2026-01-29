@@ -1,0 +1,162 @@
+{%
+  set classes = [
+    'node',
+    'bedrijf-full',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+
+{{ attach_library('awtur/personal-bedrijf') }}
+{{ attach_library('awtur/foto-grid') }}
+
+{% set base_path = drupal_token('site:base-path') ~ '/' %}
+  {% set thema_pad = base_path ~ directory %} {# path('<front>') {{ directory }} or {{ active_theme_path() }} #}
+
+<article{{ attributes.addClass(classes) }}>
+  <header{% if page %} class="bedrijf-full" {% endif %}>
+    <div class="bedrijf-full-header">
+      <div class="bedrijf-full-logo">
+        {{ content.field_logo.0 }}
+      </div>
+      <div class="bedrijf-full-label">
+        <h1>{{ label }}</h1>
+      </div>
+      <div class="bedrijf-full-header-adres">
+        <img src="{{ thema_pad }}/images/icons/bedrijf/town-icon.svg" alt="town icon">
+          {{ content.field_adres.0.postal_code }}
+          &nbsp;
+          {{ content.field_adres.0.locality }}
+      </div>
+      <div class="bedrijf-full-regio">
+        <img src="{{ thema_pad }}/images/icons/bedrijf/lion-icon.svg" alt="lion icon">
+        {{ 'Regio'|t }}&nbsp;{{  content.field_stadsgewest }}
+      </div>
+    </div>
+    <div class="node__meta">
+        {{ metadata }}
+    </div>
+  </header>
+
+{# bookmark #}
+      <div>
+        {{ content.flag_bookmark }}{{ content.links }}
+      </div>
+
+    <div>
+      {{ drupal_view('beschikbare_zalen', 'blok_troevenbalk_bedrijf_auteur') }}
+    </div>
+
+  {# slogan #}
+  {% if content.field_slogan.0 and content.field_foto.0 %}
+    <div class="header-slogan">{{ content.field_slogan.0 }}</div>
+  {% endif %}
+  
+  {# MEDIA #}
+  {{ drupal_view('beschikbare_zalen', 'blok_media_bedrijf_auteur') }}
+  
+  {#----CONTACT INFORMATION & BUSINESS HOURS----#}
+  {{ drupal_entity('node', node.id, 'contact') }}
+
+  <div{{ content_attributes.addClass('node__content', 'clearfix', page ? 'bedrijf-full') }}>
+
+    <article class="tab-bedrijf-locatie">
+      <div  class="tab-bedrijf-locatie-afstanden">
+        <div  class="tab-bedrijf-locatie-afstand">
+            <p><img src="{{ thema_pad }}/images/icons/bedrijf/bus-icoon.svg" alt="mono kleur icoon bushalte">{{ 'Bus:'|t }}
+                {% if content.field_afstand_bus.0 %}
+                <b>{{ content.field_afstand_bus.0 }}</b>
+                  {% else %}
+                  {{ '++KM'|t }}
+                {% endif %}
+            </p>
+        </div>
+        <div class="tab-bedrijf-locatie-afstand">
+          <p><img src="{{ thema_pad }}/images/icons/bedrijf/tram-icoon.svg" alt="mono kleur icoon tramhalte">{{ 'Tram:'|t }}
+              {% if content.field_afstand_tram.0 %}
+              <b>{{ content.field_afstand_tram.0 }}</b>
+                {% else %}
+                {{ '++KM'|t }}
+              {% endif %}
+          </p>
+        </div>
+        <div class="tab-bedrijf-locatie-afstand">
+            <p><img src="{{ thema_pad }}/images/icons/bedrijf/metro-icoon.svg" alt="mono kleur icoon metro halte">{{ 'Metro:'|t }}
+                {% if content.field_afstand_metro.0 %}
+                <b>{{ content.field_afstand_metro.0 }}</b>
+                  {% else %}
+                  {{ '++KM'|t }}
+                {% endif %}
+            </p>
+        </div>
+        <div class="tab-bedrijf-locatie-afstand">
+            <p><img src="{{ thema_pad }}/images/icons/bedrijf/trein-icoon.svg" alt="mono kleur icoon trein station">{{ 'Trein:'|t }}
+                {% if content.field_afstand_trein_station.0 %}
+                <b>{{ content.field_afstand_trein_station.0 }}</b>
+                  {% else %}
+                  {{ '++KM'|t }}
+                {% endif %}
+            </p>
+        </div>
+      </div>
+      <div class="tab-bedrijf-locatie-map">
+        {{ content.field_lat_long.0 }}
+      </div>
+    </article>
+
+    {# additional information #}
+    <div class="union-additional-info">
+      {{ content.field_keurmerken }}
+    </div>
+
+
+    {#----COMFORT & PARKEREN----#}
+    {{ drupal_view('beschikbare_zalen', 'blok_bedrijf_comfort_auteur') }}
+
+    {# body #}
+    {{ drupal_view('beschikbare_zalen', 'blok_beschrijving_bedrijf_auteur') }}
+
+
+
+
+        {# price-lists #}
+   {# <div class="union-price-lists">
+      {{ content.field_prijslijsten }}
+    </div>#}
+  </div>
+
+
+</article>
+
+  <div class="bedrijf-full-zalen">
+    <h2>Alle zalen behorend tot {{ label }}</h2>
+    {{ drupal_view('beschikbare_zalen',  'block_zalen_auteur_all')}}
+  </div>
+
+{% if node.field_overnight_room.value %}
+<div class="bedrijf-full-zalen">
+  <h2>{{ "Overnachtingskamers beschikbaar"|t }}  {{ label }}</h2>
+  <div class="views-element-container">
+    <div class="zaal-per-auteur-view view view-beschikbare-zalen view-id-beschikbare_zalen view-display-id-block_zalen_auteur_all">
+      <div class="view-content">
+        {% for paragraph in node.field_overnight_room.value %}
+          <div class="views-row">
+            {% set paragraph_data = getParagraph(paragraph.target_id) %}
+            {% set data = {data: paragraph_data } %}
+            {% include 'themes/custom/awtur/templates/layout/personal/overnight-rooms.html.twig' with data %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif  %}
+
+  <div class="bedrijf-full-zalen">
+    <h2>Locaties in de buurt</h2>
+    {{ drupal_view('aanbevelingen_dichtbij',  'blok_bedrijven_dichtbij')}}
+  </div>

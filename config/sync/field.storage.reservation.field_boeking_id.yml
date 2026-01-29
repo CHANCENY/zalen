@@ -1,0 +1,21 @@
+uuid: 31f2d2ad-ddc4-488d-82a6-a9f68b1ba8e6
+langcode: en
+status: true
+dependencies:
+  module:
+    - reservation
+    - serial
+id: reservation.field_boeking_id
+field_name: field_boeking_id
+entity_type: reservation
+type: serial
+settings:
+  start_value: 1000
+  init_existing_entities: 1
+module: serial
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

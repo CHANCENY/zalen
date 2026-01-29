@@ -1,0 +1,13 @@
+uuid: fb1526f9-4791-45f2-85fb-049a84c5dc66
+langcode: nl
+status: true
+dependencies:
+  module:
+    - reservation
+_core:
+  default_config_hash: o35AuNtEYVTWhLUqOCA5i2q_R9hcD1fUloUz4neTvT0
+id: reservation_delete_action
+label: 'Delete reservation'
+type: reservation
+plugin: 'entity:delete_action:reservation'
+configuration: {  }

@@ -1,0 +1,5 @@
+label: US-Bundesstaaten
+description: 'Eine anklickbare Karte der U.S.-Bundesstaaten.'
+help: 'Eine anklickbare Karte der U.S.-Bundesstaaten.'
+category: Karten
+url: us_states.svg

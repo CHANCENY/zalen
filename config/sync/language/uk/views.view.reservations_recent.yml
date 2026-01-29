@@ -1,0 +1,9 @@
+display:
+  default:
+    display_title: Головне
+    display_options:
+      fields:
+        changed:
+          settings:
+            future_format: '@interval віднині'
+            past_format: '@interval тому'

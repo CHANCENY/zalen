@@ -1,0 +1,3 @@
+services:
+  opentime.manager:
+    class: Drupal\opentime\OpentimeManager

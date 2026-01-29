@@ -1,0 +1,5 @@
+label: 'Bereken betaling per persoon'
+description: 'Vink dit vakje aan als u wilt dat de betaling wordt berekend op basis van het aantal personen'
+settings:
+  on_label: 'Per persoon'
+  off_label: 'Per persoon'

@@ -1,0 +1,20 @@
+uuid: 0508723e-134d-45b9-9c44-7ad79d219915
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_afstand_metro
+field_name: field_afstand_metro
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,22 @@
+uuid: f7400384-8e72-453a-b182-f24e2f14f936
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.reservation.reservation_body
+    - reservation.type.type_booking
+  module:
+    - text
+id: reservation.type_booking.reservation_body
+field_name: reservation_body
+entity_type: reservation
+bundle: type_booking
+label: Toelichting
+description: 'Beschrijf uw gelegenheid. Speciale wensen...'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

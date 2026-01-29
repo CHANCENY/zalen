@@ -1,0 +1,29 @@
+uuid: ade41002-63cb-4ae6-9a33-6f87e953819d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.slogan_informatie
+  module:
+    - system
+    - views
+  theme:
+    - awtur
+id: views_block__slogan_informatie_blok_slogan
+theme: awtur
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'views_block:slogan_informatie-blok_slogan'
+settings:
+  id: 'views_block:slogan_informatie-blok_slogan'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /slogan-inspiratie

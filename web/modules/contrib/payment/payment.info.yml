@@ -1,0 +1,14 @@
+name: Payment
+description: Allows payments to be made using any of the available payment methods.
+core_version_requirement: ^9.3 || ^10
+configure: payment.admin
+type: module
+package: Payment
+dependencies:
+  - currency:currency (3.x)
+  - plugin:plugin (2.x)
+
+# Information added by Drupal.org packaging script on 2022-10-26
+version: '8.x-2.2'
+project: 'payment'
+datestamp: 1666817640

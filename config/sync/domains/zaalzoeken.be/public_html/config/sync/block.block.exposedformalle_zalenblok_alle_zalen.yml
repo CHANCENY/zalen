@@ -1,0 +1,28 @@
+uuid: 6b1c0d10-5305-455b-ad7c-09b7a1ee968d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.alle_zalen
+  module:
+    - system
+    - views
+  theme:
+    - awtur
+id: exposedformalle_zalenblok_alle_zalen
+theme: awtur
+region: sidebar_first
+weight: -14
+provider: null
+plugin: 'views_exposed_filter_block:alle_zalen-blok_alle_zalen'
+settings:
+  id: 'views_exposed_filter_block:alle_zalen-blok_alle_zalen'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /alle-zalen

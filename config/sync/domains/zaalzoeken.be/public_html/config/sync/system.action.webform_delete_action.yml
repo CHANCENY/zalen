@@ -1,0 +1,13 @@
+uuid: d84668f8-7dda-433d-a320-5914e23851bb
+langcode: nl
+status: true
+dependencies:
+  module:
+    - webform
+_core:
+  default_config_hash: e1bCTp0ryXZZtnS9nlVAbtoWz3-8fmbNlqKY3GHzbsM
+id: webform_delete_action
+label: 'Formulier verwijderen'
+type: webform
+plugin: webform_delete_action
+configuration: {  }

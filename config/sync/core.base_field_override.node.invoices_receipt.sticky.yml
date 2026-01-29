@@ -1,0 +1,22 @@
+uuid: 10c44130-e705-46d8-95a7-8c3a67924532
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.invoices_receipt
+id: node.invoices_receipt.sticky
+field_name: sticky
+entity_type: node
+bundle: invoices_receipt
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,20 @@
+uuid: 570a7e40-527a-43fe-892a-57292122181e
+langcode: en
+status: true
+dependencies:
+  config:
+    - reservation.type.type_booking
+id: reservation.type_booking.name
+field_name: name
+entity_type: reservation
+bundle: type_booking
+label: Name
+description: "The reservation author's name."
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

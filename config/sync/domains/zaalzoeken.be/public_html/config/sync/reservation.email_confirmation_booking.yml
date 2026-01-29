@@ -1,0 +1,2 @@
+template_mail: '<p>Hello [current-user:name]</p><p>This is message three [reservation:field_boeking_id]</p>'
+template_mail_format: full_html

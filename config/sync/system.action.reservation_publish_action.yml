@@ -1,0 +1,13 @@
+uuid: 906fe679-0404-408f-8dcc-24e2716cb91a
+langcode: nl
+status: true
+dependencies:
+  module:
+    - reservation
+_core:
+  default_config_hash: 4Tx6_gdeF2NsH2YM73Tn-x7WDoITr2smXbUgxbhEVdk
+id: reservation_publish_action
+label: 'Publish reservation'
+type: reservation
+plugin: 'entity:publish_action:reservation'
+configuration: {  }

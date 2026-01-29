@@ -1,0 +1,20 @@
+uuid: 32baacf2-6419-4ec0-bfac-848dcf638ceb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.legende_kalender
+  module:
+    - path
+id: taxonomy_term.legende_kalender.path
+field_name: path
+entity_type: taxonomy_term
+bundle: legende_kalender
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

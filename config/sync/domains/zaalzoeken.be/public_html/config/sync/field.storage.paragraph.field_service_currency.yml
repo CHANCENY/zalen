@@ -1,0 +1,27 @@
+uuid: 28b590d7-ee5d-4349-b5ec-3f42b6910bda
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_service_currency
+field_name: field_service_currency
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: usd
+      label: USD
+    -
+      value: eur
+      label: EUR
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

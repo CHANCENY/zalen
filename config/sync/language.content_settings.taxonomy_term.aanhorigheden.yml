@@ -1,0 +1,18 @@
+uuid: f31bf87a-5a64-41d4-95e4-20b0a94dc73f
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.aanhorigheden
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.aanhorigheden
+target_entity_type_id: taxonomy_term
+target_bundle: aanhorigheden
+default_langcode: site_default
+language_alterable: true

@@ -1,0 +1,9 @@
+uuid: 96b771da-4179-4255-b448-ad2c94c0a1d3
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Feestzaal gelegenheden'
+vid: feestzaal_gelegenheden
+description: 'Feestzaal gelegenheden, doelen, mogelijkheden'
+weight: 0
+new_revision: false

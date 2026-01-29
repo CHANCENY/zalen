@@ -1,0 +1,65 @@
+uuid: 192ad2a5-7867-492e-82e7-f253bd3dbfe8
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_bedrijf_adres
+    - field.field.user.user.field_bericht_voor_rolupdate
+    - field.field.user.user.field_betaling_accepteren_via_mo
+    - field.field.user.user.field_ondernemingsnummer
+    - field.field.user.user.field_streek
+    - field.field.user.user.field_vip_abonnement_vervaldatum
+    - field.field.user.user.user_picture
+  module:
+    - address
+    - datetime
+    - user
+_core:
+  default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_bedrijf_adres:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_ondernemingsnummer:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_streek:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_vip_abonnement_vervaldatum:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  member_for:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_bericht_voor_rolupdate: true
+  field_betaling_accepteren_via_mo: true
+  langcode: true
+  user_picture: true

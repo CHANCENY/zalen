@@ -1,0 +1,14 @@
+uuid: 5a535ab9-fe93-4db7-85aa-bc9e6dea41b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.zaal_eigenaar
+  module:
+    - user
+id: user_add_role_action.zaal_eigenaar
+label: 'Add the Partner role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: zaal_eigenaar

@@ -1,0 +1,16 @@
+uuid: aac227a0-5461-48e8-b921-8ec75d29bd7c
+langcode: nl
+status: true
+dependencies:
+  enforced:
+    module:
+      - webform_node
+_core:
+  default_config_hash: BuY_3PjmYtRTSuvyFORJZUe0-TQiNXEE6yYQ_dkjxW8
+name: Formulier
+type: webform
+description: 'Een basispagina voorzien van een formulier.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

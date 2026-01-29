@@ -1,0 +1,19 @@
+uuid: b8b69c4c-56c9-47c8-9a69-58f06a0ea5f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_room_type
+    - paragraphs.paragraphs_type.sleeping_accommodation_room
+id: paragraph.sleeping_accommodation_room.field_room_type
+field_name: field_room_type
+entity_type: paragraph
+bundle: sleeping_accommodation_room
+label: 'Room Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

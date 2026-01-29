@@ -1,0 +1,2 @@
+template_mail: '<p>Hi [node:author:account-name],</p><p>Confirmation for reservation id [reservation:field_boeking_id], unfortunately was not received. If the dates are not available, please adjust them on your calendar. The event organizer was informed that the reservation was canceled.</p><p>&nbsp;</p><p>Thank you.</p>'
+template_mail_format: full_html

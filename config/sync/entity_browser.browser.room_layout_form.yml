@@ -1,0 +1,31 @@
+uuid: 391f662c-9c4e-4fa9-b20b-163a7a4190b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.room_layout_picker
+  module:
+    - views
+name: room_layout_form
+label: 'Room layout form'
+display: iframe
+display_configuration:
+  width: '650'
+  height: '500'
+  link_text: 'Select entities'
+  auto_open: true
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  0c0a80c5-e229-40e1-8e35-1a7dc8af7dff:
+    id: view
+    uuid: 0c0a80c5-e229-40e1-8e35-1a7dc8af7dff
+    label: view
+    weight: 1
+    settings:
+      submit_text: 'Add Layouts'
+      auto_select: false
+      view: room_layout_picker
+      view_display: entity_browser_room_layout

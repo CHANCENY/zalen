@@ -1,0 +1,10 @@
+uuid: 11f36449-aed8-4d42-8673-79c7ebf685ac
+langcode: en
+status: true
+dependencies: {  }
+id: reservation_overnight_room
+label: 'reservation overnight room'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

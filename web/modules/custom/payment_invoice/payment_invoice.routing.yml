@@ -1,0 +1,22 @@
+# View page Vip Account for user
+payment_invoice.vip_account:
+  path: '/vip_account'
+  defaults:
+    _form: 'Drupal\payment_invoice\Form\PremiumAccountForm'
+    _title: 'Vip Account'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  options:
+    no_cache: 'TRUE'
+
+# Invoicing
+payment_invoice.invoicing:
+  path: '/invoicing/test'
+  defaults:
+    _controller: 'Drupal\payment_invoice\Controller\InvoicingController::invoice'
+    _title: 'Invoicing'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+
+

@@ -1,0 +1,23 @@
+uuid: 397561cb-0d35-4173-9df0-553c9daa6951
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fietsen
+    - node.type.bedrijf
+id: node.bedrijf.field_fietsen
+field_name: field_fietsen
+entity_type: node
+bundle: bedrijf
+label: Bicycles
+description: 'The number of bicycles that can be safely parked'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 9999
+  prefix: ''
+  suffix: ''
+field_type: integer

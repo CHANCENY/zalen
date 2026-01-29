@@ -1,0 +1,23 @@
+uuid: 4efe1fce-7bcf-4402-8fb4-060b85cfbbf1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_wagens
+    - node.type.bedrijf
+id: node.bedrijf.field_wagens
+field_name: field_wagens
+entity_type: node
+bundle: bedrijf
+label: Cars
+description: 'Number of parking spaces for cars'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 9999
+  prefix: ''
+  suffix: ''
+field_type: integer

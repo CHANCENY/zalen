@@ -1,0 +1,20 @@
+uuid: 590fd990-f0be-447d-80ec-2a83334451f5
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+  theme:
+    - awtur
+id: languageswitcher
+theme: awtur
+region: secondary_menu
+weight: -13
+provider: null
+plugin: 'language_block:language_interface'
+settings:
+  id: 'language_block:language_interface'
+  label: 'Language switcher'
+  label_display: '0'
+  provider: language
+visibility: {  }

@@ -1,0 +1,14 @@
+uuid: a6f82d28-50c8-4499-9cae-0919ef26c59e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.zaal_eigenaar
+  module:
+    - user
+id: user_remove_role_action.zaal_eigenaar
+label: 'Remove the Partner role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: zaal_eigenaar

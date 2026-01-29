@@ -1,0 +1,19 @@
+uuid: 7d6a75f6-5fd0-4575-8ed1-d5e1d7b11a0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_gebruik
+    - taxonomy.vocabulary.zaalopstellingen
+id: taxonomy_term.zaalopstellingen.field_gebruik
+field_name: field_gebruik
+entity_type: taxonomy_term
+bundle: zaalopstellingen
+label: Gebruik
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

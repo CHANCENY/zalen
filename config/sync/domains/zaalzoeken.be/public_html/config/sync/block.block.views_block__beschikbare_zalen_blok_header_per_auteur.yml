@@ -1,0 +1,38 @@
+uuid: 9cdad153-bf90-43ca-9182-0cf7eb614f66
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.beschikbare_zalen
+  module:
+    - node
+    - system
+    - views
+  theme:
+    - awtur
+id: views_block__beschikbare_zalen_blok_header_per_auteur
+theme: awtur
+region: highlighted
+weight: -15
+provider: null
+plugin: 'views_block:beschikbare_zalen-blok_header_per_auteur'
+settings:
+  id: 'views_block:beschikbare_zalen-blok_header_per_auteur'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      zaal: zaal
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/node/*/edit'

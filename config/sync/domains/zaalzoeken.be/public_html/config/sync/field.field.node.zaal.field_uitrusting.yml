@@ -1,0 +1,29 @@
+uuid: a7e4620c-e564-45ec-918b-038bab5ecebd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_uitrusting
+    - node.type.zaal
+    - taxonomy.vocabulary.zaal_comfort
+id: node.zaal.field_uitrusting
+field_name: field_uitrusting
+entity_type: node
+bundle: zaal
+label: Equipment
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      zaal_comfort: zaal_comfort
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

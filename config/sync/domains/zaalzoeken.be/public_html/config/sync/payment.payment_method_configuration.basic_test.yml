@@ -1,0 +1,17 @@
+uuid: 081aa90a-edea-4077-a21b-7772d78fae3f
+langcode: en
+status: true
+dependencies: {  }
+id: basic_test
+label: 'Basic test'
+ownerId: 1
+pluginConfiguration:
+  message_text: 'For testing purpose only'
+  message_text_format: plain_text
+  brand_label: 'Test Payment'
+  execute_status_id: payment_success
+  capture: false
+  capture_status_id: payment_success
+  refund: false
+  refund_status_id: payment_refunded
+pluginId: payment_basic

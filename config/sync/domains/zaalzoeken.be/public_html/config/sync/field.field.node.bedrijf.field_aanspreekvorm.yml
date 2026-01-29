@@ -1,0 +1,23 @@
+uuid: 04a7a333-dab3-4cbe-9387-3b898050a05f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_aanspreekvorm
+    - node.type.bedrijf
+  module:
+    - options
+id: node.bedrijf.field_aanspreekvorm
+field_name: field_aanspreekvorm
+entity_type: node
+bundle: bedrijf
+label: 'Form of address'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: Mw
+default_value_callback: ''
+settings: {  }
+field_type: list_string

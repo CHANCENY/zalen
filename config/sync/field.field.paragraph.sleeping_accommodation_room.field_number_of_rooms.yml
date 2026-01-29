@@ -1,0 +1,23 @@
+uuid: 1c70becd-fe80-4782-ba4b-f99c4cf68459
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_number_of_rooms
+    - paragraphs.paragraphs_type.sleeping_accommodation_room
+id: paragraph.sleeping_accommodation_room.field_number_of_rooms
+field_name: field_number_of_rooms
+entity_type: paragraph
+bundle: sleeping_accommodation_room
+label: 'Number of Rooms'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,29 @@
+uuid: 2c442ee0-0396-4557-91c7-451b4c3339bb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - room_tariff
+id: node.field_regels
+field_name: field_regels
+entity_type: node
+type: tariff_rules
+settings:
+  type_rule_tariff:
+    minprice: 'Min order price'
+    if_large: 'Price, if more than'
+  subtype_rule_if_more:
+    hours: Hours
+    days: Days
+  type_pattern_tariff:
+    per_hour: 'In an hour'
+    inan_day: 'In an day'
+    i_person: 'Per person'
+module: room_tariff
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

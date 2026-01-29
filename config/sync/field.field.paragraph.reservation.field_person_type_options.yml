@@ -1,0 +1,59 @@
+uuid: 6104be4c-efea-40c0-aa2f-61b72e009405
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_person_type_options
+    - paragraphs.paragraphs_type.reservation
+    - paragraphs.paragraphs_type.reservation_person_options
+id: paragraph.reservation.field_person_type_options
+field_name: field_person_type_options
+entity_type: paragraph
+bundle: reservation
+label: 'Person Type Options'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      reservation_person_options: reservation_person_options
+    negate: 0
+    target_bundles_drag_drop:
+      extra_room_services:
+        weight: 12
+        enabled: false
+      per_day_price_rules:
+        weight: 14
+        enabled: false
+      per_day_unit:
+        weight: 15
+        enabled: false
+      per_hour:
+        weight: 16
+        enabled: false
+      per_hour_unit_rules:
+        weight: 17
+        enabled: false
+      per_person_item:
+        weight: 18
+        enabled: false
+      person_price_rules:
+        weight: 13
+        enabled: false
+      price_unit:
+        weight: 19
+        enabled: false
+      reservation:
+        weight: 20
+        enabled: false
+      reservation_extra_services:
+        weight: 21
+        enabled: false
+      reservation_person_options:
+        weight: 22
+        enabled: true
+field_type: entity_reference

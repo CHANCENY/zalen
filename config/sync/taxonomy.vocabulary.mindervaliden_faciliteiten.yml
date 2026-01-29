@@ -1,0 +1,9 @@
+uuid: e35ef6ba-e3b3-434f-a9ae-ac4e64eb5340
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Mindervaliden faciliteiten'
+vid: mindervaliden_faciliteiten
+description: 'Voorzieningen, aanpassingen voor midervalide personen'
+weight: 0
+new_revision: false

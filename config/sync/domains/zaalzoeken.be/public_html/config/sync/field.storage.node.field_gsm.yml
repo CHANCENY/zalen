@@ -1,0 +1,19 @@
+uuid: 1a5e13dc-2add-4466-9bfb-1dd680d664a4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - telephone
+id: node.field_gsm
+field_name: field_gsm
+entity_type: node
+type: telephone
+settings: {  }
+module: telephone
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

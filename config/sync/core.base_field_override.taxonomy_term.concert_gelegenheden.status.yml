@@ -1,0 +1,22 @@
+uuid: 901c4cf5-0d6f-4ab1-bc8a-bd3a8410e691
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.concert_gelegenheden
+id: taxonomy_term.concert_gelegenheden.status
+field_name: status
+entity_type: taxonomy_term
+bundle: concert_gelegenheden
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

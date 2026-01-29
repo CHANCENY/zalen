@@ -1,0 +1,20 @@
+services:
+  room_custom_setting.mail_handler:
+    class: Drupal\room_custom_setting\Mail\MailHandler
+    arguments: ['@plugin.manager.mail', '@language_manager', '@language.default', '@string_translation']
+
+  room_custom_setting.manager_html_mail:
+    class: Drupal\room_custom_setting\Mail\HtmlMailManager
+    arguments: ['@container.namespaces', '@cache.discovery', '@module_handler', '@config.factory', '@logger.factory', '@string_translation', '@renderer']
+
+  room_custom_setting.user_manager_mail:
+    class: Drupal\room_custom_setting\Mail\UserManagerMail
+    arguments: ['@room_custom_setting.mail_handler', '@request_stack', '@config.factory']
+
+  room_custom_setting.user_owner_mail:
+    class: Drupal\room_custom_setting\Mail\UserOwnerMail
+    arguments: ['@room_custom_setting.mail_handler', '@request_stack', '@config.factory']
+
+  room_custom_setting.user_author_mail:
+    class: Drupal\room_custom_setting\Mail\UserAuthorMail
+    arguments: ['@room_custom_setting.mail_handler', '@request_stack', '@config.factory']

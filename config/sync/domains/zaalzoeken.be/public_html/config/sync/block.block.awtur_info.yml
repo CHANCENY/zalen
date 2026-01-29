@@ -1,0 +1,25 @@
+uuid: 79739541-dd3f-4784-a9e4-28842408ba4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.info
+  module:
+    - system
+  theme:
+    - awtur
+id: awtur_info
+theme: awtur
+region: footer_fourth
+weight: -19
+provider: null
+plugin: 'system_menu_block:info'
+settings:
+  id: 'system_menu_block:info'
+  label: Info
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

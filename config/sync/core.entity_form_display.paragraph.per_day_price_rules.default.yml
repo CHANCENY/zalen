@@ -1,0 +1,30 @@
+uuid: 95d98a13-93ae-4d35-9618-0bbf4715c2df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.per_day_price_rules.field_if_days_booked
+    - field.field.paragraph.per_day_price_rules.field_set_amount
+    - paragraphs.paragraphs_type.per_day_price_rules
+id: paragraph.per_day_price_rules.default
+targetEntityType: paragraph
+bundle: per_day_price_rules
+mode: default
+content:
+  field_if_days_booked:
+    type: number
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_set_amount:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

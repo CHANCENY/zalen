@@ -1,0 +1,21 @@
+uuid: c32d1b3a-1860-4249-9b7d-54d4fef95ed7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_daily_currency
+    - node.type.zaal
+id: node.zaal.field_daily_currency
+field_name: field_daily_currency
+entity_type: node
+bundle: zaal
+label: 'Daily Currency'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: eur
+default_value_callback: ''
+settings: {  }
+field_type: string

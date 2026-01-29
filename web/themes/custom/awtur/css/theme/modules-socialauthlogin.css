@@ -1,0 +1,20 @@
+﻿
+/*page kaart for global styling*/
+
+/*fix region sidebar*/
+/* @media (min-width: 851px) {
+  #content {}
+} */
+div#block-socialauthlogin {
+  margin: 10px;
+  margin-bottom: 30px;
+}
+#block-socialauthlogin .content {
+  text-align: center;
+}
+#block-socialauthlogin .content a {
+  display: inline-block;
+  margin: 0 20px;
+  background: #ccc;
+}
+

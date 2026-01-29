@@ -1,0 +1,7 @@
+label: Lesezeichen
+flag_short: Kennzeichnen
+flag_long: 'Diesen Beitrag zu den Lesezeichen hinzufügen.'
+flag_message: 'Dieser Beitrag wurde zu Ihren Lesezeichen hinzugefügt'
+unflag_short: 'Lesezeichen entfernen'
+unflag_long: 'Diesen Beitrag aus den Lesezeichen entfernen'
+unflag_message: 'Dieser Beitrag wurde aus den Lesezeichen entfernt'

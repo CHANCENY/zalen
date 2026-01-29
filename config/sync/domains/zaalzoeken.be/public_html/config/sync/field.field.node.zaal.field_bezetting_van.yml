@@ -1,0 +1,25 @@
+uuid: 12d25cdf-bf26-4e9b-b080-144d8f7525cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bezetting_van
+    - node.type.zaal
+id: node.zaal.field_bezetting_van
+field_name: field_bezetting_van
+entity_type: node
+bundle: zaal
+label: 'Occupation of'
+description: 'Minimum occupancy (if applicable)'
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: 0
+  max: 10000
+  prefix: ''
+  suffix: ''
+field_type: integer

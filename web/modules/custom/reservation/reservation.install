@@ -1,0 +1,118 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Reservation module.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements hook_uninstall().
+ */
+function reservation_uninstall() {
+  // Remove the reservation fields.
+  $storage = \Drupal::entityTypeManager()->getStorage('field_storage_config');
+  $fields = $storage->loadByProperties(['type' => 'reservation']);
+  $storage->delete($fields);
+
+  // Remove state setting.
+  \Drupal::state()->delete('reservation.node_reservation_statistics_scale');
+}
+
+/**
+ * Implements hook_install().
+ */
+function reservation_install() {
+  // By default, maintain entity statistics for reservations.
+  // @see \Drupal\reservation\ReservationStatisticsInterface
+  \Drupal::state()->set('reservation.maintain_entity_statistics', TRUE);
+}
+
+/**
+ * Implements hook_schema().
+ */
+function reservation_schema() {
+  $schema['reservation_entity_statistics'] = [
+    'description' => 'Maintains statistics of entity and reservations posts to show "new" and "updated" flags.',
+    'fields' => [
+      'entity_id' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The entity_id of the entity for which the statistics are compiled.',
+      ],
+      'entity_type' => [
+        'type' => 'varchar_ascii',
+        'not null' => TRUE,
+        'default' => 'node',
+        'length' => EntityTypeInterface::ID_MAX_LENGTH,
+        'description' => 'The entity_type of the entity to which this reservation is a reply.',
+      ],
+      'field_name' => [
+        'type' => 'varchar_ascii',
+        'not null' => TRUE,
+        'default' => '',
+        'length' => FieldStorageConfig::NAME_MAX_LENGTH,
+        'description' => 'The field_name of the field that was used to add this reservation.',
+      ],
+      'cid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The {reservation}.cid of the last reservation.',
+      ],
+      'last_reservation_timestamp' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The Unix timestamp of the last reservation that was posted within this node, from {reservation}.changed.',
+      ],
+      'last_reservation_name' => [
+        'type' => 'varchar',
+        'length' => 60,
+        'not null' => FALSE,
+        'description' => 'The name of the latest author to post a reservation on this node, from {reservation}.name.',
+      ],
+      'last_reservation_uid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The user ID of the latest author to post a reservation on this node, from {reservation}.uid.',
+      ],
+      'reservation_count' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The total number of reservations on this entity.',
+      ],
+    ],
+    'primary key' => ['entity_id', 'entity_type', 'field_name'],
+    'indexes' => [
+      'last_reservation_timestamp' => ['last_reservation_timestamp'],
+      'reservation_count' => ['reservation_count'],
+      'last_reservation_uid' => ['last_reservation_uid'],
+    ],
+    'foreign keys' => [
+      'last_reservation_author' => [
+        'table' => 'users',
+        'columns' => [
+          'last_reservation_uid' => 'uid',
+        ],
+      ],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_update_last_removed().
+ */
+function reservation_update_last_removed() {
+  return 8701;
+}

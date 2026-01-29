@@ -1,0 +1,28 @@
+uuid: ba217e1b-88bd-47cc-afe3-303cd2cc5279
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_website
+    - node.type.bedrijf
+  module:
+    - link
+id: node.bedrijf.field_website
+field_name: field_website
+entity_type: node
+bundle: bedrijf
+label: Website
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    attributes: {  }
+    uri: 'https://www.zalen.be/'
+    title: ''
+    options: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

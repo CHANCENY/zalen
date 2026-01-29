@@ -1,0 +1,39 @@
+/**
+ * @file
+ * Styles for AWTur's buttons.
+ */
+
+.button {
+  display: inline-block;
+  padding: 8px 20px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #fff;
+  font-family: "Open Sans", "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  font-size: clamp(1rem, 0.9717rem + 0.1887vw, 1.125rem);
+  font-weight: bold;
+  line-height: normal;
+  color: #fff;
+  border: 1px #777 solid;
+  background: linear-gradient(to bottom, rgb(198, 141, 91) 0%, rgb(187, 136, 57) 100%);
+  outline: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+.button:hover,
+.button:active,
+.button:focus {
+  text-decoration: none;
+  color: #fff;
+  background: #dedede;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+}
+.button.is-disabled:hover,
+.button.is-disabled:active,
+.button.is-disabled:focus,
+.button.is-disabled {
+  cursor: default;
+  color: #717171;
+  border-color: #bbb;
+  background: #ededed;
+}

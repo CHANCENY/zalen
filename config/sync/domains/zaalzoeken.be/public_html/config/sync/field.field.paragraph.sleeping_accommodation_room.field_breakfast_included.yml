@@ -1,0 +1,21 @@
+uuid: d0676808-f56f-4709-899e-19df9c476bdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_breakfast_included
+    - paragraphs.paragraphs_type.sleeping_accommodation_room
+id: paragraph.sleeping_accommodation_room.field_breakfast_included
+field_name: field_breakfast_included
+entity_type: paragraph
+bundle: sleeping_accommodation_room
+label: 'Breakfast Included'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'On'
+field_type: boolean

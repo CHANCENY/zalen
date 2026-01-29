@@ -1,0 +1,47 @@
+uuid: 1587b5b2-876a-4224-9307-182e64a5594b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_room_pricing_settings
+    - node.type.zaal
+    - paragraphs.paragraphs_type.price_unit
+id: node.zaal.field_room_pricing_settings
+field_name: field_room_pricing_settings
+entity_type: node
+bundle: zaal
+label: 'Room Pricing Settings'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      price_unit: price_unit
+    negate: 0
+    target_bundles_drag_drop:
+      per_day_price_rules:
+        weight: 9
+        enabled: false
+      per_day_unit:
+        weight: 10
+        enabled: false
+      per_hour:
+        weight: 11
+        enabled: false
+      per_hour_unit_rules:
+        weight: 12
+        enabled: false
+      per_person_item:
+        weight: 13
+        enabled: false
+      person_price_rules:
+        weight: 8
+        enabled: false
+      price_unit:
+        weight: 14
+        enabled: true
+field_type: entity_reference

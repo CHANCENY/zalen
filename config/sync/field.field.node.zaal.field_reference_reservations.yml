@@ -1,0 +1,25 @@
+uuid: 70b743fa-17b7-4c71-83e9-fcd0fcf69ed1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reference_reservations
+    - node.type.zaal
+id: node.zaal.field_reference_reservations
+field_name: field_reference_reservations
+entity_type: node
+bundle: zaal
+label: 'Reference reservations'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: status_zaal
+      display_name: entity_reference_reservatie_zaal
+      arguments: {  }
+field_type: entity_reference

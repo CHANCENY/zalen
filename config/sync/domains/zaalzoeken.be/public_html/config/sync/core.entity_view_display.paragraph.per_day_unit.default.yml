@@ -1,0 +1,51 @@
+uuid: b69ffe5f-6301-4409-a8e0-f131213914a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.per_day_unit.field_day_amount
+    - field.field.paragraph.per_day_unit.field_day_currency
+    - field.field.paragraph.per_day_unit.field_minimum_day_to_book
+    - field.field.paragraph.per_day_unit.field_pricing_rules
+    - paragraphs.paragraphs_type.per_day_unit
+  module:
+    - options
+id: paragraph.per_day_unit.default
+targetEntityType: paragraph
+bundle: per_day_unit
+mode: default
+content:
+  field_day_amount:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_day_currency:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_minimum_day_to_book:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_pricing_rules:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

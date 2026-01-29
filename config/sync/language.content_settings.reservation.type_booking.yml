@@ -1,0 +1,18 @@
+uuid: 970b4d24-a0c7-4712-ade3-3cb7a2be96d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - reservation.type.type_booking
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: reservation.type_booking
+target_entity_type_id: reservation
+target_bundle: type_booking
+default_langcode: site_default
+language_alterable: false

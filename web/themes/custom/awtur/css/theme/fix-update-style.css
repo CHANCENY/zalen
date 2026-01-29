@@ -1,0 +1,108 @@
+﻿
+/*fix libraries for styling*/
+
+/*fix libraries date*/
+input[type="date"]::-webkit-inner-spin-button,
+input[type="month"]::-webkit-inner-spin-button,
+input[type="time"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+/*fix libraries SumoSelect*/
+td.delta-order div.SumoSelect {
+    min-width: 70px;
+}
+.SumoSelect select {
+    display: none;
+}
+.SumoSelect .select-all {
+    padding: 8px 0 24px 35px;
+}
+.SumoSelect .select-all.selected>span i{
+    background-color: #ccc;
+}
+.SumoSelect > p.CaptionCont {
+    position: static;
+}
+#edit-navigation-calendar .SumoSelect div.optWrapper li label,
+.SumoSelect div.optWrapper li label {
+    font-weight: bold;
+    color: #333;
+}
+.SumoSelect > p.CaptionCont > span {
+    font-weight: bold;
+    color: #777;
+}
+.SumoSelect > p.CaptionCont.SelectBox > label {
+    min-width: auto;
+}
+.SumoSelect .partial>span i, .SumoSelect .selected>span i, .SumoSelect>.optWrapper.multiple>.options li.opt.selected span i {
+    background-color: rgba(205, 135, 35, 0.6) !important;
+    border-color: #a52a2a !important;
+}
+.SumoSelect>.optWrapper.multiple>.options li.opt span i {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #aeaeae;
+    border-radius: 0.25em;
+    box-shadow: inset 0 1px 3px rgb(0 0 0 / 15%);
+    background-color: #fff;
+}
+.SumoSelect div.optWrapper li label {
+    font-size: 0.929em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.SumoSelect>.CaptionCont>label>i {
+    background-image: none !important;
+    opacity: unset !important;
+    width: auto;
+    height: auto;
+    top: 10px !important;
+}
+.SumoSelect>.CaptionCont>label>i::after {
+    content: '\25BC';
+    position: absolute;
+    opacity: 0.7;
+    top: -5px;
+}
+#edit-reservation-body-wrapper select {
+    display: inline-block;
+}
+#edit-reservation-body-wrapper div.optWrapper {
+    display: none;
+}
+#edit-field-date-booking-wrapper .SumoSelect.open > .optWrapper {
+    transform: translate(0%, -50%);
+}
+.SumoSelect.open>.CaptionCont, .SumoSelect:focus>.CaptionCont, .SumoSelect:hover>.CaptionCont {
+    box-shadow: 0 0 2px #cd8723;
+    border-color: #cd8723 ;
+}
+
+@media screen and(max-width:600x) {
+    .SumoSelect>.optWrapper>.options li.opt label {
+        font-size: 0.8em;
+    }
+    .SumoSelect>.CaptionCont>span {
+        font-size: 0.8em;
+    }
+}
+.SumoSelect > p.CaptionCont {
+    /*border: 1px solid #ccc;*/
+    border-radius: 5px;
+    border-color: #e0be59;
+}
+/*.SumoSelect > p.CaptionCont:hover {*/
+/*    box-shadow: 0 0 2px #cd8723;*/
+/*    border: none;*/
+/*    border-radius: 8px;*/
+/*}*/

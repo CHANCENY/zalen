@@ -1,0 +1,20 @@
+uuid: 5552331f-7343-4327-a9ea-18e54380a7a2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_concertgelegenheden
+field_name: field_concertgelegenheden
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,535 @@
+/**
+ * @file
+ * Visual styles for AWTur's node--bedrijf--full.html.twig.
+ */
+
+ .bedrijf-full{
+  padding: 0 clamp(0.125rem, -0.0357rem + 0.8571vw, 0.5rem);
+}
+
+/*-----------HEADER----------*/
+.bedrijf-full-header{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-column-gap: 16px;}
+.bedrijf-full-logo {
+  align-self: center;
+}
+.bedrijf-full-label {
+  align-self: center;
+}
+.bedrijf-full-label h1{
+  margin: 0 0 0 16px;
+  font-size: clamp(1.5rem, 1.3421rem + 1.0526vw, 2rem);
+  font-weight: 600;
+}
+.bedrijf-full-header-adres,
+.bedrijf-full-regio {
+  display: flex;
+  align-items: center;
+}
+
+.bedrijf-full-header-adres img,
+.bedrijf-full-regio img {
+  margin-right: 8px;
+  height: auto;
+}
+
+.bedrijf-full-header-adres img {
+  width: 70px;
+}
+
+.bedrijf-full-regio img{
+  width: 50px;
+}
+ 
+.bedrijf-full-header-adres {
+  justify-content: flex-start;
+}
+
+.bedrijf-full-regio {
+  justify-content: center; 
+}
+
+/*---------------PUBLIC TRANSPORT & MAP------------------------*/
+.tab-bedrijf-locatie{
+  display: grid;
+  grid-template-columns: 62% auto;
+  font-size: clamp(0.8125rem, 0.77rem + 0.283vw, 1rem);
+  margin: 64px 0;
+}
+@media only screen and (max-width: 520px) {
+  .tab-bedrijf-locatie{
+    grid-template-columns: auto;
+  }
+  .tab-bedrijf-locatie-afstanden {
+    margin-bottom: 16px;
+  }
+}
+.tab-bedrijf-locatie-afstanden{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: center;
+}
+.tab-bedrijf-locatie-afstand{
+  padding: 8px;
+  transition: box-shadow 0.2s ease-in-out;
+  filter: sepia(0.8);
+}
+.tab-bedrijf-locatie-afstand:hover{
+  filter: none;
+}
+.tab-bedrijf-locatie-afstand p{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tab-bedrijf-locatie-map {
+border: 2px solid rgb(159, 171, 182);
+border-radius: 16px;
+transition: box-shadow 0.2s ease-in-out; 
+margin-left: 4px;
+}
+.tab-bedrijf-locatie-map:hover {
+box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+
+/* ------ Flag bookmark ------ */
+.flag-bookmark {
+  margin-top: 32px;
+}
+.flag-bookmark a {
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  color: #777;
+  border-radius: 15px;
+  border: 1px #0B96DA solid;
+  transition: 0.2s;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 4px 15px;
+}
+.flag-bookmark a:hover {
+  color: #fff;
+  border: 2px transparent solid;
+  background: #0B96DA;
+}
+
+/*----Node views counter---*/
+.bedrijf-full .node__links{
+padding: 32px;
+}  
+.bedrijf-full .node__links li{
+color: #0B96DA;
+}  
+
+/*-----Trump bar-----*/
+.bedrijf-full .troevenicons {
+  margin-top: 0;
+}
+
+/*-------Slogan in the first image--------*/
+/*----Slogan in image----*/
+.header-slogan {
+  background-color: black;
+  border-left: 3px solid #FF5F5F;
+  padding: 4px 16px;
+  max-width: fit-content;
+  color: white;
+  font-size: clamp(0.75rem, 0.6937rem + 0.3vw, 0.9375rem);
+  position: relative;
+  top: 380px;
+  left: 16px;
+  overflow: hidden;
+}
+
+/*----Views block to show all the function rooms belong to this company----*/  
+.bedrijf-full-zalen {
+  text-align: center;
+  background: #FFFFFF;
+  box-shadow: 8px 8px 44px rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  padding: 32px 4px;
+  color: #000;
+  
+  position: relative;
+  top: 32px;
+}
+.bedrijf-full-zalen h2{
+font-weight: 700;
+font-size: clamp(1.25rem, 1.0357rem + 1.1429vw, 1.75rem);
+}
+
+/* ------ Quality labels ------ */
+.node__content div.field--name-field-keurmerken {
+  display: flex;
+  gap: 16px;
+  justify-content: end;
+  margin: 64px 32px; 
+}
+@media all and (max-width: 559px) {
+  .node__content div.field--name-field-keurmerken {
+    margin-top: 32px;
+  }
+}
+div.field--name-field-keurmerken .field__label {
+  font-size: 12px;
+  color: #bbb;
+}
+div.field--name-field-keurmerken .field__items {
+  max-height: 120px;
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+div.field--name-field-keurmerken::-webkit-scrollbar,
+div.field--name-field-keurmerken .field__items::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+div.field--name-field-keurmerken::-webkit-scrollbar-track,
+div.field--name-field-keurmerken .field__items::-webkit-scrollbar-track {
+  background: #ffdfb0;
+  border-radius: 5px;
+}
+div.field--name-field-keurmerken::-webkit-scrollbar-thumb,
+div.field--name-field-keurmerken .field__items::-webkit-scrollbar-thumb {
+  background: #FF9800;
+  border-radius: 5px;
+}
+
+/* ------ price-lists ------ */
+.union-price-lists > div {
+  margin: 30px 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+.union-price-lists > div .field__label {
+  margin: 0 0 0 10px;
+  font-size: 0.9em;
+  color: #bbb;
+}
+.union-price-lists > div .field__item {
+  margin: 10px 0;
+  float: left;
+  width: 250px;
+  min-height: 50px;
+}
+.union-price-lists > div .field__item:before {
+  content: "";
+  display: block;
+  float: left;
+  width: 50px;
+  height: 50px;
+  background-image: url(../../images/icons/price-lists.svg);
+  background-size: cover;
+}
+.union-price-lists > div .field__item span {
+  display: block;
+  background-image: none;
+}
+.union-price-lists > div .field__item a {
+  /* font-weight: bold; */
+  display: block;
+  padding: 5px;
+  border: none;
+  color: #503102;
+  line-height: 1.2;
+  overflow: hidden;
+}
+.union-price-lists > div .field__item a:hover {
+  background: #f9f9f9;
+}
+@media all and (min-width: 560px) {
+  .union-price-lists > div {
+    margin: 30px;
+  }
+  .union-price-lists > div .field__item {
+    margin: 10px;
+    margin-right: 0;
+  }
+}
+
+/*
+div.field--name-field-contact-persoon {
+  display: block;
+}
+div.field--name-field-contact-persoon .field__label {
+  margin-bottom: -7px;
+  font-size: 0.9em;
+  color: #bbb;
+}
+div.field--name-field-contact-persoon .field__item {
+  display: inline-block;
+  padding-right: 6px;
+  font-size: 2em;
+}*/
+
+/*div union-contact-info*/
+/*@media all and (min-width: 560px) {
+  .union-contact-info {
+    float: left;
+    width: 400px;
+  }
+}*/
+/*field aanspreekvorm*/
+/*div.field--name-field-aanspreekvorm {
+  margin: 30px 10px;
+  padding: 10px;
+  float: left;
+  font-weight: bold;
+  border: 3px #eee solid;
+  border-radius: 10px;
+  box-shadow: 0 0 3px #777;
+}*/
+/*field adres*/
+/*div.field--name-field-adres {
+  margin: 30px;
+}
+div.field--name-field-adres .field__label {
+  font-size: 0.9em;
+  color: #bbb;
+}
+div.field--name-field-adres .field__item span {
+  display: inline-block;
+  padding-right: 20px;
+}*/
+/*field gsm*/
+/*div.field--name-field-gsm {
+  display: inline-block;
+  margin: 30px;
+}
+div.field--name-field-gsm .field__label {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 0.9em;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #777;
+}
+div.field--name-field-gsm .field__items {
+  display: block;
+}
+div.field--name-field-gsm .field__item {
+  font-size: 1.5em;
+}
+div.field--name-field-gsm .field__item a {
+  color: #503102;
+  padding: 0 10px;
+  border: none;
+  transition: 0.2s;
+}
+div.field--name-field-gsm .field__item a:hover {
+  background: #f6eee7;
+}*/
+
+/*field telefoon*/
+/*div.field--name-field-telefoon {
+  display: inline-block;
+  margin: 30px;
+}
+div.field--name-field-telefoon .field__label {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 0.9em;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #777;
+}
+div.field--name-field-telefoon .field__items {
+  display: block;
+}
+div.field--name-field-telefoon .field__item {
+  font-size: 1.5em;
+}
+div.field--name-field-telefoon .field__item a {
+  color: #503102;
+  padding: 0 10px;
+  border: none;
+  transition: 0.2s;
+}
+div.field--name-field-telefoon .field__item a:hover {
+  background: #f6eee7;
+}*/
+/*field whatsapp*/
+/*div.field--name-field-whatsapp {
+  display: inline-block;
+  margin: 30px;
+}
+div.field--name-field-whatsapp .field__label {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 0.9em;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #777;
+}
+div.field--name-field-whatsapp .field__items {
+  display: block;
+}
+div.field--name-field-whatsapp .field__item {
+  font-size: 1.5em;
+}
+div.field--name-field-whatsapp .field__item a {
+  color: #503102;
+  padding: 0 10px;
+  border: none;
+  transition: 0.2s;
+}
+div.field--name-field-whatsapp .field__item a:hover {
+  background: #f6eee7;
+}
+div.field--name-field-fb .field__label {
+  margin: 0 5px;
+  float: left;
+  font-size: 0.9em;
+  font-weight: normal;
+  color: #777;
+}
+div.field--name-field-fb .field__label:before {
+  content: "";
+  display: block;
+  float: left;
+  margin-right: 3px;
+  position: relative;
+  width: 1.4em;
+  height: 1.4em;
+  background-size: cover;
+  background-image: url(../../images/icons/social_network/facebook.svg);
+}
+@media all and (min-width: 560px) {
+  div.field--name-field-gsm,
+  div.field--name-field-telefoon,
+  div.field--name-field-whatsapp {
+    margin: 10px;
+  }
+}*/
+
+/*field lat-long*/
+/*div.field--name-field-lat-long {
+  margin-top: 30px;
+  padding: 10px;
+  background: #eee;
+}
+div.field--name-field-lat-long .field__label {
+  margin: 0 0 0 10px;
+  font-size: 1em;
+  color: #888;
+}*/
+/*field website*/
+/*div.field--name-field-website {
+  margin: auto;
+  padding: 10px;
+  width: 70%;
+  border-bottom: 1px #ddd solid;
+}
+div.field--name-field-website .field__label {
+  float: left;
+  font-size: 1.8em;
+  color: #bbb;
+}
+div.field--name-field-website .field__item a {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #503102;
+}*/
+
+/*comment*/
+/* .node__content section h2 {
+  margin-bottom: 20px;
+  margin-left: 30px;
+  font-weight: bold;
+  color: #75582d;
+  border-bottom: 1px #ddd solid;
+} */
+
+
+
+/* article.js-reservation {
+  margin: 3%;
+  padding: 16px;
+  background: #fbfbfb;
+  border: 6px #eee solid;
+  border-top: 2px #ddd solid;
+  border-bottom: 2px #ddd solid;
+  border-radius: 9px;
+}
+article.js-reservation footer {
+  text-align: right;
+}
+article.js-reservation footer p {
+  margin: 0;
+  font-size: 12px;
+  color: #777;
+}
+article.js-reservation footer p span {
+  font-weight: bold;
+}
+article.js-reservation footer p a {
+  color: #777;
+  font-weight: bold;
+}
+article.js-reservation footer > a {
+  display: block;
+  float: right;
+  border: none;
+  width: 20px;
+  height: 20px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-image: url(../../images/icons/chain.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: 0.2s;
+}
+article.js-reservation footer > a:hover {
+  background-image: url(../../images/icons/chain-hover.svg);
+}
+
+article.js-reservation > div {
+  border-top: 1px #ddd solid;
+}
+article.js-reservation .field--name-reservation-body {
+  margin: 16px 3%;
+  padding: 10px;
+  background: #fff;
+  border: 1px #ddd solid;
+  border-radius: 10px;
+}
+article.js-reservation ul {
+  margin: 0 -11px;
+  float: right;
+  font-size: 11px;
+}
+article.js-reservation ul a {
+  padding: 3px 16px 1px;
+  background: #000;
+  border-radius: 9px;
+  color: #fff;
+}
+article.js-reservation > div > div:not(.field--name-reservation-body) {
+  display: inline-block;
+  padding: 10px;
+}
+article.js-reservation .field__label {
+  font-size: 12px;
+  color: #bbb;
+  border-bottom: 1px #ddd solid;
+}
+article.js-reservation .field__item .datetime {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+} */
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+uuid: d8ba076f-c713-432f-9840-1baf5e05c841
+langcode: nl
+status: true
+dependencies:
+  config:
+    - node.type.bedrijf
+    - node.type.zaal
+  module:
+    - comment
+    - contact
+    - file
+    - media
+    - node
+    - system
+id: betalende_gebruiker
+label: 'betalende gebruiker'
+weight: 0
+is_admin: null
+permissions:
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'access user contact forms'
+  - 'access user profiles'
+  - 'delete own bedrijf content'
+  - 'delete own files'
+  - 'delete own zaal content'
+  - 'edit own bedrijf content'
+  - 'edit own comments'
+  - 'edit own zaal content'
+  - 'view media'

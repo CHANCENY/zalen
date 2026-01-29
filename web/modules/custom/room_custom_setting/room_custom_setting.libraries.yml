@@ -1,0 +1,13 @@
+room_custom_setting:
+  version: 1.x
+  css:
+    component:
+      css/calendar.css: {}
+      css/diagram.css: {}
+  js:
+    js/room_custom_setting.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+    - smartdate/smartdate

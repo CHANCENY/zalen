@@ -1,0 +1,23 @@
+uuid: ac830fea-ba05-4577-b834-c9c08093ef27
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_kindvriendelijk
+    - node.type.bedrijf
+id: node.bedrijf.field_kindvriendelijk
+field_name: field_kindvriendelijk
+entity_type: node
+bundle: bedrijf
+label: 'Child friendly'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Child friendly'
+  off_label: X
+field_type: boolean

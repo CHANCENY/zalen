@@ -1,0 +1,20 @@
+uuid: 121de266-3324-4a70-9a1e-b672dcc769bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.mindervaliden_faciliteiten
+  module:
+    - path
+id: taxonomy_term.mindervaliden_faciliteiten.path
+field_name: path
+entity_type: taxonomy_term
+bundle: mindervaliden_faciliteiten
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

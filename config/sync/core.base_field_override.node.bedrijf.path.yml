@@ -1,0 +1,20 @@
+uuid: 55315ee7-a4f9-462e-a724-cc5d90922b67
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bedrijf
+  module:
+    - path
+id: node.bedrijf.path
+field_name: path
+entity_type: node
+bundle: bedrijf
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

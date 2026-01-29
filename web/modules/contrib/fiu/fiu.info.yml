@@ -1,0 +1,12 @@
+name: Fine Image Upload
+core_version_requirement: ^9 || ^10
+type: module
+description: 'Defines an image widget.'
+package: Media
+dependencies:
+  - drupal:image
+
+# Information added by Drupal.org packaging script on 2023-11-02
+version: '3.0.1-beta1'
+project: 'fiu'
+datestamp: 1698908529

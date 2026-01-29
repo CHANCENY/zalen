@@ -1,0 +1,3 @@
+label: 'Collect on delivery'
+pluginConfiguration:
+  message_text: 'You will be charged upon delivery. Please make sure you have enough cash available.'

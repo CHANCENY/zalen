@@ -1,0 +1,18 @@
+uuid: 5eedaee2-6508-4a6b-a8db-3b70f0376c45
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bedrijf
+id: node.bedrijf.changed
+field_name: changed
+entity_type: node
+bundle: bedrijf
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

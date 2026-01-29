@@ -1,0 +1,25 @@
+uuid: 037710a7-e956-4dd8-87ee-6ddd658628d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_minimum_day_to_book
+    - paragraphs.paragraphs_type.per_day_unit
+id: paragraph.per_day_unit.field_minimum_day_to_book
+field_name: field_minimum_day_to_book
+entity_type: paragraph
+bundle: per_day_unit
+label: 'Minimum Day to Book'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

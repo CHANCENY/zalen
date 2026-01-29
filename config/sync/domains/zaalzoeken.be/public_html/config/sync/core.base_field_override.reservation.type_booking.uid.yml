@@ -1,0 +1,20 @@
+uuid: 6237a583-a2e6-4685-b76c-7e32879426f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - reservation.type.type_booking
+id: reservation.type_booking.uid
+field_name: uid
+entity_type: reservation
+bundle: type_booking
+label: 'User ID'
+description: 'The user ID of the reservation author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\reservation\Entity\Reservation::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

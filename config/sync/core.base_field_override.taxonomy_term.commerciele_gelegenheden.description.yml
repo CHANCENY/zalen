@@ -1,0 +1,21 @@
+uuid: 3b10044f-2cc9-4b65-b1b0-101b63daf4a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.commerciele_gelegenheden
+  module:
+    - text
+id: taxonomy_term.commerciele_gelegenheden.description
+field_name: description
+entity_type: taxonomy_term
+bundle: commerciele_gelegenheden
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

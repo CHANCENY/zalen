@@ -1,0 +1,23 @@
+uuid: 53f15895-1c87-47fd-8303-cebcc73e3605
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_payment_status
+    - paragraphs.paragraphs_type.reservation
+  module:
+    - options
+id: paragraph.reservation.field_payment_status
+field_name: field_payment_status
+entity_type: paragraph
+bundle: reservation
+label: 'Payment Status'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: pending
+default_value_callback: ''
+settings: {  }
+field_type: list_string

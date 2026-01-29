@@ -1,0 +1,107 @@
+uuid: f9463d80-4890-4bdc-942c-d0c89465b347
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sleeping_accommodation_room.field_breakfast_included
+    - field.field.paragraph.sleeping_accommodation_room.field_description
+    - field.field.paragraph.sleeping_accommodation_room.field_number_of_rooms
+    - field.field.paragraph.sleeping_accommodation_room.field_overnight_room_image
+    - field.field.paragraph.sleeping_accommodation_room.field_photos
+    - field.field.paragraph.sleeping_accommodation_room.field_price_per_night
+    - field.field.paragraph.sleeping_accommodation_room.field_room_currency
+    - field.field.paragraph.sleeping_accommodation_room.field_room_type
+    - field.field.paragraph.sleeping_accommodation_room.paragraph_view_mode
+    - paragraphs.paragraphs_type.sleeping_accommodation_room
+  module:
+    - file
+    - options
+    - paragraph_view_mode
+    - svg_image
+    - text
+id: paragraph.sleeping_accommodation_room.default
+targetEntityType: paragraph
+bundle: sleeping_accommodation_room
+mode: default
+content:
+  field_breakfast_included:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_number_of_rooms:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_overnight_room_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_photos:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_price_per_night:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_room_currency:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_room_type:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  paragraph_view_mode:
+    type: paragraph_view_mode
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+hidden: {  }

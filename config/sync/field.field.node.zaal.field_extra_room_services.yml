@@ -1,0 +1,50 @@
+uuid: c88a1f3a-0659-4cd4-98d9-3b12b8a4c1ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_extra_room_services
+    - node.type.zaal
+    - paragraphs.paragraphs_type.extra_room_services
+id: node.zaal.field_extra_room_services
+field_name: field_extra_room_services
+entity_type: node
+bundle: zaal
+label: 'Extra Room Services'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      extra_room_services: extra_room_services
+    negate: 0
+    target_bundles_drag_drop:
+      extra_room_services:
+        weight: 9
+        enabled: true
+      per_day_price_rules:
+        weight: 11
+        enabled: false
+      per_day_unit:
+        weight: 12
+        enabled: false
+      per_hour:
+        weight: 13
+        enabled: false
+      per_hour_unit_rules:
+        weight: 14
+        enabled: false
+      per_person_item:
+        weight: 15
+        enabled: false
+      person_price_rules:
+        weight: 10
+        enabled: false
+      price_unit:
+        weight: 16
+        enabled: false
+field_type: entity_reference

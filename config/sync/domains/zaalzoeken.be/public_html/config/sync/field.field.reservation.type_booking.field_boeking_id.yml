@@ -1,0 +1,23 @@
+uuid: 3c8dca2d-3662-47e3-bbb5-73701d442af5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.reservation.field_boeking_id
+    - reservation.type.type_booking
+  module:
+    - serial
+id: reservation.type_booking.field_boeking_id
+field_name: field_boeking_id
+entity_type: reservation
+bundle: type_booking
+label: Boeking-id
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings: {  }
+field_type: serial

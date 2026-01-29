@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Contains oauth_authorize.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+/**
+ * Implements hook_help().
+ */
+function oauth_authorize_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the oauth_authorize module.
+    case 'help.page.oauth_authorize':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Contains tokens for authorization of rental sellers for guest houses and other accommodation with rooms.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+

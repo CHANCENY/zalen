@@ -1,0 +1,22 @@
+uuid: 17a54789-0f6d-4c8e-a2e0-0bf113fc3c40
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.invoices_receipt
+id: node.invoices_receipt.status
+field_name: status
+entity_type: node
+bundle: invoices_receipt
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

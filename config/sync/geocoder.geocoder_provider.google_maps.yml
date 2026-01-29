@@ -1,0 +1,13 @@
+uuid: 21d14478-a9a3-4acf-bf3c-498e97e14286
+langcode: en
+status: true
+dependencies: {  }
+id: google_maps
+label: GoogleMaps
+plugin: googlemaps
+configuration:
+  throttle:
+    period: null
+    limit: null
+  apiKey: AIzaSyBbG3wVMB7Jg_ED78xlihsWW5Byr6nfbKc
+  region: BE

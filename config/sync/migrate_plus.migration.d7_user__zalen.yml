@@ -1,0 +1,38 @@
+uuid: c2615e6c-9508-4079-9ae5-b418ce45ef89
+langcode: nl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: VHJNgoHe3DiPfjU3U1RQj4qKbRZJNLOmQfaoP2ssvdE
+id: d7_user__zalen
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: zalen_d7
+label: 'Users (D7 → D10) – only update pendente users'
+source:
+  plugin: d7_user
+process:
+  _skip_if_not_pendente:
+    plugin: skip_if_not_pendente
+    source: mail
+  name: name
+  mail: mail
+  pass: pass
+  created: created
+  changed: changed
+  access: access
+  login: login
+  status: status
+  langcode:
+    plugin: default_value
+    default_value: nl
+  roles:
+    plugin: default_value
+    default_value:
+      - pendente
+destination:
+  plugin: 'entity:user'
+  update: true
+migration_dependencies: null

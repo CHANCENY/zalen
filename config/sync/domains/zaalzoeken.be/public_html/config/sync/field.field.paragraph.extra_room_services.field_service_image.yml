@@ -1,0 +1,27 @@
+uuid: f507b25c-3249-49c2-96cb-234115df4d41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_service_image
+    - paragraphs.paragraphs_type.extra_room_services
+  module:
+    - file
+id: paragraph.extra_room_services.field_service_image
+field_name: field_service_image
+entity_type: paragraph
+bundle: extra_room_services
+label: Image
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png jpg jpeg webp'
+  max_filesize: ''
+  description_field: false
+field_type: file

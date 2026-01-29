@@ -1,0 +1,23 @@
+uuid: dae1ac3f-3996-4bc0-9bff-9ad5e690bc6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_service_minimum_order
+    - paragraphs.paragraphs_type.extra_room_services
+id: paragraph.extra_room_services.field_service_minimum_order
+field_name: field_service_minimum_order
+entity_type: paragraph
+bundle: extra_room_services
+label: 'Minimum order'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,9 @@
+uuid: b2936142-b774-44a8-b852-9b843b43754c
+langcode: nl
+status: true
+dependencies: {  }
+name: Aanhorigheden
+vid: aanhorigheden
+description: 'Buiten, rondom gelegen faciliteiten'
+weight: 0
+new_revision: false

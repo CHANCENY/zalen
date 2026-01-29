@@ -1,0 +1,14 @@
+title: Feedback
+settings:
+  confirmation_message: 'Merci pour vos retours.'
+handlers:
+  email_confirmation:
+    label: 'Courriel de confirmation'
+    settings:
+      from_name: _default
+      subject: _default
+  email_notification:
+    label: 'Notification par courriel'
+    settings:
+      from_name: '[webform_submission:values:name:raw]'
+      subject: _default

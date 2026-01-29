@@ -1,0 +1,41 @@
+uuid: 8b83fc96-a8ca-4150-a1ac-d7f04963104e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.reservation_extra_services.field_booking_count
+    - field.field.paragraph.reservation_extra_services.field_booking_total_amount
+    - field.field.paragraph.reservation_extra_services.field_service
+    - paragraphs.paragraphs_type.reservation_extra_services
+id: paragraph.reservation_extra_services.default
+targetEntityType: paragraph
+bundle: reservation_extra_services
+mode: default
+content:
+  field_booking_count:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_booking_total_amount:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_service:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

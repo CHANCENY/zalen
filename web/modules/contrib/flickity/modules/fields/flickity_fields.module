@@ -1,0 +1,23 @@
+<?php
+/**
+ * @file
+ * Contains flickity.module
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function flickity_fields_theme() {
+  return [
+    'flickity_entity_view' => [
+      'template' => 'flickity-entity-view',
+      'render element' => 'elements',
+      'file' => 'theme/flickity_fields.theme.inc',
+    ],
+    'flickity_image_field' => [
+      'template' => 'flickity-image-field',
+      'render element' => 'elements',
+      'file' => 'theme/flickity_fields.theme.inc',
+    ],
+  ];
+}

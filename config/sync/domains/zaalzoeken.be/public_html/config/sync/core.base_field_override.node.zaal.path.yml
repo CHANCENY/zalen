@@ -1,0 +1,20 @@
+uuid: 65783a48-9795-4c32-8b34-d5f31cf05889
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.zaal
+  module:
+    - path
+id: node.zaal.path
+field_name: path
+entity_type: node
+bundle: zaal
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

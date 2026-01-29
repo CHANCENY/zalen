@@ -1,0 +1,17 @@
+uuid: a463f376-7c12-4525-9e26-c52aea14dedc
+langcode: nl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: QOzaA8j2871_aWBJyVZm_LqREilQnXZqRuk3HNANrEo
+id: default
+label: standaard
+date_format: 'D,M j Y'
+time_format: 'g:ia'
+time_hour_format: ''
+allday_label: 'Hele dag'
+separator: ' - '
+join: ', '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

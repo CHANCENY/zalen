@@ -1,0 +1,23 @@
+uuid: 489e9311-bef2-4fec-b555-4bd3d44631b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_staanplaatsen
+    - node.type.zaal
+id: node.zaal.field_staanplaatsen
+field_name: field_staanplaatsen
+entity_type: node
+bundle: zaal
+label: 'Standing Places'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 250000
+  prefix: ''
+  suffix: ''
+field_type: integer

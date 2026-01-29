@@ -1,0 +1,40 @@
+id: d7_reservation_type
+label: Reservation type
+migration_tags:
+  - Drupal 7
+  - Configuration
+source:
+  plugin: reservation_type
+  constants:
+    entity_type: node
+    id_prefix: 'reservation_node_'
+    label_suffix: 'reservation'
+process:
+  target_entity_type_id: 'constants/entity_type'
+  id:
+    -
+      plugin: concat
+      source:
+        - 'constants/id_prefix'
+        - type
+    -
+      plugin: static_map
+      bypass: true
+      # The Forum module provides its own reservation type (reservation_forum), which we
+      # want to reuse if it exists.
+      map:
+        reservation_node_forum: reservation_forum
+    -
+      plugin: make_unique_entity_field
+      entity_type: reservation_type
+      field: id
+      length: 30
+      migrated: true
+  label:
+    plugin: concat
+    source:
+      - name
+      - 'constants/label_suffix'
+    delimiter: ' '
+destination:
+  plugin: entity:reservation_type

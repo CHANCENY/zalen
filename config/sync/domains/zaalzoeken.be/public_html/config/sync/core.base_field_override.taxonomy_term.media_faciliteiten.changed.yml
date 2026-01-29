@@ -1,0 +1,18 @@
+uuid: ce9d08af-81c5-48a9-b760-6db7c7f134d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.media_faciliteiten
+id: taxonomy_term.media_faciliteiten.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: media_faciliteiten
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

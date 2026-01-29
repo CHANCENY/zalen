@@ -1,0 +1,29 @@
+uuid: 6f0fbe45-7a95-4d09-9440-e8af9818c0a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_feestgelegenheid
+    - node.type.zaal
+    - taxonomy.vocabulary.feestzaal_gelegenheden
+id: node.zaal.field_feestgelegenheid
+field_name: field_feestgelegenheid
+entity_type: node
+bundle: zaal
+label: 'Party occasions'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      feestzaal_gelegenheden: feestzaal_gelegenheden
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

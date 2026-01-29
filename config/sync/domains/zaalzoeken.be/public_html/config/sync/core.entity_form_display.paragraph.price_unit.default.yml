@@ -1,0 +1,123 @@
+uuid: fac71405-74bb-467d-aa63-41a1fd85cad5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.price_unit.field_hourly_unit
+    - field.field.paragraph.price_unit.field_per_day_unit
+    - field.field.paragraph.price_unit.field_pricing_type
+    - field.field.paragraph.price_unit.field_pricing_unit
+    - paragraphs.paragraphs_type.price_unit
+  module:
+    - conditional_fields
+    - inline_entity_form
+id: paragraph.price_unit.default
+targetEntityType: paragraph
+bundle: price_unit
+mode: default
+content:
+  field_hourly_unit:
+    type: inline_entity_form_simple
+    weight: 2
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      revision: false
+    third_party_settings:
+      conditional_fields:
+        69723624-da70-4bb9-9b82-294821c7d506:
+          entity_type: paragraph
+          bundle: price_unit
+          dependee: field_pricing_type
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: per_hour
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_per_day_unit:
+    type: inline_entity_form_simple
+    weight: 3
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      revision: false
+    third_party_settings:
+      conditional_fields:
+        4b999a33-6f39-4c59-88cd-f84f6a2bd23f:
+          entity_type: paragraph
+          bundle: price_unit
+          dependee: field_pricing_type
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: per_day
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_pricing_type:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_pricing_unit:
+    type: inline_entity_form_simple
+    weight: 1
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      revision: false
+    third_party_settings:
+      conditional_fields:
+        87ef22a8-f717-4e4c-9f96-f0bd5da04007:
+          entity_type: paragraph
+          bundle: price_unit
+          dependee: field_pricing_type
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: per_person
+            effect: show
+            effect_options: {  }
+            selector: ''
+hidden:
+  created: true
+  status: true

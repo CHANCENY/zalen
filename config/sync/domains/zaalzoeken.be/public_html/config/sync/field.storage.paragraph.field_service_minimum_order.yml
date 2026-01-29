@@ -1,0 +1,20 @@
+uuid: b8dd245e-d065-4950-83a5-4d26c2d85e60
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_service_minimum_order
+field_name: field_service_minimum_order
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

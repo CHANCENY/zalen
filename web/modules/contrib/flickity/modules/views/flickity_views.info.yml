@@ -1,0 +1,13 @@
+name: Flickity Views
+type: module
+description: 'Provides Flickity integration with Drupal Views.'
+package: Flickity
+core_version_requirement: ^8 || ^9 || ^10
+dependencies:
+  - flickity:flickity
+  - drupal:views
+
+# Information added by Drupal.org packaging script on 2023-03-03
+version: '3.0.2'
+project: 'flickity'
+datestamp: 1677874283

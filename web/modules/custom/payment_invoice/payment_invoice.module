@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * @file
+ * Contains payment_invoice.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+/**
+ * Implements hook_theme().
+ */
+function payment_invoice_theme(): array
+{
+  return [
+    'invoices_template' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+      'template' => 'invoices-template',
+    ],
+    'invoice_table_template' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+      'template' => 'invoice-table-template',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_help().
+ */
+function payment_invoice_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the payment_invoice module.
+    case 'help.page.payment_invoice':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Contains methods for payments to invoice.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function payment_invoice_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  if ($form_id == 'node_invoices_receipt_edit_form') {
+    // Hide the body field.
+    if (isset($form['body'])) {
+      $form['body']['#access'] = FALSE;
+    }
+
+    // Hide the revision information fieldset.
+    if (isset($form['revision_log'])) {
+      $form['revision_information']['#access'] = FALSE;
+    }
+  }
+}
+

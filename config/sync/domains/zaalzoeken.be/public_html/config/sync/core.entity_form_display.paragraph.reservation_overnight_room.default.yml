@@ -1,0 +1,49 @@
+uuid: b2d8e5b1-58f5-40d0-acbb-20c5eba06194
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.reservation_overnight_room.field_nights
+    - field.field.paragraph.reservation_overnight_room.field_roms_count
+    - field.field.paragraph.reservation_overnight_room.field_room
+    - field.field.paragraph.reservation_overnight_room.field_rooms_total_amount
+    - paragraphs.paragraphs_type.reservation_overnight_room
+id: paragraph.reservation_overnight_room.default
+targetEntityType: paragraph
+bundle: reservation_overnight_room
+mode: default
+content:
+  field_nights:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_roms_count:
+    type: number
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_room:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_rooms_total_amount:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,14 @@
+uuid: e5540d99-1074-43c2-9722-0abb6c7b5173
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.pendente
+  module:
+    - user
+id: user_remove_role_action.pendente
+label: 'Remove the Pendente role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: pendente

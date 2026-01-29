@@ -1,0 +1,50 @@
+uuid: d8633f3d-4d93-4df6-af55-e56794a8b070
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - taxonomy
+id: taxonomy_term_ua
+label: 'Taxonomy term UA'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/таксономічний-термін/[term:name]'
+selection_criteria:
+  c461f453-ba86-433c-8771-4f749d7e5468:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: c461f453-ba86-433c-8771-4f749d7e5468
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      aanhorigheden: aanhorigheden
+      afstand_openbaar_vervoer: afstand_openbaar_vervoer
+      commerciele_gelegenheden: commerciele_gelegenheden
+      concert_gelegenheden: concert_gelegenheden
+      faciliteiten_algemeen: faciliteiten_algemeen
+      feestzaal_gelegenheden: feestzaal_gelegenheden
+      groene_troeven: groene_troeven
+      kindvriendelijke_punten: kindvriendelijke_punten
+      legende_kalender: legende_kalender
+      media_faciliteiten: media_faciliteiten
+      mindervaliden_faciliteiten: mindervaliden_faciliteiten
+      regio: regio
+      slogans: slogans
+      tags: tags
+      thema_s: thema_s
+      vergader_gelegenheden: vergader_gelegenheden
+      zaal_categorieen: zaal_categorieen
+      zaal_comfort: zaal_comfort
+  db2f9baf-a24b-45d1-a7f0-4e06f039ef09:
+    id: language
+    negate: false
+    uuid: db2f9baf-a24b-45d1-a7f0-4e06f039ef09
+    context_mapping:
+      language: 'taxonomy_term:langcode:language'
+    langcodes:
+      uk: uk
+selection_logic: and
+weight: -10
+relationships:
+  'taxonomy_term:langcode:language':
+    label: Language

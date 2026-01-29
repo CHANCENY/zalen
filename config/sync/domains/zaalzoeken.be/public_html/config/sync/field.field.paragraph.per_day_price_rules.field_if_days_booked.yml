@@ -1,0 +1,23 @@
+uuid: b5fac7e6-19cc-4c3a-9f0f-be60c81256e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_if_days_booked
+    - paragraphs.paragraphs_type.per_day_price_rules
+id: paragraph.per_day_price_rules.field_if_days_booked
+field_name: field_if_days_booked
+entity_type: paragraph
+bundle: per_day_price_rules
+label: 'If  days booked'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,24 @@
+uuid: 8fc4c765-21b7-4cd7-9f85-5f78c4503cd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.zaal
+  module:
+    - text
+id: node.zaal.body
+field_name: body
+entity_type: node
+bundle: zaal
+label: 'Event space description'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

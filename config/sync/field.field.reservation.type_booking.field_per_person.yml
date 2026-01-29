@@ -1,0 +1,21 @@
+uuid: e00f6eb3-945a-492a-8189-e209f33dad19
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.reservation.field_per_person
+    - reservation.type.type_booking
+id: reservation.type_booking.field_per_person
+field_name: field_per_person
+entity_type: reservation
+bundle: type_booking
+label: 'Calculate payment per person'
+description: 'Check this box if you want the payment to be calculated based on the number of people'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Per person'
+  off_label: 'Per person'
+field_type: boolean

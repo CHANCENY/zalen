@@ -1,0 +1,21 @@
+uuid: f1dc303d-2cf4-4490-be44-b418be493d3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.regio
+  module:
+    - text
+id: taxonomy_term.regio.description
+field_name: description
+entity_type: taxonomy_term
+bundle: regio
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

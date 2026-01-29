@@ -1,0 +1,23 @@
+{# opening-hours.html.twig #}
+
+{% set base_path = drupal_token('site:base-path') ~ '/' %}
+  {% set thema_pad = base_path ~ directory %} 
+
+<h3 class="bedrijf-open-tijd-hd"><img src="{{ thema_pad }}/images/icons/bedrijf/klok-vierkant.svg">{{ 'Openingsuren'|t }}</h3>
+
+<div class="opening-hours">
+  <ul>
+    {% for machine_day, ranges in schedule %}
+      <li>
+        {{ labels[machine_day] }}:
+        {% if ranges|length > 0 %}
+          {% for range in ranges %}
+            <span class="open-time-hd">{{ range.start }} – {{ range.end }}{{ not loop.last ? ', ' }}</span>
+          {% endfor %}
+        {% else %}
+          <span class="closed-time-hd">{{ 'Closed'|t }}</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,586 @@
+/**
+ * @file
+ * Visual styles for AWTur's node--zaal--full.html.twig.
+ */
+/*-----HEADER-----*/
+.zaal-full-label h1{
+  font-weight: bold;  
+  font-size: clamp(1.5rem, 1.3421rem + 1.0526vw, 2rem);
+  margin: 0;
+}
+.zaal-full-label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.zaal-full-label img{
+  width: auto; 
+}
+/* ------ block with user ------ */
+header.zaal-full article.profile {
+    float: left;
+    margin: -5px 1em 0 0;
+    width: 100px;
+    height: 100px;
+    background-image: url(../../images/default-user.svg);
+    background-size: cover;
+    border: 5px #FF9800 solid;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #c12e00;
+}
+article.profile > .field--type-image {
+    margin: 0;
+}
+header.zaal-full .node__meta .field--name-user-picture img {
+    margin-right: 15px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 100%;
+    /*padding-bottom: 30%;*/
+}
+@media screen and (min-width: 560px) {
+article.node--view-mode-full header {
+    float: right;
+    margin: 20px;
+}
+}
+article.node--view-mode-full header div.form-type-item {
+    margin-top: 105px;
+    width: max-content;
+}
+header.zaal-full .node__meta span {
+    display: block;
+}
+header.zaal-full .field--name-uid {
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.8em;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+header.zaal-full .node__meta span:not(.field) {
+    margin-left: 50px;
+    margin-top: 0px;
+    padding: 6px;
+    min-width: 200px;
+    background: #ebf1f1;
+    border-radius: 10px;
+}
+header .node__meta span > span.field--name-uid > span {/*for unregistered*/
+    margin: 0;
+    padding: 0px;
+}
+
+/* ------ bookmarks ------ */
+.flag-bookmark a {font-size: 0.9em;
+    letter-spacing: 1px;
+    color: #777;
+    border-radius: 15px;
+    border: 1px #0B96DA solid;
+    transition: 0.2s;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 4px 15px;
+    margin-left: 8px;
+  }
+  .flag-bookmark a:hover {
+    background-color: #0B96DA;
+    color: white;
+  }
+  .zaal-full-statistics ul li{
+    margin-right: 8px;
+  }
+
+/* ------ Views counter ------ */
+.node__links li.statistics-counter {
+    display: inline-block;
+    padding: 2px 16px 1px;
+    background: #eee;
+    border-radius: 10px;
+    margin-bottom: 64px;
+}
+
+/* ------ Properties ------ */
+.union-properties {
+    display: flex;
+    row-gap: 16px;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.property-label {
+  background-color: white;
+  padding: 0 10px;
+  position: relative;
+  top: 11px;
+  color: #979494;
+  font-size: 12px;
+  font-weight: 700;
+}
+.union-property {
+  border: 1px solid #E8E8E8; 
+  border-radius: 8px; 
+  width: 180px;
+  padding: 16px 0;
+  font-weight: bold;
+}
+
+/* ------ Prices ------ */
+.union-booking-cost {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0 4px 64px 4px;
+    row-gap: 32px;
+}
+.price-from {
+    border: 1px solid #E8E8E8; 
+    display: flex;
+    gap: 8px;
+    border-radius: 8px; 
+    padding: 8px 32px 8px 8px;
+    font-size: 14px;
+}
+#booking-persoonprijs {
+    color: #E9C514;
+}
+#booking-dagprijs {
+    color: #378CB0;
+}
+#booking-uurprijs {
+    color: #54B20D;
+}
+.booking-euro-prijs {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/*-----Zaal Comfort, Media and Theme-----*/
+.zaal-tabcomfort{
+   display: none;
+  -webkit-animation: zoomIn 1s;
+  animation: zoomIn 1s;
+  animation-timing-function: ease-in-out;
+  text-align: center;
+   }
+   @keyframes zoomIn {
+    0% {
+      transform: scale(0, 0.7);
+    }
+    50% {
+      transform: scale(0.7, 1.1);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+.zaal-comfort-linken{
+    padding: 16px;
+    border: 1px solid #E8E8E8;
+    border-radius: 8px;
+    margin: 64px clamp(0.25rem, -0.7813rem + 5.5vw, 3rem);
+}
+  .tab-zaal-comfort-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(0.25rem, -0.275rem + 2.8vw, 2rem);
+    margin: clamp(0.25rem, 0.025rem + 1.2vw, 1rem);
+    cursor: pointer;
+    position: relative;
+  }
+  .tab-zaal-comfort-links::after {
+    content: "";
+    border-bottom: 1px solid #E8E8E8;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: clamp(5.5rem, 5.0472rem + 3.0189vw, 7.5rem);
+  }
+  .zaal-tabcomfort .field__items {
+    display: flex;
+    gap: clamp(1rem, 0.7rem + 1.6vw, 2rem);
+    flex-wrap: wrap;
+    padding: 32px clamp(0.5rem, 0.05rem + 2.4vw, 2rem);
+    justify-content: center;
+  }
+  .zaal-tabcomfort .field__item {
+  border-radius: 20px;
+  padding: 4px 16px;
+  color: white;
+  }
+  .zaal-tabcomfort .field__item:nth-child(3n+1){
+  background-color: #378CB0;
+  }
+  .zaal-tabcomfort .field__item:nth-child(3n+2){
+  background-color: #E9C514;
+  }
+  .zaal-tabcomfort .field__item:nth-child(3n+3){
+  background-color: #54B20D;
+  }
+  .zaalcomfortlinks{
+    padding: clamp(0.25rem, 0.025rem + 1.2vw, 1rem);
+    filter: opacity(0.3);
+  }
+  .zaalcomfortlinks:hover{
+  filter: opacity(1);
+  }
+  .zaalcomfortlinks img{
+  max-width: 70px;
+  max-height: 50px;
+  }
+  #tab-zaal-comfort-underline {
+   width: 400px;
+       
+  }
+
+  /*-----Feest, vergader, concert en commercieel Occasions-----*/
+.node-zaal-occasions {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
+  gap: 32px;
+  margin: 64px 0;
+}
+.zaal-occasions {
+  border-radius: 8px;
+  padding: 8px 16px;
+  background-color: #FAFAFA;
+}
+.zaal-occasions p {
+  border-radius: 0 0 8px 8px;
+  color: white;
+  position: relative;
+  top: -8px;
+  padding: 4px 8px;
+  font-size: 16px;
+  width: fit-content 
+}
+#node-feest-occasion {
+  border: 1px solid #84B2F9;
+}
+#node-vergader-occasion {
+  border: 1px solid #DBA4D5;
+}
+#node-concert-occasion {
+  border: 1px solid #91C965;
+}
+#node-commerce-occasion {
+  border: 1px solid #FF5F5F;
+}
+#node-vergader-occasion p {
+  background-color: #DBA4D5;
+}
+#node-feest-occasion p {
+  background-color: #84B2F9;
+}
+#node-commerce-occasion p {
+  background-color: #FF5F5F;
+}
+#node-concert-occasion p {
+  background-color: #91C965;
+}
+.node-zaal-occasions .field__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.node-zaal-occasions .field__item:not(:first-child)::before {
+    content: '•';
+    color: red;
+    padding: 2px 2px 0 0;
+
+}
+
+/*-----Body & Floorplan-----*/
+.node-zaal-body-plan {
+    display: grid;
+    grid-template-columns: 68% auto;
+    justify-content: space-evenly;
+}
+.body-zaal-read-more, .body-zaal-no-more{
+  padding: 16px 16px 0; 
+  color: #ff5f5f;
+  cursor: pointer;
+  font-weight: 700;
+}
+.zaal-read-more{
+  color: green;
+}
+.body-zaal-no-more{
+  filter: blur();
+}
+#zaal-body-text-full{
+  display: none;
+}
+.zaal-plan p{
+  text-align: right;
+  font-size: small;
+  color: #777;
+}
+.zaal-plan img {
+  border-radius: 8px;
+}
+
+/* ------ union-links  ------ */
+.union-links .node__links {
+    padding-top: 10px;
+}
+/* ------ links for: unregistered users (Log in or register) ------ */
+.node__links li.reservation-forbidden a {
+    padding: 2px 16px 1px;
+    background: #000;
+    border-radius: 10px;
+    color: #fff;
+}
+/* ------ links for: registered users (Add new reservation) ------ */
+.node__links li.reservation-add {
+    margin-right: 3px;
+    padding: 4px 6px;
+    background: #569211;
+    border-radius: 10px;
+}
+.node__links li.reservation-add a {
+    font-weight: bold;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+/* ------ body text ------ */
+.text-formatted.field--type-text-with-summary {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    padding: 0 5%;
+    text-indent: 30px;
+    text-align: justify;
+}
+
+/* ------ union-photo ------ */
+
+div.field--name-field-foto .field__label {
+    color: #aaa;
+    font-size: 26px;
+}
+div.field--name-field-foto .field__items {
+    padding-top: 20px;
+    text-align: center;
+    background: #f5f5f5;
+    border: 1px #aaa solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+div.field--name-field-foto .field__items:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* ------ comment ------ */
+.node__content section h2 {
+    margin-bottom: 20px;
+    margin-left: 30px;
+    font-weight: bold;
+    color: #75582d;
+    border-bottom: 1px #ddd solid;
+}
+
+article.js-reservation {
+    margin: 3%;
+    padding: 16px;
+    background: #fbfbfb;
+    border: 6px #eee solid;
+    border-top: 2px #ddd solid;
+    border-bottom: 2px #ddd solid;
+    border-radius: 9px;
+}
+article.js-reservation mark {
+    padding: 2px 6px;
+    font-size: 12px;
+    background: #f9df50;
+    border: 1px #ccc solid;
+    border-radius: 6px;
+}
+article.js-reservation footer {
+    text-align: right;
+}
+article.js-reservation footer p {
+    margin: 0;
+    font-size: 12px;
+    color: #777;
+}
+article.js-reservation footer p span {
+    font-weight: bold;
+}
+article.js-reservation footer p a {
+    color: #777;
+    font-weight: bold;
+}
+article.js-reservation footer > a {
+    display: block;
+    float: right;
+    border: none;
+    width: 20px;
+    height: 20px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-image: url(../../images/icons/chain.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: 0.2s;
+}
+article.js-reservation footer > a:hover {
+    background-image: url(../../images/icons/chain-hover.svg);
+}
+
+article.js-reservation > div {
+    border-top: 1px #ddd solid;
+}
+article.js-reservation .field--name-reservation-body {
+    margin: 16px 3%;
+    padding: 10px;
+    background: #fff;
+    border: 1px #ddd solid;
+    border-radius: 10px;
+}
+article.js-reservation ul {
+    margin: 0 -11px;
+    float: right;
+    font-size: 11px;
+}
+article.js-reservation ul a {
+    padding: 3px 16px 1px;
+    background: #000;
+    border-radius: 9px;
+    color: #fff;
+}
+article.js-reservation > div > div:not(.field--name-reservation-body) {
+    display: inline-block;
+    padding: 10px;
+}
+article.js-reservation .field__label {
+    font-size: 12px;
+    color: #bbb;
+    border-bottom: 1px #ddd solid;
+}
+article.js-reservation .field__item .datetime {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* ------ form ------ */
+form#reservation-form {
+    margin: 20px 3%;
+}
+#reservation-form div.field--name-field-enkel-zaal,
+#reservation-form div.field--name-field-bezetting {
+    max-width: 300px;
+    padding: 10px;
+}
+#reservation-form .form-checkbox,
+#reservation-form .form-number {
+    margin: 10px;
+    margin-left: 20px;
+}
+/*form availability-calendar*/
+#reservation-form div.availability-calendar {
+    padding: 10px 0;
+}
+div.availability-calendar > span {
+    padding: 2px 10px;
+    font-size: 0.8em;
+    color: #555;
+    border-left: 2px red solid;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 228, 147));
+}
+#edit-navigation-calendar {
+    margin-top: -26px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f5f5f5;
+    border: 1px #ddd solid;
+    border-radius: 10px;
+}
+#edit-navigation-calendar > div {
+    margin: 20px;
+    max-width: 180px;
+}
+#edit-navigation-calendar > div:first-child {
+    margin-bottom: 0;
+}
+#edit-navigation-calendar > div:not(:first-child) {
+    float: left;
+}
+#edit-navigation-calendar > div label {
+    margin-left: 0px;
+    font-weight: normal;
+    color: #aaa;
+}
+#edit-navigation-calendar > input[type="submit"] {
+    display: block;
+    clear: both;
+}
+
+/*form field smartdate*/
+#edit-field-date-booking-wrapper .tabledrag-toggle-weight-wrapper button.link {
+    padding: 2px 6px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #8c806f;
+    background: #f5f5f5;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 0 2px #000;
+}
+#edit-field-date-booking-wrapper .tabledrag-toggle-weight-wrapper button.link:hover {
+    box-shadow: 0 0 2px #e23600;
+}
+#edit-field-date-booking-wrapper table thead tr th {
+    /* display: none; */
+    background: none;
+    color: #aaa;
+}
+#edit-field-date-booking-wrapper table thead tr {
+    background: none;
+}
+#edit-field-date-booking-wrapper table tr.odd,
+#edit-field-date-booking-wrapper table tr.even {
+    background: none;
+}
+#edit-field-date-booking-wrapper table tr.odd fieldset {
+    background: #f5f5f5;
+}
+#edit-field-date-booking-wrapper table tr.even fieldset {
+    background: #f3f3f3;
+}
+#edit-field-date-booking-wrapper table td input[type="date"] {
+    font-size: 1em;
+    max-width: 150px;
+}
+
+/*-------Room layouts--------*/
+.zaal-comfort-room-layouts .room-layout-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.zaal-comfort-room-layouts .room-layout-icon img {
+  max-width: 40px;
+  height: auto;
+}
+
+.zaal-comfort-room-layouts .room-layout-label {
+  font-weight: 600;
+}
+
+.zaal-comfort-room-layouts .room-layout-capacity {
+  font-weight: 700;
+}
+

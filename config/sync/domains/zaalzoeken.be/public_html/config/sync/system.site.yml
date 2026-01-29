@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE
+langcode: nl
+uuid: cbc2a8ab-0295-427f-bd77-2bc9df955f3a
+name: Zalen.be
+mail: test@articlepulsehub.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: nl
+mail_notification: info@zalen.be

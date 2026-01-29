@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" version="1">
+  <rect width="28" height="28" x="-30" y="-30" fill="#db3c30" rx="14" ry="14" transform="matrix(0 -1 -1 0 0 0)"/>
+  <path d="M15 8h2v13h-2zm0 16h2v2h-2z" class="error" opacity=".2"/>
+  <path fill="#fff" d="M15 7h2v13h-2zm0 16h2v2h-2z" class="error"/>
+  <path fill="#fff" d="M16 2C8 2 2 8 2 16v1a14 14 0 0 1 28 0v-1c0-8-6-14-14-14z" opacity=".2"/>
+  <path d="M2 17a14 14 0 1 0 28 0 14 14 0 0 1-28 0z" opacity=".2"/>
+</svg>

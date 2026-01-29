@@ -1,0 +1,29 @@
+uuid: ce2d367e-dae1-4081-a99a-d5f00d809427
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.zalen_per_gebruiker
+  module:
+    - system
+    - views
+  theme:
+    - awtur
+id: views_block__zalen_per_gebruiker_blok_mijn_zalen
+theme: awtur
+region: sidebar_second
+weight: -12
+provider: null
+plugin: 'views_block:zalen_per_gebruiker-blok_mijn_zalen'
+settings:
+  id: 'views_block:zalen_per_gebruiker-blok_mijn_zalen'
+  label: 'Mijn zalen '
+  label_display: visible
+  provider: views
+  views_label: 'Mijn zalen '
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/mijn-zalen-beheren\r\n/user/*/mijn-inhoud-overzicht\r\n"

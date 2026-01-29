@@ -1,0 +1,22 @@
+uuid: cef6a2ee-d810-4e42-ac9a-e9a6869d2ac3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.zaal
+id: node.zaal.promote
+field_name: promote
+entity_type: node
+bundle: zaal
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,38 @@
+uuid: 3b9a6cdd-6f95-4c2f-9ae7-1194dd94c637
+langcode: nl
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - ckeditor5
+format: basic_html
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - heading
+      - bold
+      - italic
+      - underline
+      - '|'
+      - specialCharacters
+      - horizontalLine
+      - undo
+      - '|'
+      - bulletedList
+      - numberedList
+      - indent
+      - outdent
+  plugins:
+    ckeditor5_heading:
+      enabled_headings:
+        - heading3
+        - heading4
+    ckeditor5_list:
+      properties:
+        reversed: false
+        startIndex: true
+      multiBlock: true
+image_upload:
+  status: false

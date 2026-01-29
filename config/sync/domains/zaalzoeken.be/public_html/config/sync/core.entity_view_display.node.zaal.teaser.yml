@@ -1,0 +1,95 @@
+uuid: 73e38709-c7b6-4c7a-af99-ffbd7579f3e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.zaal.body
+    - field.field.node.zaal.field_bedrijf_zaal
+    - field.field.node.zaal.field_bezetting_tot
+    - field.field.node.zaal.field_bezetting_van
+    - field.field.node.zaal.field_comercielegelegenheden
+    - field.field.node.zaal.field_concertgelegenheden
+    - field.field.node.zaal.field_confirmatie
+    - field.field.node.zaal.field_dagprijs
+    - field.field.node.zaal.field_daily_currency
+    - field.field.node.zaal.field_extra_room_services
+    - field.field.node.zaal.field_feestgelegenheid
+    - field.field.node.zaal.field_form_booking
+    - field.field.node.zaal.field_foto
+    - field.field.node.zaal.field_hourly_currency
+    - field.field.node.zaal.field_media
+    - field.field.node.zaal.field_oppervlakte
+    - field.field.node.zaal.field_person_currency
+    - field.field.node.zaal.field_plattegrond
+    - field.field.node.zaal.field_prijs_eenheid
+    - field.field.node.zaal.field_prijs_per_persoon
+    - field.field.node.zaal.field_reference_reservations
+    - field.field.node.zaal.field_regels
+    - field.field.node.zaal.field_room_pricing_settings
+    - field.field.node.zaal.field_staanplaatsen
+    - field.field.node.zaal.field_status
+    - field.field.node.zaal.field_thema
+    - field.field.node.zaal.field_uitrusting
+    - field.field.node.zaal.field_uurprijs
+    - field.field.node.zaal.field_vergadergelegenheden
+    - field.field.node.zaal.field_zitplaatsen
+    - node.type.zaal
+  module:
+    - text
+    - user
+id: node.zaal.teaser
+targetEntityType: node
+bundle: zaal
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  flag_bookmark:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_bedrijf_zaal: true
+  field_bezetting_tot: true
+  field_bezetting_van: true
+  field_comercielegelegenheden: true
+  field_concertgelegenheden: true
+  field_confirmatie: true
+  field_dagprijs: true
+  field_daily_currency: true
+  field_extra_room_services: true
+  field_feestgelegenheid: true
+  field_form_booking: true
+  field_foto: true
+  field_hourly_currency: true
+  field_media: true
+  field_oppervlakte: true
+  field_person_currency: true
+  field_plattegrond: true
+  field_prijs_eenheid: true
+  field_prijs_per_persoon: true
+  field_reference_reservations: true
+  field_regels: true
+  field_room_pricing_settings: true
+  field_staanplaatsen: true
+  field_status: true
+  field_thema: true
+  field_uitrusting: true
+  field_uurprijs: true
+  field_vergadergelegenheden: true
+  field_zitplaatsen: true
+  langcode: true
+  search_api_excerpt: true

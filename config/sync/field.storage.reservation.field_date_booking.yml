@@ -1,0 +1,19 @@
+uuid: 67eaca28-a3e0-4d53-81ee-0f16bdf21053
+langcode: en
+status: true
+dependencies:
+  module:
+    - reservation
+    - smart_date
+id: reservation.field_date_booking
+field_name: field_date_booking
+entity_type: reservation
+type: smartdate
+settings: {  }
+module: smart_date
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

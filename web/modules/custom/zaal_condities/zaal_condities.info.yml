@@ -1,0 +1,8 @@
+name: 'zaal_condities'
+type: module
+description: 'Custom field conditions for the node forms'
+package: 'Custom'
+core_version_requirement: ^9.3 || ^10
+dependencies:
+  - drupal:node
+

@@ -1,0 +1,10 @@
+uuid: 5bd228d0-5796-447f-9037-9587455f615e
+langcode: en
+status: true
+dependencies: {  }
+id: extra_room_services
+label: 'Extra Room Services'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

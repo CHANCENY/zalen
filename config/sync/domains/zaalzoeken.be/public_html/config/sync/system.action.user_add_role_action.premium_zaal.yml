@@ -1,0 +1,14 @@
+uuid: 9caf1422-b7de-4cb3-bbc5-577bbdf3d2bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.premium_zaal
+  module:
+    - user
+id: user_add_role_action.premium_zaal
+label: 'Add the VIP role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: premium_zaal

@@ -1,0 +1,18 @@
+uuid: 649726ae-c552-4dce-885a-fb83ee70dee7
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.media_faciliteiten
+id: taxonomy_term.media_faciliteiten.name
+field_name: name
+entity_type: taxonomy_term
+bundle: media_faciliteiten
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

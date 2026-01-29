@@ -1,0 +1,12 @@
+# config for mollie payment
+langcode: en
+test_mode: '1'
+#dependencies:
+#  enforced:
+#    config:
+#      - payment.mollie.config
+
+#dependencies:
+#  enforced:
+#    module:
+#      - payment_provider

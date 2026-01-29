@@ -1,0 +1,56 @@
+uuid: c9ef4c0e-38e6-420d-b9d2-9251100a6f3f
+langcode: nl
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.avatar
+    - field.field.user.user.field_bedrijf_adres
+    - field.field.user.user.field_bericht_voor_rolupdate
+    - field.field.user.user.field_betaling_accepteren_via_mo
+    - field.field.user.user.field_ondernemingsnummer
+    - field.field.user.user.field_streek
+    - field.field.user.user.field_vip_abonnement_vervaldatum
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - image
+    - term_reference_tree
+    - user
+_core:
+  default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
+id: user.user.avatar
+targetEntityType: user
+bundle: user
+mode: avatar
+content:
+  field_streek:
+    type: term_reference_tree
+    weight: 1
+    region: content
+    settings:
+      start_minimized: true
+      leaves_only: true
+      select_parents: false
+      cascading_selection: 0
+      max_depth: 5
+    third_party_settings: {  }
+  user_picture:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+hidden:
+  account: true
+  contact: true
+  field_bedrijf_adres: true
+  field_bericht_voor_rolupdate: true
+  field_betaling_accepteren_via_mo: true
+  field_ondernemingsnummer: true
+  field_vip_abonnement_vervaldatum: true
+  langcode: true
+  language: true
+  path: true
+  timezone: true

@@ -1,0 +1,18 @@
+uuid: 58e8c1e8-3942-4387-816e-f07a38176475
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_nabij_tramhalte
+field_name: field_nabij_tramhalte
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

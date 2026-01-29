@@ -1,0 +1,18 @@
+title: "Зворотній зв'язок"
+description: 'Простий шаблон відгуку.'
+elements: "type:\r\n  '#title': 'Тип відгуку'\r\n  '#type': webform_radios_other\r\n  '#required': true\r\n  '#options':\r\n    Коментарі: Коментарі\r\n    'Повідомити баг': 'Повідомити баг'\r\n    Питання: Питання\r\n  '#options_display': side_by_side\r\ncomments:\r\n  '#title': 'Ваш відгук'\r\n  '#type': textarea\r\n  '#required': true\r\nname:\r\n  '#title': 'Ваше  ім&#39;я'\r\n  '#type': textfield\r\n  '#required': true\r\nemail:\r\n  '#title': 'Ваша електронна адреса'\r\n  '#type': email\r\n  '#required': true\r\nactions:\r\n  '#type': webform_actions\r\n  '#title': 'Кнопка(и) Надіслати'\r\n  '#submit__label': 'Надіслати відгук'\n"
+settings:
+  confirmation_message: 'Дякуємо за відгук.'
+handlers:
+  email_confirmation:
+    label: 'Підтвердження поштою'
+    settings:
+      from_name: _default
+      subject: _default
+      body: '[webform_submission:values:comments:value]'
+  email_notification:
+    label: 'Електронне сповіщення'
+    settings:
+      from_name: '[webform_submission:values:name:raw]'
+      subject: _default
+      body: '[webform_submission:values:comments:value]'

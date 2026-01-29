@@ -1,0 +1,23 @@
+uuid: 5553d018-3e68-437c-a9de-2459c1841d22
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.alle_zalen
+  module:
+    - views
+  theme:
+    - awtur
+id: awtur_exposedformalle_zalenblok_sort_zalen
+theme: awtur
+region: header
+weight: -15
+provider: null
+plugin: 'views_exposed_filter_block:alle_zalen-blok_sort_zalen'
+settings:
+  id: 'views_exposed_filter_block:alle_zalen-blok_sort_zalen'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility: {  }

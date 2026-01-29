@@ -1,0 +1,2 @@
+label: 'Bestätigungszeitraum der Reservierung'
+description: "<big><strong>Wichtig!</strong></big>\r\n<ul>\r\nWählen Sie einen Zeitraum, in dem Sie die Buchung bestätigen.<br>\r\nWenn Sie „Sofort“ wählen, wird die voraussichtliche Zahlung sofort bearbeitet und die Reservierung ist wirksam.<br>\r\nFalls innerhalb der angegebenen Frist keine Bestätigung erfolgt, wird die Buchung storniert.\r\n</ul>"

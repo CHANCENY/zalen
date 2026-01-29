@@ -1,0 +1,18 @@
+uuid: 5ea57c61-67e5-4799-80d4-5ad1e482dde1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.groene_troeven
+id: taxonomy_term.groene_troeven.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: groene_troeven
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

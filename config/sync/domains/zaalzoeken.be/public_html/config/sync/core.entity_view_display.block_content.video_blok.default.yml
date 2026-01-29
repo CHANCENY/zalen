@@ -1,0 +1,34 @@
+uuid: 711bfb10-8adb-459c-bea4-bd45b722a166
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.video_blok
+    - field.field.block_content.video_blok.body
+    - field.field.block_content.video_blok.field_video_foto
+  module:
+    - text
+id: block_content.video_blok.default
+targetEntityType: block_content
+bundle: video_blok
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_video_foto:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

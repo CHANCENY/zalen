@@ -1,0 +1,55 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_entity_presave().
+ */
+function location_scraper_entity_presave(EntityInterface $entity) {
+  // Controleer of het een node is van het type 'bedrijf'.
+  if ($entity->getEntityTypeId() == 'node' && $entity->bundle() == 'bedrijf') {
+    // Wijs realistische willekeurige waarden toe aan de velden.
+    _location_scraper_assign_random_values($entity);
+  }
+}
+
+/**
+ * Helper functie om willekeurige waarden toe te wijzen aan de node.
+ */
+function _location_scraper_assign_random_values(EntityInterface $node) {
+  // Toewijzen van een realistisch aantal reviews op basis van de opgegeven verdeling.
+  $random_percentage = mt_rand(1, 100);
+
+  if ($random_percentage <= 10) {
+    // 10% kans op minder dan 100 reviews.
+    $review_count = mt_rand(1, 99);
+  }
+  elseif ($random_percentage <= 70) { // 10% + 60% = 70%
+    // 60% kans op tussen de 100 en 500 reviews.
+    $review_count = mt_rand(100, 500);
+  }
+  elseif ($random_percentage <= 95) { // 70% + 25% = 95%
+    // 25% kans op tussen de 500 en 1000 reviews.
+    $review_count = mt_rand(501, 1000);
+  }
+  else {
+    // 5% kans op meer dan 1000 reviews.
+    $review_count = mt_rand(1001, 5000);
+  }
+
+  // Toewijzen van een realistische rating tussen 3.0 en 5.0 met één decimaal.
+  $u = mt_rand() / mt_getrandmax();
+  $rating = 3.0 + pow($u, 0.5) * (5.0 - 3.0);
+  $rating = round($rating, 1); // Afronden op één decimaal.
+
+  // Controleren of de velden al een waarde hebben.
+  if ($node->get('field_google_review_count')->isEmpty()) {
+    $node->set('field_google_review_count', $review_count);
+  }
+  // Anders behouden we de bestaande waarde.
+
+  if ($node->get('field_google_rating')->isEmpty()) {
+    $node->set('field_google_rating', $rating);
+  }
+  // Anders behouden we de bestaande waarde.
+}

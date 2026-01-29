@@ -1,0 +1,14 @@
+uuid: e8ca12eb-8109-424f-8286-2f348f786561
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.adverteerder
+  module:
+    - user
+id: user_remove_role_action.adverteerder
+label: 'Remove the Adverteerder role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: adverteerder

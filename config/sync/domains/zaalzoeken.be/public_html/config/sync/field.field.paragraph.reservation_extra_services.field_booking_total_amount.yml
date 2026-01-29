@@ -1,0 +1,23 @@
+uuid: 046ea35f-fe1c-4383-940d-d1b3103b8d65
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_booking_total_amount
+    - paragraphs.paragraphs_type.reservation_extra_services
+id: paragraph.reservation_extra_services.field_booking_total_amount
+field_name: field_booking_total_amount
+entity_type: paragraph
+bundle: reservation_extra_services
+label: 'Booking Total Amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

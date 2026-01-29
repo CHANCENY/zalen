@@ -1,0 +1,189 @@
+uuid: 4934e9d5-6f0b-4a5c-a1e9-942cb294cc31
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.comfort
+    - field.field.node.bedrijf.body
+    - field.field.node.bedrijf.comment
+    - field.field.node.bedrijf.field_aanspreekvorm
+    - field.field.node.bedrijf.field_adres
+    - field.field.node.bedrijf.field_afstand_bus
+    - field.field.node.bedrijf.field_afstand_metro
+    - field.field.node.bedrijf.field_afstand_tramhalte
+    - field.field.node.bedrijf.field_afstand_trein_station
+    - field.field.node.bedrijf.field_avatar
+    - field.field.node.bedrijf.field_beperkingen
+    - field.field.node.bedrijf.field_buiten_voorzieningen
+    - field.field.node.bedrijf.field_contact_persoon
+    - field.field.node.bedrijf.field_faciliteiten
+    - field.field.node.bedrijf.field_fb
+    - field.field.node.bedrijf.field_fietsen
+    - field.field.node.bedrijf.field_foto
+    - field.field.node.bedrijf.field_google_rating
+    - field.field.node.bedrijf.field_google_review_count
+    - field.field.node.bedrijf.field_groen_label
+    - field.field.node.bedrijf.field_gsm
+    - field.field.node.bedrijf.field_keurmerken
+    - field.field.node.bedrijf.field_kindvriendelijk
+    - field.field.node.bedrijf.field_kindvriendelijkheid
+    - field.field.node.bedrijf.field_lat_long
+    - field.field.node.bedrijf.field_logo
+    - field.field.node.bedrijf.field_migrated_photos
+    - field.field.node.bedrijf.field_milieu
+    - field.field.node.bedrijf.field_mindervaliden
+    - field.field.node.bedrijf.field_motoren
+    - field.field.node.bedrijf.field_nabij_bushalte
+    - field.field.node.bedrijf.field_nabij_metrohalte
+    - field.field.node.bedrijf.field_nabij_tramhalte
+    - field.field.node.bedrijf.field_nabij_trein_station
+    - field.field.node.bedrijf.field_openingsuren
+    - field.field.node.bedrijf.field_overnight_room
+    - field.field.node.bedrijf.field_prijslijsten
+    - field.field.node.bedrijf.field_slaapgelegenheid
+    - field.field.node.bedrijf.field_slogan
+    - field.field.node.bedrijf.field_sluit_periode
+    - field.field.node.bedrijf.field_stadsgewest
+    - field.field.node.bedrijf.field_telefoon
+    - field.field.node.bedrijf.field_video
+    - field.field.node.bedrijf.field_wagens
+    - field.field.node.bedrijf.field_website
+    - field.field.node.bedrijf.field_whatsapp
+    - field.field.node.bedrijf.field_zaal_bedrijf
+    - node.type.bedrijf
+  module:
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.bedrijf.comfort
+targetEntityType: node
+bundle: bedrijf
+mode: comfort
+content:
+  field_buiten_voorzieningen:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_faciliteiten:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_fietsen:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_kindvriendelijkheid:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_milieu:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_mindervaliden:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_motoren:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_slaapgelegenheid:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_wagens:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  comment: true
+  field_aanspreekvorm: true
+  field_adres: true
+  field_afstand_bus: true
+  field_afstand_metro: true
+  field_afstand_tramhalte: true
+  field_afstand_trein_station: true
+  field_avatar: true
+  field_beperkingen: true
+  field_contact_persoon: true
+  field_fb: true
+  field_foto: true
+  field_google_rating: true
+  field_google_review_count: true
+  field_groen_label: true
+  field_gsm: true
+  field_keurmerken: true
+  field_kindvriendelijk: true
+  field_lat_long: true
+  field_logo: true
+  field_migrated_photos: true
+  field_nabij_bushalte: true
+  field_nabij_metrohalte: true
+  field_nabij_tramhalte: true
+  field_nabij_trein_station: true
+  field_openingsuren: true
+  field_overnight_room: true
+  field_prijslijsten: true
+  field_slogan: true
+  field_sluit_periode: true
+  field_stadsgewest: true
+  field_telefoon: true
+  field_video: true
+  field_website: true
+  field_whatsapp: true
+  field_zaal_bedrijf: true
+  flag_bookmark: true
+  langcode: true
+  layout_builder__layout: true
+  search_api_excerpt: true

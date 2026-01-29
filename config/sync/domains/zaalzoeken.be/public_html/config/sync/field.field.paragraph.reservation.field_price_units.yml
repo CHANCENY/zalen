@@ -1,0 +1,60 @@
+uuid: 342c73c6-8b11-49a6-aec1-4e615d24f119
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_price_units
+    - paragraphs.paragraphs_type.per_day_unit
+    - paragraphs.paragraphs_type.per_hour
+    - paragraphs.paragraphs_type.per_person_item
+    - paragraphs.paragraphs_type.reservation
+id: paragraph.reservation.field_price_units
+field_name: field_price_units
+entity_type: paragraph
+bundle: reservation
+label: 'Price Units'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      per_day_unit: per_day_unit
+      per_hour: per_hour
+      per_person_item: per_person_item
+    negate: 0
+    target_bundles_drag_drop:
+      extra_room_services:
+        weight: 11
+        enabled: false
+      per_day_price_rules:
+        weight: 13
+        enabled: false
+      per_day_unit:
+        weight: 14
+        enabled: true
+      per_hour:
+        weight: 15
+        enabled: true
+      per_hour_unit_rules:
+        weight: 16
+        enabled: false
+      per_person_item:
+        weight: 17
+        enabled: true
+      person_price_rules:
+        weight: 12
+        enabled: false
+      price_unit:
+        weight: 18
+        enabled: false
+      reservation:
+        weight: 19
+        enabled: false
+      reservation_extra_services:
+        weight: 20
+        enabled: false
+field_type: entity_reference

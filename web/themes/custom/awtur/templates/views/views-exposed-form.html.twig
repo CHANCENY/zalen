@@ -1,0 +1,145 @@
+
+{% if form['#id'] == 'views-exposed-form-alle-zalen-page-alle-zalen' %}
+  {{ attach_library('awtur/multiselect-sumoselect') }}
+  {{ attach_library('awtur/tab_switch_behavior') }}
+
+{% set base_path = drupal_token('site:base-path') ~ '/' %}
+{% set thema_pad = base_path ~ directory %} 
+
+<div class="exposed-main-form">  
+
+  <div class="gelegenheidstabs">
+    <div class="gelegenheidsTab" id="feestCheck" data-target="feestToonMij">
+      <img src="{{ thema_pad }}/images/icons/exposed-views/feest-gelegenheid-black.svg"/>
+      <span for="feest">{{ 'Parties'|t }}</span>
+    </div>
+    <div class="gelegenheidsTab" id="commerceCheck" data-target="commerceToonMij">
+      <img src="{{ thema_pad }}/images/icons/exposed-views/commerce-gelegenheid-black.svg"/>
+      <span for="commercieel">{{ 'Commercial'|t }}</span>
+    </div>
+    <div class="gelegenheidsTab" id="entertainCheck" data-target="entertainmentToonMij">
+      <img src="{{ thema_pad }}/images/icons/exposed-views/concert-gelegenheid-black.svg"/>
+      <span for="entertain">{{ 'Entertainment'|t }}</span>
+    </div>
+    <div class="gelegenheidsTab" id="vergaderCheck" data-target="vergaderToonMij">
+      <img src="{{ thema_pad }}/images/icons/exposed-views/vergader-gelegenheid-black.svg"/>
+      <span for="vergader">{{ 'Meeting'|t }}</span>
+    </div>
+  </div>
+
+  <div class="exposed-quick-form-wrapper">
+    
+    <div class="exposed-quick-form">
+  
+      <div class="exposed-nearby-city">
+        {{ form.nabijheid_plaats_postcode_wrapper.nabijheid_plaats_postcode['source_configuration'] }}
+      </div>
+
+      <div class="exposed-range-area">
+        {{ form.nabijheid_plaats_postcode_wrapper.nabijheid_plaats_postcode.value }}
+      </div>
+
+      <div>
+        <div id="commerceToonMij" class="hidden tabgelegenheid">
+          <div class="tab-gelegenheid">
+            <div class="tab-label-placeholder">{{ form.commerciele_gelegenheden_keuze }}</div>
+          </div>
+        </div>
+      
+        <div id="entertainmentToonMij" class="hidden tabgelegenheid">
+          <div class="tab-gelegenheid">
+            <div class="tab-label-placeholder">{{ form.concert_gelegenheden_keuze }}</div>
+          </div>
+        </div>
+
+        <div id="feestToonMij" class="hidden tabgelegenheid">
+          <div class="tab-gelegenheid">
+            <div class="tab-label-placeholder">{{ form.feest_gelegenheid_keuze }}</div>
+          </div>
+        </div>
+        
+        <div id="vergaderToonMij" class="hidden tabgelegenheid">
+          <div class="tab-gelegenheid">
+            <div class="tab-label-placeholder">{{ form.vergader_gelegenheden_keuze }}</div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+
+    <div class="exposed-dates">
+
+      <div class="exposed-start-date">
+        {{ form.field_date_booking_start_value }}
+      </div>
+
+      <div class="exposed-end-date">
+        {{ form.field_date_booking_end_value}}
+      </div>
+    
+    </div>
+  
+  </div>
+  <div class="exposed-submit-reset-buttons">
+      
+      <div class="exposed-submit-button">
+        {{ form.actions.submit }}
+      </div>
+    
+      <div class="exposed-reset-button">
+        {{ form.actions.reset }}
+      </div>
+
+    </div>
+  </div>
+
+{# The div below and his content are been hidden, we need the fields in the template for the view filter to work, but we 
+ only need it 1 time on the page -----START HIDDEN----#}
+<div class="hidden">
+
+  <div>{{ form.field_groen_label_value }}</div>
+
+  <div>{{ form.field_kindvriendelijk_value }}</div>
+
+  <div>{{ form.field_beperkingen_value }}</div>
+
+  <div>{{ form.field_nabij_bushalte_value }}</div>
+
+  <div>{{ form.field_nabij_metrohalte_value }}</div>
+
+  <div>{{ form.field_nabij_tramhalte_value }}</div>
+
+  <div>{{ form.field_nabij_trein_station_value }}</div>
+
+  <div>{{ form.field_dagprijs_value }}</div>
+
+  <div>{{ form.field_prijs_per_persoon_value }}</div>
+
+  <div>{{ form.field_uurprijs_value }}</div>
+
+  <div>{{ form.field_fietsen_value }}</div>
+
+  <div>{{ form.field_motoren_value }}</div>
+
+  <div>{{ form.field_wagens_value }}</div>
+
+  <div>{{ form.field_slaapgelegenheid_value }}</div>
+
+  <div>{{ form.field_zitplaatsen_value }}</div>
+
+  <div>{{ form.field_bezetting_tot_value }}</div>
+
+  <div>{{ form.field_oppervlakte_value }}</div>
+
+  <div>{{ form.field_buiten_voorzieningen_target_id }}</div>
+
+  <div>{{ form.field_uitrusting_target_id }}</div>
+
+  <div>{{ form.sort_by }}</div>
+
+</div>
+{#- --End class hidden-- -#}
+
+{% else %}
+  {{ form }}
+{% endif %}

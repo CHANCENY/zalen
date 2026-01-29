@@ -1,0 +1,64 @@
+﻿
+/*page kaart for global styling*/
+
+/*fix region sidebar*/
+/* @media (min-width: 851px) {
+  main#content {
+    margin-right: 0;
+    margin-left: auto;
+    width: calc(100% - 272px);
+  }
+} */
+form#user-login-form,
+form#magnus-register-form,
+form#user-pass,
+form#user-additioneel-form,
+form#user-avatar-form {
+  margin: 30px auto;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  max-width: 320px;
+  border: 1px #FF9800 solid;
+  border-radius: 10px;
+
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
+}
+form#user-additioneel-form input:not([type="submit"]) {
+  max-width: 220px;
+}
+@media (min-width: 560px) {
+  form#magnus-register-form,
+  form#user-additioneel-form,
+  form#user-avatar-form {
+    max-width: 560px;
+  }
+}
+form#user-avatar-form .term-reference-tree-button {
+  margin-top: -0.3em;
+  margin-left: 0.1em;
+  margin-right: 0;
+  background: url(../../images/icons/term_reference_tree_button/toggle_minus.svg);
+}
+form#user-avatar-form .term-reference-tree-button.term-reference-tree-collapsed {
+  background: url(../../images/icons/term_reference_tree_button/tree_collapsed.svg);
+}
+form#user-avatar-form .no-term-reference-tree-button {
+  display: none;
+  /* margin-top: -0.4em;
+  width: 10px;
+  height: 3px;
+  background-color: #4CAF50; */
+  /* background-color: unset; */
+}
+form#user-avatar-form .form-item label.option {
+  padding: 1px 5px;
+  color: #fff;
+  border-radius: 0.3em;
+  background: #885300;
+  transition: 0.2s;
+}
+form#user-avatar-form .form-item label.option:hover {
+  background: #b78700;
+}
+
+

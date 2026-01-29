@@ -1,0 +1,267 @@
+/**
+ * @file
+ * Visual styles for AWTur's menu--zaal-groepen.html.twig.
+ */
+
+/*@media screen and (min-width: 560px) {
+article header {
+    margin: 20px;
+}
+}*/
+
+/* .block-block-content, .block.block-views {
+    background: rgb(245, 245, 245);
+} */
+
+/*block wrapper*/
+div#block-homevideo,
+div#block-views-block-populaire-zalen-block-1,
+div#block-views-block-populaire-zalen-block-2 {
+    margin: 10px 0;
+    padding: 15px;
+    background: #fff;
+    border: 1px #b78700 solid;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #999;
+}
+
+/*block Home video*/
+div#block-homevideo > h2 {
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+div#block-homevideo .field--name-field-video-foto {
+    margin-left: auto;
+    width: 100%;
+    border: 6px black solid;
+    border-radius: 6px;
+    box-shadow: 3px 7px 6px 2px #ababab;
+}
+div#block-homevideo .media--type-remote-video {/*fix YouTube*/
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+.media--type-remote-video iframe,
+.media--type-remote-video object,
+.media--type-remote-video embed {/*fix YouTube*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/*.ytp-large-play-button-red-bg .ytp-large-play-button-bg {
+    fill-opacity: 0.8;
+    fill: #debb54;
+}*/
+@media screen and (min-width: 560px) {
+    div#block-homevideo .field--name-field-video-foto {
+        width: 50%;
+        margin: 30px;
+        float: left;
+    }
+}
+/*txt*/
+div#block-homevideo .field--type-text-with-summary h2 {
+    margin-left: auto;
+    padding: 10px;
+    font-size: clamp(1.6875rem, 1.4464rem + 1.2857vw, 2.25rem);
+    text-align: center;
+    line-height: 1;
+    vertical-align: middle;
+    color: white;
+    background-color: #e0be58;
+    text-shadow: 2px 2px 2px #debb54;
+}
+div#block-homevideo .field--type-text-with-summary h5 + p {
+    clear: both;
+}
+div#block-homevideo .field--type-text-with-summary ol {
+    font-weight: bold;
+    counter-reset: theme;
+}
+div#block-homevideo .field--type-text-with-summary li {
+    margin: 0.52em 0;
+    list-style: none;
+}
+div#block-homevideo .field--type-text-with-summary li:before {
+    content: counter(theme);
+    counter-increment: theme;
+    display: inline-block;
+    margin-right: 10px;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8em;
+    color: #f9f5f5;
+    background: linear-gradient(226.33deg, #FFF5A8 6.96%, #BD8100 35.02%, #E0BE58 75.16%, #F1DC83 96.8%);
+    font-weight: bold;
+    text-align: center;
+    border-radius: .9em;
+    box-shadow: 0px 1px 4px 0px rgba(8, 8, 8, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+div#block-homevideo .field--type-text-with-summary li:hover:before {
+    background: #ff9900;
+}
+
+@media screen and (min-width: 560px) {
+    div#block-homevideo .field--type-text-with-summary h2 {
+        width: 80%;
+        text-align: left;
+        line-height: 1.2;
+        min-height: 160px;
+    }
+    div#block-homevideo .field--type-text-with-summary h5 {
+        padding: 30px 60px;
+        clear: both;
+    }
+    div#block-homevideo .onderwerpen-video {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (min-width: 851px) {
+    div#block-homevideo .v-onderwerp-1 {
+        padding-left: 60px;
+    }
+}
+
+/*block Populaire zalen*/
+div#block-views-block-populaire-zalen-block-1 {
+    margin: 50px 0;
+}
+div#block-views-block-populaire-zalen-block-1 h2 {
+    margin-left: auto;
+    margin-top: -16px;
+    margin-bottom: 30px;
+    padding: 6px 30px;
+    width: 190px;
+    font-weight: bold;
+    text-align: right;
+    /*background: #eee;*/
+}
+/* div#block-views-block-populaire-zalen-block-1 .views-view-grid { */
+div#block-views-block-populaire-zalen-block-1 .views-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: stretch; */
+    /* align-content: center; */
+}
+div#block-views-block-populaire-zalen-block-1 .views-col {
+    /* order: 1; */
+    /* flex-grow: 2; */
+    /* flex-shrink: 1; */
+    /* flex-basis: 300px; */
+    flex: 0.5 1 300px;
+    /* align-self: stretch; */
+    /* margin: 6px; */
+    /* padding: 3px; */
+    /* width: 23%; */
+    /* height: 225px; */
+    text-align: center;
+    /* background: #f9f9f9; */
+    /* box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); */
+}
+@media screen and (min-width: 851px) {
+    div#block-views-block-populaire-zalen-block-1 .views-col {
+        flex: 0 1 auto;
+    }
+}
+div#block-views-block-populaire-zalen-block-1 .views-col a {
+    color: #5d4400;
+}
+div#block-views-block-populaire-zalen-block-1 .views-col .views-field-field-foto a {
+    border: none;
+}
+div#block-views-block-populaire-zalen-block-1 .views-col .views-field-title {
+    padding: 10px 20px 2px;
+    text-align: left;
+    font-size: 1.2em;
+    /* background: #eee; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+div#block-views-block-populaire-zalen-block-1 .views-col .views-field-field-foto {
+    height: 70%;
+}
+div#block-views-block-populaire-zalen-block-1 .views-col .views-field-field-foto .field-content {
+    margin: 5px;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+div#block-views-block-populaire-zalen-block-1 .views-col .views-field-field-foto .field-content:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+div#block-views-block-populaire-zalen-block-1 .views-col .views-field-field-foto img {
+    /* width: auto; */
+    /* max-width: none; */
+    /* height: 100%; */
+    /* position: relative; */
+    /* left: 50%; */
+    /* transform: translate(-50%, 0); */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+div#block-views-block-populaire-zalen-block-1 .views-col .views-field-field-stadsgewest {
+    padding: 3px 20px;
+    display: inline-block;
+    position: relative;
+    top: -20px;
+    font-weight: bold;
+    line-height: 1.2;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    border-bottom: 1px #b78700 solid;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/*block Geregistreerde kamers*/
+div#block-views-block-populaire-zalen-block-2 .views-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+@media screen and (min-width: 851px) {
+    div#block-views-block-populaire-zalen-block-2 .views-row {
+        display: block;
+    }
+}
+div#block-views-block-populaire-zalen-block-2 .views-col {
+    flex: 0.5 1 270px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px #eee solid;
+    border-radius: 6px;
+}
+div#block-views-block-populaire-zalen-block-2 .views-col .views-field-title {
+    line-height: 1.8;
+    font-family: "MontserratAlternates";
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+div#block-views-block-populaire-zalen-block-2 .views-col .views-field-title a {
+    color: #5d4400;
+}
+div#block-views-block-populaire-zalen-block-2 .views-col .views-label-field-stadsgewest {
+    padding: 0 10px;
+    width: fit-content;
+    float: left;
+    font-size: 0.8em;
+    line-height: 2;
+    background: #eee;
+}
+
+
+
+
+
+
+

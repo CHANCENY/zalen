@@ -1,0 +1,33 @@
+uuid: f396151c-9301-4d0a-95d2-dc361fef846c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_form_booking
+    - node.type.zaal
+  module:
+    - reservation
+id: node.zaal.field_form_booking
+field_name: field_form_booking
+entity_type: node
+bundle: zaal
+label: 'Booking form'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    status: 2
+    cid: 0
+    last_reservation_timestamp: 0
+    last_reservation_name: null
+    last_reservation_uid: 0
+    reservation_count: 0
+default_value_callback: ''
+settings:
+  default_mode: 1
+  per_page: 50
+  anonymous: 0
+  form_location: true
+  preview: 1
+field_type: reservation

@@ -1,0 +1,15 @@
+field.value.opentime_field:
+  type: mapping
+  label: Default value
+  mapping:
+    value:
+      type: label
+      label: Value
+
+field.widget.settings.opentime_openingtimes:
+  type: mapping
+  label: openingtimes widget settings
+  mapping:
+    foo:
+      type: string
+      label: Foo

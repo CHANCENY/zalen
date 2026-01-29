@@ -1,0 +1,29 @@
+uuid: a863f282-6fba-43a1-ad12-31d2cad5b542
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_afstand_trein_station
+    - node.type.bedrijf
+    - taxonomy.vocabulary.afstand_openbaar_vervoer
+id: node.bedrijf.field_afstand_trein_station
+field_name: field_afstand_trein_station
+entity_type: node
+bundle: bedrijf
+label: 'Distance train station'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      afstand_openbaar_vervoer: afstand_openbaar_vervoer
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

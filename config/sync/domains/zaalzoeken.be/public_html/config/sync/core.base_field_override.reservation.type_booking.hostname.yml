@@ -1,0 +1,18 @@
+uuid: 0bce64cf-a3be-4483-9991-05c2df8345b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - reservation.type.type_booking
+id: reservation.type_booking.hostname
+field_name: hostname
+entity_type: reservation
+bundle: type_booking
+label: Hostname
+description: "The reservation author's hostname."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\reservation\Entity\Reservation::getDefaultHostname'
+settings: {  }
+field_type: string

@@ -1,0 +1,119 @@
+﻿
+/*page kaart for global styling*/
+
+/*fix region sidebar*/
+@media (min-width: 851px) {
+  main#content {
+    position: static;
+    margin-right: 0;
+    margin-left: auto;
+    width: calc(100% - 272px);
+    min-width: 289px;
+  }
+  div#sidebar-first {
+    position: static;
+    margin-left: 0;
+    float: left;
+    width: 50%;
+    max-width: 272px;
+  }
+  div#sidebar-second {
+    clear: both;
+    position: static;
+    float: none;
+    margin-left: 0;
+    width: 100%;
+  }
+  div#sidebar-second aside.section {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  div#sidebar-second aside.section > div {
+    max-width: 100%;
+    flex: 0 0 48%;
+    min-height: 1px;
+    margin-bottom: 15px;
+  }
+}
+@media (min-width: 1081px) {
+  div#sidebar-second aside.section > div {
+    flex: 0 0 24%;
+  }
+}
+@media (min-width: 560px) {
+  main#content {
+    margin-left: auto;
+    width: calc(100% - 272px);
+    min-width: 289px;
+  }
+  div#sidebar-first {
+    position: static;
+    width: 50%;
+    max-width: 272px;
+    border: 2px solid #f5eddc;
+    
+  }
+  div#sidebar-second {
+    clear: both;
+    position: static;
+    float: none;
+    width: 100%;
+  }
+}
+div#user-ident {/*max 542 / with margin 522 (559/560)px */
+  margin: 10px 10px 0 10px;
+  padding-top: 2em;
+  text-align: center;
+  background: #fff;
+  border-bottom: 2px solid #C48B2C;
+  /*background: linear-gradient(180deg, rgb(205, 135, 35) 0%, rgb(239, 225, 213) 2%, rgba(255,255,255,0) 90%);*/
+  /*border-radius: 10px 10px 0 0;*/
+  /*box-shadow: 0px -8px 10px -3px rgba(205, 135, 35, 0.2);*/
+
+}
+.ident-image {
+  /* display: block;
+  margin: 0 auto;
+  width: 50%; */ /* fix in proportion-defined */
+  border-radius: 100%;
+}
+.ident-image.ident-user {
+  border: 5px #bd8100 solid;
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+/*proportion defined for photo*/
+.proportion-defined {
+  margin: auto;
+  position: relative;
+  width: 70%;
+  padding-top: 70%;
+}
+.proportion-defined img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+/*proportion defined for photo end*/
+.ident-name {
+  font-size: 2em;
+  font-weight: bold;
+  color: #cd8723;
+}
+div#block-partnerviplijst {
+  background: ivory;
+  padding: 16px;
+  font-size: clamp(0.8125rem, 0.77rem + 0.283vw, 1rem);
+  background: #fbfbfb;
+  border-radius: 8px;
+  box-shadow: 8px 8px 44px rgb(0 0 0 / 10%);
+}
+
+

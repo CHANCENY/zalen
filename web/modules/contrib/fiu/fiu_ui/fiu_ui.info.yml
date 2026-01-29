@@ -1,0 +1,15 @@
+name: FIU UI settings
+core_version_requirement: ^9 || ^10
+type: module
+description: 'Add ability to manage ui of FIU widget.'
+package: Media
+configure: fiu_ui.admin_settings
+dependencies:
+  - drupal:image
+  - fiu:fiu
+  - drupal:jquery_colorpicker
+
+# Information added by Drupal.org packaging script on 2023-11-02
+version: '3.0.1-beta1'
+project: 'fiu'
+datestamp: 1698908529

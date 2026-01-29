@@ -1,0 +1,9 @@
+uuid: 31373147-62f0-43b4-9c4c-0477b879c935
+langcode: nl
+status: true
+dependencies: {  }
+name: Zaalopstellingen
+vid: zaalopstellingen
+description: 'Dit geeft aan welke opstellingen mogelijk zijn in de zaal.'
+weight: 0
+new_revision: false

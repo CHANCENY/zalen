@@ -1,0 +1,9 @@
+uuid: c2431c36-cfb7-48a4-82b2-46ea3793c1dc
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Groene troeven'
+vid: groene_troeven
+description: 'Milieuvriendelijke ingrepen, faciliteiten'
+weight: 0
+new_revision: false

@@ -1,0 +1,23 @@
+uuid: 9bbd2706-c20f-451d-b6e4-9aa848724b55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_nights
+    - paragraphs.paragraphs_type.reservation_overnight_room
+id: paragraph.reservation_overnight_room.field_nights
+field_name: field_nights
+entity_type: paragraph
+bundle: reservation_overnight_room
+label: nights
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

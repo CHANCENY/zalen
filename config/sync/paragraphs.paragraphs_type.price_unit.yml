@@ -1,0 +1,10 @@
+uuid: 444ec76b-dd48-4d05-9fb0-eba18454a0c7
+langcode: en
+status: true
+dependencies: {  }
+id: price_unit
+label: 'Price Unit'
+icon_uuid: null
+icon_default: null
+description: 'this is price unit'
+behavior_plugins: {  }

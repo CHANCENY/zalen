@@ -1,0 +1,25 @@
+zaal_condities.user.edit_bedrijf:
+  title: Bedrijfs info
+  route_name: zaal_condities.user.edit_bedrijf
+  base_route: entity.user.canonical
+
+zaal_condities.user.edit_profiel:
+  title: Over mij
+  route_name: zaal_condities.user.edit_profiel
+  base_route: entity.user.canonical
+
+zaal_condities.user.reservaties_mijn_zalen:
+  title: Zaal reserveringen
+  route_name: zaal_condities.user.reservaties_mijn_zalen
+  base_route: entity.user.canonical
+
+zaal_condities.user.mijn_zalen_beheren:
+  title: Mijn zalen
+  route_name: zaal_condities.user.mijn_zalen_beheren
+  base_route: entity.user.canonical
+
+#zaal_condities.user.verander_rol:
+#  title: Partner worden
+#  route_name: zaal_condities.user.verander_rol
+#  base_route: entity.user.canonical
+#  class: \Drupal\zaal_condities\Plugin\Menu\LocalTask\TabAccountWijzigen

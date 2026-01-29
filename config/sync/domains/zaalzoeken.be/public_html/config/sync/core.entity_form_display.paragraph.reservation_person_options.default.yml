@@ -1,0 +1,49 @@
+uuid: 04621e91-a4d9-44ae-9b5e-677409eacdb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.reservation_person_options.field_person_option
+    - field.field.paragraph.reservation_person_options.field_price
+    - field.field.paragraph.reservation_person_options.field_reserve_count
+    - field.field.paragraph.reservation_person_options.field_total_charge
+    - paragraphs.paragraphs_type.reservation_person_options
+id: paragraph.reservation_person_options.default
+targetEntityType: paragraph
+bundle: reservation_person_options
+mode: default
+content:
+  field_person_option:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_price:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_reserve_count:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_total_charge:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

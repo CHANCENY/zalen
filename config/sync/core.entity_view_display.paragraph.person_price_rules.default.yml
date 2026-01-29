@@ -1,0 +1,42 @@
+uuid: 9458dc75-fa22-46b8-aad9-c3c36a5c1d7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.person_price_rules.field_if_minimum_person_is
+    - field.field.paragraph.person_price_rules.field_minimum_persons
+    - field.field.paragraph.person_price_rules.field_rule_amount
+    - paragraphs.paragraphs_type.person_price_rules
+id: paragraph.person_price_rules.default
+targetEntityType: paragraph
+bundle: person_price_rules
+mode: default
+content:
+  field_if_minimum_person_is:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_minimum_persons:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_rule_amount:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

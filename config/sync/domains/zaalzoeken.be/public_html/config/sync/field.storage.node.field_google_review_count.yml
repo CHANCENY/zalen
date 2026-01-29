@@ -1,0 +1,20 @@
+uuid: 59778b12-c800-490f-8921-58bfb511d99c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_google_review_count
+field_name: field_google_review_count
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

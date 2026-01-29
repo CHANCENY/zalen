@@ -1,0 +1,32 @@
+uuid: 069b125d-ec3b-47a4-93d1-afd22e1f69dc
+langcode: en
+status: true
+dependencies: {  }
+id: gelegenheden
+label: Gelegenheden
+settings:
+  images_loaded: true
+  cell_selector: .gallery-cell
+  initial_index: 2
+  accessibility: false
+  set_gallery_size: true
+  resize: true
+  cell_align: center
+  contain: true
+  percent_position: true
+  right_to_left: true
+  draggable: false
+  free_scroll: false
+  lazy_load: 0
+  auto_play: 3000
+  wrap_around: false
+  group_cells: null
+  adaptive_height: true
+  watch_css: false
+  as_nav_for: ''
+  drag_threshold: 3
+  selected_attraction: 0.025
+  friction: 0.28
+  free_scroll_friction: 0.075
+  prev_next_buttons: true
+  page_dots: false

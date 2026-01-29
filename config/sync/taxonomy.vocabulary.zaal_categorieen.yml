@@ -1,0 +1,9 @@
+uuid: 4f1a8d05-2927-406e-ac46-2b6a3ef293f1
+langcode: nl
+status: true
+dependencies: {  }
+name: 'Zaal categorieën'
+vid: zaal_categorieen
+description: 'Onderverdeling zaal types'
+weight: 0
+new_revision: false

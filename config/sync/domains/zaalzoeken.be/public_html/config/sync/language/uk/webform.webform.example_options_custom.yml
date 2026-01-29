@@ -1,0 +1,5 @@
+title: 'Приклад: Власні опції'
+description: 'Приклад елемента власних опцій'
+categories:
+  - Приклад
+elements: "states:\r\n  '#type': 'webform_options_custom:us_states'\r\n  '#title': 'Штати США'\r\n  '#required': true\r\nbutton:\r\n  '#type': 'webform_options_custom:buttons'\r\n  '#title': 'Кнопки'\r\n  '#required': true\r\n  '#options':\r\n    one: Один -- Це номер 1.\r\n    two: Два -- Це номер 2.\r\n    three:  Три -- Це номер 3.\n"

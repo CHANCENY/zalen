@@ -1,0 +1,21 @@
+uuid: c38fa4d0-ab07-4295-b6a0-379e7e02ecf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sluit_periode
+    - node.type.bedrijf
+  module:
+    - datetime_range
+id: node.bedrijf.field_sluit_periode
+field_name: field_sluit_periode
+entity_type: node
+bundle: bedrijf
+label: 'Closing period'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

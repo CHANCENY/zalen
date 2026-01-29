@@ -1,0 +1,23 @@
+uuid: 55e0977d-8440-422c-a96e-e6029953131c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_price_per_night
+    - paragraphs.paragraphs_type.sleeping_accommodation_room
+id: paragraph.sleeping_accommodation_room.field_price_per_night
+field_name: field_price_per_night
+entity_type: paragraph
+bundle: sleeping_accommodation_room
+label: 'Price per Night'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

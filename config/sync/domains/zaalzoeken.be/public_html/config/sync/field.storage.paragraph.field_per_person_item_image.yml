@@ -1,0 +1,23 @@
+uuid: daef6051-8626-4e3d-9f16-a7e0f21a6066
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - paragraphs
+id: paragraph.field_per_person_item_image
+field_name: field_per_person_item_image
+entity_type: paragraph
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

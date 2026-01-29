@@ -1,0 +1,12 @@
+title: 'Заява про прийом на роботу'
+description: 'Шаблон вебформи заявки на роботу.'
+elements: "information:\r\n  '#title': 'Ваша інформація'\r\n  '#type': webform_section\r\n  first_name:\r\n    '#title': 'Ім''я'\r\n    '#type': textfield\r\n    '#required': true\r\n  last_name:\r\n    '#title': 'Прізвище'\r\n    '#type': textfield\r\n    '#required': true\r\n  sex:\r\n    '#type': webform_radios_other\r\n    '#title': Стать\r\n    '#options': sex\r\n    '#required': true\r\ncontact_information:\r\n  '#title': 'Контактна інформація'\r\n  '#type': webform_section\r\n  contact:\r\n    '#type': webform_contact\r\n    '#title': Контакт\r\n    '#title_display': invisible\r\n    '#name__access': false\r\n    '#company__access': false\r\nresume:\r\n  '#title': 'Ваше резюме'\r\n  '#type': webform_section\r\n  resume_method:\r\n    '#type': radios\r\n    '#title': 'Метод резюме'\r\n    '#title_display': invisible\r\n    '#options':\r\n      attach: 'Долучити файл резюме'\r\n      paste: 'Вставити резюме'\r\n    '#default_value': attach\r\n    '#wrapper_attributes':\r\n      class:\r\n        - container-inline\r\n  resume_file:\r\n    '#type': managed_file\r\n    '#title': Резюме\r\n    '#title_display': invisible\r\n    '#states':\r\n      visible:\r\n        ':input[name=\"resume_method\"]':\r\n          value: attach\r\n      required:\r\n        ':input[name=\"resume_method\"]':\r\n          value: attach\r\n      enabled:\r\n        ':input[name=\"resume_method\"]':\r\n          value: attach\r\n  resume_text:\r\n    '#type': textarea\r\n    '#title': Резюме\r\n    '#title_display': invisible\r\n    '#states':\r\n      visible:\r\n        ':input[name=\"resume_method\"]':\r\n          value: paste\r\n      required:\r\n        ':input[name=\"resume_method\"]':\r\n          value: paste\r\n      enabled:\r\n        ':input[name=\"resume_method\"]':\r\n          value: paste\r\nactions:\r\n  '#type': webform_actions\r\n  '#title': 'Кнопка(и) Надіслати'\r\n  '#submit__label': Подати\n"
+settings:
+  confirmation_message: 'Дякуємо за заявку.'
+handlers:
+  email_notification:
+    label: 'Сповіщення електронною поштою'
+    settings:
+      from_name: '[webform_submission:values:first_name] [webform_submission:values:last_name]'
+      subject: _default
+      body: _default

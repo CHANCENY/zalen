@@ -1,0 +1,23 @@
+uuid: c3c31ee2-570f-47c3-8068-5e2744903028
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_rule_amount
+    - paragraphs.paragraphs_type.person_price_rules
+id: paragraph.person_price_rules.field_rule_amount
+field_name: field_rule_amount
+entity_type: paragraph
+bundle: person_price_rules
+label: 'Rule Amount '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

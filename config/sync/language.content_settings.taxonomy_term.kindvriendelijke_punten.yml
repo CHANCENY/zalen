@@ -1,0 +1,18 @@
+uuid: 2d0f8d0b-5a8c-4b8e-bda3-a27a0cff7b40
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.kindvriendelijke_punten
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.kindvriendelijke_punten
+target_entity_type_id: taxonomy_term
+target_bundle: kindvriendelijke_punten
+default_langcode: site_default
+language_alterable: true

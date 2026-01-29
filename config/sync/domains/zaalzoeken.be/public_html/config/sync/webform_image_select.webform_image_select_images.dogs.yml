@@ -1,0 +1,13 @@
+uuid: c6cbf089-f399-465d-90c7-873071e829aa
+langcode: nl
+status: true
+dependencies:
+  enforced:
+    module:
+      - webform_image_select
+_core:
+  default_config_hash: o5yQdpi29PHqTCWl4rs80kKLhT5KR2Exmoq0yTbfcts
+id: dogs
+label: 'Leuke honden'
+category: Dieren
+images: "dog_1:\r\n  text: 'Leuke hond 1'\r\n  src: 'https://placedog.net/220/200'\r\ndog_2:\r\n  text: 'Leuke hond 2'\r\n  src: 'https://placedog.net/180/200'\r\ndog_3:\r\n  text: 'Leuke hond 3'\r\n  src: 'https://placedog.net/130/200'\r\ndog_4:\r\n  text: 'Leuke hond 4'\r\n  src: 'https://placedog.net/270/200'\n"

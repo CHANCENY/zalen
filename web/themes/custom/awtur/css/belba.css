@@ -1,0 +1,72 @@
+/*---Class add for the multi select list.( /templates\form\select.html.twig )---*/
+.select-groep-naam i{
+  display: none;
+}
+.select-groep-naam label{
+  color:green;
+  font-size: larger;
+
+}
+
+/*-----Favorieten for users who are not login-----*/
+.kollom{
+  float: left;
+}
+.kollom-links{
+  min-width: 130px;
+  min-height: 161px;
+}
+.kollom-rechts{
+  width: 77%;
+  padding:16px;
+}
+.favorieten-not-login::after{
+  content: "";
+  display: table;
+  clear: both;
+}
+.sidebar-not-login{
+  border-color: #f9f9f9;
+  background-color: #f6f6f2;
+  border-radius: 10px;
+  margin: 45px 0 0 16px;
+  box-shadow: 0 0 3px #999;
+}
+
+/*-----responsive tables---*/
+.mobielvriendelijke-tabel{
+  overflow-x: auto;
+}
+
+.hoofdmenu li a:active{
+  color: #0B96DA;
+}
+/*------Sumoselect-----*/
+.SumoSelect.open>.optWrapper {
+  min-width: fit-content;
+}
+.payment-status {
+  padding: 25px;
+}
+
+.form-item-field-prijs-eenheid-0-enumerate-service-description{
+  width: fit-content;
+}
+
+.additional-services-image{
+  width: 50px;
+}
+
+.per-person-options-wrapper-class .fieldset-wrapper{
+  display: flex;
+}
+
+.per-person-options-wrapper-class .fieldset-wrapper .per-person-option-count{
+ margin: 2px 0 !important;
+}
+.per-person-options-wrapper-class .fieldset-wrapper .js-form-item-option-count{
+  margin-left: 20px;
+}
+.reservation-form #edit-field-bezetting-0-value {
+  width: 95px !important;
+}

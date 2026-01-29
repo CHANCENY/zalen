@@ -1,0 +1,21 @@
+room_tariff_lib:
+  version: 1.x
+#  css:
+#    component:
+#      css/currency_rate.css: {}
+  js:
+    js/currency_rate.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
+auto_upd_base_field_el:
+  version: 1.x
+  js:
+    js/upd_base_el.js: {}
+
+remove_field_prijs_option:
+  version: 1.x
+  js:
+    js/prijs_option_handler.js: {}

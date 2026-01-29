@@ -1,0 +1,23 @@
+uuid: a8346a0d-a754-460d-9349-2edea5bf70f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_oppervlakte
+    - node.type.zaal
+id: node.zaal.field_oppervlakte
+field_name: field_oppervlakte
+entity_type: node
+bundle: zaal
+label: 'Surface area'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 99000
+  prefix: ''
+  suffix: m²
+field_type: integer

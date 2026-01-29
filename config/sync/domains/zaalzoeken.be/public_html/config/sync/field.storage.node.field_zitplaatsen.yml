@@ -1,0 +1,20 @@
+uuid: 36fab59c-2a2a-4518-b368-f7d2fe6e675d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_zitplaatsen
+field_name: field_zitplaatsen
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,269 @@
+/* ------ block with user ------ */
+.block-zalen article.profile {
+    height: 50px;
+    /* text-align: center; */
+}
+/*img*/
+.block-zalen article.profile:before {
+    content: "";
+    float: left;
+    margin: 0px 0.3em 0 0;
+    width: 40px;
+    height: 40px;
+    background-image: url(../../images/default-user.svg);
+    background-size: cover;
+    border: 2px #cd8723 solid;
+    border-radius: 50%;
+}
+.block-zalen article.profile > .field--type-image {
+    margin: 2px 0 0 -45px;
+    float: left;
+}
+.block-zalen header .node__meta .field--name-user-picture img {
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.block-zalen header .node__meta > span {
+    display: block;
+    margin: -15px -20px 0;
+    padding: 2px 5px;
+    background: #efe1d5;
+    /* transform: rotate(5deg); */
+    border-top: 2px #cd8723 solid;
+}
+.block-zalen header .node__meta span.field--name-uid {
+    display: block;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* ------ fields field--type-image ------ */
+.node__content.zaal-beknopt .field--type-image {
+    margin: 15px auto 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-evenly;
+    align-items: stretch;
+}
+.node__content.zaal-beknopt .field--type-image .field__item {
+    flex: 0.2 1 auto;
+    align-self: center;
+}
+.node__content.zaal-beknopt .field--type-image img {
+    width: 100%;
+}
+
+/*----Title----*/
+.block-zalen header{
+    background: #374151;
+    border-radius: 10px 10px 0px 0px;
+}
+.block-zalen header h2{
+    text-align: center;
+    font-size: 18px;
+    padding: 8px;
+}
+.block-zalen header h2 a{
+    color: white;
+}
+.block-zalen header h2 a:hover {
+    border-bottom: 3px #FF9800 solid;
+}
+
+.block-part-edition{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 16px
+}
+.block-part-edition .dag-paars {
+    border: 1px solid #DBA4D5;
+    border-radius: 6px;
+    padding: 0 8px 16px;
+}
+.block-part-edition .uur-groen {
+    border: 1px solid #91C965;
+    border-radius: 6px;
+    padding: 0 8px 16px;
+}
+.block-part-edition .persoon-blauw {
+    border: 1px solid #84B2F9;
+    border-radius: 6px;
+    padding: 0 8px 16px;
+}
+.block-part-edition .bezetting-oranje{
+    border: 1px solid #e9a744;
+    border-radius: 6px;
+    padding: 0 8px 16px;
+}
+.block-part-edition .oppervlak-rood{
+    border: 1px solid #FF5F5F;
+    border-radius: 6px;
+    padding: 0 8px 16px;
+}
+.block-part-edition .prijs-label {
+    color: white;
+    text-align: center;
+    border-radius: 35px;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 10px;
+    padding: 4px 13px 5px;
+    margin: -10px 4px 0;
+}
+.dag-paars #prijsPaars{
+    background: #DBA4D5;
+}
+.uur-groen #prijsGroen{
+    background: #91C965;
+}
+.persoon-blauw #prijsBlauw{
+    background: #84B2F9;
+}
+.bezetting-oranje #bezettingOranje{
+    background: #e9a744;
+}
+.oppervlak-rood #oppervlakRood{
+    background: #FF5F5F;
+}
+.block-part-edition .prijs-vanaf{
+    font-size: 10px;
+    font-weight: 300;
+    color: darkgray;
+    text-align: center;
+}
+.block-part-edition .veld-inhoud{
+    color: black;
+    font-weight: 600;
+    text-align: center;
+    line-height: 81%;
+}
+.block-part-edition .veld-inhoud{
+    font-size: clamp(1rem, 0.9388rem + 0.3061vw, 1.1875rem);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 7%;
+}
+article.block-zalen{
+    max-width: 320px;
+    background-color: #FAFAFA;
+    padding: 0 4px 4px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    border-radius: 10px;
+  }
+  .zaal-per-auteur-view .view-content{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    background: #FFFFFF;
+    box-shadow: 8px 8px 44px rgb(0 0 0 / 10%);
+    border-radius: 10px;
+    padding: 32px 0;
+    margin-top: 64px;
+  }
+  /*----DIV Marquee----*/
+  .block-part-occasion{
+    --gap: 1rem;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    margin: 8px 0 ;
+    z-index: 1; /*change*/
+  }
+  .block-part-occasion:hover > .occasions-marquee-scroll {
+    animation-play-state: running;
+    cursor: none;
+  }
+  /*-------marquee ul--------*/
+  .occasions-marquee-scroll{
+    flex-shrink: 0;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    display: inline-flex;
+    padding-left: 100%;
+    animation: scroll 10s linear infinite;
+    animation-play-state: paused;
+    position: relative;/*change*/
+    z-index: 1;
+  }
+  /*-----------marquee li---------------*/
+  .marquee-items{
+    font-size: 15px;
+    list-style: none;
+    padding: 2px 16px;
+    margin-top: 8px;
+    border-radius: 8px;
+    color: white;
+  }
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+   }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+   }
+  }
+  .marquee-items:nth-child(3n+1){
+    background-color: #FF5F5F;
+  }
+  .marquee-items:nth-child(3n+2){
+    background-color: #91C965;
+  }
+  .marquee-items:nth-child(3n+3){
+    background-color: #e9a744;
+  }
+  .marquee-items:nth-child(3n+4){
+    background-color: #DBA4D5;
+  }
+  .marquee-items:nth-child(3n+5){
+    background-color: #84B2F9;
+  }
+  .hover-text{
+    visibility: hidden;
+    width: 130px;
+    background-color: #343434;
+    color: #fff;
+    font-size: clamp(0.6875rem, 0.5804rem + 0.2857vw, 0.8125rem);
+    text-align: center;
+    border-radius: 6px;
+    padding: 4px;
+    position: absolute;
+    z-index: 10;
+    top: 90%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  .zalen-blok-prijs, .zalen-blok-capaciteit {
+    position: relative;
+  }
+  .zalen-blok-prijs:hover .hover-text, .zalen-blok-capaciteit:hover .hover-text{
+    visibility: visible;
+  }
+  img.hover-icon {
+    position: absolute;
+    width: 200px;
+    height: 32px;
+    bottom: 0px; 
+    left: 20%;
+    opacity: 0.4;
+  }
+  .block-part-occasion:hover > .hover-icon {
+    display: none;
+  }
+  .blok-zalen-info{
+    font-size: 10px;
+    padding: 0 3px;
+    float: right;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+  }
+

@@ -1,0 +1,21 @@
+uuid: 05ae6d3e-4ce3-4501-a623-dfec6a674c6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_child_friendly
+    - paragraphs.paragraphs_type.per_person_item
+id: paragraph.per_person_item.field_child_friendly
+field_name: field_child_friendly
+entity_type: paragraph
+bundle: per_person_item
+label: 'Child Friendly'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

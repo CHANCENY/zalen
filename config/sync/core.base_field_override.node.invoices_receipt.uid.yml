@@ -1,0 +1,20 @@
+uuid: e270be73-2d31-49d2-bc48-b59a727232d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.invoices_receipt
+id: node.invoices_receipt.uid
+field_name: uid
+entity_type: node
+bundle: invoices_receipt
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

@@ -1,0 +1,25 @@
+uuid: 7f92055e-6429-48a8-92de-6b7d75bd105a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_minimum_hours_to_book
+    - paragraphs.paragraphs_type.per_hour
+id: paragraph.per_hour.field_minimum_hours_to_book
+field_name: field_minimum_hours_to_book
+entity_type: paragraph
+bundle: per_hour
+label: 'Minimum Hours to Book'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

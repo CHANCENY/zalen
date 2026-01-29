@@ -1,0 +1,24 @@
+/**
+ * @file
+ * Visual styles for AWTur's menu--zaal-groepen.html.twig.
+ */
+
+/*@media screen and (min-width: 560px) {
+article header {
+    margin: 20px;
+}
+}*/
+
+svg .menuprovincie-item-path:hover {
+    fill: #dcd6cc;
+    fill-opacity: 1;
+    transition: 0.3s;
+    filter: url(#dropshadow2);
+}
+svg .menu-item:hover .menuprovincie-item-text {
+    visibility: visible;
+    fill: #8c806f;
+    transition: 0.6s;
+}
+
+

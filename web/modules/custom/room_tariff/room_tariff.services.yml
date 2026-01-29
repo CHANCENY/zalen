@@ -1,0 +1,6 @@
+services:
+  room_tariff.currency_quotes_list:
+    class: 'Drupal\room_tariff\Service\CurrencyQuotesList'
+    calls:
+      - [getService, [['Drupal\room_tariff\Service\CurrencyQuotesServiceECB','Drupal\room_tariff\Service\CurrencyQuotesServiceNBU']]]
+  

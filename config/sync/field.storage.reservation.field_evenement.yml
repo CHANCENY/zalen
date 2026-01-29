@@ -1,0 +1,111 @@
+uuid: d7e680ee-85a4-4546-8733-0dd00648ef20
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - reservation
+id: reservation.field_evenement
+field_name: field_evenement
+entity_type: reservation
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '43'
+      label: Bedrijfsfeest
+    -
+      value: '44'
+      label: Begrafenis
+    -
+      value: '45'
+      label: Communie/Lentefeest
+    -
+      value: '46'
+      label: Fuiven
+    -
+      value: '47'
+      label: 'Geboorte feest'
+    -
+      value: '48'
+      label: Huwelijk
+    -
+      value: '49'
+      label: Jubileum
+    -
+      value: '50'
+      label: Ontbijt
+    -
+      value: '51'
+      label: Verjaardag
+    -
+      value: '35'
+      label: Ballet
+    -
+      value: '36'
+      label: Cabaret
+    -
+      value: '37'
+      label: Circus
+    -
+      value: '38'
+      label: 'Filmzaal, bioscoop'
+    -
+      value: '39'
+      label: 'Klassieke concerten'
+    -
+      value: '40'
+      label: Lezingen
+    -
+      value: '41'
+      label: 'Pop, Rock Concerts'
+    -
+      value: '42'
+      label: Shows
+    -
+      value: '30'
+      label: Beurzen
+    -
+      value: '31'
+      label: 'Product voorstelling'
+    -
+      value: '32'
+      label: Tentoonstelling
+    -
+      value: '33'
+      label: Veilingen
+    -
+      value: '34'
+      label: Vernissage
+    -
+      value: '179'
+      label: Auditorium
+    -
+      value: '180'
+      label: Aula
+    -
+      value: '290'
+      label: Conferencie
+    -
+      value: '289'
+      label: Congres
+    -
+      value: '181'
+      label: Politiek
+    -
+      value: '182'
+      label: Religieus
+    -
+      value: '183'
+      label: Vergaderen
+    -
+      value: '184'
+      label: Wetenschappelijk
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

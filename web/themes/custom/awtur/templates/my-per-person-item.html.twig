@@ -1,0 +1,41 @@
+{{ attach_library('awtur/per-person-options') }}
+{% set field_prefix_key = element['#key'] %}
+
+<div class="my-per-person-item">
+  <div class="person-option-img">
+    {% if element['#photo'] %}
+      <img src="{{ element['#photo'] }}" alt="option photo" class="person-option-photo" />
+    {% endif %}
+  </div>
+
+  <div class="person-option-offer">
+    <div class="person-option-title">
+      {% set full_name = field_prefix_key ~ '_checkbox' %}
+      <div style="display: none;">{{ element[full_name]|without('#title') }}</div>
+      <h4 class="person-option-label">{{ element['#label'] }} <span class="person-option-label-flag"></span></h4>
+    </div>
+    <div id="desc-{{ element['#label']|clean_id }}" class="person-option-description">
+      {{ element['#description'] }}
+    </div>
+    <div class="person-option-lees-meer">
+      <a href="#" class="person-option-toggle" data-target="#desc-{{ element['#label']|clean_id }}">
+        {{ 'Lees meer'|t }}
+      </a>
+    </div>
+    <div class="field-is_optional">
+      <span><em>{{ element['#optional'] }}</em></span>
+      <span class="child-friendly-render"><em>{{ element['#childfriendly'] }}</em></span>
+    </div>
+  </div>
+
+  <div class="person-option-calculate">
+    <div class="person-option-tarif">{{ "€" }} <span class="person-option-price">{{ element['#price'] }}</span></div>
+    <div class="person-option-count">
+    {% set full_name = field_prefix_key ~ '_person_count' %}
+      {{ element[full_name]|without('#title') }}
+      <span id="{{ key }}" class="person-option-persons">{{ 'How many persons'|t }}</span>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,21 @@
+uuid: 2edf5454-d81d-48da-acb1-abc294b9ab1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_optional_item
+    - paragraphs.paragraphs_type.per_person_item
+id: paragraph.per_person_item.field_optional_item
+field_name: field_optional_item
+entity_type: paragraph
+bundle: per_person_item
+label: Optional
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

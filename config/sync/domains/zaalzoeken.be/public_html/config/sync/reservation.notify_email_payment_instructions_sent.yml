@@ -1,0 +1,2 @@
+template_mail: '<p>Hi [node:author:account-name],</p><p>A payment invitation has been sent to [current-user:display-name] for [reservation:field_boeking_id:value]. You will receive confirmation as soon as payment has been received.</p><p>&nbsp;</p><p>Thank you.</p>'
+template_mail_format: full_html

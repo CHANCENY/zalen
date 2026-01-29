@@ -1,0 +1,19 @@
+opentime_timepicker:
+  version: 1.x
+  css:
+    component:
+      /libraries/timepicker/jquery.ui.timepicker.css: {}
+      css/opentime.css: {}
+  js:
+    /libraries/timepicker/jquery.ui.timepicker.js: {}
+    js/timepicker-init.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.ui
+    - core/jquery.ui.datepicker
+    - core/jquery.ui.slider
+    - core/jquery.ui.effect
+    - core/jquery.ui.effect-slide
+    - core/once
+
+

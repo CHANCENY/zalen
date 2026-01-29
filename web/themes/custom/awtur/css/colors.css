@@ -1,0 +1,68 @@
+/* ---------- Color Module Styles ----------- */
+
+body {
+  color: #3b3b3b;
+ /* background: #292929;*/
+}
+#page,
+#main-wrapper,
+.region-primary-menu .menu-item a.is-active,
+.region-primary-menu .menu-item--active-trail a {
+  background: #fff;
+}
+.tabs ul.primary li a.is-active {
+  background-color: #fff;
+}
+.tabs ul.primary li.is-active a {
+  border-bottom-color: #fff;
+  background-color: #fff;
+}
+/*#header {
+  background-color: #1d84c3;
+  background-image: -webkit-linear-gradient(top, #055a8e 0%, #1d84c3 100%);
+  background-image: linear-gradient(to bottom, #055a8e 0%, #1d84c3 100%);
+}*/
+a{
+  color: #000;
+  overflow-wrap: anywhere;
+}
+.link {
+  color: #0071b3;
+  overflow-wrap: anywhere;
+}
+/*a,*/
+/*.link {*/
+/*  color: #0071b3;*/
+/*  overflow-wrap: anywhere;*/
+/*}*/
+a:hover,
+a:focus,
+.link:hover,
+.link:focus {
+  color: #018fe2;
+}
+a:active,
+.link:active {
+  color: #23aeff;
+}
+.sidebar .block {
+  border-color: #f9f9f9;
+  
+}
+.site-footer {
+  background: #292929;
+}
+
+/* ---------- Color Form ----------- */
+
+[dir="rtl"] .color-form .color-palette {
+  margin-right: 20px;
+  margin-left: 0;
+}
+[dir="rtl"] .color-form .form-item label {
+  float: right;
+}
+[dir="rtl"] .color-form .color-palette .lock {
+  right: -20px;
+  left: 0;
+}

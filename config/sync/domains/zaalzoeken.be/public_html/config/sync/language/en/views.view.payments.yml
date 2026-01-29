@@ -1,0 +1,65 @@
+label: Payments
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        options:
+          tags:
+            previous: '‹ previous'
+            next: 'next ›'
+            first: '« first'
+            last: 'last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      fields:
+        changed_1:
+          label: 'Last updated'
+        payment_statuses_plugin_id_1:
+          label: 'Current status'
+        amount:
+          label: Amount
+        payment_method__plugin_id:
+          label: 'Payment method'
+        name:
+          label: Payer
+        operations:
+          label: Operations
+      filters:
+        changed:
+          expose:
+            label: 'Last updated after'
+        changed_1:
+          expose:
+            label: 'Last updated before'
+        payment_statuses_plugin_id:
+          expose:
+            label: 'Current status'
+        payment_method__plugin_id:
+          expose:
+            label: 'Payment method'
+        uid:
+          expose:
+            label: Payer
+      empty:
+        area:
+          content:
+            value: 'There are no payments yet.'
+      arguments:
+        uid:
+          exception:
+            title: All
+      title: Payments
+  page_1:
+    display_title: 'Administration page'
+  page_2:
+    display_title: "Users' payments"

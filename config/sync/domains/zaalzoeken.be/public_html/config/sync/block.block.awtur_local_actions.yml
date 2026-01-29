@@ -1,0 +1,20 @@
+uuid: b586997d-64ae-4889-9cb4-00b7891b0377
+langcode: nl
+status: true
+dependencies:
+  theme:
+    - awtur
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: awtur_local_actions
+theme: awtur
+region: content
+weight: -15
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

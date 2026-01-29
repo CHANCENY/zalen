@@ -1,0 +1,15 @@
+label: 'Recent reservations'
+description: 'Recent reservations.'
+display:
+  default:
+    display_title: Master
+    display_options:
+      fields:
+        changed:
+          settings:
+            future_format: '@interval hence'
+            past_format: '@interval ago'
+      title: 'Recent reservations'
+      empty:
+        area_text_custom:
+          content: 'No reservations available.'

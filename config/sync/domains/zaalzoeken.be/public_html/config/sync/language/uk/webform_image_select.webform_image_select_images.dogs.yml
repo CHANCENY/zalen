@@ -1,0 +1,3 @@
+label: 'Милі песики'
+category: Тварини
+images: "dog_1:\r\n  text: 'Милий песик 1'\r\n  src: 'https://placedog.net/220/200'\r\ndog_2:\r\n  text: 'Милий песик 2'\r\n  src: 'https://placedog.net/180/200'\r\ndog_3:\r\n  text: 'Милий песик 3'\r\n  src: 'https://placedog.net/130/200'\r\ndog_4:\r\n  text: 'Милий песик 4'\r\n  src: 'https://placedog.net/270/200'\n"

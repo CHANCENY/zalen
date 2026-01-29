@@ -1,0 +1,7 @@
+label: Bookmark
+flag_short: 'Bookmark this'
+flag_long: 'Add this post to your bookmarks'
+flag_message: 'This post has been added to your bookmarks'
+unflag_short: 'Remove bookmark'
+unflag_long: 'Remove this post from your bookmarks'
+unflag_message: 'This post has been removed from your bookmarks'

@@ -1,0 +1,17 @@
+# Links to view, edit and delete
+entity.oauth_authorize_token.canonical:
+  title: 'View'
+  route_name: entity.oauth_authorize_token.canonical
+  base_route: entity.oauth_authorize_token.canonical
+
+entity.oauth_authorize_token.edit_form:
+  title: 'Edit'
+  route_name: entity.oauth_authorize_token.edit_form
+  base_route: entity.oauth_authorize_token.canonical
+
+entity.oauth_authorize_token.delete_form:
+  title: 'Delete'
+  route_name: entity.oauth_authorize_token.delete_form
+  base_route: entity.oauth_authorize_token.canonical
+
+

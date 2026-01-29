@@ -1,0 +1,29 @@
+uuid: 6e3ea164-804d-43ac-8b2e-5779996d5f7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_payment_by
+    - node.type.invoices_receipt
+id: node.invoices_receipt.field_payment_by
+field_name: field_payment_by
+entity_type: node
+bundle: invoices_receipt
+label: 'Payment by'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: _none
+    include_anonymous: true
+field_type: entity_reference

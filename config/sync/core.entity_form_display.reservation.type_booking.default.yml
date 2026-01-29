@@ -1,0 +1,108 @@
+uuid: 3883265c-47a9-4dcb-bd1c-179bd1c888f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.reservation.type_booking.field_additional_services
+    - field.field.reservation.type_booking.field_bezetting
+    - field.field.reservation.type_booking.field_boeking_id
+    - field.field.reservation.type_booking.field_calculate_payment_per_day
+    - field.field.reservation.type_booking.field_date_booking
+    - field.field.reservation.type_booking.field_evenement
+    - field.field.reservation.type_booking.field_per_hour_calc
+    - field.field.reservation.type_booking.field_per_person
+    - field.field.reservation.type_booking.field_per_person_options
+    - field.field.reservation.type_booking.field_reservation_information
+    - field.field.reservation.type_booking.reservation_body
+    - reservation.type.type_booking
+  module:
+    - serial
+    - smart_date
+    - text
+id: reservation.type_booking.default
+targetEntityType: reservation
+bundle: type_booking
+mode: default
+content:
+  field_bezetting:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_boeking_id:
+    type: serial_default_widget
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_calculate_payment_per_day:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_date_booking:
+    type: smartdate_inline
+    weight: 6
+    region: content
+    settings:
+      modal: false
+      default_duration: 60
+      default_duration_increments: |-
+        30
+        60|1 hour
+        90
+        120|2 hours
+        custom
+      show_extra: false
+      hide_date: false
+      allday: false
+      remove_seconds: true
+      duration_overlay: true
+      separator: to
+    third_party_settings: {  }
+  field_evenement:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_per_hour_calc:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_per_person:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  reservation_body:
+    type: text_textarea
+    weight: 7
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  subject:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  author: true
+  field_additional_services: true
+  field_per_person_options: true
+  field_reservation_information: true
+  langcode: true

@@ -1,0 +1,33 @@
+uuid: 89046e1a-158c-424b-a2ef-e188a8afc5cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: bedrijf_vlaams
+label: 'Bedrijf NL'
+type: 'canonical_entities:node'
+pattern: '/bedrijf/[node:title]'
+selection_criteria:
+  326e6c01-ea5a-40b3-9854-a2d1704a7529:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 326e6c01-ea5a-40b3-9854-a2d1704a7529
+    context_mapping:
+      node: node
+    bundles:
+      bedrijf: bedrijf
+  95919cdc-7adb-49c5-92ea-7ade44a6656a:
+    id: language
+    negate: false
+    uuid: 95919cdc-7adb-49c5-92ea-7ade44a6656a
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      nl: nl
+selection_logic: and
+weight: -10
+relationships:
+  'node:langcode:language':
+    label: Language

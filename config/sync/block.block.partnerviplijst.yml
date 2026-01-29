@@ -1,0 +1,30 @@
+uuid: bee69c35-7c26-4303-97f5-ccfc1cd39b2d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:ba6d56a2-2dca-4e42-90c6-001d51917d8b'
+  module:
+    - block_content
+    - system
+  theme:
+    - awtur
+id: partnerviplijst
+theme: awtur
+region: content
+weight: -5
+provider: null
+plugin: 'block_content:ba6d56a2-2dca-4e42-90c6-001d51917d8b'
+settings:
+  id: 'block_content:ba6d56a2-2dca-4e42-90c6-001d51917d8b'
+  label: 'Partner Vip lijst'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/user/*/verander-rol'

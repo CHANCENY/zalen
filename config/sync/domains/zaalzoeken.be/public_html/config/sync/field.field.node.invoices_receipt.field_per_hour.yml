@@ -1,0 +1,19 @@
+uuid: d4e36b51-2a0f-4f8e-98d5-cba30f2fffe5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_per_hour
+    - node.type.invoices_receipt
+id: node.invoices_receipt.field_per_hour
+field_name: field_per_hour
+entity_type: node
+bundle: invoices_receipt
+label: 'Per hour'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

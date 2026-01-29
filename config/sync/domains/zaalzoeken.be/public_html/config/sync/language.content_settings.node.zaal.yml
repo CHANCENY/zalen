@@ -1,0 +1,18 @@
+uuid: dd6d985f-a912-4ad6-8213-c8a31dee74bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.zaal
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.zaal
+target_entity_type_id: node
+target_bundle: zaal
+default_langcode: site_default
+language_alterable: true

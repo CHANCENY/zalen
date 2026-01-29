@@ -1,0 +1,14 @@
+uuid: a1f84043-446c-45d2-9119-0e70fe5f290c
+langcode: nl
+status: true
+dependencies:
+  config:
+    - user.role.betalende_gebruiker
+  module:
+    - user
+id: user_remove_role_action.betalende_gebruiker
+label: 'De rol betalende gebruiker verwijderen van de geselecteerde gebruikers(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: betalende_gebruiker

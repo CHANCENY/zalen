@@ -1,0 +1,21 @@
+uuid: 4ad09f5f-609d-4f71-b518-1b56950015a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gsm
+    - node.type.bedrijf
+  module:
+    - telephone
+id: node.bedrijf.field_gsm
+field_name: field_gsm
+entity_type: node
+bundle: bedrijf
+label: GSM
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

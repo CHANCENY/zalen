@@ -1,0 +1,18 @@
+uuid: c5ae43de-3129-4d9a-8b8f-e11fb10e1763
+langcode: en
+status: true
+dependencies:
+  config:
+    - reservation.type.type_booking
+id: reservation.type_booking.created
+field_name: created
+entity_type: reservation
+bundle: type_booking
+label: Created
+description: 'The time that the reservation was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

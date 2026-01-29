@@ -1,0 +1,23 @@
+uuid: 58bfaf3b-95da-4c8c-bb57-3b080f87164e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nabij_trein_station
+    - node.type.bedrijf
+id: node.bedrijf.field_nabij_trein_station
+field_name: field_nabij_trein_station
+entity_type: node
+bundle: bedrijf
+label: 'Near train station'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Train station'
+  off_label: X
+field_type: boolean

@@ -1,0 +1,1246 @@
+<?php
+
+/**
+ * @file
+ * Contains zaal_condities.module.
+ */
+
+use Drupal\Core\Link;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
+use Drupal\reservation\Entity\Reservation;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\user\Entity\User;
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Render\Element;
+use Drupal\views\Plugin\views\query\Sql;
+use Drupal\Core\Ajax\ReplaceCommand;
+
+
+
+/**
+ * Implements hook_help().
+ */
+function zaal_condities_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+    // Main module help for the zaal_condities module.
+    case 'help.page.zaal_condities':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom field conditions for the node forms') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function zaal_condities_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{ //dump($form['field_extra_room_services']['widget']);
+  if (isset($_GET['redirect']) && $_GET['redirect'] == 'zaal') {
+    $form['actions']['submit']['#submit'][] = 'zaal_v_condition_submit';
+  }
+
+  if ($form_id == 'node_zaal_form' || $form_id == 'node_zaal_edit_form') {
+
+    if ($form_id == 'node_zaal_form') {
+      $user_id = \Drupal::currentUser()->id();
+      $query = \Drupal::entityQuery('node')
+        ->accessCheck(TRUE)
+        //->condition('status', 1) //published or not
+        ->condition('type', 'bedrijf') //content type
+        ->condition('uid', $user_id);
+      $nids = $query->execute();
+      if (empty($nids)) {
+        \Drupal::messenger()->addMessage(t('Please first add general business information after book room.'));
+        $url = Url::fromUri('internal:/node/add/bedrijf?redirect=zaal')->toString();
+        $redirect = new RedirectResponse($url);
+        $redirect->send();
+        exit;
+      }
+    }
+
+    // $form['terms_of_use']['#default_value'] = 1; //jan: to be removed, when the boolean has been removed, we do not need the approval here!
+
+    $form['field_feestgelegenheid']['#type'] = 'details';
+    $form['field_feestgelegenheid']['#title'] = t('Festive occasions');
+    $form['field_comercielegelegenheden']['#type'] = 'details';
+    $form['field_comercielegelegenheden']['#title'] = t('Commercial occasions');
+    $form['field_concertgelegenheden']['#type'] = 'details';
+    $form['field_concertgelegenheden']['#title'] = t('Recreational occasions');
+    $form['field_vergadergelegenheden']['#type'] = 'details';
+    $form['field_vergadergelegenheden']['#title'] = t('Meeting occasions');
+    $form['field_uitrusting']['#type'] = 'details';
+    $form['field_uitrusting']['#title'] = t('Equipment');
+    $form['field_media']['#type'] = 'details';
+    $form['field_media']['#title'] = t('Media');
+    $form['field_thema']['#type'] = 'details';
+    $form['field_thema']['#title'] = t('Theme');
+    $form['field_room_layouts']['widget']['#open'] = true;
+
+    $form['field_staanplaatsen']['widget'][0]['value']['#ajax'] = [
+      'callback' => 'zaal_condities_AjaxCallback',
+      'event' => 'change',
+      'wrapper' => 'edit-field-bezetting-tot-0-value',
+    ];
+    $form['#validate'][] = 'custom_zaal_validate_handler';
+    $form['actions']['submit']['#submit'][] = 'zaal_condities_zaal_form_submit';
+
+    if (isset($form['field_room_pricing_settings']['widget'])) {
+      $form['field_room_pricing_settings']['widget']['add_more']['#value'] = t("Add Price Unit");
+    }
+    if (isset($form['field_extra_room_services']['widget'])) {
+      $form['field_extra_room_services']['widget']['add_more']['#value'] = t("Add Service");
+    }
+
+//---------------------Code to give each price unit and service unit a summary label
+
+//Summary label for the price settings
+if (empty($form['field_room_pricing_settings']['widget']) || !is_array($form['field_room_pricing_settings']['widget'])) {
+    return;
+  }
+
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  foreach ($form['field_room_pricing_settings']['widget'] as $delta => &$widget) {
+    if (!is_numeric($delta)) {
+      continue;
+    }
+
+    // We expect an inline_entity_form with a default paragraph entity.
+    if (empty($widget['inline_entity_form']['#default_value']) ||
+        !$widget['inline_entity_form']['#default_value'] instanceof \Drupal\paragraphs\Entity\Paragraph) {
+      continue;
+    }
+
+    /** @var \Drupal\paragraphs\Entity\Paragraph $price_paragraph */
+    $price_paragraph = $widget['inline_entity_form']['#default_value'];
+
+    // Reload paragraph from storage to ensure referenced entities are available.
+    if ($price_paragraph->id()) {
+      $reloaded = $paragraph_storage->load($price_paragraph->id());
+      if ($reloaded) {
+        $price_paragraph = $reloaded;
+      }
+    }
+
+    // Default label if we cannot detect.
+    $label = t('Unknown Unit');
+
+    if ($price_paragraph->hasField('field_pricing_type') && !$price_paragraph->get('field_pricing_type')->isEmpty()) {
+      // Try to read the scalar value reliably.
+      $type_value = $price_paragraph->get('field_pricing_type')->value ?? NULL;
+      if ($type_value === NULL) {
+        $vals = $price_paragraph->get('field_pricing_type')->getValue();
+        $type_value = $vals[0]['value'] ?? NULL;
+      }
+
+      // Decide label by list value.
+      switch ($type_value) {
+        case 'per_hour':
+          $label = t('Hour Unit');
+          break;
+
+        case 'per_day':
+          $label = t('Day Unit');
+          break;
+
+        case 'per_person':
+          // For per_person we also try to append the short description from the referenced paragraph.
+          $label = t('Person Unit');
+          if ($price_paragraph->hasField('field_pricing_unit') && !$price_paragraph->get('field_pricing_unit')->isEmpty()) {
+            // Try to get referenced paragraph object(s).
+            $referenced = $price_paragraph->get('field_pricing_unit')->referencedEntities();
+            $person_paragraph = NULL;
+            if (!empty($referenced[0]) && $referenced[0] instanceof \Drupal\paragraphs\Entity\Paragraph) {
+              $person_paragraph = $referenced[0];
+            }
+            else {
+              // Fallback: read raw target_id and load explicitly.
+              $raw = $price_paragraph->get('field_pricing_unit')->getValue();
+              $tid = $raw[0]['target_id'] ?? NULL;
+              if ($tid) {
+                $person_paragraph = $paragraph_storage->load($tid);
+              }
+            }
+
+            if ($person_paragraph && $person_paragraph->hasField('field_short_description') && !$person_paragraph->get('field_short_description')->isEmpty()) {
+              $short = trim($person_paragraph->get('field_short_description')->value ?? '');
+              if ($short !== '') {
+                $label .= ' – ' . $short;
+              }
+            }
+          }
+          break;
+
+        default:
+          // If unknown option, show the raw value (humanized).
+          $label = ucfirst(str_replace('_', ' ', (string) $type_value));
+          break;
+      }
+    }
+    // --- Fallback detection: if pricing_type is missing, detect by which entity reference has a target_id ---
+    else {
+      if (!empty($price_paragraph->get('field_hourly_unit')->getValue()[0]['target_id'])) {
+        $label = t('Hour Unit');
+      }
+      elseif (!empty($price_paragraph->get('field_per_day_unit')->getValue()[0]['target_id'])) {
+        $label = t('Day Unit');
+      }
+      elseif (!empty($price_paragraph->get('field_pricing_unit')->getValue()[0]['target_id'])) {
+        // Load referenced person paragraph and get short description if present.
+        $tid = $price_paragraph->get('field_pricing_unit')->getValue()[0]['target_id'];
+        if ($tid) {
+          $person_paragraph = $paragraph_storage->load($tid);
+          if ($person_paragraph) {
+            $label = t('Person Unit');
+            if ($person_paragraph->hasField('field_short_description') && !$person_paragraph->get('field_short_description')->isEmpty()) {
+              $short = trim($person_paragraph->get('field_short_description')->value ?? '');
+              if ($short !== '') {
+                $label .= ' – ' . $short;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Finally apply the computed label to the widget summary.
+    $widget['#field_title'] = '<div class="unit-label">' . $label . '</div>';
+    }
+
+    //Summary label for the extra services
+    foreach ($form['field_extra_room_services']['widget'] as $delta => &$widget) {
+    if (!is_numeric($delta)) {
+      continue; // skip non-widget keys (#theme, #suffix, etc.)
+    }
+
+    if (isset($widget['inline_entity_form']['#default_value']) &&
+        $widget['inline_entity_form']['#default_value'] instanceof \Drupal\paragraphs\Entity\Paragraph) {
+
+      /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+      $paragraph = $widget['inline_entity_form']['#default_value'];
+
+      // Herlaad de entity om zeker te zijn dat alle velden beschikbaar zijn.
+      $loaded_paragraph = \Drupal::entityTypeManager()
+        ->getStorage('paragraph')
+        ->load($paragraph->id());
+
+      if (!$loaded_paragraph) {
+        continue;
+      }
+
+      // Standaardlabel
+      $label = 'Extra Room Services';
+
+      // Controleer of er een korte beschrijving is
+      if ($loaded_paragraph->hasField('field_service_short_description') &&
+          !$loaded_paragraph->get('field_service_short_description')->isEmpty()) {
+
+        $short = trim($loaded_paragraph->get('field_service_short_description')->value);
+        if (!empty($short)) {
+          $label = $short;
+        }
+      }
+
+      // Toon de label bovenaan het widget item
+      $widget['#field_title'] = '<div class="unit-label">' . $label . '</div>';
+    }
+  }
+  //------------------------End price unit and service unit a summary label
+  if (isset($form['field_room_layouts']['widget']['current']['items'])) {
+    foreach ($form['field_room_layouts']['widget']['current']['items'] as &$item) {
+      if (isset($item['remove_button']['#value'])) {
+        $item['remove_button']['#value'] = '×';
+        $item['remove_button']['#attributes']['class'][] = 'remove-button--x';
+     }
+    }
+  }
+ }
+}
+
+/**
+ * Implements hook_field_widget_single_element_form_alter().
+ */
+function zaal_condities_field_widget_complete_form_alter(&$field_widget_complete_form, FormStateInterface $form_state, $context): void
+{
+  if (!empty($field_widget_complete_form['widget']['actions']['ief_add']['#value']) && !empty($field_widget_complete_form['widget']['#field_name'])) {
+
+    $rules_fields = ['field_person_pricing_rules', 'field_pricing_rules', 'field_hourly_pricing_rules'];
+    if (in_array($field_widget_complete_form['widget']['#field_name'], $rules_fields)) {
+      $field_widget_complete_form['widget']['actions']['ief_add']['#value'] = t("Add Price Rule");
+
+      if (!empty($field_widget_complete_form['widget']['entities'])) {
+        foreach ($field_widget_complete_form['widget']['entities'] as $key => &$value) {
+          if (is_numeric($key)) {
+            /**@var Paragraph $entity */
+            $entity = $value['#entity'] ?? null;
+            if (!empty($entity)) {
+
+              if ($entity->bundle() == 'per_hour_unit_rules') {
+                $currency = "eur";
+                try {
+                  $paragraphs = \Drupal::entityTypeManager()
+                    ->getStorage('paragraph')
+                    ->loadByProperties([
+                      'type' => 'per_hour',
+                      'field_hourly_pricing_rules.target_id' => $entity->id(),
+                    ]);
+                  // If you expect only one match:
+                  $paragraph = reset($paragraphs);
+                  $currency = $paragraph->get('field_currency')->value ?? "eur";
+                }
+                catch (Throwable $e) {
+                }
+                $currency = Drupal::service('reservation.currencies')->getSymbol($currency);
+                $title = $entity->get('field_if_hours_exceed')?->value ?? 0;
+                $title .= " hours or more, will be charged ";
+                $title .= $currency."".$entity->get('field_amount')?->value ?? 0;
+                $title .= " per hour";
+                $value['#label'] = t('Booking for @title', ['@title' => $title]);
+                $value['actions']['ief_entity_remove']['#value'] = t("Delete");
+              } elseif ($entity->bundle() == 'per_day_price_rules') {
+                $currency = "eur";
+                try {
+                  $paragraphs = \Drupal::entityTypeManager()
+                    ->getStorage('paragraph')
+                    ->loadByProperties([
+                      'type' => 'per_day_unit',
+                      'field_pricing_rules.target_id' => $entity->id(),
+                    ]);
+                  // If you expect only one match:
+                  $paragraph = reset($paragraphs);
+                  $currency = $paragraph->get('field_day_currency')->value ?? "eur";
+                }
+                catch (Throwable $e) {
+                }
+                $currency = Drupal::service('reservation.currencies')->getSymbol($currency);
+                $title = $entity->get('field_if_days_booked')?->value ?? 0;
+                $title .= " days or more, will be charged ";
+                $title .= $currency. "".$entity->get('field_set_amount')?->value ?? 0;
+                $title .= " per day";
+                $value['#label'] = t('Booking for @title', ['@title' => $title]);
+                $value['actions']['ief_entity_remove']['#value'] = t("Delete");
+
+              } elseif ($entity->bundle() == 'person_price_rules') {
+                $currency = "eur";
+                try {
+                  $paragraphs = \Drupal::entityTypeManager()
+                    ->getStorage('paragraph')
+                    ->loadByProperties([
+                      'type' => 'per_person_item',
+                      'field_person_pricing_rules.target_id' => $entity->id(),
+                    ]);
+                  // If you expect only one match:
+                  $paragraph = reset($paragraphs);
+                 $currency = $paragraph->get('field_per_person_item_currency')->value ?? "eur";
+                }
+                catch (Throwable $e) {
+                }
+
+                $currency = Drupal::service('reservation.currencies')->getSymbol($currency);
+                $title = $entity->get('field_if_minimum_person_is')?->value ?? 0;
+                $title .= " persons or more, will be charged ";
+                $title .= $currency. "". $entity->get('field_rule_amount')?->value ?? 0;
+                $title .= " per person";
+                $value['#label'] = t('Bookings for @title', ['@title' => $title]);
+                $value['actions']['ief_entity_remove']['#value'] = t("Delete");
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  if (!empty($field_widget_complete_form['widget']['add_more']['#value']) && $field_widget_complete_form['widget']['#field_name'] === 'field_extra_room_services') {
+    $field_widget_complete_form['widget']['add_more']['#value'] = t("Add Service");
+  }
+
+  if (!empty($field_widget_complete_form['widget']['#file_upload_title']) && $field_widget_complete_form['widget']['#field_name'] === 'field_foto') {
+    $field_widget_complete_form['widget']['#file_upload_title'] = t("Add New Image");
+  }
+
+  if (!empty($field_widget_complete_form['widget']['#field_name']) && $field_widget_complete_form['widget']['#field_name'] === 'field_room_pricing_settings') {
+    foreach ($field_widget_complete_form['widget'] as $key => &$value) {
+      if (is_numeric($key)) {
+        $value['_actions']['delete']['#value'] = t("Remove Price Unit");
+      }
+    }
+  }
+
+}
+
+/**
+ *
+ * Implements hook_AjaxCallback(staanplaatsen).
+ */
+function zaal_condities_AjaxCallback(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  if (!empty($form_state->getValue('field_staanplaatsen')[0]['value'])) {
+    $staanplaats = $form_state->getValue('field_staanplaatsen')[0]['value'];
+    $response = new AjaxResponse();
+    $response->addCommand(new InvokeCommand('#edit-field-bezetting-tot-0-value', 'val', [$staanplaats]));
+    return $response;
+  }
+}
+
+/**
+ * {@inheritdoc}
+ */
+function zaal_v_condition_submit($form, FormStateInterface $form_stat)
+{
+//  $url = Url::fromUri('internal:/node/add/zaal')->toString();
+//  $redirect = new RedirectResponse($url);
+//  $redirect->send();
+//  exit();
+}
+
+/**
+ * {@inheritdoc}
+ */
+function custom_zaal_validate_handler($form, FormStateInterface $form_state)
+{
+  $fields_to_check = [
+    'field_concertgelegenheden',
+    'field_feestgelegenheid',
+    'field_vergadergelegenheden',
+    'field_comercielegelegenheden',
+  ];
+
+  $at_least_one_selected = FALSE;
+
+  foreach ($fields_to_check as $field) {
+    $values = $form_state->getValue($field);
+
+    if (!empty($values)) {
+      $filtered = array_filter($values, function ($value) {
+        return !empty($value['target_id']);
+      });
+      if (!empty($filtered)) {
+        $at_least_one_selected = TRUE;
+        break;
+      }
+    }
+  }
+
+  if (!$at_least_one_selected) {
+    // We kunnen de fout tonen bij één van de velden of algemeen:
+    // Wil je de fout op alle velden tonen, kun je dit voor elk veld herhalen,
+    // of 'setError' zonder specifiek veld gebruiken.
+    $form_state->setErrorByName(
+      'field_concertgelegenheden',
+      t('Please choose at least 1 occasion that the hall can accommodate.')
+    );
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node form.
+ */
+function zaal_condities_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  $node = $form_state->getFormObject()->getEntity();
+  if ($node->getType() != 'bedrijf') {
+    return;
+  }
+  //Limit access for the video, keurmerken,logo and website field to premium rooms
+  if (!empty(array_intersect(['administrator', 'premium_zaal'], \Drupal::currentUser()->getRoles()))) {
+    $form['field_website']['#access'] = true;
+    $form['field_video']['#access'] = true;
+    $form['field_keurmerken']['#access'] = true;
+    $form['field_logo']['#access'] = true;
+    $form['field_whatsapp']['#access'] = true;
+    $form['field_fb']['#access'] = true;
+    $form['field_gsm']['#access'] = true;
+    $form['field_telefoon']['#access'] = true;
+  }
+
+  // Check if the current user is no admin.
+  $user = \Drupal::currentUser();
+  if (!$user->hasPermission('administer site configuration')) {
+    $fields_to_hide = [
+      'field_nabij_bushalte',
+      'field_nabij_metrohalte',
+      'field_nabij_tramhalte',
+      'field_nabij_trein_station',
+      'field_kindvriendelijk',
+      'field_groen_label',
+      'field_beperkingen',
+    ];
+
+    foreach ($fields_to_hide as $field_name) {
+      if (isset($form[$field_name])) {
+        // Hide the field via CSS.
+        $form[$field_name]['#attributes']['style'] = 'display: none;';
+        // Optionally, hide the field label.
+        $form[$field_name]['#title_display'] = 'invisible';
+      }
+    }
+  }
+
+  $form['#cache'] = FALSE;
+  $form['#cache'] = ['max-age' => 0];
+
+  $form['field_faciliteiten']['#type'] = 'details';
+  $form['field_faciliteiten']['#title'] = t('Facilities');
+
+  $form['field_buiten_voorzieningen']['#type'] = 'details';
+  $form['field_buiten_voorzieningen']['#title'] = t('Outside facilities');
+  $form['field_kindvriendelijkheid']['#type'] = 'details';
+  $form['field_kindvriendelijkheid']['#title'] = t('Child friendliness');
+  $form['field_mindervaliden']['#type'] = 'details';
+  $form['field_mindervaliden']['#title'] = t('Disabled people');
+  $form['field_milieu']['#type'] = 'details';
+  $form['field_milieu']['#title'] = t('Environment');
+
+  $form['field_afstand_bus']['widget']['#options']['_none'] = t('Select a distance');
+  $form['field_afstand_metro']['widget']['#options']['_none'] = t('Select a distance');
+  $form['field_afstand_tramhalte']['widget']['#options']['_none'] = t('Select a distance');
+  $form['field_afstand_trein_station']['widget']['#options']['_none'] = t('Select a distance');
+
+   if ($node->isNew()) {
+  $author = $node->getOwner();
+  // Get the name of the node author and set it as default for the contact person
+  $author_name = $author->getDisplayName();
+  $form['field_contact_persoon']['widget'][0]['value']['#default_value'] = $author_name;
+}
+
+  if ($node->isNew()) {
+    if ($author->user_picture->isEmpty()) {
+      return;
+    }
+
+    //Set the node author user picture as default value for the field avatar and the logo field
+    $author_picture = $author->user_picture->getValue()[0];
+    $author_picture_file = $author->user_picture->entity;
+
+    $form['field_avatar']['widget'][0]['#description'] = 'Kies een andere afbeelding om de avatar te wijzigen';
+    $form['field_logo']['widget'][0]['#description'] = 'Kies een andere afbeelding om het bedrijfs logo te wijzigen';
+    $form['field_avatar']['widget'][0]['#default_image'] = [
+      'uuid' => $author_picture_file->get('uuid'),
+      'alt' => $author_picture['alt'],
+      'title' => $author_picture['title'],
+      'width' => $author_picture['width'],
+      'height' => $author_picture['height'],
+      'fid' => $author_picture['target_id'],
+    ];
+    $form['field_logo']['widget'][0]['#default_image'] = [
+      'uuid' => $author_picture_file->get('uuid'),
+      'alt' => $author_picture['alt'],
+      'title' => $author_picture['title'],
+      'width' => $author_picture['width'],
+      'height' => $author_picture['height'],
+      'fid' => $author_picture['target_id'],
+    ];
+
+    $form_state->set('fid', $author_picture['target_id']);
+    array_unshift($form['actions']['submit']['#submit'], 'safe_image_submit_form');
+  }
+
+    if (!array_intersect($user->getRoles(), ['administrator', 'premium_zaal'])) {
+       $form['field_slaapgelegenheid']['#access'] = FALSE;
+       $form['field_overnight_room']['#access'] = FALSE;
+       $link = Link::fromTextAndUrl('Upgrade to VIP', Url::fromRoute('zaal_condities.capacity_selection'))->toString();
+       $url = Markup::create($link)->__toString();
+       $form['upgrade_plan'] = [
+         '#markup' => "<p>Only VIP members can list their overnight rooms and make them bookable. Consider upgrading to VIP membership. {$url}</p>"
+       ];
+    }
+
+}
+
+/**
+ * Custom submit handler(default image for logo and avatar).
+ */
+function safe_image_submit_form(&$form, FormStateInterface $form_state)
+{
+  $value = $form_state->getValue('field_avatar');
+
+  if (count($value[0]['fids']) == 0) {
+    $value[0]['fids'][0] = $form_state->get('fid');
+    $form_state->setValue('field_avatar', $value);
+    $form_state->setValue('field_logo', $value);
+  }
+}
+
+/**
+ * Implements hook_form_ID_alter().
+ */
+function zaal_condities_form_views_exposed_form_alter(&$form, $form_id, $form_state)
+{
+  if ($form['#id'] == 'views-exposed-form-alle-zalen-page-alle-zalen') {
+    //Views proximity filter
+    $form['nabijheid_plaats_postcode_wrapper']['#title'] = '';
+    //$form['nabijheid_plaats_postcode_wrapper']['nabijheid_plaats_postcode']['exposed_summary']['#value'] = 'Omgeving';
+    $form['nabijheid_plaats_postcode_wrapper']['nabijheid_plaats_postcode']['source_configuration']['origin_address']['#description'] = '';
+    $form['nabijheid_plaats_postcode_wrapper']['nabijheid_plaats_postcode']['source_configuration']['origin_address']['#placeholder'] = 'Plaats';
+    $form['nabijheid_plaats_postcode_wrapper']['nabijheid_plaats_postcode']['source_configuration']['origin_address']['#title'] = '';
+    $form['nabijheid_plaats_postcode_wrapper']['nabijheid_plaats_postcode']['source_configuration']['origin_address']['#type'] = 'textfield';
+    $form['nabijheid_plaats_postcode_wrapper']['nabijheid_plaats_postcode']['value']['#title'] = '';
+    $form['nabijheid_plaats_postcode_wrapper']['nabijheid_plaats_postcode']['value']['#description'] = '';
+    $form['nabijheid_plaats_postcode_wrapper']['nabijheid_plaats_postcode']['value']['#placeholder'] = 'KM';
+    $form['commerciele_gelegenheden_keuze']['#placeholder'] = '1';
+    $form['concert_gelegenheden_keuze']['#placeholder'] = '2';
+    $form['feest_gelegenheid_keuze']['#placeholder'] = '3';
+    $form['vergader_gelegenheden_keuze']['#placeholder'] = '4';
+  }
+}
+
+/**
+ * Implements hook_form_ID_alter().
+ */
+function zaal_condities_form_search_form_alter(&$form, $form_id, $form_state)
+{
+  $form['advanced']['types-fieldset']['#access'] = FALSE;
+  $form['advanced']['lang-fieldset']['#access'] = FALSE;
+}
+
+/*
+ * Implements hook_form_ID_alter().
+ */
+function zaal_condities_form_reservation_type_booking_form_alter(&$form, &$form_state, $form_id)
+{
+
+  $nid = $form_state->getFormObject()->getEntity()->getReservationedEntityId();
+  $node = \Drupal\node\Entity\Node::load($nid);
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $node = $node_storage->load($nid);
+  $dropdown_array = [];
+  $min_value = [];
+  $max_value = [];
+  $zaal_title = $node->getTitle();
+
+  $form['booking_form_title'] = [
+    '#prefix' => '<div class="booking-form-title">',
+    '#markup' => '<h3>' . t('Reservation Form') . '</h3>',
+    '#suffix' => '</div>',
+    '#attached' => ['library' => 'room_custom_setting/room_custom_setting'],
+    '#weight' => -9,
+
+  ];
+
+  $form['subject']['widget'][0]['value']['#value'] = 'Reservatie' . ' ' . $zaal_title;
+  //Pls check ReservationForm.php line 146, it should be changed there!
+  $form['#title'] = 'Edit reservatie' . ' ' . $zaal_title;
+
+  if (!$node->get('field_feestgelegenheid')->isEmpty()) {
+    foreach ($node->field_feestgelegenheid as $item) {
+      if ($item->entity) {
+        $dropdown_array[$item->entity->id()] = t($item->entity->label());
+      }
+    }
+  }
+  if (!$node->get('field_concertgelegenheden')->isEmpty()) {
+    foreach ($node->field_concertgelegenheden as $item) {
+      if ($item->entity) {
+        $dropdown_array[$item->entity->id()] = t($item->entity->label());
+      }
+    }
+  }
+  if (!$node->get('field_comercielegelegenheden')->isEmpty()) {
+    foreach ($node->field_comercielegelegenheden as $item) {
+      if ($item->entity) {
+        $dropdown_array[$item->entity->id()] = t($item->entity->label());
+      }
+    }
+  }
+  if (!$node->get('field_vergadergelegenheden')->isEmpty()) {
+    foreach ($node->field_vergadergelegenheden as $item) {
+      if ($item->entity) {
+        $dropdown_array[$item->entity->id()] = t($item->entity->label());
+      }
+    }
+  }
+
+  $form['field_evenement']['widget']['#empty_option'] = t('Kies een evenement');
+  $options = $form['field_evenement']['widget']['#options'];
+
+  if (!empty($dropdown_array)) {
+    $options = array_intersect_key($options, $dropdown_array);
+  }
+  $form['field_evenement']['widget']['#options'] = $options;
+  $rules = $node->get('field_regels')->getValue();
+  $filtered = array_filter($rules, function ($rule) {
+    return $rule['rule_type'] === 'minprice' && $rule['pattern_tariff'] === 'i_person';
+  });
+
+  $filtered = array_values($filtered);
+  if (!empty($filtered)) {
+    $filtered = reset($filtered);
+    $min_value = (int)$filtered['span_time'];
+  } else {
+    $min_value = !empty($node->get('field_bezetting_van')->getValue()) ? $node->get('field_bezetting_van')->getValue()[0]['value'] : Null;
+  }
+  $max_value = !empty($node->get('field_bezetting_tot')->getValue()) ? $node->get('field_bezetting_tot')->getValue()[0]['value'] : NULL;
+
+
+  if ($min_value != NULL) {
+    $form['field_bezetting']['widget'][0]['value']['#min'] = $min_value;
+  }
+  if ($max_value != NULL) {
+    $form['field_bezetting']['widget'][0]['value']['#max'] = $max_value;
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function zaal_condities_mail($key, &$message, $params): void
+{
+  switch ($key) {
+    case 'reservation_mails':
+      // Set the email subject.
+      $message['subject'] = t($params['subject']);
+
+      // Set the Content-Type header to HTML.
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8';
+
+      // Ensure the message body is treated as HTML.
+      $message['body'][] = $params['body'];
+      break;
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function zaal_condities_entity_insert(EntityInterface $entity) {
+  if ($entity->bundle() === 'zaal') {
+    if ($entity->get('field_bedrijf_zaal')->isEmpty()) {
+      zc_update_reference_field_value($entity);
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function zaal_condities_entity_update(EntityInterface $entity) {
+  if ($entity->bundle() === 'zaal') {
+    if ($entity->get('field_bedrijf_zaal')->isEmpty()) {
+      zc_update_reference_field_value($entity);
+    }
+  }
+}
+
+/**
+ * Callback function: update cross references.
+ */
+function zc_update_reference_field_value(Node $zaal) {
+  static $processed = [];
+
+  // Prevent infinite loop.
+  if (isset($processed[$zaal->id()])) {
+    return;
+  }
+  $processed[$zaal->id()] = TRUE;
+
+  $user_id = $zaal->getOwnerId();
+
+  // Haal laatste bedrijf van deze user op.
+  $nids = \Drupal::entityQuery('node')
+    ->accessCheck(TRUE)
+    ->condition('status', 1)
+    ->condition('type', 'bedrijf')
+    ->condition('uid', $user_id)
+    ->sort('created', 'DESC')
+    ->range(0, 1)
+    ->execute();
+
+  if (!$nids) {
+    return;
+  }
+
+  $bedrijf = Node::load(reset($nids));
+
+  // Zet ref van zaal → bedrijf.
+  $zaal->set('field_bedrijf_zaal', ['target_id' => $bedrijf->id()]);
+
+  // Zet ref van bedrijf → zaal (indien nog niet aanwezig).
+  $existing = array_column($bedrijf->get('field_zaal_bedrijf')->getValue(), 'target_id');
+  if (!in_array($zaal->id(), $existing)) {
+    $bedrijf->field_zaal_bedrijf[] = ['target_id' => $zaal->id()];
+  }
+
+  // Sla in één keer beide nodes op.
+  // Maar let op: dit kan nog steeds hook_entity_update triggeren.
+  // Daarom hebben we de $processed[] guard hierboven.
+  $zaal->save();
+  $bedrijf->save();
+}
+
+/**
+ * Implements hook_entity_type_build().
+ */
+//user form mode to register standaard and VIP roles
+function zaal_condities_entity_type_build(array &$entity_types)
+{
+  $form_modes = ['avatar', 'additioneel'];
+  foreach ($form_modes as $mode) {
+    $entity_types['user']->setFormClass($mode, 'Drupal\user\ProfileForm');
+  }
+  $entity_types['user']->setFormClass('register', 'Drupal\zaal_condities\Form\MagnusRegisterForm');
+  $entity_types['user']->setFormClass('registratie_vip', 'Drupal\zaal_condities\Form\VipRegisterForm');
+  $entity_types['user']->setFormClass('registratie_standaard', 'Drupal\zaal_condities\Form\StandardRegisterForm');
+  $entity_types['user']->setFormClass('rol', 'Drupal\zaal_condities\Form\VeranderRolForm');
+}
+
+/**
+ * Implements hook_entity_presave().
+ *
+ * Alt value avatar and logo image in "bedrijf".
+ * + Bepaalt boolean-velden (bushalte, metro, trein, tram, mindervaliden, etc.).
+ */
+function zaal_condities_entity_presave(EntityInterface $entity)
+{
+  if ($entity->getEntityTypeId() !== 'node') {
+    return;
+  }
+
+  // Deel 1: Logica voor 'bedrijf'.
+  if ($entity->bundle() == 'bedrijf') {
+    \Drupal::logger('zaal_condities')->notice('Presave triggered for entity ID: ' . $entity->id());
+
+
+    // --- 1) Avatar en logo alt-text updaten ---
+    $alt_logo = $entity->get('field_logo')->getValue();
+    if (!empty($alt_logo[0])) {
+      $alt_logo[0]['alt'] = 'Logo ' . $entity->getTitle();
+      $entity->set('field_logo', $alt_logo);
+    }
+
+    $alt_avatar = $entity->get('field_avatar')->getValue();
+    if (!empty($alt_avatar[0])) {
+      // Voorbeeld: gebruik de "contactpersoon" in de alt.
+      $alt_contact = 'Avatar van ' .$entity->get('field_contact_persoon')->value ?? '';
+      $alt_avatar[0]['alt'] = $alt_contact;
+      $entity->set('field_avatar', $alt_avatar);
+    }
+
+    // --- 2) Afstand bus => nabij bushalte ---
+    //    Indien 'field_afstand_bus' 294 of 295 => zet field_nabij_bushalte op 1.
+    $afstand_bus = $entity->get('field_afstand_bus')->target_id;
+    \Drupal::logger('zaal_condities')->notice('Afstand bus term ID = ' . print_r($afstand_bus, TRUE));
+    if ($afstand_bus == 294 || $afstand_bus == 295) {
+      $entity->set('field_nabij_bushalte', 1);
+    } else {
+      $entity->set('field_nabij_bushalte', 0);
+    }
+
+    // --- 3) Afstand metro => nabij metrohalte ---
+    $afstand_metro = $entity->get('field_afstand_metro')->target_id;
+    if ($afstand_metro == 294 || $afstand_metro == 295) {
+      $entity->set('field_nabij_metrohalte', 1);
+    } else {
+      $entity->set('field_nabij_metrohalte', 0);
+    }
+
+    // --- 4) Afstand trein => nabij treinstation ---
+    $afstand_trein = $entity->get('field_afstand_trein_station')->target_id;
+    if ($afstand_trein == 294 || $afstand_trein == 295) {
+      $entity->set('field_nabij_trein_station', 1);
+    } else {
+      $entity->set('field_nabij_trein_station', 0);
+    }
+
+    // --- 5) Afstand tram => nabij tramhalte ---
+    $afstand_tram = $entity->get('field_afstand_tramhalte')->target_id;
+    if ($afstand_tram == 294 || $afstand_tram == 295) {
+      $entity->set('field_nabij_tramhalte', 1);
+    } else {
+      $entity->set('field_nabij_tramhalte', 0);
+    }
+
+    // --- 6) Mindervaliden (taxonomy) => field_beperkingen ---
+    //    Als er meer dan 3 terms geselecteerd zijn -> 1, anders 0
+    $mindervaliden_ids = $entity->get('field_mindervaliden')->getValue();
+    if (count($mindervaliden_ids) > 3) {
+      $entity->set('field_beperkingen', 1);
+    } else {
+      $entity->set('field_beperkingen', 0);
+    }
+
+    // --- 7) Groen label => field_groen_label ---
+    //    Als er meer dan 4 terms in 'field_milieu' zijn geselecteerd -> 1, anders 0
+    $milieu_ids = $entity->get('field_milieu')->getValue();
+    if (count($milieu_ids) > 4) {
+      $entity->set('field_groen_label', 1);
+    } else {
+      $entity->set('field_groen_label', 0);
+    }
+
+    // --- 8) Kindvriendelijkheid => field_kindvriendelijk ---
+    $kind_ids = $entity->get('field_kindvriendelijkheid')->getValue();
+    if (count($kind_ids) > 4) {
+      $entity->set('field_kindvriendelijk', 1);
+    } else {
+      $entity->set('field_kindvriendelijk', 0);
+    }
+  }
+
+  // Deel 2: Logica voor 'zaal'.
+  if ($entity->bundle() == 'zaal') {
+    $author_id = $entity->getOwner()->id();
+    $query = \Drupal::entityQuery('node')
+      ->accessCheck(TRUE)
+      ->condition('status', 1)
+      ->condition('type', 'bedrijf')
+      ->condition('uid', $author_id);
+    $nids = $query->execute();
+
+    // Bijv. de eerste 'bedrijf' ophalen als 'bedrijf_title'.
+    $bedrijf_title = '';
+    if (!empty($nids)) {
+      $nodes = Node::loadMultiple($nids);
+      $x = 1;
+      foreach ($nodes as $n) {
+        if ($x === 1) {
+          $bedrijf_title = $n->getTitle();
+        }
+        $x++;
+      }
+    }
+
+    // Alt-text voor plattegrond
+    $alt_plattegrond = $entity->get('field_plattegrond')->getValue();
+    if (!empty($alt_plattegrond[0])) {
+      $alt_plattegrond[0]['alt'] = 'Plattegrond ' . $entity->getTitle() . ' ' . $bedrijf_title;
+      $entity->set('field_plattegrond', $alt_plattegrond);
+    }
+  }
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter(alt default, node title).
+ */
+function zaal_condities_field_widget_single_element_image_image_form_alter(&$element, &$form_state, $context)
+{
+  $node = $form_state->getFormObject()->getEntity();
+  //deprecated getType() function, replaced with bundle()
+  if ($node->bundle() == 'bedrijf' && $element['#field_name'] == 'field_foto') {
+    $element['#process'][] = 'zaal_condities_foto_field_bedrijf_alt_process';
+  } elseif ($node->bundle() == 'bedrijf' && $element['#field_name'] == 'field_keurmerken') {
+    $element['#process'][] = 'zaal_condities_foto_field_bedrijf_keurmerken_alt_process';
+  } elseif ($node->bundle() == 'zaal' && $element['#field_name'] == 'field_foto') {
+    $element['#process'][] = 'zaal_condities_foto_field_zaal_alt_process';
+  }
+}
+
+/**
+ * Implements custom_image_field_widget_process('bedrijf field_foto').
+ */
+function zaal_condities_foto_field_bedrijf_alt_process($element, \Drupal\Core\Form\FormStateInterface $form_state, $context)
+{
+
+  if (!empty ($form_state->getUserInput()['title'][0]['value'])) {
+    $title = $form_state->getUserInput()['title'][0]['value'];
+    $delta = $element['#delta'];
+    $element['alt']['#default_value'] = $title . ' ' . $delta;
+  }
+  return $element;
+}
+
+/**
+ * Implements custom_image_field_widget_process('bedrijf field_keurmerken').
+ */
+function zaal_condities_foto_field_bedrijf_keurmerken_alt_process($element, \Drupal\Core\Form\FormStateInterface $form_state, $context)
+{
+
+  if (!empty ($form_state->getUserInput()['title'][0]['value'])) {
+    $title = $form_state->getUserInput()['title'][0]['value'];
+    $delta = $element['#delta'];
+    $element['alt']['#default_value'] = 'kwaliteitslabel ' . $delta . ' van ' . $title;
+  }
+  return $element;
+}
+
+
+/**
+ * Implements custom_image_field_widget_process('zaal field_foto').
+ */
+function zaal_condities_foto_field_zaal_alt_process($element, \Drupal\Core\Form\FormStateInterface $form_state, $context)
+{
+  $node = $form_state->getFormObject()->getEntity();
+  $author_id = $node->getOwner()->id();
+  $query = \Drupal::entityQuery('node')
+    ->accessCheck(TRUE)
+    ->condition('status', 1)
+    ->condition('type', 'bedrijf')
+    ->condition('uid', $author_id);
+  $nids = $query->execute();
+  if (!empty($nids)) {
+    $nodes = Node::loadMultiple($nids);
+    $bedrijf_title = reset($nodes)->getTitle();
+    if (!empty ($form_state->getUserInput()['title'][0]['value'])) {
+      $title = $form_state->getUserInput()['title'][0]['value'];
+      $delta = $element['#delta'];
+      $element['alt']['#default_value'] = $title . ' van ' . $bedrijf_title . ' ' . $delta;
+    }
+
+  }
+
+  return $element;
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function zaal_condities_views_query_alter(ViewExecutable $view, $query)
+{
+
+  switch ($view->storage->id()) {
+    case 'alle_zalen';
+      $query->addField('node_field_data', 'nid', '', ['function' => 'groupby']);
+      $query->addGroupBy('node_field_data.nid');
+      break;
+  }
+
+  if ($view->id() === 'alle_zalen' && $view->current_display === 'page_alle_zalen') {
+    $start = \Drupal::request()->query->get('field_date_booking_start_value');
+    $end = \Drupal::request()->query->get('field_date_booking_end_value');
+
+    if ($start && $end) {
+      $start = date('Y-m-d H:i:s', strtotime($start));
+      $end = date('Y-m-d H:i:s', strtotime($end));
+
+      // First, remove any existing date range conditions that are filtering out results
+      foreach ($query->where as $group_id => $group) {
+        if (isset($group['conditions'])) {
+          foreach ($group['conditions'] as $condition_id => $condition) {
+            // Look for the date range conditions and remove them
+            if (is_array($condition) && isset($condition['field']) && (
+                strpos($condition['field'], 'reservation_field_data_node_field_data__reservation__field_date_booking.field_date_booking_value') !== FALSE ||
+                strpos($condition['field'], 'reservation_field_data_node_field_data__reservation__field_date_booking.field_date_booking_end_value') !== FALSE
+              )) {
+              unset($query->where[$group_id]['conditions'][$condition_id]);
+            }
+          }
+        }
+      }
+
+      // Store the date range for pre-render filtering
+      \Drupal::state()->set('zaal_condities.filter_dates', [
+        'start' => $start,
+        'end' => $end,
+      ]);
+    }
+  }
+
+
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function zaal_condities_views_pre_render(ViewExecutable $view): ViewExecutable {
+  if ($view->id() === 'alle_zalen' && $view->current_display === 'page_alle_zalen') {
+    $filter_dates = \Drupal::state()->get('zaal_condities.filter_dates');
+
+    if (!empty($filter_dates) && !empty($view->result)) {
+      $start = $filter_dates['start'];
+      $end = $filter_dates['end'];
+
+      // Filter the results to only rooms with non-overlapping reservations
+      foreach ($view->result as $key => $row) {
+        $entity = $row->_entity;
+
+        if ($entity instanceof Node && $entity->bundle() === 'zaal') {
+          $reservations = $entity->get('field_form_booking')->getValue();
+          $reservations = array_filter($reservations, function ($reservation) {
+            return !empty($reservation['reservation_count']);
+          });
+
+          if (!empty($reservations)) {
+            $reservations = array_filter($reservations, function ($reservation) use ($start, $end, &$view, &$key) {
+
+              $reservation_data = Reservation::load($reservation['cid']);
+              $start_date = (int) $reservation_data->get('field_date_booking')->getValue()[0]['value'];
+              $end_date = (int) $reservation_data->get('field_date_booking')->getValue()[0]['end_value'];
+
+              if ((strtotime($start) >= $start_date) && ($end_date >= strtotime($start))) {
+                unset($view->result[$key]);
+              }
+
+            });
+
+          }
+
+
+        }
+      }
+
+      // Clear the state to avoid affecting other views
+      \Drupal::state()->delete('zaal_condities.filter_dates');
+    }
+  }
+
+  return $view;
+}
+
+
+/**
+ * Implements hook_theme().
+ * This to have a custom template for the extensive filter, maybe we can move this in the theme
+ */
+function zaal_condities_theme($existing, $type, $theme, $path)
+{
+  return [
+    'views_exposed_form__extensief_filterblok_page' => [
+      'render element' => 'form',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_ID_alter().
+ */
+function zaal_condities_form_system_modules_alter(&$form, $form_id, $form_state)
+{
+  foreach (Element::children($form['modules']) as $package) {
+    $form['modules'][$package]['#open'] = FALSE;
+  }
+}
+
+
+function user_redirection_after_authenticate(): void
+{
+  $current_user = \Drupal::currentUser();
+  $user = User::load($current_user->id());
+  $accept_mollie = $user->get('field_betaling_accepteren_via_mo')?->value;
+  if (!$accept_mollie || $accept_mollie === '_none') {
+//    $route_name = 'zaal_condities.capacity_selection';
+    $route_name = 'zaal_condities.standard_payment';
+  } else {
+//    $route_name = 'zaal_condities.standard_payment';
+    $route_name = 'zaal_condities.capacity_selection';
+    // Should we change the allowed mollie payment from NONE to JA
+  }
+  $route_parameters = [];
+  $url = Url::fromRoute($route_name, $route_parameters);
+  $redirect_url = $url->toString();
+  $response = new RedirectResponse($redirect_url);
+  $response->send();
+}
+
+function zaal_condities_preprocess_menu(&$variables, $hook)
+{
+  if ($hook === 'menu__account') {
+    $current_user = \Drupal::currentUser();
+    foreach ($variables['items'] as $key => $item) {
+      if ($item['title'] == 'Machtigen via Mollie') {
+        if ($current_user->hasRole('anonymous')) {
+          unset($variables['items'][$key]);
+        }
+      }
+      if ($item['title'] == 'Mijn boekingen') {
+        if ($current_user->hasRole('zaal_eigenaar') || $current_user->hasRole('premium_zaal')) {
+          unset($variables['items'][$key]);
+        }
+      }
+      if ($item['title'] == 'Upgrade naar VIP') {
+        if (!$current_user->hasRole('zaal_eigenaar')) {
+          unset($variables['items'][$key]);
+        }
+      }
+    }
+  }
+}
+
+
+function zaal_condities_zaal_form_submit($form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
+  $room_settings = $form_state->getValue('field_room_pricing_settings');
+  $node = $form_state->getFormObject()->getEntity();
+  $recursive_get_value = function (array $room_settings, string $field_name, &$found) use (&$recursive_get_value) {
+    if (isset($room_settings[$field_name])) {
+      $value = is_array($room_settings[$field_name]) ? reset($room_settings[$field_name]) : $room_settings[$field_name];
+      $found[] = is_array($value) ? reset($value) : $value;
+    }
+
+    foreach ($room_settings as $room_setting) {
+      if (isset($room_setting[$field_name])) {
+        $value = is_array($room_setting[$field_name]) ? reset($room_setting[$field_name]) : $room_setting[$field_name];
+        $found[] = is_array($value) ? reset($value) : $value;
+      } elseif (is_array($room_setting)) {
+        $value = $recursive_get_value($room_setting, $field_name, $found);
+        if ($value !== null) {
+          $value = is_array($value) ? reset($value) : $value;
+          $found[] = is_array($value) ? reset($value) : $value;
+        }
+      }
+    }
+    return null;
+  };
+
+  if (!empty($room_settings)) {
+    // Update the prices on fields
+    $found = [];
+    $recursive_get_value($room_settings, 'field_per_hour_price', $found);
+    $found = array_filter($found);
+    if (!empty($found)) {
+      if ($node->bundle() == 'zaal') {
+        $node->set('field_uurprijs', reset($found));
+      }
+    }
+
+    $found = [];
+    $recursive_get_value($room_settings, 'field_day_amount', $found);
+    $found = array_filter($found);
+    if (!empty($found)) {
+      if ($node->bundle() == 'zaal') {
+        $node->set('field_dagprijs', reset($found));
+      }
+    }
+    $found = [];
+    $recursive_get_value($room_settings, 'field_per_person_item_price', $found);
+    $found = array_filter($found);
+    if (!empty($found)) {
+      if ($node->bundle() == 'zaal') {
+        $node->set('field_prijs_per_persoon', reset($found));
+      }
+    }
+
+    // set the currency code of prices
+    $found = [];
+    $recursive_get_value($room_settings, 'field_currency', $found);
+    $found = array_filter($found);
+    if (!empty($found)) {
+      if ($node->bundle() == 'zaal') {
+        $node->set('field_hourly_currency', reset($found));
+      }
+    }
+
+    $found = [];
+    $recursive_get_value($room_settings, 'field_day_currency', $found);
+    $found = array_filter($found);
+    if (!empty($found)) {
+      if ($node->bundle() == 'zaal') {
+        $node->set('field_daily_currency', reset($found));
+      }
+    }
+    $found = [];
+    $recursive_get_value($room_settings, 'field_per_person_item_currency', $found);
+    $found = array_filter($found);
+    if (!empty($found)) {
+      if ($node->bundle() == 'zaal') {
+        $node->set('field_person_currency', reset($found));
+      }
+    }
+    $node->save();
+  }
+}
+
+

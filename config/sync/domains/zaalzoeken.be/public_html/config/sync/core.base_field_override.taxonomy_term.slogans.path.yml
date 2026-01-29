@@ -1,0 +1,20 @@
+uuid: bd28128f-356d-4c51-884b-592169ab10eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.slogans
+  module:
+    - path
+id: taxonomy_term.slogans.path
+field_name: path
+entity_type: taxonomy_term
+bundle: slogans
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

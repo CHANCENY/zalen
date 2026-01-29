@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - reservation
+id: reservation_unpublish_action
+label: 'Unpublish reservation'
+type: reservation
+plugin: entity:unpublish_action:reservation
+configuration: {  }

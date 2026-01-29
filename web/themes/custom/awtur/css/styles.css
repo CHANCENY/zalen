@@ -1,0 +1,212 @@
+#block-useraccountmenu ul.menu li.menu-item {
+    padding: 1em 0;
+}
+
+.path-mijn-zaal-lijst table th, .path-user table th,
+.path-mijn-zaal-lijst table td, .path-user table td {
+    text-align: center;
+}
+.path-mijn-zaal-lijst table tr, .path-user table tr {
+    background: #fffef3;
+}
+.path-mijn-zaal-lijst table tr th, .path-user table tr th {
+    background-color: #2f9bff;
+    border: 1px solid #E9D2AA;
+}
+.path-mijn-zaal-lijst table tr td, .path-user table tr td {
+    border: 1px solid #E9D2AA;
+}
+td.views-field-field-foto img {
+    width: 70px;
+    height: 70px;
+    border: 2px solid #bd8100;
+    object-fit: cover;
+}
+
+form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-actions,
+form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 {
+    padding: 20px;
+}
+
+form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-actions {
+    margin-bottom: unset;
+    padding-bottom: 40px;
+}
+
+form#views-form-flag-bookmark-page-mijn-zaal-lijst .button {
+    background: #bd8100;
+    border-radius: 4px;
+    border: unset;
+}
+
+form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 {
+    display: flex;
+}
+
+form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 {
+    border-left: 2px solid #e6d1a0;
+    margin-left: 50px;
+}
+
+form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 .button {
+    margin-left: 50px;
+}
+
+form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .form-item label {
+    margin-left: unset;
+    margin-bottom: 5px;
+}
+
+.path-mijn-zaal-lijst .main-content, .path-user .main-content{
+    box-shadow: none !important;
+}
+
+.path-mijn-zaal-lijst .layout-main,
+.path-user .layout-main {
+    box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
+}
+
+.path-user .user-form {
+    padding: 10px 30px;
+}
+
+.path-user div#block-awtur-local-tasks {
+    border-bottom: 1px solid #cccccc;
+}
+
+.path-user #edit-actions input.button,
+.path-user #edit-actions a {
+    background: #2f9bff;
+    border: unset;
+    border-radius: 5px;
+    margin: 0 10px 0 0;
+}
+
+.path-user .tabs ul.primary li a {
+    color: #000;
+    border-width: unset;
+    border-style: unset;
+    border-color: unset;
+    background-color: unset;
+}
+
+.path-user .block-local-tasks-block {
+    background-color: #fff;
+}
+
+.path-user .content-user {
+    text-align: center;
+    padding: 0 20px;
+}
+
+.path-user h2.content-user,
+.path-user .view-id-zalen_per_gebruiker .view-header a {
+    color: #bd8100;
+}
+
+.path-user .view-id-zalen_per_gebruiker .view-footer {
+    margin-top: 20px;
+}
+
+.path-user .view-id-zalen_per_gebruiker .view-footer a {
+    color: #fff;
+    background: #2f9bff;
+    padding: 8px 20px;
+    border-radius: 5px;
+}
+
+.path-user main .view-zalen-per-gebruiker,
+.path-user .profile, .path-user .contact-message-personal-form, .path-user .block-views-blockzalen-per-gebruiker-blok-mijn-zalen h2{
+    padding: 0 30px;
+}
+
+.path-user .view-zalen-per-gebruiker table {
+    margin-bottom: 40px;
+}
+
+.sidebar .block.block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf {
+    border-bottom: 1px solid #e6d1a0;
+    border-top: 1px solid #e6d1a0;
+    margin: unset;
+}
+
+.path-user .sidebar:has(.block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf) #user-ident {
+    border: none !important;
+}
+
+.path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf img {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #bd8100;
+    object-fit: cover;
+}
+
+
+.path-user .layout-main:has(.view-zalen-per-gebruiker, .profile),
+.path-user .main-content:has(.view-zalen-per-gebruiker, .profile) {
+    background-color: #fffef3;
+}
+
+.path-user table tr {
+    background: #fff;
+}
+
+.path-user .sidebar {
+    background-color: #fff;
+}
+
+.path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf .views-field {
+    padding-bottom: 10px;
+}
+
+.path-user .sidebar .views-field.views-field-edit-node {
+    margin: 10px 0;
+}
+
+.path-user .sidebar .views-field.views-field-edit-node a, .path-user .sidebar .view-empty a {
+    background: #2f9bff;
+    color: #fff;
+    padding: 4px 8px;
+    margin: 8px;
+    border-radius: 5px;
+}
+
+.path-user summary{
+    background: #2f9bff;
+}
+.sidebar .user-profile-photo {display: none}
+.me-2 {
+    margin-right: 8px;
+}
+
+.path-user div#block-awtur-local-tasks nav {
+    display: unset;
+}
+
+.path-user form.user-additioneel-form details {
+    background: #fffef3;
+}
+
+.path-user form.user-additioneel-form {
+    padding: unset !important;
+    border: unset !important;
+    box-shadow: unset !important;
+    max-width: 100% !important;
+    padding: 0 30px !important;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.profile .text-capitalize {
+    color: #2f9bff;
+    font-weight: bold;
+}
+
+body[class*="path-user"] 
+.menu a[data-drupal-link-system-path="user"] {
+  color: #0071b3;
+}
+
+

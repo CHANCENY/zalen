@@ -1,0 +1,8 @@
+# Link to list of authorization tokens in menu Configuration
+auth_authorize.list_auth_tokens:
+  title: 'OAuth API - listing of authorization tokens'
+  description: 'List tokens'
+  route_name: entity.oauth_authorize_token.collection
+  parent: system.admin_config_services
+
+

@@ -1,0 +1,21 @@
+uuid: 885961a4-449e-4e67-b5a6-3a19b4593a75
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_vip_abonnement_vervaldatum
+  module:
+    - datetime
+    - user
+id: user.user.field_vip_abonnement_vervaldatum
+field_name: field_vip_abonnement_vervaldatum
+entity_type: user
+bundle: user
+label: 'VIP-abonnement Vervaldatum'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

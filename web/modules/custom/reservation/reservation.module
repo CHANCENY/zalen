@@ -1,0 +1,2090 @@
+<?php
+
+/**
+ * @file
+ * Enables users to reservation on published content.
+ *
+ * When installed, the Reservation module creates a field that facilitates a
+ * discussion board for each Drupal entity to which a reservation field is
+ *   attached. Users can post reservations to discuss a forum topic, story,
+ *   collaborative book page, user etc.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\reservation\Plugin\BookingConfirmationEmail;
+use Drupal\reservation\ReservationInterface;
+use Drupal\reservation\Entity\ReservationType;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\reservation\Plugin\Field\FieldType\ReservationItemInterface;
+use Drupal\Core\Entity\Entity\EntityViewMode;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+use Drupal\field\FieldConfigInterface;
+use Drupal\field\FieldStorageConfigInterface;
+use Drupal\node\NodeInterface;
+use Drupal\user\RoleInterface;
+use Drupal\user\UserInterface;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\views\ViewExecutable;
+
+/**
+ * The time cutoff for reservations marked as read for entity types other node.
+ *
+ * Reservations changed before this time are always marked as read.
+ * Reservations changed after this time may be marked new, updated, or read,
+ * depending on their state for the current user. Defaults to 30 days ago.
+ *
+ * @todo Remove when https://www.drupal.org/node/1029708 lands.
+ */
+$request_time = \Drupal::time()->getRequestTime();
+//define('RESERVATION_NEW_LIMIT', REQUEST_TIME - 30 * 24 * 60 * 60);
+define('RESERVATION_NEW_LIMIT', $request_time - 30 * 24 * 60 * 60);
+
+/**
+ * Implements hook_help().
+ */
+function reservation_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.reservation':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Reservation module allows users to reservation on site content, set reservationing defaults and permissions, and moderate reservations. For more information, see the <a href=":reservation">online documentation for the Reservation module</a>.', [':reservation' => 'https://www.drupal.org/documentation/modules/reservation']) . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Enabling reservationing') . '</dt>';
+      $output .= '<dd>' . t('Reservation functionality can be enabled for any entity sub-type (for example, a <a href=":content-type">content type</a>) by adding a <em>Reservations</em> field on its <em>Manage fields page</em>. Adding or removing reservationing for an entity through the user interface requires the <a href=":field_ui">Field UI</a> module to be enabled, even though the reservationing functionality works without it. For more information on fields and entities, see the <a href=":field">Field module help page</a>.', [':content-type' => (\Drupal::moduleHandler()->moduleExists('node')) ? Url::fromRoute('entity.node_type.collection')->toString() : '#', ':field' => Url::fromRoute('help.page', ['name' => 'field'])->toString(), ':field_ui' => (\Drupal::moduleHandler()->moduleExists('field_ui')) ? Url::fromRoute('help.page', ['name' => 'field_ui'])->toString() : '#']) . '</dd>';
+      $output .= '<dt>' . t('Configuring reservationing settings') . '</dt>';
+      $output .= '<dd>' . t('Reservationing settings can be configured by editing the <em>Reservations</em> field on the <em>Manage fields page</em> of an entity type if the <em>Field UI module</em> is enabled. Configuration includes the label of the reservations field, the number of reservations to be displayed, and whether they are shown in threaded list. Reservationing can be configured as: <em>Open</em> to allow new reservations, <em>Closed</em> to view existing reservations, but prevent new reservations, or <em>Hidden</em> to hide existing reservations and prevent new reservations. Changing this configuration for an entity type will not change existing entity items.') . '</dd>';
+      $output .= '<dt>' . t('Overriding default settings') . '</dt>';
+      $output .= '<dd>' . t('Users with the appropriate permissions can override the default reservationing settings of an entity type when they create an item of that type.') . '</dd>';
+      $output .= '<dt>' . t('Adding reservation types') . '</dt>';
+      $output .= '<dd>' . t('Additional <em>reservation types</em> can be created per entity sub-type and added on the <a href=":field">Reservation types page</a>. If there are multiple reservation types available you can select the appropriate one after adding a <em>Reservations field</em>.', [':field' => Url::fromRoute('entity.reservation_type.collection')->toString()]) . '</dd>';
+      $output .= '<dt>' . t('Approving and managing reservations') . '</dt>';
+      $output .= '<dd>' . t('Reservations from users who have the <em>Skip reservation approval</em> permission are published immediately. All other reservations are placed in the <a href=":reservation-approval">Unapproved reservations</a> queue, until a user who has permission to <em>Administer reservations and reservation settings</em> publishes or deletes them. Published reservations can be bulk managed on the <a href=":admin-reservation">Published reservations</a> administration page. When a reservation has no replies, it remains editable by its author, as long as the author has <em>Edit own reservations</em> permission.', [':reservation-approval' => Url::fromRoute('reservation.admin_approval')->toString(), ':admin-reservation' => Url::fromRoute('reservation.admin')->toString()]) . '</dd>';
+      $output .= '</dl>';
+      return $output;
+
+    case 'entity.reservation_type.collection':
+      $output = '<p>' . t('This page provides a list of all reservation types on the site and allows you to manage the fields, form and display settings for each.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Entity URI callback.
+ */
+function reservation_uri(ReservationInterface $reservation) {
+  return new Url(
+    'entity.reservation.canonical',
+    [
+      'reservation' => $reservation->id(),
+    ],
+    ['fragment' => 'reservation-' . $reservation->id()]
+  );
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function reservation_entity_extra_field_info() {
+  $return = [];
+  foreach (ReservationType::loadMultiple() as $reservation_type) {
+    $return['reservation'][$reservation_type->id()] = [
+      'form' => [
+        'author' => [
+          'label' => t('Author'),
+          'description' => t('Author textfield'),
+          'weight' => -2,
+        ],
+      ],
+    ];
+    $return['reservation'][$reservation_type->id()]['display']['links'] = [
+      'label' => t('Links'),
+      'description' => t('Reservation operation links'),
+      'weight' => 100,
+      'visible' => TRUE,
+    ];
+  }
+
+  return $return;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function reservation_theme() {
+  return [
+    'reservation' => [
+      'render element' => 'elements',
+    ],
+    'field__reservation' => [
+      'base hook' => 'field',
+    ],
+    'payments_breakdown_layout' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+      'template' => 'payments_breakdown_layout',
+    ],
+    'reservation_layout' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+      'template' => 'reservation-layout',
+    ],
+    'payments_breakdown_standard_layout' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+      'template' => 'payments_breakdown_standard_layout',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_create() for 'field_config'.
+ */
+function reservation_field_config_create(FieldConfigInterface $field) {
+  if ($field->getType() == 'reservation' && !$field->isSyncing()) {
+    // Assign default values for the field.
+    $default_value = $field->getDefaultValueLiteral();
+    $default_value += [[]];
+    $default_value[0] += [
+      'status' => ReservationItemInterface::OPEN,
+      'cid' => 0,
+      'last_reservation_timestamp' => 0,
+      'last_reservation_name' => '',
+      'last_reservation_uid' => 0,
+      'reservation_count' => 0,
+    ];
+    $field->setDefaultValue($default_value);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for 'field_config'.
+ */
+function reservation_field_config_update(FieldConfigInterface $field) {
+  if ($field->getType() == 'reservation') {
+    // Reservation field settings also affects the rendering of *reservation* entities,
+    // not only the *reservationed* entities.
+    \Drupal::entityTypeManager()->getViewBuilder('reservation')->resetCache();
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for 'field_storage_config'.
+ */
+function reservation_field_storage_config_insert(FieldStorageConfigInterface $field_storage) {
+  if ($field_storage->getType() == 'reservation') {
+    // Check that the target entity type uses an integer ID.
+    $entity_type_id = $field_storage->getTargetEntityTypeId();
+    if (!_reservation_entity_uses_integer_id($entity_type_id)) {
+      throw new \UnexpectedValueException('You cannot attach a reservation field to an entity with a non-integer ID field');
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete() for 'field_config'.
+ */
+function reservation_field_config_delete(FieldConfigInterface $field) {
+  if ($field->getType() == 'reservation') {
+    // Delete all reservations that used by the entity bundle.
+    $entity_query = \Drupal::entityQuery('reservation');
+    $entity_query->condition('entity_type', $field->getEntityTypeId());
+    $entity_query->condition('field_name', $field->getName());
+    $entity_query->accessCheck(FALSE);
+    $cids = $entity_query->execute();
+    $reservation_storage = \Drupal::entityTypeManager()->getStorage('reservation');
+    $reservations = $reservation_storage->loadMultiple($cids);
+    $reservation_storage->delete($reservations);
+  }
+}
+
+/**
+ * Implements hook_node_links_alter().
+ */
+function reservation_node_links_alter(array &$links, NodeInterface $node, array &$context) {
+  // Reservation links are only added to node entity type for backwards
+  // compatibility. Should you require reservation links for other entity types you
+  // can do so by implementing a new field formatter.
+  // @todo Make this configurable from the formatter. See
+  //   https://www.drupal.org/node/1901110.
+
+  $reservation_links = \Drupal::service('reservation.link_builder')->buildReservationedEntityLinks($node, $context);
+  $links += $reservation_links;
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function reservation_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity instanceof FieldableEntityInterface && $view_mode == 'rss' && $display->getComponent('links')) {
+    /** @var \Drupal\reservation\ReservationManagerInterface $reservation_manager */
+    $reservation_manager = \Drupal::service('reservation.manager');
+    $fields = $reservation_manager->getFields($entity->getEntityTypeId());
+    foreach ($fields as $field_name => $detail) {
+      if ($entity->hasField($field_name) && $entity->get($field_name)->status != ReservationItemInterface::HIDDEN) {
+        // Add a reservations RSS element which is a URL to the reservations of this
+        // entity.
+        $options = [
+          'fragment' => 'reservations',
+          'absolute' => TRUE,
+        ];
+        $entity->rss_elements[] = [
+          'key' => 'reservations',
+          'value' => $entity->toUrl('canonical', $options)->toString(),
+        ];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter() for node entities.
+ */
+function reservation_node_view_alter(array &$build, EntityInterface $node, EntityViewDisplayInterface $display) {
+  if (\Drupal::moduleHandler()->moduleExists('history')) {
+    $build['#attributes']['data-history-node-id'] = $node->id();
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for field_ui_field_storage_add_form.
+ */
+function reservation_form_field_ui_field_storage_add_form_alter(&$form, FormStateInterface $form_state) {
+  $route_match = \Drupal::routeMatch();
+  if ($form_state->get('entity_type_id') == 'reservation' && $route_match->getParameter('reservationed_entity_type')) {
+    $form['#title'] = \Drupal::service('reservation.manager')->getFieldUIPageTitle($route_match->getParameter('reservationed_entity_type'), $route_match->getParameter('field_name'));
+  }
+  if (!_reservation_entity_uses_integer_id($form_state->get('entity_type_id'))) {
+    $optgroup = (string) t('General');
+    // You cannot use reservation fields on entity types with non-integer IDs.
+    unset($form['add']['new_storage_type']['#options'][$optgroup]['reservation']);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function reservation_form_field_ui_form_display_overview_form_alter(&$form, FormStateInterface $form_state) {
+  $route_match = \Drupal::routeMatch();
+  if ($form['#entity_type'] == 'reservation' && $route_match->getParameter('reservationed_entity_type')) {
+    $form['#title'] = \Drupal::service('reservation.manager')->getFieldUIPageTitle($route_match->getParameter('reservationed_entity_type'), $route_match->getParameter('field_name'));
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function reservation_form_field_ui_display_overview_form_alter(&$form, FormStateInterface $form_state) {
+  $route_match = \Drupal::routeMatch();
+  if ($form['#entity_type'] == 'reservation' && $route_match->getParameter('reservationed_entity_type')) {
+    $form['#title'] = \Drupal::service('reservation.manager')->getFieldUIPageTitle($route_match->getParameter('reservationed_entity_type'), $route_match->getParameter('field_name'));
+  }
+}
+
+/**
+ * Implements hook_entity_storage_load().
+ *
+ * @see \Drupal\reservation\Plugin\Field\FieldType\ReservationItem::propertyDefinitions()
+ */
+function reservation_entity_storage_load($entities, $entity_type) {
+  // Reservations can only be attached to content entities, so skip others.
+  if (!\Drupal::entityTypeManager()->getDefinition($entity_type)->entityClassImplements(FieldableEntityInterface::class)) {
+    return;
+  }
+  if (!\Drupal::service('reservation.manager')->getFields($entity_type)) {
+    // Do not query database when entity has no reservation fields.
+    return;
+  }
+  // Load reservation information from the database and update the entity's
+  // reservation statistics properties, which are defined on each ReservationItem field.
+  $result = \Drupal::service('reservation.statistics')->read($entities, $entity_type);
+  foreach ($result as $record) {
+    // Skip fields that entity does not have.
+    if (!$entities[$record->entity_id]->hasField($record->field_name)) {
+      continue;
+    }
+    $reservation_statistics = $entities[$record->entity_id]->get($record->field_name);
+    $reservation_statistics->cid = $record->cid;
+    $reservation_statistics->last_reservation_timestamp = $record->last_reservation_timestamp;
+    $reservation_statistics->last_reservation_name = $record->last_reservation_name;
+    $reservation_statistics->last_reservation_uid = $record->last_reservation_uid;
+    $reservation_statistics->reservation_count = $record->reservation_count;
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function reservation_entity_insert(EntityInterface $entity) {
+  // Allow bulk updates and inserts to temporarily disable the
+  // maintenance of the {reservation_entity_statistics} table.
+  if (\Drupal::state()->get('reservation.maintain_entity_statistics') &&
+    $fields = \Drupal::service('reservation.manager')->getFields($entity->getEntityTypeId())) {
+    \Drupal::service('reservation.statistics')->create($entity, $fields);
+  }
+  if($entity->getEntityTypeId() === 'reservation') {
+
+    // Reservation email start from here upon booking.
+    (new BookingConfirmationEmail($entity))->processRequiredMail();
+  }
+}
+
+/**
+ * Implements hook_entity_predelete().
+ */
+function reservation_entity_predelete(EntityInterface $entity) {
+  // Entities can have non-numeric IDs, but {reservation} and
+  // {reservation_entity_statistics} tables have integer columns for entity ID, and
+  // PostgreSQL throws exceptions if you attempt query conditions with
+  // mismatched types. So, we need to verify that the ID is numeric (even for an
+  // entity type that has an integer ID, $entity->id() might be a string
+  // containing a number), and then cast it to an integer when querying.
+  if ($entity instanceof FieldableEntityInterface && is_numeric($entity->id())) {
+
+    $entity_query = \Drupal::entityQuery('reservation');
+    $entity_query->condition('entity_id', (int) $entity->id());
+    $entity_query->condition('entity_type', $entity->getEntityTypeId());
+    $entity_query->accessCheck(FALSE);
+    $cids = $entity_query->execute();
+    $reservation_storage = \Drupal::entityTypeManager()->getStorage('reservation');
+    $reservations = $reservation_storage->loadMultiple($cids);
+    $reservation_storage->delete($reservations);
+    \Drupal::service('reservation.statistics')->delete($entity);
+  }
+}
+
+/**
+ * Determines if an entity type is using an integer-based ID definition.
+ *
+ * @param string $entity_type_id
+ *   The ID the represents the entity type.
+ *
+ * @return bool
+ *   Returns TRUE if the entity type has an integer-based ID definition and
+ *   FALSE otherwise.
+ */
+function _reservation_entity_uses_integer_id($entity_type_id) {
+  $entity_type = \Drupal::entityTypeManager()->getDefinition($entity_type_id);
+  $entity_type_id_key = $entity_type->getKey('id');
+  if ($entity_type_id_key === FALSE) {
+    return FALSE;
+  }
+  $field_definitions = \Drupal::service('entity_field.manager')->getBaseFieldDefinitions($entity_type->id());
+  $entity_type_id_definition = $field_definitions[$entity_type_id_key];
+  return $entity_type_id_definition->getType() === 'integer';
+}
+
+/**
+ * Implements hook_node_update_index().
+ */
+function reservation_node_update_index(EntityInterface $node) {
+  $index_reservations = &drupal_static(__FUNCTION__);
+
+  if ($index_reservations === NULL) {
+    // Do not index in the following three cases:
+    // 1. 'Authenticated user' can search content but can't access reservations.
+    // 2. 'Anonymous user' can search content but can't access reservations.
+    // 3. Any role can search content but can't access reservations and access
+    // reservations is not granted by the 'authenticated user' role. In this case
+    // all users might have both permissions from various roles but it is also
+    // possible to set up a user to have only search content and so a user
+    // edit could change the security situation so it is not safe to index the
+    // reservations.
+    $index_reservations = TRUE;
+    $roles = \Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple();
+    $authenticated_can_access = $roles[RoleInterface::AUTHENTICATED_ID]->hasPermission('access reservations');
+    foreach ($roles as $rid => $role) {
+      if ($role->hasPermission('search content') && !$role->hasPermission('access reservations')) {
+        if ($rid == RoleInterface::AUTHENTICATED_ID || $rid == RoleInterface::ANONYMOUS_ID || !$authenticated_can_access) {
+          $index_reservations = FALSE;
+          break;
+        }
+      }
+    }
+  }
+
+  $build = [];
+
+  if ($index_reservations) {
+    foreach (\Drupal::service('reservation.manager')->getFields('node') as $field_name => $info) {
+      // Skip fields that entity does not have.
+      if (!$node->hasField($field_name)) {
+        continue;
+      }
+      $field_definition = $node->getFieldDefinition($field_name);
+      $mode = $field_definition->getSetting('default_mode');
+      $reservations_per_page = $field_definition->getSetting('per_page');
+      if ($node->get($field_name)->status) {
+        $reservations = \Drupal::entityTypeManager()->getStorage('reservation')
+          ->loadThread($node, $field_name, $mode, $reservations_per_page);
+        if ($reservations) {
+          $build[] = \Drupal::entityTypeManager()->getViewBuilder('reservation')->viewMultiple($reservations);
+        }
+      }
+    }
+  }
+  return \Drupal::service('renderer')->renderPlain($build);
+}
+
+/**
+ * Implements hook_cron().
+ */
+function reservation_cron() {
+  // Store the maximum possible reservations per thread (used for node search
+  // ranking by reply count).
+  \Drupal::state()->set('reservation.node_reservation_statistics_scale', 1.0 / max(1, \Drupal::service('reservation.statistics')->getMaximumCount('node')));
+}
+
+/**
+ * Implements hook_node_search_result().
+ *
+ * Formats a reservation count string and returns it, for display with search
+ * results.
+ */
+function reservation_node_search_result(EntityInterface $node) {
+  $reservation_fields = \Drupal::service('reservation.manager')->getFields('node');
+  $reservations = 0;
+  $open = FALSE;
+  foreach ($reservation_fields as $field_name => $info) {
+    // Skip fields that entity does not have.
+    if (!$node->hasField($field_name)) {
+      continue;
+    }
+    // Do not make a string if reservations are hidden.
+    $status = $node->get($field_name)->status;
+    if (\Drupal::currentUser()->hasPermission('access reservations') && $status != ReservationItemInterface::HIDDEN) {
+      if ($status == ReservationItemInterface::OPEN) {
+        // At least one reservation field is open.
+        $open = TRUE;
+      }
+      $reservations += $node->get($field_name)->reservation_count;
+    }
+  }
+  // Do not make a string if there are no reservation fields, or no reservations exist
+  // or all reservation fields are hidden.
+  if ($reservations > 0 || $open) {
+    return ['reservation' => \Drupal::translation()->formatPlural($reservations, '1 reservation', '@count reservations')];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function reservation_user_cancel($edit, UserInterface $account, $method) {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      $reservations = \Drupal::entityTypeManager()->getStorage('reservation')->loadByProperties(['uid' => $account->id()]);
+      foreach ($reservations as $reservation) {
+        $reservation->setUnpublished();
+        $reservation->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      /** @var \Drupal\reservation\ReservationInterface[] $reservations */
+      $reservations = \Drupal::entityTypeManager()->getStorage('reservation')->loadByProperties(['uid' => $account->id()]);
+      foreach ($reservations as $reservation) {
+        $reservation->setOwnerId(0);
+        $reservation->setAuthorName(\Drupal::config('user.settings')->get('anonymous'));
+        $reservation->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function reservation_user_predelete($account) {
+  $entity_query = \Drupal::entityQuery('reservation');
+  $entity_query->condition('uid', $account->id());
+  $entity_query->accessCheck('FALSE');
+  $cids = $entity_query->execute();
+  $reservation_storage = \Drupal::entityTypeManager()->getStorage('reservation');
+  $reservations = $reservation_storage->loadMultiple($cids);
+  $reservation_storage->delete($reservations);
+}
+
+/**
+ * Generates a reservation preview.
+ *
+ * @param \Drupal\reservation\ReservationInterface $reservation
+ *   The reservation entity to preview.
+ * @param Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ *
+ * @return array
+ *   An array as expected by \Drupal\Core\Render\RendererInterface::render().
+ */
+function reservation_preview(ReservationInterface $reservation, FormStateInterface $form_state) {
+  $preview_build = [];
+  $entity = $reservation->getReservationedEntity();
+
+  if (!$form_state->getErrors()) {
+    $reservation->in_preview = TRUE;
+    $reservation_build = \Drupal::entityTypeManager()->getViewBuilder('reservation')->view($reservation);
+    $reservation_build['#weight'] = -100;
+
+    $preview_build['reservation_preview'] = $reservation_build;
+  }
+
+  if ($reservation->hasParentReservation()) {
+    $build = [];
+    $parent = $reservation->getParentReservation();
+    if ($parent && $parent->isPublished()) {
+      $build = \Drupal::entityTypeManager()->getViewBuilder('reservation')->view($parent);
+    }
+  }
+  else {
+    // The reservation field output includes rendering the parent entity of the
+    // thread to which the reservation is a reply. The rendered entity output
+    // includes the reservation reply form, which contains the reservation preview and
+    // therefore the rendered parent entity. This results in an infinite loop of
+    // parent entity output rendering the reservation form and the reservation form
+    // rendering the parent entity. To prevent this infinite loop we temporarily
+    // set the value of the reservation field on a clone of the entity to hidden
+    // before calling entity_view(). That way when the output of the reservationed
+    // entity is rendered, it excludes the reservation field output.
+    $field_name = $reservation->getFieldName();
+    $entity = clone $entity;
+    $entity->$field_name->status = ReservationItemInterface::HIDDEN;
+    $build = \Drupal::entityTypeManager()
+      ->getViewBuilder($entity->getEntityTypeId())
+      ->view($entity, 'full');
+  }
+
+  $preview_build['reservation_output_below'] = $build;
+  $preview_build['reservation_output_below']['#weight'] = 100;
+
+  return $preview_build;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function reservation_preprocess_block(&$variables) {
+  if ($variables['configuration']['provider'] == 'reservation') {
+    $variables['attributes']['role'] = 'navigation';
+  }
+}
+
+/**
+ * Prepares variables for reservation templates.
+ *
+ * Default template: reservation.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the reservation and entity
+ *   objects. Array keys: #reservation, #reservationed_entity.
+ */
+function template_preprocess_reservation(&$variables) {
+  /** @var \Drupal\Core\Datetime\DateFormatterInterface $date_formatter */
+  $date_formatter = \Drupal::service('date.formatter');
+  /** @var \Drupal\reservation\ReservationInterface $reservation */
+  $reservation = $variables['elements']['#reservation'];
+  $reservationed_entity = $reservation->getReservationedEntity();
+  $variables['reservation'] = $reservation;
+  $variables['reservationed_entity'] = $reservationed_entity;
+  $variables['threaded'] = $variables['elements']['#reservation_threaded'];
+
+  $account = $reservation->getOwner();
+  $username = [
+    '#theme' => 'username',
+    '#account' => $account,
+  ];
+  $variables['author'] = \Drupal::service('renderer')->render($username);
+  $variables['author_id'] = $reservation->getOwnerId();
+  $variables['new_indicator_timestamp'] = $reservation->getChangedTime();
+  $variables['created'] = $date_formatter->format($reservation->getCreatedTime());
+  // Avoid calling DateFormatterInterface::format() twice on the same timestamp.
+  if ($reservation->getChangedTime() == $reservation->getCreatedTime()) {
+    $variables['changed'] = $variables['created'];
+  }
+  else {
+    $variables['changed'] = $date_formatter->format($reservation->getChangedTime());
+  }
+
+  if (theme_get_setting('features.reservation_user_picture')) {
+    // To change user picture settings (for instance, image style), edit the
+    // 'compact' view mode on the User entity.
+    $variables['user_picture'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('user')
+      ->view($account, 'compact');
+  }
+  else {
+    $variables['user_picture'] = [];
+  }
+
+  if (isset($reservation->in_preview)) {
+    $variables['title'] = Link::fromTextAndUrl($reservation->getSubject(), Url::fromRoute('<front>'))->toString();
+    $variables['permalink'] = Link::fromTextAndUrl(t('Permalink'), Url::fromRoute('<front>'))->toString();
+  }
+  else {
+    $uri = $reservation->permalink();
+    $attributes = $uri->getOption('attributes') ?: [];
+    $attributes += ['class' => ['permalink'], 'rel' => 'bookmark'];
+    $uri->setOption('attributes', $attributes);
+    $variables['title'] = Link::fromTextAndUrl($reservation->getSubject(), $uri)->toString();
+
+    $variables['permalink'] = Link::fromTextAndUrl(t('Permalink'), $reservation->permalink())->toString();
+  }
+
+  $variables['submitted'] = t('Submitted by @username on @datetime', ['@username' => $variables['author'], '@datetime' => $variables['created']]);
+
+  if ($reservation_parent = $reservation->getParentReservation()) {
+    // Fetch and store the parent reservation information for use in templates.
+    $account_parent = $reservation_parent->getOwner();
+    $variables['parent_reservation'] = $reservation_parent;
+    $username = [
+      '#theme' => 'username',
+      '#account' => $account_parent,
+    ];
+    $variables['parent_author'] = \Drupal::service('renderer')->render($username);
+    $variables['parent_created'] = $date_formatter->format($reservation_parent->getCreatedTime());
+    // Avoid calling DateFormatterInterface::format() twice on same timestamp.
+    if ($reservation_parent->getChangedTime() == $reservation_parent->getCreatedTime()) {
+      $variables['parent_changed'] = $variables['parent_created'];
+    }
+    else {
+      $variables['parent_changed'] = $date_formatter->format($reservation_parent->getChangedTime());
+    }
+    $permalink_uri_parent = $reservation_parent->permalink();
+    $attributes = $permalink_uri_parent->getOption('attributes') ?: [];
+    $attributes += ['class' => ['permalink'], 'rel' => 'bookmark'];
+    $permalink_uri_parent->setOption('attributes', $attributes);
+    $variables['parent_title'] = Link::fromTextAndUrl($reservation_parent->getSubject(), $permalink_uri_parent)->toString();
+    $variables['parent_permalink'] = Link::fromTextAndUrl(t('Parent permalink'), $permalink_uri_parent)->toString();
+    $variables['parent'] = t('In reply to @parent_title by @parent_username',
+      ['@parent_username' => $variables['parent_author'], '@parent_title' => $variables['parent_title']]);
+  }
+  else {
+    $variables['parent_reservation'] = '';
+    $variables['parent_author'] = '';
+    $variables['parent_created'] = '';
+    $variables['parent_changed'] = '';
+    $variables['parent_title'] = '';
+    $variables['parent_permalink'] = '';
+    $variables['parent'] = '';
+  }
+
+  // Helpful $content variable for templates.
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+
+  // Set status to a string representation of reservation->status.
+  if (isset($reservation->in_preview)) {
+    $variables['status'] = 'preview';
+  }
+  else {
+    $variables['status'] = $reservation->isPublished() ? 'published' : 'unpublished';
+  }
+
+  // Add reservation author user ID. Necessary for the reservation-by-viewer library.
+  $variables['attributes']['data-reservation-user-id'] = $reservation->getOwnerId();
+  // Add anchor for each reservation.
+  $variables['attributes']['id'] = 'reservation-' . $reservation->id();
+}
+
+/**
+ * Prepares variables for reservation field templates.
+ *
+ * Default template: field--reservation.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: An associative array containing render arrays for the list of
+ *     reservations, and the reservation form. Array keys: reservations,
+ *   reservation_form.
+ *
+ * @todo Rename to template_preprocess_field__reservation() once
+ *   https://www.drupal.org/node/939462 is resolved.
+ */
+function reservation_preprocess_field(&$variables) {
+  $element = $variables['element'];
+  if ($element['#field_type'] == 'reservation') {
+    // Provide contextual information.
+    $variables['reservation_display_mode'] = $element[0]['#reservation_display_mode'];
+    $variables['reservation_type'] = $element[0]['#reservation_type'];
+
+    // Append additional attributes (eg. RDFa) from the first field item.
+    $variables['attributes'] += $variables['items'][0]['attributes']->storage();
+
+    // Create separate variables for the reservations and reservation form.
+    $variables['reservations'] = $element[0]['reservations'];
+    $variables['reservation_form'] = $element[0]['reservation_form'];
+  }
+}
+
+/**
+ * Implements hook_ranking().
+ */
+function reservation_ranking() {
+  return \Drupal::service('reservation.statistics')->getRankingInfo();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for entity_view_display entities.
+ */
+function reservation_entity_view_display_presave(EntityViewDisplayInterface $display) {
+  // Act only on reservation view displays being disabled.
+  if ($display->isNew() || $display->getTargetEntityTypeId() !== 'reservation' || $display->status()) {
+    return;
+  }
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
+  if (!$storage->loadUnchanged($display->getOriginalId())->status()) {
+    return;
+  }
+
+  // Disable the reservation field formatter when the used view display is disabled.
+  foreach ($storage->loadMultiple() as $id => $view_display) {
+    $changed = FALSE;
+    /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $view_display */
+    foreach ($view_display->getComponents() as $field => $component) {
+      if (isset($component['type']) && ($component['type'] === 'reservation_default')) {
+        if ($component['settings']['view_mode'] === $display->getMode()) {
+          $view_display->removeComponent($field);
+          /** @var \Drupal\Core\Entity\EntityViewModeInterface $mode */
+          $mode = EntityViewMode::load($display->getTargetEntityTypeId() . '.' . $display->getMode());
+          $arguments = [
+            '@id' => $view_display->id(),
+            '@name' => $field,
+            '@display' => $mode->label(),
+            '@mode' => $display->getMode(),
+          ];
+          \Drupal::logger('system')->warning("View display '@id': Reservation field formatter '@name' was disabled because it is using the reservation view display '@display' (@mode) that was just disabled.", $arguments);
+          $changed = TRUE;
+        }
+      }
+    }
+    if ($changed) {
+      $view_display->save();
+    }
+  }
+}
+
+/**
+ * Implements hook_provider_entity_presave().
+ */
+function payment_provider_entity_presave(\Drupal\Core\Entity\EntityInterface $entity): void {
+  // Let check old entity and new entity.
+
+  if(isset($entity->original)) {
+    $old_entity = $entity->original;
+    $new_entity = $entity;
+    if ($old_entity instanceof Drupal\reservation\Entity\Reservation && $new_entity instanceof Drupal\reservation\Entity\Reservation) {
+      $new_status = $new_entity->get('status')->value;
+      $old_status = $old_entity->get('status')->value;
+
+      // Checking if old entity has status of 0 and new entity has status of true.
+      // This indicates approved.
+      if ($old_status === "0" && $new_status === TRUE) {
+        // Sending email required eg payment instruction email.
+        (new BookingConfirmationEmail($entity))->approvedEmails();
+      }
+    }
+  }
+
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter() to customize the reservation form.
+ */
+function reservation_form_reservation_type_booking_form_alter( &$form,
+ \Drupal\Core\Form\FormStateInterface $form_state, $form_id):void {
+
+  if ($form_id == 'reservation_type_booking_form') {
+    // Get the current route match service.
+    $route_match = \Drupal::routeMatch();
+
+    // Get the current route name.
+    $current_route_name = $route_match->getRouteName();
+
+    if($current_route_name !== 'entity.reservation.edit_form') {
+      $form['field_per_person_options']['#access'] = FALSE;
+      $form['field_additional_services']['#access'] = FALSE;
+    }
+    else {
+      $form['field_additional_services']['#access'] = FALSE;
+      $form['field_per_person_options']['#access'] = FALSE;
+
+      // Check if the current route is 'entity.reservation.edit_form'.
+      if (\Drupal::routeMatch()->getRouteName() == 'entity.reservation.edit_form') {
+        // Get the reservation entity from the current route.
+        $reservation = \Drupal::routeMatch()->getParameter('reservation');
+
+        // If the reservation entity is loaded, you can now access its data.
+        if ($reservation instanceof \Drupal\reservation\Entity\Reservation) {
+          $per_person = $reservation->get('field_per_person')->getValue()[0]['value'] ?? null;
+          if(!$per_person) {
+            $form['field_per_person_options']['#access'] = FALSE;
+          }
+
+          $current_user = Drupal::currentUser()->id();
+          $room = \Drupal\node\Entity\Node::load($reservation->get('entity_id')->target_id);
+          if($room && $room->bundle() === 'zaal' && $room->getOwner()->id() === $current_user) {
+            $form['field_per_person_options']['#access'] = TRUE;
+            $form['field_additional_services']['#access'] = TRUE;
+          }
+        }
+      }
+    }
+  }
+
+  // 1) Extra validation handlers.
+  $form['#validate'][] = 'reservation_reservation_form_validate';
+  $form['actions']['submit']['#submit'][] = 'reservation_reservation_form_submit';
+
+  // 2) Fetch zaal-node + 'field_prijs_eenheid' data.
+  $room_node = \Drupal::routeMatch()->getParameter('entity') ?? Drupal::routeMatch()->getParameter('node');
+  if ($room_node === NULL && Drupal::routeMatch()->getRouteName() === 'entity.reservation.edit_form') {
+    $reservation = \Drupal::routeMatch()->getParameter('reservation');
+    if ($reservation instanceof \Drupal\reservation\Entity\Reservation) {
+      $room_node = $reservation->getReservationedEntity();
+    }
+  }
+
+  // 3) save room_service ID in hidden field.
+  $form['room_service'] = [
+    '#type' => 'hidden',
+    '#value' => $room_node?->id(),
+  ];
+
+  $services = $room_node?->get('field_extra_room_services')?->referencedEntities() ?? [];
+  $additional_services = [];
+
+  if (count($services) >= 1) {
+
+    $first_paragraph = reset($services)?->get('field_service_short_description')?->value;
+    if (!empty($first_paragraph)) {
+      $form['additional_services_fieldset'] = [
+        '#type' => 'fieldset',
+        '#title' => t('Extra Services'),
+        '#weight' => 6,
+      ];
+
+      foreach ($services as $service) {
+
+        if (!empty($service->get('field_service_short_description')?->value) && !empty($service->get('field_service_minimum_order')->value) && !empty($service->get('field_service_amount')->value)) {
+          $name_service = strtolower(str_replace(' ', '_', $service->get('field_service_short_description')?->value ?? ''));
+          $wrapper_id = 'service-count-wrapper-' . $name_service;
+          $additional_services[$name_service] = [
+            'name'=> $service->get('field_service_short_description')?->value ?? '',
+            'amount'=> $service->get('field_service_amount')?->value ?? '',
+            'currency'=> $service->get('field_service_currency')?->value ?? '',
+            'wrapperId'=> $wrapper_id,
+            'mini'=> $service->get('field_service_minimum_order')?->value ?? '',
+            'id' => $service->id(),
+          ];
+
+          $title = $service->get('field_service_short_description')?->value ?? '';
+          //TODO: get currency symbol here.
+          $title .= ' ' . Drupal::service('reservation.currencies')->getSymbol($service->get('field_service_currency')?->value ?? 'eur');
+          $title .=  $service->get('field_service_amount')?->value ?? '';
+
+          $menu = ($service->get('field_is_service_or_menu')?->value ?? null) === 'service' ? 'Service' : 'Menu';
+          // Checkbox
+          $form['additional_services_fieldset'][$name_service] = [
+            '#type' => 'checkbox',
+            '#title' => t($title. ' ('.$menu.')'),
+            '#description' => t($service->get('field_service_description')?->value ?? ""),
+            '#ajax' => [
+              'callback' => 'reservation_toggle_service_count',
+              'event' => 'change',
+            ]
+          ];
+
+          if ($service->get('field_service_minimum_order')?->value) {
+            $title .= ' (minimum ' . $service->get('field_service_minimum_order')?->value . ')';
+          }
+          // Number field
+          $form['additional_services_fieldset'][$name_service . '_count'] = [
+            '#type' => 'number',
+            '#title' => t($title),
+            '#min' => $service->get('field_service_minimum_order')?->value ?? 0,
+            '#prefix' => '<div id="' . $wrapper_id . '" class="reservation-service-count-wrapper">',
+            '#suffix' => '</div>',
+            '#default_value' => $service->get('field_service_minimum_order')?->value ?? 0,
+          ];
+        }
+      }
+
+      if (empty($additional_services)) {
+        unset($form['additional_services_fieldset']);
+      }
+
+    }
+
+    // Repeat hidden room_service?
+    $form['room_service'] = [
+      '#type' => 'hidden',
+      '#value' => $room_node->id(),
+    ];
+  }
+
+  $json_validation_data = [];
+  $location = $room_node->get('field_bedrijf_zaal')?->target_id ? Node::load($room_node->get('field_bedrijf_zaal')?->target_id) : NULL;
+  if ($location) {
+    $overnight_rooms = $location->get('field_overnight_room')?->referencedEntities() ?? [];
+    if (count($overnight_rooms)) {
+      $form['overnight_rooms'] = [
+        '#type' => 'fieldset',
+        '#title' => t('Overnight rooms available'),
+        '#weight' => 6,
+        '#tree' => TRUE,
+      ];
+      $overnight_rooms_options = [];
+      foreach ($overnight_rooms as $overnight_room) {
+        if ($overnight_room instanceof Paragraph && $overnight_room->bundle() === 'sleeping_accommodation_room') {
+
+          if (!empty($overnight_room->get('field_price_per_night')?->value) && !empty($overnight_room->get('field_room_type')?->value) && !empty($overnight_room->get('field_number_of_rooms')?->value)) {
+
+            $price = Drupal::service('reservation.currencies')->getSymbol($overnight_room->get('field_room_currency')?->value ?? 'eur');
+            $price .= $overnight_room->get('field_price_per_night')?->value ?? '';
+            $title = ($overnight_room->get('field_room_type')?->value ?? '');
+            $key = str_replace(' ', '_', $title).'_room_'.$overnight_room->id();
+            $wrapper_id = 'overnight-room-count-wrapper-' . $key;
+
+            $image = '';
+            if ($overnight_room->get('field_overnight_room_image')->getValue()) {
+              $targets = $overnight_room->get('field_overnight_room_image')->getValue();
+              $image = reset($targets);
+              $uri = \Drupal\reservation\Twig\Extension\TwigFunctionExtension::factory()->getUri($image['target_id']);
+              $image = "<div class='reservation-overnight-room-image'>
+                          <a href='/overnight-room/{$overnight_room->id()}'><img src='$uri' alt=''></a>
+                      </div>";
+            }
+
+            $form['overnight_rooms'][$key] = [
+              '#type' => 'checkbox',
+              '#title' => t($title. ' ('.$price.'/night)'),
+              '#description' => t($overnight_room->get('field_description')?->value ?? ""),
+              '#ajax' => [
+                'callback' => 'reservation_toggle_overnight_room_count',
+                'event' => 'change',
+              ],
+              '#attributes' => [
+                'id' => $key,
+              ],
+              '#prefix' => '<div class="overnight-selector-wrapper">'.$image,
+              '#suffix' => '</div>',
+            ];
+            $form['overnight_rooms'][$key . '_count'] = [
+              '#type' => 'number',
+              '#title' => t('Number of rooms you want to book'),
+              '#attributes' => [
+                'id' => $key . '_count',
+              ],
+              '#prefix' => '<div class="reservation-overnightroom-count-wrapper '.$wrapper_id.'">',
+              '#suffix' => '</div>',
+            ];
+            $form['overnight_rooms'][$key . '_date'] = [
+              '#type' => 'date',
+              '#title' => t('Start Date'),
+              '#attributes' => [
+                'id' => $key . '_date',
+                'class' => ['flatpickr-input'],
+              ],
+              '#prefix' => '<div class="reservation-overnightroom-count-wrapper '.$wrapper_id.'">',
+              '#suffix' => '</div>',
+            ];
+            $form['overnight_rooms'][$key . '_night'] = [
+              '#type' => 'number',
+              '#title' => t('Number of nights'),
+              '#attributes' => [
+                'id' => $key . '_night',
+              ],
+              '#prefix' => '<div class="reservation-overnightroom-count-wrapper '.$wrapper_id.'">',
+              '#suffix' => '</div>',
+            ];
+            $overnight_rooms_options[$key] = [
+              'name' => $title,
+              'amount' => ((int) $overnight_room->get('field_price_per_night')?->value ?? 0),
+              'currency' => $overnight_room->get('field_room_currency')?->value ?? 'eur',
+              'totalRoom' => ((int) $overnight_room->get('field_number_of_rooms')?->value ?? 0),
+            ];
+
+          }
+        }
+      }
+      if (empty($overnight_rooms_options)) {
+        unset($form['overnight_rooms']);
+      }
+      $json_validation_data['overnightRooms'] = $overnight_rooms_options;
+    }
+
+  }
+
+  $room = $room_node;
+  $paragraphs_room_settings = $room->get('field_room_pricing_settings')?->getValue() ?? [];
+  $all_paragraphs = array_map(function($paragraph) {
+    return Paragraph::load($paragraph['target_id']);
+  },$paragraphs_room_settings);
+  $persons_items = array_filter($all_paragraphs, function($paragraph) {
+    return $paragraph->get('field_pricing_type')?->value === 'per_person';
+  });
+  $hours_items = array_filter($all_paragraphs, function($paragraph) {
+    return $paragraph->get('field_pricing_type')?->value === 'per_hour';
+  });
+  $days_items = array_filter($all_paragraphs, function($paragraph) {
+    return $paragraph->get('field_pricing_type')?->value === 'per_day';
+  });
+
+  foreach ($persons_items as $person_item) {
+    $data = _get_nested_paragraphs($person_item, 'field_pricing_unit');
+    $key = key($data);
+    $json_validation_data['person_booking'][$key] = array_values($data);
+    $json_validation_data['person_booking'][$key]['id'] = $person_item->id();
+  }
+  $json_validation_data['person_booking']['room'] = [
+    'miniPersons' => $room->get('field_bezetting_van')->value,
+    'maxiPersons' => $room->get('field_bezetting_tot')->value,
+  ];
+  $json_validation_data['additionalServices'] = $additional_services;
+  foreach ($hours_items as $hour_item) {
+    $data = _get_nested_paragraphs($hour_item, 'field_hourly_unit');
+    $json_validation_data['hour_booking'][key($data)] = array_values($data);
+    $json_validation_data['hour_booking'][key($data)]['id'] = $hour_item->id();
+  }
+  foreach ($days_items as $day_item) {
+    $data = _get_nested_paragraphs($day_item, 'field_per_day_unit');
+    $json_validation_data['day_booking'][key($data)] = array_values($data);
+    $json_validation_data['day_booking'][key($data)]['id'] = $day_item->id();
+  }
+
+  // Setting the default calculation.
+  if (!empty($hours_items)) {
+    $form['field_per_hour_calc']['widget']['value']['#default_value'] = TRUE;
+  }
+  elseif (!empty($days_items)) {
+    $form['field_calculate_payment_per_day']['widget']['value']['#default_value'] = TRUE;
+  }
+  elseif (!empty($persons_items)) {
+    $form['field_per_person']['widget']['value']['#default_value'] = TRUE;
+  }
+
+  if (empty($hours_items)) {
+    $form['field_per_hour_calc']['#access'] = FALSE;
+  }
+  if (empty($days_items)) {
+    $form['field_calculate_payment_per_day']['#access'] = FALSE;
+  }
+  if (empty($persons_items)) {
+    $form['field_per_person']['#access'] = FALSE;
+  }
+
+  $json_validation_data = json_encode($json_validation_data, JSON_PRETTY_PRINT);
+  $form['noscript'] = [
+    '#type' => 'hidden',
+    '#value' => $json_validation_data,
+    '#attributes' => ['id' => 'json_validation_data'],
+  ];
+
+  // 6) Existing "field_per_person" checkbox?
+  if (isset($form['field_per_person'])) {
+
+    $form['per_person_options'] = [
+      '#type' => 'details',
+      '#title' => t('You choose per person - please specify your options'),
+      '#prefix' => '<div id="per-person-options-wrapper">',
+      '#suffix' => '</div>',
+      '#weight' => 5,
+      '#attributes' => ['style' => 'display:none;'], // verborg default
+      '#open' => TRUE,
+    ];
+
+    if (!empty($form['field_per_person']['widget']['value']['#default_value'])) {
+       unset($form['per_person_options']['#attributes']['style']);
+    }
+
+    // Setting for what to calculate by
+    if (!empty($persons_items)) {
+      $person_rules = array_map(function($person) {
+        /**@var Drupal\Core\Field\EntityReferenceFieldItemList $item**/
+        $item = $person?->get('field_pricing_unit');
+        $values = $item?->getValue();
+        $paragraphs_persons = [];
+        foreach ($values as $value) {
+          $paragraphs_persons[] = Paragraph::load($value['target_id']);
+        }
+        return $paragraphs_persons;
+      }, $persons_items);
+
+      if (!empty($person_rules)) {
+        foreach ($person_rules as $key => $person_rule) {
+          // Uniek ID voor dit item
+          $person_rule = reset($person_rule);
+          if ($person_rule instanceof Paragraph && $person_rule->bundle() === 'per_person_item') {
+            $key = strtolower(str_replace(' ','_',$person_rule->get('field_short_description')?->value ?? ''));
+            $container_id = 'per_person_item_' . $key;
+
+            $fid = $person_rule->get('field_person_option_image')->getValue()[0]['target_id'] ?? null;
+            $styled_url = NULL;
+            if ($fid) {
+              $file_entity = File::load($fid);
+              if ($file_entity) {
+                $file_uri = $file_entity->getFileUri();
+                if ($file_uri) {
+                  $styled_url = \Drupal\image\Entity\ImageStyle::load('person_options')->buildUrl($file_uri);
+                }
+              }
+            }
+
+            // In 1 container -> #theme => 'my_per_person_item'
+            $form['per_person_options'][$container_id] = [
+              '#type' => 'container',
+              '#theme' => 'my_per_person_item',
+              '#photo' =>  $styled_url,
+              '#label' => t($person_rule->get('field_short_description')?->value ?? ''),
+              '#description' => $person_rule->get('field_person_item_description')?->value ?? '',
+              '#optional' => ((int) $person_rule->get('field_optional_item')?->value) ? 'Optional' : '',
+              '#childfriendly' => ((int) $person_rule->get('field_child_friendly')?->value) ? 'Child-Friendly' : '',
+              '#price' => $person_rule->get('field_per_person_item_price')?->value ?? 0,
+              '#currency' => $person_rule->get('field_per_person_item_currency')?->value ?? 'EUR',
+              '#key' => $key,
+              // 8) The actual input fields:
+              $key.'_checkbox' => [
+                '#type' => 'checkbox',
+                '#title' => t('Select @title', ['@title' => $person_rule->get('field_short_description')?->value ?? '']),
+                '#default_value' => 0,
+              ],
+              $key.'_person_count' => [
+                '#type' => 'number',
+                '#title' => t('How many persons'),
+                '#min' => 0,
+                '#attributes' => [
+                  'class' => [
+                    ((int)$person_rule->get('field_optional_item')?->value) ? 'optional' : 'default',
+                  ],
+                  'id' => $key,
+                ],
+              ],
+            ];
+          }
+
+        }
+
+      }
+    }
+
+  }
+
+  // 9) Calculation report, unchanged.
+  $form['calculation_report'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Calculation Report'),
+    '#weight' => 6,
+  ];
+  $form['calculation_report']['report_mark_up'] = [
+    '#markup' => "<a href='' class='button' id='preview-calculation'>Check Booking Summary</a>",
+    '#prefix' => '<div id="calculation_report">',
+    '#suffix' => '</div>',
+  ];
+
+  // 10) Reorder body
+  $form['reservation_body']['#weight'] = 6;
+
+}
+
+function _get_nested_paragraphs(Paragraph $paragraph, string $field_name): array {
+  $nested = [];
+
+  if ($paragraph->hasField($field_name) && !$paragraph->get($field_name)->isEmpty()) {
+    foreach ($paragraph->get($field_name)->referencedEntities() as $child) {
+      if ($child instanceof Paragraph) {
+
+        if($child->bundle() === 'per_person_item') {
+          $key = strtolower(str_replace(' ','_',$child->get('field_short_description')->value ?? ''));
+          $nested[$key] = [
+            'id' => $child->id(),
+            'amount' => (int) $child->get('field_per_person_item_price')?->value ?? 0,
+            'miniPersons' => (int) $child->get('field_per_person_mini_persons')?->value ?? 0,
+            'optional' => (int) $child->get('field_optional_item')?->value ?? 0,
+            'currency' => $child->get('field_per_person_item_currency')?->value ?? 0,
+            'name'=> $child->get('field_short_description')->value ?? '',
+            'bookingAdvanceRules' => array_filter(array_map(function ($entity){
+              if ($entity instanceof Paragraph) {
+                return [
+                  'amount' => (int) $entity->get('field_rule_amount')?->value ?? 0,
+                  'miniPersons' => (int) $entity->get('field_if_minimum_person_is')?->value ?? 0,
+                ];
+              }
+              return null;
+            },  $child->referencedEntities() ?? []))
+          ];
+        }
+        elseif ($child->bundle() === 'per_hour') {
+          $nested['hourlyRate'] = [
+            'amount' => (int) $child->get('field_per_hour_price')?->value ?? 0,
+            'miniHours' => (int) $child->get('field_minimum_hours_to_book')?->value ?? 0,
+            'currency' => $child->get('field_currency')?->value ?? 0,
+            'bookingAdvanceRules' => array_filter(array_map(function ($entity){
+              if ($entity instanceof Paragraph) {
+                return [
+                  'amount' => (int) $entity->get('field_amount')?->value ?? 0,
+                  'miniHours' => (int) $entity->get('field_if_hours_exceed')?->value ?? 0,
+                ];
+              }
+              return null;
+            },  $child->referencedEntities() ?? []))
+          ];
+        }
+        elseif ($child->bundle() === 'per_day_unit') {
+          $nested['dayRate'] = [
+            'amount' => (int) $child->get('field_day_amount')?->value ?? 0,
+            'miniDays' => (int) $child->get('field_minimum_day_to_book')?->value ?? 0,
+            'currency' => $child->get('field_day_currency')?->value ?? 0,
+            'bookingAdvanceRules' => array_filter(array_map(function ($entity){
+              if ($entity instanceof Paragraph) {
+                return [
+                  'amount' => (int) $entity->get('field_set_amount')?->value ?? 0,
+                  'miniDays' => (int) $entity->get('field_if_days_booked')?->value ?? 0,
+                ];
+              }
+              return null;
+            },  $child->referencedEntities() ?? []))
+          ];
+        }
+      }
+    }
+  }
+  $keys = array_keys($nested);
+  $values = array_values($nested);
+  return array_combine($keys, $values);
+}
+
+
+/**
+ * Ajax callback to toggle the visibility of the service count field.
+ */
+function reservation_toggle_service_count(array &$form, FormStateInterface $form_state) {
+  // Ongewijzigd.
+  $triggering_element = $form_state->getTriggeringElement();
+  $triggering_element_name = $triggering_element['#name'];
+  $wrapper_id = 'service-count-wrapper-' . $triggering_element_name;
+
+  if ($triggering_element['#value']) {
+    // Checkbox is checked => return count field
+    return $form['additional_services_fieldset'][$triggering_element_name . '_count'];
+  }
+  else {
+    // Unchecked => leeg element
+    return [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => ['style' => 'display: none;'],
+      '#value' => '',
+      '#suffix' => '</div>',
+    ];
+  }
+}
+
+function reservation_toggle_overnight_room_count(array &$form, FormStateInterface $form_state)
+{
+  return $form['overnight_rooms'][$form_state->getTriggeringElement()['#name']];
+}
+
+/**
+ * Custom validation handler.
+ */
+function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStateInterface $form_state): void {
+
+  $submittedData = $form_state->getValues();
+  $submittedData['noscript'] = json_decode($submittedData['noscript'], true);
+  $room = Drupal::routeMatch()->getParameter('entity');
+
+  if (!empty($submittedData['field_per_hour_calc']['value'])) {
+
+    $validation_data = reset( $submittedData['noscript']['hour_booking']['hourlyRate']);
+    $additionalServices = $submittedData['noscript']['additionalServices'] ?? [];
+    $booking_date = reset($submittedData['field_date_booking']);
+    $hourlyUnit = Paragraph::load($submittedData['noscript']['hour_booking']['hourlyRate']['id']);
+    $array = $hourlyUnit->get('field_hourly_unit')->referencedEntities();
+    $hourlyUnit = reset($array);
+
+    /**@var DrupalDateTime $start_date**/
+    /**@var DrupalDateTime $end_date**/
+    $start_date = $booking_date['time_wrapper']['value'];
+    $end_date = $booking_date['time_wrapper']['end_value'];
+    $error_flags = [];
+    $reservation_data = [
+      'field_unit_type' => 'hourly',
+      'field_price_units' => $hourlyUnit,
+      'field_occupants' => $submittedData['field_bezetting'][0]['value'] ?? 0,
+      'field_reservation_currency' => $hourlyUnit->get('field_currency')->value,
+    ];
+
+    // Validate date is set correctly.
+    if ($start_date > $end_date) {
+      $form_state->setErrorByName('field_date_booking', t('The start date cannot be after the end date.'));
+      $error_flags['field_date_booking'] = TRUE;
+    }
+
+    // Validate minimum hours.
+    $hours = $start_date->diff($end_date)->h;
+    if ($hours < $validation_data['miniHours']) {
+      $form_state->setErrorByName('field_date_booking', t('The minimum hours to book is @hours.', ['@hours' => $validation_data['miniHours']]));
+      $error_flags['field_date_booking_2'] = TRUE;
+    }
+
+    // setting the reservation data.
+    $reservation_data['field_hours'] = $hours;
+    $reservation_data['field_starting_date'] = $start_date->format('Y-m-d H:i:s');
+    $reservation_data['field_ending_date'] = $end_date->format('Y-m-d H:i:s');
+
+    // validate services selected.
+    if (!empty($additionalServices)) {
+      $keys = array_keys($additionalServices);
+      foreach ($keys as $key) {
+        if (!empty($submittedData[$key])) {
+            $count_service = $submittedData[$key . '_count'];
+            $service = $additionalServices[$key];
+            if (intval($count_service) < intval($service['mini'])) {
+              $form_state->setErrorByName($key . '_count', t('The minimum count of @name is @mini.', ['@name' => $service['name'], '@mini' => $service['mini']]));
+              $error_flags[$key . '_count'] = TRUE;
+            }else {
+              $reservation_data['additional_services'][$key] = [
+                 'field_service' => !empty($service['id']) ? Paragraph::load($service['id']) : NULL,
+                 'field_booking_count' => $count_service,
+                 'field_booking_total_amount' => intval($service['amount']) * intval($count_service),
+                 'type' => 'reservation_extra_services'
+              ];
+            }
+        }
+      }
+    }
+
+    // Overnight rooms
+    if (!empty($submittedData['overnight_rooms']) && $room) {
+      $location = $room->get('field_bedrijf_zaal')->referencedEntities();
+      if (!empty($location)) {
+        $location = reset($location);
+        if ($location instanceof Node && in_array('premium_zaal', $location->getOwner()->getRoles())) {
+          $overnight_rooms = $location->get('field_overnight_room')->referencedEntities();
+
+          if (!empty($overnight_rooms)) {
+            foreach ($overnight_rooms as $overnight_room) {
+              $title = ($overnight_room->get('field_room_type')?->value ?? '');
+              $key = str_replace(' ', '_', $title).'_room_'.$overnight_room->id();
+              if (!empty($submittedData['overnight_rooms'][$key])) {
+                $nightstay = (int) $submittedData['overnight_rooms'][$key. '_night'];
+                $rooms_count = (int) $submittedData['overnight_rooms'][$key. '_count'];
+                $date = !empty($submittedData['overnight_rooms'][$key. '_date']) ? $submittedData['overnight_rooms'][$key. '_date'] :  $reservation_data['field_starting_date'];
+
+                // TODO: compare date also here btw $submittedData['overnight_rooms'][$key. '_date'] and $reservation_data['field_starting_date']
+                if ($rooms_count <= ((int) $overnight_room->get('field_number_of_rooms')?->value ?? 0)) {
+                  $reservation_data['overnight_rooms'][] = [
+                    'field_room' => $overnight_room,
+                    'field_nights' => $nightstay,
+                    'field_roms_count' => $rooms_count,
+                    'field_rooms_total_amount' => $nightstay * ((int)$overnight_room->get('field_price_per_night')->value),
+                    'type' => 'reservation_overnight_room',
+                    'field_starting_overnight_date' => $date
+                  ];
+                }
+                else {
+                  $form_state->setErrorByName($key, "You can't book more than the number of rooms available.");
+                  $form_state->setErrorByName($key . '_count', "You can't book more than the number of rooms available.");
+                  $error_flags[$key] = TRUE;
+                }
+
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    if (empty($error_flags)) {
+      $store = \Drupal::service('tempstore.private')->get('reservation');
+      $store->set('reservation_data', $reservation_data);
+      $form_state->setValue('reservation_data', $reservation_data);
+    }
+  }
+
+  elseif (!empty($submittedData['field_calculate_payment_per_day']['value'])) {
+
+    $validation_data = reset( $submittedData['noscript']['day_booking']['dayRate']);
+    $additionalServices = $submittedData['noscript']['additionalServices'] ?? [];
+    $booking_date = reset($submittedData['field_date_booking']);
+    $dailyUnit = Paragraph::load($submittedData['noscript']['day_booking']['dayRate']['id']);
+    $dailyUnit = reset($dailyUnit->get('field_per_day_unit')->referencedEntities());
+
+    /**@var DrupalDateTime $start_date**/
+    /**@var DrupalDateTime $end_date**/
+    $start_date = $booking_date['time_wrapper']['value'];
+    $end_date = $booking_date['time_wrapper']['end_value'];
+    $error_flags = [];
+    $reservation_data = [
+      'field_unit_type' => 'day',
+      'field_price_units' => $dailyUnit,
+      'field_occupants' => $submittedData['field_bezetting'][0]['value'] ?? 0,
+      'field_reservation_currency' => $dailyUnit->get('field_day_currency')->value,
+    ];
+
+    // Validate date is set correctly.
+    if ($start_date > $end_date) {
+      $form_state->setErrorByName('field_date_booking', t('The start date cannot be after the end date.'));
+      $error_flags['field_date_booking'] = TRUE;
+    }
+
+    // Validate minimum hours.
+    $days = $start_date->diff($end_date)->days;
+    $days = $days > 0 ? $days+1 : 1;
+    if ($days < $validation_data['miniDays']) {
+      $form_state->setErrorByName('field_date_booking', t('The minimum days to book is @days.', ['@days' => $validation_data['miniDays']]));
+      $error_flags['field_date_booking_2'] = TRUE;
+    }
+
+    // setting the reservation data.
+    $reservation_data['field_days'] = $days;
+    $reservation_data['field_starting_date'] = $start_date->format('d F Y H:i:s');
+    $reservation_data['field_ending_date'] = $end_date->format('d F Y H:i:s');
+
+    // validate services selected.
+    if (!empty($additionalServices)) {
+      $keys = array_keys($additionalServices);
+      foreach ($keys as $key) {
+        if (!empty($submittedData[$key])) {
+          $count_service = $submittedData[$key . '_count'];
+          $service = $additionalServices[$key];
+          if (intval($count_service) < intval($service['mini'])) {
+            $form_state->setErrorByName($key . '_count', t('The minimum count of @name is @mini.', ['@name' => $service['name'], '@mini' => $service['mini']]));
+            $error_flags[$key . '_count'] = TRUE;
+          }else {
+            $reservation_data['additional_services'][$key] = [
+              'field_service' => !empty($service['id']) ? Paragraph::load($service['id']) : NULL,
+              'field_booking_count' => $count_service,
+              'field_booking_total_amount' => intval($service['amount']) * intval($count_service),
+              'type' => 'reservation_extra_services'
+            ];
+          }
+        }
+      }
+    }
+
+    if (!empty($submittedData['overnight_rooms']) && $room) {
+
+      $location = $room->get('field_bedrijf_zaal')->referencedEntities();
+      if (!empty($location)) {
+        $location = reset($location);
+        if ($location instanceof Node && in_array('premium_zaal', $location->getOwner()->getRoles())) {
+          $overnight_rooms = $location->get('field_overnight_room')->referencedEntities();
+
+          if (!empty($overnight_rooms)) {
+            foreach ($overnight_rooms as $overnight_room) {
+              $title = ($overnight_room->get('field_room_type')?->value ?? '');
+              $key = str_replace(' ', '_', $title).'_room_'.$overnight_room->id();
+              if (!empty($submittedData['overnight_rooms'][$key])) {
+                $nightstay = (int) $submittedData['overnight_rooms'][$key. '_night'];
+                $rooms_count = (int) $submittedData['overnight_rooms'][$key. '_count'];
+
+                if ($rooms_count <= ((int) $overnight_room->get('field_number_of_rooms')?->value ?? 0)) {
+                  $reservation_data['overnight_rooms'][] = [
+                    'field_room' => $overnight_room,
+                    'field_nights' => $nightstay,
+                    'field_roms_count' => $rooms_count,
+                    'field_rooms_total_amount' => ($nightstay * ((int)$overnight_room->get('field_price_per_night')->value)) * $rooms_count,
+                    'type' => 'reservation_overnight_room'
+                  ];
+                }
+                else {
+                  $form_state->setErrorByName($key, "You can't book more than the number of rooms available.");
+                  $form_state->setErrorByName($key . '_count', "You can't book more than the number of rooms available.");
+                  $error_flags[$key] = TRUE;
+                }
+
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    if (empty($error_flags)) {
+      $store = \Drupal::service('tempstore.private')->get('reservation');
+      $store->set('reservation_data', $reservation_data);
+      $form_state->setValue('reservation_data', $reservation_data);
+    }
+
+  }
+
+  elseif (!empty($submittedData['field_per_person']['value'])) {
+
+    $validation_data = $submittedData['noscript']['person_booking'] ?? [];
+    $additionalServices = $submittedData['noscript']['additionalServices'] ?? [];
+    $booking_date = reset($submittedData['field_date_booking']);
+
+    /**@var DrupalDateTime $start_date**/
+    /**@var DrupalDateTime $end_date**/
+    $start_date = $booking_date['time_wrapper']['value'];
+    $end_date = $booking_date['time_wrapper']['end_value'];
+    $error_flags = [];
+    $reservation_data = [
+      'field_unit_type' => 'person',
+      'field_occupants' => $submittedData['field_bezetting'][0]['value'] ?? 0,
+    ];
+
+    // Validate date is set correctly.
+    if ($start_date > $end_date) {
+      $form_state->setErrorByName('field_date_booking', t('The start date cannot be after the end date.'));
+      $error_flags['field_date_booking'] = TRUE;
+    }
+
+    $error_flags = [];
+    $person_options = [];
+    foreach ($validation_data as $key => $value) {
+
+       if (!empty($value['id'])) {
+          $validationItem = reset($value);
+          $field_key_name = $key . '_person_count';
+          $submitted_value = intval($submittedData[$field_key_name] ?? 0);
+          if (!empty($submitted_value) && $submitted_value < intval($validationItem['miniPersons'])) {
+            $form_state->setErrorByName($field_key_name, t('The minimum count of @name is @mini.', ['@name' => $validationItem['name'], '@mini' => $validationItem['miniPersons']]));
+            $error_flags[$field_key_name] = TRUE;
+          }
+
+          $amount_used = intval($validationItem['amount']);
+          foreach ($validationItem['bookingAdvanceRules'] as $bookingAdvanceRule) {
+            if ($submitted_value >= intval($bookingAdvanceRule['miniPersons'])) {
+              $amount_used = intval($bookingAdvanceRule['amount']);
+            }
+          }
+
+          $person_options[] = [
+            'field_person_option' => Paragraph::load($validationItem['id']),
+            'field_price' => $amount_used,
+            'field_reserve_count' => $submitted_value,
+            'field_total_charge' => ($amount_used * $submitted_value),
+            'type' => 'reservation_person_options'
+          ];
+
+       }
+    }
+
+    if (!empty($person_options)) {
+      $reservation_data['options'] = $person_options;
+    }
+
+    // Validate minimum hours.
+    $days = $start_date->diff($end_date)->days;
+    $days = $days > 0 ? $days+1 : 1;
+    $hours = $start_date->diff($end_date)->h;
+
+    // setting the reservation data.
+    $reservation_data['field_days'] = $days;
+    $reservation_data['field_hours'] = $hours;
+    $reservation_data['field_starting_date'] = $start_date->format('d F Y H:i:s');
+    $reservation_data['field_ending_date'] = $end_date->format('d F Y H:i:s');
+
+    // validate services selected.
+    if (!empty($additionalServices)) {
+      $keys = array_keys($additionalServices);
+      foreach ($keys as $key) {
+        if (!empty($submittedData[$key])) {
+          $count_service = $submittedData[$key . '_count'];
+          $service = $additionalServices[$key];
+          if (intval($count_service) < intval($service['mini'])) {
+            $form_state->setErrorByName($key . '_count', t('The minimum count of @name is @mini.', ['@name' => $service['name'], '@mini' => $service['mini']]));
+            $error_flags[$key . '_count'] = TRUE;
+          }else {
+            $reservation_data['additional_services'][$key] = [
+              'field_service' => !empty($service['id']) ? Paragraph::load($service['id']) : NULL,
+              'field_booking_count' => $count_service,
+              'field_booking_total_amount' => intval($service['amount']) * intval($count_service),
+              'type' => 'reservation_extra_services'
+            ];
+          }
+        }
+      }
+    }
+
+
+    if (!empty($submittedData['overnight_rooms']) && $room) {
+      $location = $room->get('field_bedrijf_zaal')->referencedEntities();
+      if (!empty($location)) {
+        $location = reset($location);
+        if ($location instanceof Node && in_array('premium_zaal', $location->getOwner()->getRoles())) {
+          $overnight_rooms = $location->get('field_overnight_room')->referencedEntities();
+
+          if (!empty($overnight_rooms)) {
+            foreach ($overnight_rooms as $overnight_room) {
+              $title = ($overnight_room->get('field_room_type')?->value ?? '');
+              $key = str_replace(' ', '_', $title).'_room_'.$overnight_room->id();
+              if (!empty($submittedData['overnight_rooms'][$key])) {
+                $nightstay = (int) $submittedData['overnight_rooms'][$key. '_night'];
+                $rooms_count = (int) $submittedData['overnight_rooms'][$key. '_count'];
+
+                if ($rooms_count <= ((int) $overnight_room->get('field_number_of_rooms')?->value ?? 0)) {
+                  $reservation_data['overnight_rooms'][] = [
+                    'field_room' => $overnight_room,
+                    'field_nights' => $nightstay,
+                    'field_roms_count' => $rooms_count,
+                    'field_rooms_total_amount' => $nightstay * ((int)$overnight_room->get('field_price_per_night')->value),
+                    'type' => 'reservation_overnight_room'
+                  ];
+                }
+                else {
+                  $form_state->setErrorByName($key, "You can't book more than the number of rooms available.");
+                  $form_state->setErrorByName($key . '_count', "You can't book more than the number of rooms available.");
+                  $error_flags[$key] = TRUE;
+                }
+
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    if (empty($error_flags)) {
+      $form_state->setValue('reservation_data', $reservation_data);
+    }
+  }
+
+}
+
+function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateInterface $form_state): void
+{
+  $reservation_data = $form_state->getValue('reservation_data');
+  $submitted_data = $form_state->getValues();
+  $submitted_data['noscript'] = json_decode($submitted_data['noscript'], true);
+  if (!empty($reservation_data)) {
+
+    $reservation_data['type'] = 'reservation';
+    $additional_services_paragraphs = [];
+    $overnight_rooms_paragraphs = [];
+    $total_amount = 0;
+
+    if (!empty($reservation_data['additional_services'])) {
+       foreach ($reservation_data['additional_services'] as $key => $service) {
+         if (!empty($service['field_service'])) {
+           $paragraph = Paragraph::create($service);
+           $paragraph->enforceIsNew();
+           $paragraph->save();
+
+           $additional_services_paragraphs[] = $paragraph;
+           $total_amount += $service['field_booking_total_amount'];
+         }
+       }
+       unset($reservation_data['additional_services']);
+       $reservation_data['field_services'] = $additional_services_paragraphs;
+    }
+
+    if (!empty($reservation_data['overnight_rooms'])) {
+      foreach ($reservation_data['overnight_rooms'] as $key => $room) {
+        $paragraph = Paragraph::create($room);
+        $paragraph->enforceIsNew();
+        $total_amount += $room['field_rooms_total_amount'];
+        $paragraph->save();
+        $overnight_rooms_paragraphs[] = $paragraph;
+      }
+      if (!empty($overnight_rooms_paragraphs)) {
+        unset($reservation_data['overnight_rooms']);
+        $reservation_data['field_overnight_rooms'] = $overnight_rooms_paragraphs;
+      }
+    }
+
+    if ($reservation_data['field_unit_type'] === 'hourly') {
+      $hourlyRate = $reservation_data['field_price_units'] ?? null;
+      if ($hourlyRate instanceof Paragraph && $hourlyRate->bundle() === 'per_hour') {
+
+        //find suitable rule based on hours booked
+        $validation_data = reset( $submitted_data['noscript']['hour_booking']['hourlyRate']);
+        $hours = $reservation_data['field_hours'];
+        if ($hours <= intval($validation_data['miniHours'])) {
+          $total_amount = ($hours * intval($validation_data['amount'])) + $total_amount;
+        }
+        else {
+          $amount = intval($validation_data['amount']);
+          foreach ($validation_data['bookingAdvanceRules'] as $rule) {
+            if ($hours >= intval($rule['miniHours'])) {
+              $amount = intval($rule['amount']);
+            }
+          }
+          $reservation_data['field_amount_used'] = $amount;
+          $total_amount = ($hours * intval($amount)) + $total_amount;
+
+        }
+        $reservation_data['field_total_amount'] = $total_amount;
+      }
+    }
+
+    elseif ($reservation_data['field_unit_type'] === 'day') {
+      $dayRate = $reservation_data['field_price_units'] ?? null;
+      if ($dayRate instanceof Paragraph && $dayRate->bundle() === 'per_day_unit') {
+
+        //find suitable rule based on hours booked
+        $validation_data = reset( $submitted_data['noscript']['day_booking']['dayRate']);
+        $days = $reservation_data['field_days'];
+        if ($days <= intval($validation_data['miniDays'])) {
+          $total_amount = ($days * intval($validation_data['amount'])) + $total_amount;
+        }
+        else {
+          $amount = intval($validation_data['amount']);
+          foreach ($validation_data['bookingAdvanceRules'] as $rule) {
+            if ($days >= intval($rule['miniDays'])) {
+              $amount = intval($rule['amount']);
+            }
+          }
+          $reservation_data['field_amount_used'] = $amount;
+          $total_amount = ($days * intval($amount)) + $total_amount;
+
+        }
+        $reservation_data['field_total_amount'] = $total_amount;
+      }
+    }
+
+    elseif ($reservation_data['field_unit_type'] === 'person') {
+
+      if ($reservation_data['options']) {
+
+        $options_paragraphs = [];
+        foreach ($reservation_data['options'] as $option) {
+          $paragraph = Paragraph::create($option);
+          $paragraph->enforceIsNew();
+          $paragraph->save();
+          $options_paragraphs[] = $paragraph;
+          $total_amount += $option['field_total_charge'];
+        }
+        unset($reservation_data['options']);
+        $reservation_data['field_person_type_options'] = $options_paragraphs;
+      }
+      $reservation_data['field_total_amount'] = $total_amount;
+    }
+
+    $paragraph = Paragraph::create($reservation_data);
+    $paragraph->enforceIsNew(true);
+    $paragraph->save();
+    $node = $form_state->getFormObject()->getEntity();
+    if ($node instanceof \Drupal\reservation\Entity\Reservation ) {
+      // Reference the paragraph on the node
+      $node->set('field_reservation_information', [
+        [
+          'target_id' => $paragraph->id(),
+          'target_revision_id' => $paragraph->getRevisionId(),
+        ]
+      ]);
+      $node->save();
+    }
+  }
+}
+
+/**
+ * Getting all date within given two date.
+ * @param $start_date
+ * @param $end_date
+ *
+ * @return array
+ * @throws \Exception
+ */
+function reservation_get_date_range($start_date, $end_date): array {
+
+  // Convert the dates to DateTime objects
+  $start = new \DateTime($start_date);
+  $end = new \DateTime($end_date);
+  // Add one day to end date to make it inclusive
+  $end->modify('+1 day');
+
+  // Create an interval of 1 day
+  $interval = new \DateInterval('P1D');
+  // Create a date range from start to end with the interval
+  $dateRange = new \DatePeriod($start, $interval, $end);
+
+  // Initialize an array to hold the dates
+  $dates = [];
+  // Iterate over the date range and add each date to the array
+  foreach ($dateRange as $date) {
+    $dates[] = $date->format('Y-m-d');
+  }
+
+  return $dates;
+}
+
+/**
+ * Getting hours booked of the given date.
+ * NOTE: we are only considering those bookings which are
+ * approved.
+ * I.e., status = 1
+ *
+ * @param DrupalDateTime $date
+ * @param int $room_id
+ *
+ * @return int
+ * @throws \Exception
+ */
+function reservation_day_booked_hours(DrupalDateTime $date, int $room_id): int {
+
+  $starting_date_timestamp = $date?->format('d-m-Y');
+  $starting_date_timestamp = strtotime($starting_date_timestamp.' 00:00:00');
+  $end_date_timestamp = strtotime($date?->format('d-m-Y').' 23:59:59');
+
+  $query = Drupal::database()->select('reservation__field_date_booking','r');
+  $query->leftJoin('reservation_field_data','rf','r.entity_id = rf.cid');
+  $query->condition('r.field_date_booking_value',$starting_date_timestamp, '>=');
+  $query->condition('r.field_date_booking_value',$end_date_timestamp, '<=');
+  $query->condition('rf.entity_id',$room_id,'=');
+  $query->condition('rf.status',1,'=');
+  $query->addField('r','field_date_booking_duration', 'duration');
+  $query->addField('r','entity_id','id');
+  $result = $query->execute();
+  $bookings = $result->fetchAll();
+
+  if($bookings) {
+    // $bookings consist of arrays
+    //which contain duration ie hours booked per reservation.
+    return array_sum(array_map(function($reservation) {
+      return (int) $reservation->duration ?? 0;
+    }, $bookings));
+  }
+  return 0;
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function reservation_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  if($entity->getEntityTypeId() === 'reservation') {
+    if($entity->isNew()) {
+      $room_id = $entity->get('entity_id')->target_id ?? 0;
+      $room_node = \Drupal\node\Entity\Node::load($room_id);
+      if($room_node) {
+        $confirmation_status = (int) $room_node->get('field_confirmatie')->value;
+
+        // For those rooms that owner has allowed to confirm booking instantly will
+        // be setting status to 1 otherwise 0
+        if($confirmation_status > 0) {
+          $entity->set('status', 0);
+        }
+        else{
+          $entity->set('status', 1);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+ */
+function reservation_form_alter(&$form, &$form_state, $form_id): void {
+
+  if ($form_id == 'user_form') {
+    // Check if the field exists in the form.
+    if (isset($form['field_betaling_accepteren_via_mo'])) {
+
+      $current_user = Drupal::currentUser();
+      if(in_array('magnus', $current_user->getRoles()) || in_array('zaal_eigenaar', $current_user->getRoles())) {
+        $form['field_betaling_accepteren_via_mo']['#access'] = FALSE;
+        $form['field_vip_abonnement_vervaldatum']['#access'] = FALSE;
+      }
+
+      if(in_array('premium_zaal', $current_user->getRoles())) {
+        $form['field_vip_abonnement_vervaldatum']['#disabled'] = TRUE;
+      }
+    }
+  }
+
+  if ($form_id === 'node_zaal_form' || $form_id === 'node_zaal_edit_form') {
+
+    // Add validation handler
+    $form['#validate'][] = 'reservation_node_zaal_form_validate';
+
+    // Ensure submit handler runs FIRST (node submit button)
+    if (isset($form['actions']['submit']['#submit']) && is_array($form['actions']['submit']['#submit'])) {
+      array_unshift($form['actions']['submit']['#submit'], 'reservation_node_zaal_form_submit');
+    }
+    else {
+      $form['actions']['submit']['#submit'] = [
+        'reservation_node_zaal_form_submit',
+      ];
+    }
+
+    // attach library
+    $form['#attached']['library'][] = 'reservation/drupal.reservation-service';
+  }
+
+}
+
+function reservation_node_zaal_form_submit($form, FormStateInterface $form_state) {
+  $pricing = $form_state->getValue('field_room_pricing_settings');
+
+  if (empty($pricing)) {
+    return;
+  }
+
+  // Now it is SAFE to mutate
+  //removeEmptyPricingParagraphs($pricing);
+
+  $form_state->setValue('field_room_pricing_settings', $pricing);
+}
+
+function reservation_node_zaal_form_validate($form, FormStateInterface $form_state) {
+  $pricing = $form_state->getValue('field_room_pricing_settings');
+  if (empty($pricing)) {
+    return;
+  }
+
+  // 1️⃣ Must have at least one amount
+  $result = hasAtLeastOnePricingAmount($pricing);
+  if (!$result['status']) {
+    $form_state->setErrorByName('field_room_pricing_settings', $result['message']);
+    return;
+  }
+
+  // 2️⃣ Currency must match
+  $result = validatePricingCurrency($pricing);
+  if (!$result['status']) {
+    $form_state->setErrorByName('field_room_pricing_settings', $result['message']);
+    return;
+  }
+}
+
+
+function hasAtLeastOnePricingAmount(array $paragraphs): array
+{
+  foreach ($paragraphs as $paragraph) {
+
+    if (!is_array($paragraph) || empty($paragraph['inline_entity_form'])) {
+      continue;
+    }
+
+    $form = $paragraph['inline_entity_form'];
+
+    if (!empty($form['field_hourly_unit'][0]['inline_entity_form']
+    ['field_per_hour_price'][0]['value'])) {
+      return ['status' => true, 'message' => ''];
+    }
+
+    if (!empty($form['field_per_day_unit'][0]['inline_entity_form']
+    ['field_day_amount'][0]['value'])) {
+      return ['status' => true, 'message' => ''];
+    }
+
+    if (!empty($form['field_pricing_unit'][0]['inline_entity_form']
+    ['field_per_person_item_price'][0]['value'])) {
+      return ['status' => true, 'message' => ''];
+    }
+  }
+
+  return [
+    'status' => false,
+    'message' => 'At least one pricing amount must be provided.',
+  ];
+}
+
+function validatePricingCurrency(array $paragraphs): array
+{
+  $currency = null;
+
+  foreach ($paragraphs as $paragraph) {
+
+    if (!is_array($paragraph) || empty($paragraph['inline_entity_form'])) {
+      continue;
+    }
+
+    $form = $paragraph['inline_entity_form'];
+
+    // Hourly
+    if (!empty($form['field_hourly_unit'][0]['inline_entity_form']
+    ['field_per_hour_price'][0]['value'])) {
+
+      $curr = $form['field_hourly_unit'][0]['inline_entity_form']
+      ['field_currency'][0]['value'] ?? null;
+
+      $currency ??= $curr;
+
+      if ($curr !== $currency) {
+        return [
+          'status' => false,
+          'message' => 'All pricing units must use the same currency.',
+        ];
+      }
+    }
+
+    // Per day
+    if (!empty($form['field_per_day_unit'][0]['inline_entity_form']
+    ['field_day_amount'][0]['value'])) {
+
+      $curr = $form['field_per_day_unit'][0]['inline_entity_form']
+      ['field_day_currency'][0]['value'] ?? null;
+
+      $currency ??= $curr;
+
+      if ($curr !== $currency) {
+        return [
+          'status' => false,
+          'message' => 'All pricing units must use the same currency.',
+        ];
+      }
+    }
+
+    // Per person
+    if (!empty($form['field_pricing_unit'][0]['inline_entity_form']
+    ['field_per_person_item_price'][0]['value'])) {
+
+      $curr = $form['field_pricing_unit'][0]['inline_entity_form']
+      ['field_per_person_item_currency'][0]['value'] ?? null;
+
+      $currency ??= $curr;
+
+      if ($curr !== $currency) {
+        return [
+          'status' => false,
+          'message' => 'All pricing units must use the same currency.',
+        ];
+      }
+    }
+  }
+
+  return ['status' => true, 'message' => ''];
+}
+
+function removeEmptyPricingParagraphs(array &$paragraphs): void
+{
+  foreach ($paragraphs as $key => $paragraph) {
+
+    if(!is_array($paragraph) || empty($paragraph['inline_entity_form'])) {
+      unset($paragraphs[$key]);
+      continue;
+    }
+
+    $form = $paragraph['inline_entity_form'];
+
+    $hasAmount =
+      !empty($form['field_hourly_unit'][0]['inline_entity_form']
+      ['field_per_hour_price'][0]['value'])
+      || !empty($form['field_per_day_unit'][0]['inline_entity_form']
+      ['field_day_amount'][0]['value'])
+      || !empty($form['field_pricing_unit'][0]['inline_entity_form']
+      ['field_per_person_item_price'][0]['value']);
+
+    if (!$hasAmount) {
+      unset($paragraphs[$key]);
+    }
+  }
+
+  // Reindex for Drupal
+  $paragraphs = array_values($paragraphs);
+}

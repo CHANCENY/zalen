@@ -1,0 +1,13 @@
+uuid: fc31d9f7-a186-41b2-b05e-2ad546fed6e3
+langcode: nl
+status: true
+dependencies:
+  module:
+    - webform
+_core:
+  default_config_hash: aqi5Ftlnhe9KyOowpK7CanEvJMBBo8xAR1dA99bKOuc
+id: webform_unarchive_action
+label: 'Formulier herstellen'
+type: webform
+plugin: webform_unarchive_action
+configuration: {  }

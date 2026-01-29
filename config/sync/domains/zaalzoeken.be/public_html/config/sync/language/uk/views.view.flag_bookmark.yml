@@ -1,0 +1,37 @@
+label: 'Flag mijn verlanglijst'
+display:
+  default:
+    display_title: Головне
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Застосувати
+          reset_button_label: Скинути
+          exposed_sorts_label: 'Впорядкувати за'
+          sort_asc_label: Зрост
+          sort_desc_label: Спад
+      pager:
+        options:
+          tags:
+            previous: '‹ попередня'
+            next: 'наступна ›'
+            first: '« перша'
+            last: 'остання »'
+          expose:
+            items_per_page_label: 'Елементів на сторінку'
+            items_per_page_options_all_label: '- Усе -'
+            offset_label: Зміщення
+      fields:
+        flagging_bulk_form:
+          label: 'Масове оновлення'
+          action_title: Дія
+        type:
+          label: Тип
+        title:
+          label: Заголовок
+        link_flag:
+          label: Дії
+      title: 'Мої закладки'
+      empty:
+        area_text_custom:
+          content: 'Er zijn nog geen zalen opgeslagen in uw lijst.'

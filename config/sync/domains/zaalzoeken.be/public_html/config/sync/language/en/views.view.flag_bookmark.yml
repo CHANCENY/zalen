@@ -1,0 +1,43 @@
+display:
+  default:
+    display_options:
+      fields:
+        field_adres_locality:
+          label: Location
+        field_foto:
+          label: Image
+        flagging_bulk_form:
+          label: 'Bulk update'
+          action_title: Action
+        type:
+          label: Type
+        title:
+          label: Title
+        link_flag:
+          label: Ops
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        options:
+          tags:
+            previous: '‹ previous'
+            next: 'next ›'
+            first: '« first'
+            last: 'last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      title: 'My Bookmarks'
+      empty:
+        area_text_custom:
+          content: 'No bookmarks available.'
+    display_title: Master
+  page_mijn_zaal_lijst:
+    display_title: Wishlist
+label: 'Flag Bookmark list'

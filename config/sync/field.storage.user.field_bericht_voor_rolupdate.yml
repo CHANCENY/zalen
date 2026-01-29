@@ -1,0 +1,21 @@
+uuid: 0bddba58-379a-4803-a9b0-728dcee2cfbc
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_bericht_voor_rolupdate
+field_name: field_bericht_voor_rolupdate
+entity_type: user
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

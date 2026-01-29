@@ -1,0 +1,23 @@
+uuid: 2977a7d3-9ff1-4e42-a0f7-770707bdc92d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_per_hour_price
+    - paragraphs.paragraphs_type.per_hour
+id: paragraph.per_hour.field_per_hour_price
+field_name: field_per_hour_price
+entity_type: paragraph
+bundle: per_hour
+label: 'Set Amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

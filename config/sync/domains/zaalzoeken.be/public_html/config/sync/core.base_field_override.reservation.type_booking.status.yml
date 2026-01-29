@@ -1,0 +1,22 @@
+uuid: 72941cd3-cf43-4f53-ac19-d19db41dcbb9
+langcode: en
+status: true
+dependencies:
+  config:
+    - reservation.type.type_booking
+id: reservation.type_booking.status
+field_name: status
+entity_type: reservation
+bundle: type_booking
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: 'Drupal\reservation\Entity\Reservation::getDefaultStatus'
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

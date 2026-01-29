@@ -1,0 +1,29 @@
+uuid: 37bf2dac-b8a2-4226-9bca-ae786633b5c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_afstand_metro
+    - node.type.bedrijf
+    - taxonomy.vocabulary.afstand_openbaar_vervoer
+id: node.bedrijf.field_afstand_metro
+field_name: field_afstand_metro
+entity_type: node
+bundle: bedrijf
+label: 'Distance metro'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      afstand_openbaar_vervoer: afstand_openbaar_vervoer
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

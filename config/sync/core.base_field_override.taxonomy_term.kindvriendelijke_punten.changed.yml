@@ -1,0 +1,18 @@
+uuid: 457cf90f-577e-47b3-b066-24265eb8529e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.kindvriendelijke_punten
+id: taxonomy_term.kindvriendelijke_punten.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: kindvriendelijke_punten
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

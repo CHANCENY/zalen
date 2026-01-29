@@ -1,0 +1,10 @@
+uuid: fa0609fd-e802-4bc6-843e-2aa32ff2ac60
+langcode: en
+status: true
+dependencies: {  }
+id: per_hour_unit_rules
+label: Rules
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

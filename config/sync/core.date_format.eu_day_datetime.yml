@@ -1,0 +1,8 @@
+uuid: f4b55839-1167-473f-abdf-00f8a9407812
+langcode: en
+status: true
+dependencies: {  }
+id: eu_day_datetime
+label: 'Eu day datetime'
+locked: false
+pattern: 'D d M Y : H:i'

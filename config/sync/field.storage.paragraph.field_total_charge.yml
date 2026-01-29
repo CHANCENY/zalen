@@ -1,0 +1,20 @@
+uuid: 2d172d80-637b-4eb3-8304-10fb3cafb011
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_total_charge
+field_name: field_total_charge
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

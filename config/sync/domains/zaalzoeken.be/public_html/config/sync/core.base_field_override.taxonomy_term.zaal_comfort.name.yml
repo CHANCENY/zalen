@@ -1,0 +1,18 @@
+uuid: abc360eb-5558-472e-9f19-e0c003031acd
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zaal_comfort
+id: taxonomy_term.zaal_comfort.name
+field_name: name
+entity_type: taxonomy_term
+bundle: zaal_comfort
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: 70e74ce8-c711-4aa9-ae51-4e54daadbc55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.reservation.field_per_hour_calc
+    - reservation.type.type_booking
+id: reservation.type_booking.field_per_hour_calc
+field_name: field_per_hour_calc
+entity_type: reservation
+bundle: type_booking
+label: 'Calculate payment per hour'
+description: 'Check this box if you want the payment to be calculated based on the number of hours'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Per hour'
+  off_label: 'Per hour'
+field_type: boolean

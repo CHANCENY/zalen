@@ -1,0 +1,106 @@
+display:
+  page_extensieve_filter:
+    display_options:
+      exposed_form:
+        options:
+          submit_button: 'Trouver une salle'
+      filters:
+        field_comercielegelegenheden_target_id:
+          expose:
+            label: 'Occasions commerciales'
+        field_concertgelegenheden_target_id:
+          expose:
+            label: Entertainmentmogelijkheden
+        field_feestgelegenheid_target_id:
+          expose:
+            label: 'Occasions de fête'
+        field_vergadergelegenheden_target_id:
+          expose:
+            label: 'Occasions de reunion'
+        field_lat_long_proximity:
+          expose:
+            label: Environnement
+        field_zitplaatsen_value:
+          expose:
+            label: Sièges
+        field_staanplaatsen_value:
+          expose:
+            label: Emplacements
+        field_oppervlakte_value:
+          expose:
+            label: Superficie
+        field_bezetting_tot_value:
+          expose:
+            label: 'Occupation maximale'
+        field_bezetting_van_value:
+          expose:
+            label: 'Occupation minimale'
+        field_afstand_bus_target_id:
+          expose:
+            label: 'Distance bus'
+        field_afstand_metro_target_id:
+          expose:
+            label: 'Distance métro'
+        field_afstand_tramhalte_target_id:
+          expose:
+            label: 'Distance du tramway'
+        field_afstand_trein_station_target_id:
+          expose:
+            label: 'Distance gare'
+        field_fietsen_value:
+          expose:
+            label: Vélos
+        field_motoren_value:
+          expose:
+            label: Moteurs
+        field_wagens_value:
+          expose:
+            label: Voitures
+        field_thema_target_id:
+          expose:
+            label: Thème
+        field_media_target_id:
+          expose:
+            label: Médias
+        field_uitrusting_target_id:
+          expose:
+            label: Équipement
+        field_slaapgelegenheid_value:
+          expose:
+            label: 'Hébergement pour dormir'
+        field_kindvriendelijkheid_target_id:
+          expose:
+            label: Enfants
+        field_mindervaliden_target_id:
+          expose:
+            label: 'Personnes handicapées'
+        field_milieu_target_id:
+          expose:
+            label: 'Les actifs verts'
+        field_buiten_voorzieningen_target_id:
+          expose:
+            label: Appurtenances
+        field_dagprijs_value:
+          expose:
+            label: 'Prix ​​journalier'
+        field_prijs_per_persoon_value:
+          expose:
+            label: ' Prix ​​par personne'
+        field_uurprijs_value:
+          expose:
+            label: 'Taux horaire'
+  default:
+    display_options:
+      sorts:
+        field_lat_long_proximity:
+          expose:
+            label: 'Le plus proche'
+        field_dagprijs_value:
+          expose:
+            label: 'Prix ​​par jour'
+        field_uurprijs_value:
+          expose:
+            label: 'Prix ​​par heure'
+        field_prijs_per_persoon_value:
+          expose:
+            label: 'Prix ​​par personne'

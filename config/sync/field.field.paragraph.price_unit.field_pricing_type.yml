@@ -1,0 +1,23 @@
+uuid: 2bacd5de-d613-4d87-a3e4-6b5eaf376225
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pricing_type
+    - paragraphs.paragraphs_type.price_unit
+  module:
+    - options
+id: paragraph.price_unit.field_pricing_type
+field_name: field_pricing_type
+entity_type: paragraph
+bundle: price_unit
+label: Type
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: per_hour
+default_value_callback: ''
+settings: {  }
+field_type: list_string

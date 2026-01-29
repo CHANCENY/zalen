@@ -1,0 +1,833 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
+//this is my 2 class calendar and a delete button
+use Drupal\room_custom_setting\Calendar;
+use Drupal\room_custom_setting\RemoveButton;
+//for Ajax
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Ajax\HtmlCommand;
+//for button delete - for correct deletion of elements
+use Drupal\Core\Render\Element;
+//for sort comments
+use Drupal\Core\Database\Query\AlterableInterface;
+
+//change the form creating a node with ID "zaal"
+/**
+ * Implements hook_form_FORM_ID_alter(): node_type_edit_form. room_custom_setting
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ */
+function room_custom_setting_form_node_zaal_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+
+  // Modification for the form with the given form ID goes here. For example, if
+
+  $form['setting_time_booking'] = [
+    '#group' => 'advanced',
+    '#type' => 'details',
+    '#title' => t('Setting up time booking'),
+    '#open' => FALSE,
+    '#weight' => 0,
+  ];
+
+  //get the config "description" from the settings of the smartdate field
+  $smartdate_default_description = \Drupal::config('field.field.reservation.type_booking.field_date_booking')->get('description');
+
+  $form['setting_time_booking']['description'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Help text'),
+    '#description' => t('This text will be displayed under the date selection for reference.'),
+    '#default_value' => $smartdate_default_description ? $smartdate_default_description : t('you date booking'),
+  );
+
+  //get the config "datetime" from the settings of the smartdate field
+  $smartdate_default_value = \Drupal::config('field.field.reservation.type_booking.field_date_booking')->get('default_value');
+
+  $form['setting_time_booking']['default_date_type'] = array(
+    '#type' => 'radios',
+    '#title' => t('Default date'),
+    '#options' => ['' => t('None'), 'now' => t('Current date'), 'relative' => t('Relative date'), 'next_hour' => t('Next hour')],
+    '#default_value' => $smartdate_default_value[0]['default_date_type'] ? $smartdate_default_value[0]['default_date_type'] : '',
+  );
+
+  $form['setting_time_booking']['default_date_custom_value'] = array(
+    '#type' => 'textfield',
+    '#size' => '60',
+    '#placeholder' => t('Enter custom date'),
+    '#states' => [
+      'visible' => [
+        ':input[name="default_date_type"]' => ['value' => 'relative'],
+      ],
+    ],
+    '#default_value' => $smartdate_default_value[0]['default_date'] ? $smartdate_default_value[0]['default_date'] : '',
+    '#description' => t('Describe the time, for example, "+90" (90 days from the date the field was created) or "+1 Saturday" (next Saturday). See <a href="http://php.net/manual/function.strtotime.php">strtotime</a> for more information.'),
+  );
+
+  $form['setting_time_booking']['default_duration_increments'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Allowed duration increments'),
+    '#description' => t('The possible durations this field can contain. Enter one value per line, in the format key|label. <br>
+    The key is the stored value, and must be numeric or "custom" to allow an arbitrary length. The label will be used in edit forms. <br>
+    The label is optional: if a line contains a single number, it will be used as key and label.'),
+    '#default_value' => $smartdate_default_value[0]['default_duration_increments'] ? $smartdate_default_value[0]['default_duration_increments'] : t('1|1 minute
+60|1 hour
+1440|1 daily
+10080|1 week
+custom'),
+  );
+
+  $form['setting_time_booking']['default_duration'] =  array(
+    '#type' => 'textfield',
+    '#title' => t('Default duration'),
+    '#default_value' => $smartdate_default_value[0]['default_duration'] ? $smartdate_default_value[0]['default_duration'] : '60',
+    '#description' => t('Set which of the duration increments provided above that should be selected by default.'),
+  );
+
+//  $form['terms_of_use'] = array(
+//    //'#group' => 'advanced',
+//    '#type' => 'checkbox',
+//    '#title' => t("I agree with the website's terms and conditions."),
+//    '#required' => TRUE,
+//  );
+
+  //set the handler to save our custom settings after saving or editing the node
+  $form['actions']['submit']['#submit'][] = 'room_custom_setting_submit_handler';
+  //set validation before saving your custom settings
+  $form['#validate'][] = 'room_custom_setting_validate_handler';
+};
+
+
+
+//change the form editing a node with ID "zaal"
+function room_custom_setting_form_node_zaal_edit_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+
+  //get the current node id
+  $nid = $form_state->getFormObject()->getEntity()->id();
+
+  //get custom settings for the current node
+  $query = \Drupal::database()->select('reservat_custom_each', 'b');
+  $query->fields('b', ['text', 'default_date', 'default_date_value', 'increment', 'duration']);
+  $query->condition('b.nid', $nid);
+  $result = $query->execute()->fetchAll();
+
+  //if there are no settings for the node (it happens when changing the node that was created before installing this module)
+  if ($result){
+  $text = $result['0']->text;
+  $default_date = $result['0']->default_date;
+  if ($default_date === 'relative') {
+    $default_date_value = $result['0']->default_date_value;
+  } else {
+    $default_date_value = '';
+  };
+  $increment = $result['0']->increment;
+  $duration = $result['0']->duration;
+  //if there are no settings for the node, load the settings for the smartdate field
+  } elseif ($smartdate_field_settings = \Drupal::config('field.field.reservation.type_booking.field_date_booking')) {
+    $text = $smartdate_field_settings->get('description');
+    $smartdate_default_value = $smartdate_field_settings->get('default_value');
+    $default_date = $smartdate_default_value[0]['default_date_type'];
+    if ($default_date === 'relative') {
+      $default_date_value = $smartdate_default_value[0]['default_date'];
+    } else {
+      $default_date_value = '';
+    };
+    $increment = $smartdate_default_value[0]['default_duration_increments'];
+    $duration = $smartdate_default_value[0]['default_duration'];
+  } else {
+    //if there are no settings for the node, set the variables to null, so that there is no reference to a nonexistent variable
+    $text = $default_date = $default_date_value = $increment = $duration = null;
+  };
+
+  $form['setting_time_booking'] = [
+    '#group' => 'advanced',
+    '#type' => 'details',
+    '#title' => t('Setting up time booking'),
+    '#open' => FALSE,
+    '#weight' => 0,
+  ];
+
+  $form['setting_time_booking']['description'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Help text'),
+    '#description' => t('This text will be displayed under the date selection for reference.'),
+    '#default_value' => $text ? $text : t('you date booking'),
+  );
+
+  $form['setting_time_booking']['default_date_type'] = array(
+    '#type' => 'radios',
+    '#title' => t('Default date'),
+    '#options' => ['' => t('None'), 'now' => t('Current date'), 'relative' => t('Relative date'), 'next_hour' => ('Next hour')],
+    '#default_value' => $default_date ? $default_date : '',
+  );
+
+  $form['setting_time_booking']['default_date_custom_value'] = array(
+    '#type' => 'textfield',
+    '#size' => '60',
+    '#placeholder' => t('Enter custom date'),
+    '#states' => [
+      'visible' => [
+        ':input[name="default_date_type"]' => ['value' => 'relative'],
+      ],
+    ],
+    '#default_value' => $default_date_value ? $default_date_value : '',
+    '#description' => t('Describe the time, for example, "+90" (90 days from the date the field was created) or "+1 Saturday" (next Saturday). See <a href="http://php.net/manual/function.strtotime.php">strtotime</a> for more information.'),
+  );
+
+  $form['setting_time_booking']['default_duration_increments'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Allowed duration increments'),
+    '#description' => t('The possible durations this field can contain. Enter one value per line, in the format key|label. <br>
+    The key is the stored value, and must be numeric or "custom" to allow an arbitrary length. The label will be used in edit forms. <br>
+    The label is optional: if a line contains a single number, it will be used as key and label.'),
+    '#default_value' => $increment ? $increment : t('1|1 minute
+60|1 hour
+1440|1 daily
+10080|1 week
+custom'),
+  );
+
+  $form['setting_time_booking']['default_duration'] =  array(
+    '#type' => 'textfield',
+    '#title' => t('Default duration'),
+    '#default_value' => $duration ? $duration : '60',
+    '#description' => t('Set which of the duration increments provided above that should be selected by default.'),
+  );
+
+//  $form['terms_of_use'] = array(
+//    //'#group' => 'advanced',
+//    '#type' => 'checkbox',
+//    '#title' => t("I agree with the website's terms and conditions."),
+//    '#required' => TRUE,
+//  );
+
+  $form['actions']['submit']['#submit'][] = 'room_custom_setting_edit_submit_handler';
+  $form['#validate'][] = 'room_custom_setting_validate_handler';
+};
+
+
+//change the form delete a node with ID "zaal"
+function room_custom_setting_form_node_zaal_delete_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+  //set a handler to delete custom node settings when deleting the node itself
+  $form['actions']['submit']['#submit'][] = 'room_custom_setting_delete_submit_handler';
+};
+
+/**
+ * {@inheritdoc}
+ */
+function room_custom_setting_validate_handler($form, FormStateInterface $form_state) {
+
+  if (preg_match('/[^a-zA-Z\d\n\s.,]/',$form_state->getValue('description'))) {
+    $form_state->setErrorByName('description', t('The value is only numbers and latin letters.'));
+  };
+
+  if (preg_match('/[^a-z_]/',$form_state->getValue('default_date_type'))) {
+    $form_state->setErrorByName('default_date_type', t('Value only Latin letters.'));
+  };
+
+  if (($form_state->getValue('default_date_type')==='relative') && (($tmp = strtotime($form_state->getValue('default_date_custom_value')))===false) && preg_match('/[^a-zA-Z0-9+]/',$form_state->getValue('default_date_custom_value'))) {
+    $form_state->setErrorByName('default_date_custom_value', t('Please specify the correct format See <a href="http://php.net/manual/function.strtotime.php"> strtotime </a> for more information.'));
+  };
+
+  if (preg_match('/[^0-9a-zA-Z|\d\s]+/',$form_state->getValue('default_duration_increments'))) {
+    $form_state->setErrorByName('default_duration_increments', t('The value is only numbers and latin letters separated by "|".'));
+  };
+
+  if (preg_match('/[^\d]+/',$form_state->getValue('default_duration')) || $form_state->getValue('default_duration') < 1 || $form_state->getValue('default_duration') > 1440) {
+    $form_state->setErrorByName('default_duration', t('The increment value is only numeric, which cannot be less than 1 minute or more than a day (1440 minutes).'));
+  };
+
+//  if (preg_match('/[^01]/',$form_state->getValue('terms_of_use'))) {
+//    $form_state->setErrorByName('terms_of_use', t('The value is only numbers 0 or 1.'));
+//  };
+};
+
+
+//handler save button that saves custom reservation settings
+function room_custom_setting_submit_handler($form, FormStateInterface $form_state) {
+
+//get ID current node
+$nid = $form_state->getFormObject()->getEntity()->id();
+
+//get values with form_state
+$module = 'room_custom_setting';
+$text = $form_state->getValue('description');
+$default_date = $form_state->getValue('default_date_type');
+if ($default_date === 'relative') {
+  $default_date_value = $form_state->getValue('default_date_custom_value');
+} else {
+  $default_date_value = '';
+};
+$increment = $form_state->getValue('default_duration_increments');
+$duration = $form_state->getValue('default_duration');
+//$terms_of_use = $form_state->getValue('terms_of_use');
+
+//save custom settings for the reservation field
+  $query = \Drupal::database()->insert('reservat_custom_each');
+  $query->fields([
+  'nid' => $nid,
+  'module' => $module,
+  'text' => $text,
+  'default_date' => $default_date,
+  'default_date_value' => $default_date_value,
+  'increment' => $increment,
+  'duration' => $duration,
+ // 'terms_of_use' => $terms_of_use,
+  ]);
+  $query->execute();
+
+};
+
+//handler save button that saves custom reservation settings when editing a node
+function room_custom_setting_edit_submit_handler($form, FormStateInterface $form_state) {
+
+  //get ID current node
+  $nid = $form_state->getFormObject()->getEntity()->id();
+
+  //get values with form_state
+  $module = 'room_custom_setting';
+  $text = $form_state->getValue('description');
+  $default_date = $form_state->getValue('default_date_type');
+  if ($default_date === 'relative') {
+    $default_date_value = $form_state->getValue('default_date_custom_value');
+  } else {
+    $default_date_value = '';
+  };
+  $increment = $form_state->getValue('default_duration_increments');
+  $duration = $form_state->getValue('default_duration');
+  //$terms_of_use = $form_state->getValue('terms_of_use');
+
+    //update custom settings for the reservation field
+    $query = \Drupal::database()->update('reservat_custom_each');
+    $query->fields([
+      'module' => $module,
+      'text' => $text,
+      'default_date' => $default_date,
+      'default_date_value' => $default_date_value,
+      'increment' => $increment,
+      'duration' => $duration,
+      //'terms_of_use' => $terms_of_use,
+    ]);
+    $query->condition('nid', $nid);
+    $query->execute();
+};
+
+
+//handler delete button that delete custom reservation settings when delete a node
+function room_custom_setting_delete_submit_handler($form, FormStateInterface $form_state) {
+
+  //get ID current node
+  $nid = $form_state->getFormObject()->getEntity()->id();
+
+  //delete custom settings for the reservation field when deleting a node
+  $query = \Drupal::database()->delete('reservat_custom_each');
+  $query->condition('nid', $nid);
+  $query->execute();
+};
+
+
+// change the form adding a booking on the node page
+ function room_custom_setting_form_reservation_type_booking_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+
+   //get ID current node
+   $nid = $form_state->getFormObject()->getEntity()->getReservationedEntityId();
+
+   //get a description from the custom settings for the current node
+   $query = \Drupal::database()->select('reservat_custom_each', 'b');
+   $query->addField('b', 'text');
+   $query->condition('b.nid', $nid);
+   $result = $query->execute()->fetchField();
+
+   $form['field_date_booking']['widget']['#description'] =  $result ? $result : t('Your time order');
+
+   //creating an availability calendar
+   $form['availability_calendar_title'] = [
+    '#prefix' => '<div class="availability-calendar-title">',
+    '#markup' => '<h3>' . t('Availability Calendar') . '</h3>',
+    '#suffix' => '</div>',
+    '#attached' => ['library' => 'room_custom_setting/room_custom_setting'],
+
+   ];
+
+   $form['availability_calendar'] = [
+     '#prefix' => '<div class="availability-calendar">',
+     '#markup' => '<span>' . t('Verify availability') . '</span>',
+     '#suffix' => '</div>',
+     '#attached' => ['library' => 'room_custom_setting/room_custom_setting'],
+
+    ];
+
+
+   $form['availability_calendar']['navigation_calendar'] = [
+     '#type' => 'container',
+     '#name' => 'navigation_calendar',
+   ];
+
+   $form['availability_calendar']['navigation_calendar']['navigation_calendar_select'] = [
+     '#type' => 'select',
+     '#title' => t('Shoose calendar view'),
+     '#options' => ['month' => t('1 Month'), 'months' => t('3 Months'), 'year' => t('Year'),],
+     '#default_value' => 'month',
+     '#ajax' => [
+       'callback' => 'ajaxChangeCalendar',
+       'event' => 'change',
+       'wrapper' => 'custom_calendar',
+       'method' => 'replace',
+       'effect' => 'fade',
+       'progress' => [
+         'type' => 'throbber',
+         'message' => t('Load calendar...'),
+       ],
+     ],
+
+   ];
+
+ //  dump($form['availability_calendar']['navigation_calendar']['navigation_calendar_select']); die();
+
+   $date_current_value = new DrupalDateTime;
+
+   $form['availability_calendar']['navigation_calendar']['choice_beginning_calendar'] = [
+     '#type' => 'date',
+     '#title' => t('Start view'),
+     '#attributes' => ['type'=> 'month', 'min'=> $date_current_value->format('Y-m'), 'max' => '+2 years' ],
+     '#default_value' => $date_current_value->format('Y-m'),
+   ];
+
+   $form['availability_calendar']['navigation_calendar']['choice_ending_calendar'] = [
+     '#type' => 'date',
+     '#title' => t('End view'),
+     '#attributes' => ['type'=> 'month', 'min'=> $date_current_value->format('Y-m'), 'max' => '+2 years' ],
+     '#default_value' => $date_current_value->format('Y-m'),
+   ];
+
+   $form['availability_calendar']['navigation_calendar']['choice_calendar'] = [
+     '#type' => 'submit',
+     '#value' => t('Show Calendar'),
+     '#validate' => ['ajaxValidateButtonChangeCalendar'],
+     '#submit' => ['ajaxButtonChangeCalendar'],
+     '#limit_validation_errors' => [
+       ['choice_beginning_calendar',], ['choice_ending_calendar',]
+     ],
+     '#ajax' => [
+       'callback' => 'ajaxButtonChangeCalendar',
+       'wrapper' => 'custom_calendar',
+       'method' => 'replace',
+       'effect' => 'fade',
+       'progress' => [
+         'type' => 'throbber',
+         'message' => t('Wait...'),
+       ],
+     ],
+     '#attributes' => [
+       'onsubmit' => 'return false',
+     ],
+   ];
+
+   $events = get_events_calendar($form_state);
+   $events = $events ? $events : [];
+   $query_current_result = query_current_result($form_state, ['month']);
+   $query_current_result = $query_current_result ? $query_current_result : [];
+   $creating_calendar = Calendar::getMonth($date_current_value->format('n'), $date_current_value->format('Y'), $events, $query_current_result);
+   $form['availability_calendar']['custom_calendar'] = [
+     '#prefix' => '<div id="custom_calendar">',
+     '#markup' => '<div>' . $creating_calendar . '</div>',
+     '#suffix' => '</div>',
+   ];
+
+   $form['availability_calendar']['#weight'] = -10;
+   $form['availability_calendar_title']['#weight'] = -11;
+
+   //add the handler sending custom html emails
+   //add the handler to the save button
+   $form["actions"]["submit"]["#submit"][] = 'sending_emails';
+
+   //add handler validation so that the booking does not overlap in time
+   $form['#validate'][] = 'room_custom_setting_validate_check_availability';
+};
+
+
+//calendar update handler at custom interval
+ function ajaxChangeCalendar(array &$form, FormStateInterface $form_state) {
+
+   $creating_calendar = null;
+   $style = null;
+
+   $date_current_value = new DrupalDateTime;
+   $events = get_events_calendar($form_state);
+   $events = $events ? $events : [];
+
+   switch ($form_state->getValue('navigation_calendar_select')) {
+     case 'month':
+       $query_current_result = query_current_result($form_state, ['month']);
+       $query_current_result = $query_current_result ? $query_current_result : [];
+       $creating_calendar = Calendar::getMonth($date_current_value->format('n'), $date_current_value->format('Y'), $events, $query_current_result);
+       break;
+     case 'months':
+       $query_current_result = query_current_result($form_state, ['months']);
+       $query_current_result = $query_current_result ? $query_current_result : [];
+       $creating_calendar = Calendar::getInterval($date_current_value->format('n.Y'), date('n.Y', strtotime('+2 month')), $events, $query_current_result);
+       break;
+     case 'year':
+       $query_current_result = query_current_result($form_state, ['year']);
+       $query_current_result = $query_current_result ? $query_current_result : [];
+       $creating_calendar = Calendar::getInterval($date_current_value->format('n.Y'), date('n.Y', strtotime('+11 month')), $events, $query_current_result);
+       break;
+     default:
+       $el_warning = '<div class="warning_calendar"><p>Something went wrong.</p></div>';
+   };
+
+   if (!empty($el_warning)) {
+     $response = new AjaxResponse();
+     $response->addCommand(new HtmlCommand('#custom_calendar', $el_warning));
+     return $response;
+   };
+
+   $creating_calendar = $form['availability_calendar']['custom_calendar'] = [
+     '#prefix' => '<div id="custom_calendar">',
+     '#markup' => '<div>' . $creating_calendar . '</div>',
+     '#suffix' => '</div>',
+   ];
+
+   return $creating_calendar;
+ };
+
+
+function ajaxValidateButtonChangeCalendar(array &$form, FormStateInterface $form_state) {
+
+  //Let's check that the entered data in the field for choosing
+  //interval calendar of an arbitrary period are correct
+  if (strtotime($form_state->getValue('choice_beginning_calendar')) == FALSE) {
+    $form_state->setErrorByName('choice_beginning_calendar', t('Please enter a correct value in the field'));
+  };
+  if (strtotime($form_state->getValue('choice_ending_calendar')) == FALSE) {
+    $form_state->setErrorByName('choice_ending_calendar', t('Please enter a correct value in the field'));
+  };
+};
+
+function ajaxButtonChangeCalendar(array &$form, FormStateInterface $form_state) {
+
+  //start making a calendar
+  $response = new AjaxResponse();
+  $date_current_value = new DrupalDateTime;
+
+  $beginning_calendar = strtotime($form_state->getValue('choice_beginning_calendar'));
+  $ending_calendar = strtotime($form_state->getValue('choice_ending_calendar'));
+  $month_current_value = strtotime($date_current_value->setDate($date_current_value->format('Y'), $date_current_value->format('m'), '01')->setTime('0','0','0','0'));
+
+  $alert_body = function($alert_message) {return '<div class="alert_calendar"><p>' . $alert_message . '</p></div>';};
+
+  //verification an selected is adequate period
+  if ($month_current_value > $beginning_calendar || $month_current_value > $ending_calendar) {
+    $alert_message = 'You cannot create an order in the past tense. Older for the month of "' . mb_strtoupper($date_current_value->format('F'), 'UTF-8') . '" this year.';
+    $response->addCommand(new HtmlCommand('#custom_calendar', $alert_body($alert_message)));
+    return $response;
+  };
+  if ($beginning_calendar > $ending_calendar) {
+    $alert_message = 'The start date cannot be less than the end date of the period.';
+    $response->addCommand(new HtmlCommand('#custom_calendar', $alert_body($alert_message)));
+    return $response;
+  };
+
+  $date_start_value = DrupalDateTime::createFromTimestamp($beginning_calendar);
+  $date_end_value = DrupalDateTime::createFromTimestamp($ending_calendar);
+
+  if (($date_check_surfeit = (clone $date_start_value)->modify('+11 month')) < $date_end_value){
+    $alert_message = 'The date interval is not more than 1 year.';
+    $response->addCommand(new HtmlCommand('#custom_calendar', $alert_body($alert_message)));
+    return $response;
+  };
+
+  $events = get_events_calendar($form_state);
+  $events = $events ? $events : [];
+
+  $query_current_result = query_current_result($form_state, [$date_start_value,$date_end_value]);
+  $query_current_result = $query_current_result ? $query_current_result : [];
+
+  $creating_calendar = Calendar::getInterval(date("n.Y", strtotime($date_start_value)), date("n.Y", strtotime($date_end_value)), $events, $query_current_result);
+
+  if ($creating_calendar) {
+  $response = $form['availability_calendar']['custom_calendar'] = [
+    '#prefix' => '<div id="custom_calendar">',
+    '#markup' => '<div>' . $creating_calendar . '</div>',
+    '#suffix' => '</div>',
+  ];
+  return $response;
+  };
+
+  $response->addCommand(new HtmlCommand('#custom_calendar', '<div class="warning_calendar"><p>This Unspecified error Be care!</p></div>'));
+  return $response;
+
+};
+
+
+// helper function
+function get_events_calendar(FormStateInterface $form_state) {
+  $events = [
+//    '26' => 'General cleaning',
+//    '08.03' => 'International Women\'s Day',
+//    '31.12' => 'New Year',
+//    '14.06.2021 15:07' => 'Opening hour',
+  ];
+  return $events;
+};
+
+// helper function creating a calendar
+// The arguments are $form_state to get the node id and array with start date or end date.
+// Array can also contain a string of 3 options 'month' 'months' 'year'
+function query_current_result(FormStateInterface $form_state, $date_queru) {
+
+  $date_current_value = new DrupalDateTime;
+
+  if (count($date_queru) === 1){
+    $query_start_date = (clone $date_current_value)->setDate($date_current_value->format('Y'), $date_current_value->format('m'), $date_current_value->format('d'))->setTime('0','0','0','0')->getTimestamp();
+    $query_end_date = NULL;
+  switch ($date_queru['0']) {
+    case 'month':
+      $query_end_date = (clone $date_current_value)->setDate($date_current_value->format('Y'), $date_current_value->format('m'), '01')->setTime('0','0','0','0')->modify('+1 month')->modify('-1 second')->getTimestamp();
+      break;
+    case 'months':
+      $query_end_date = (clone $date_current_value)->setDate($date_current_value->format('Y'), $date_current_value->format('m'), '01')->setTime('0','0','0','0')->modify('+3 month')->modify('-1 second')->getTimestamp();
+      break;
+    case 'year':
+      $query_end_date = (clone $date_current_value)->setDate($date_current_value->format('Y'), $date_current_value->format('m'), '01')->setTime('0','0','0','0')->modify('+11 month')->modify('-1 second')->getTimestamp();
+      break;
+    default:
+      return FALSE;
+  };
+  } elseif (count($date_queru) === 2) {
+    foreach ($date_queru as $k => $v) {
+      if (gettype($v) === 'integer'){$date_queru[$k] = DrupalDateTime::createFromTimestamp($v);
+      } elseif (gettype($v) === 'string'){$date_queru[$k] = DrupalDateTime::createFromTimestamp(strtotime($v));};
+      $date_queru[$k] = $v->setDate($v->format('Y'), $v->format('m'), '01')->setTime('0','0','0','0');
+    };
+    unset($v);
+    if ($date_queru['0'] == FALSE || $date_queru['1'] == FALSE) return FALSE;
+    usort($date_queru, function ($a, $b) {return strtotime($a) - strtotime($b);});
+    if ($date_queru['0']->format('m') == $date_current_value->format('m')) {
+      $query_start_date = $date_queru['0']->setDate($date_current_value->format('Y'), $date_current_value->format('m'), $date_current_value->format('d'))->getTimestamp();
+    } else {$query_start_date = $date_queru['0']->getTimestamp();};
+  $query_end_date = $date_queru['1']->modify('+1 month')->modify('-1 second')->getTimestamp();
+  } else {
+    return FALSE;
+  };
+
+  $nid = $form_state->getFormObject()->getEntity()->getReservationedEntityId();
+
+  $query = \Drupal::database()->select('reservation_field_data', 'rb');
+  $query->innerJoin('reservation__field_date_booking', 'bb', 'rb.cid = bb.revision_id AND rb.entity_id = :entity_id', array(':entity_id' => $nid));
+  $query->fields('bb', ['field_date_booking_value', 'field_date_booking_end_value']);
+
+  $group = $query->orConditionGroup();
+  $group->condition('bb.field_date_booking_value', [$query_start_date,$query_end_date], 'BETWEEN');
+  $group->condition('bb.field_date_booking_end_value', [$query_start_date,$query_end_date], 'BETWEEN');
+
+  $query->condition($group);
+  $result = $query->execute()->fetchAll();
+
+  $result = object_stdclass_to_array($result);
+  $result = array_preparation($result);
+
+  return $result;
+
+};
+
+//helper function
+function object_stdclass_to_array($d) {
+  if (is_object($d)) {
+    $d = get_object_vars($d);
+  };
+
+  if (is_array($d)) {
+    return array_map(__FUNCTION__, $d);
+  } else {
+    return $d;
+  };
+};
+
+//helper function
+function array_preparation ($arr_p) {
+
+  if (is_array($arr_p)) {
+
+    $array_training = [];
+    foreach ($arr_p as $v) {
+      $temp = array_values($v);
+      sort($temp, SORT_NUMERIC);
+      if (array_key_exists(DrupalDateTime::createFromTimestamp($temp['0'])->format('d.m.Y'), $array_training)) {
+      $test_on_continuing = $array_training[DrupalDateTime::createFromTimestamp($temp['0'])->format('d.m.Y')];
+      if ($test_on_continuing){
+        $test_value = DrupalDateTime::createFromTimestamp($temp['0'])->format('H:i');
+        foreach ($test_on_continuing as $k => $kv) {
+          if (stripos($kv, $test_value, 6) !== FALSE) {
+            $continuation = strstr($kv, $test_value, true);
+          };
+        };
+        unset($test_on_continuing);
+      };
+      };
+      while (DrupalDateTime::createFromTimestamp($temp['0'])->diff(DrupalDateTime::createFromTimestamp($temp['1']))->format("%a")) {
+        if (!empty($continuation)){
+          $array_training[DrupalDateTime::createFromTimestamp($temp['0'])->format('d.m.Y')][$k] = $continuation . '23:59';
+          unset($continuation);
+        } else {
+          $array_training[DrupalDateTime::createFromTimestamp($temp['0'])->format('d.m.Y')][] = DrupalDateTime::createFromTimestamp($temp['0'])->format('H:i') . '-' . '23:59';
+        };
+        $temp['0'] = DrupalDateTime::createFromTimestamp($temp['0'])->modify('00:00 tomorrow')->getTimestamp();
+      };
+      if (!empty($continuation)){
+        $array_training[DrupalDateTime::createFromTimestamp($temp['0'])->format('d.m.Y')][$k] = $continuation . DrupalDateTime::createFromTimestamp($temp['1'])->format('H:i');
+        unset($continuation);
+      } else {
+      $array_training[DrupalDateTime::createFromTimestamp($temp['0'])->format('d.m.Y')][] = DrupalDateTime::createFromTimestamp($temp['0'])->format('H:i') . '-' . DrupalDateTime::createFromTimestamp($temp['1'])->format('H:i');
+      };
+    };
+    foreach ($array_training as &$v) {sort($v, SORT_NATURAL);};
+    return $array_training;
+  };
+  return FALSE;
+};
+
+
+function room_custom_setting_field_widget_single_element_smartdate_default_form_alter(array &$element,
+ \Drupal\Core\Form\FormStateInterface $form_state, array $context) {
+
+  $nid = $form_state->getFormObject()->getEntity()->getReservationedEntityId();
+
+  $query = \Drupal::database()->select('reservat_custom_each', 'b');
+  $query->fields('b', ['increment', 'duration']);
+  $query->condition('b.nid', $nid);
+  $result = $query->execute()->fetchAll();
+
+  if ($result) {
+    $increment = $result['0']->increment;
+    $increment = preg_split('/\r\n|\n|\r/', $increment);
+    $arr_increment = array();
+    foreach ($increment as $k => $v) {
+      if (strpos($v, '|') === false) {
+        if (!mb_detect_encoding($v, 'UTF-8', true)) {
+          $arr_increment[$v] = t(ucfirst(mb_convert_encoding($v, 'UTF-8', 'auto')));
+        }
+        // $arr_increment[$v] = t(ucfirst(utf8_encode($v)));
+        continue;
+      };
+      $temp = explode('|', $v);
+      $arr_increment[$temp[0]] = $temp[1];
+    }
+
+    $element['duration']['#options'] = $arr_increment ? $arr_increment : ['60' => "1 hour", 'custom' => t('custom')];
+
+    $duration = intval($result['0']->duration);
+    $element['duration']['#default_value'] = $duration ? $duration : '60';
+    $element['duration']['#attributes']['data-default'] = $duration ? $duration : '60';
+  }
+
+  RemoveButton::create_delete_button($element, $form_state, $context);
+}
+
+//A versatile way to add a wrapper to a button
+/**
+ * Implements hook_element_info_alter().
+ */
+function room_custom_setting_element_info_alter(array &$info) {
+  if (isset($info['container'])) {
+    $info['container']['#process'][] = 'multiple_fields_remove_button_process_container';
+  }
+};
+
+/**
+ * Add correct wrapper to the element.
+ *
+ * @param array $element
+ *  Reference to the Form API form element we're operating on.
+ *
+ * @return array
+ *   Array element.
+ */
+function multiple_fields_remove_button_process_container(&$element) {
+  if (isset($element['widget']['add_more']['#ajax']['wrapper'])) {
+    $children = Element::children($element['widget']);
+    $wrapperId = $element['widget']['add_more']['#ajax']['wrapper'];
+
+    foreach ($children as $child) {
+      if (isset($element['widget'][$child]['remove_button'])) {
+        $element['widget'][$child]['remove_button']['#ajax']['wrapper'] = $wrapperId;
+      }
+    }
+  }
+  else if (isset($element['widget'][0]['remove_button'])) {
+    $children = Element::children($element['widget']);
+    foreach ($children as $child) {
+      if (isset($element['widget'][$child]['remove_button'])) {
+        $element['widget'][$child]['remove_button']['#ajax']['wrapper'] = $element['#id'];
+      }
+    }
+  }
+  return $element;
+};
+
+//
+//      Sorting reservations
+//
+
+//Hide in settings for anonymous
+//For registered hide with a past date including:
+//For the author (client), show only your orders
+//Show all current orders for the administrator and owner
+
+/**
+ * Implements hook_query_TAG_alter().
+ *
+ */
+function room_custom_setting_query_reservation_filter_alter(AlterableInterface $query) {
+  //field for sorting
+  $field_order = "field_date_booking";
+
+  $date_current_value = ( new DrupalDateTime)->getTimestamp();
+  $uid = \Drupal::currentUser()->id();
+
+  if(get_class($query) == "Drupal\\Core\\Database\\Query\\PagerSelectExtender"){
+
+    $query->leftJoin('reservation__'.$field_order, 'o', 'o.entity_id = c.cid');
+    $query->condition('o.'.$field_order.'_end_value', $date_current_value, '>=');
+
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $node_owner_id = $node->getOwnerId();
+    if (!\Drupal::currentUser()->hasPermission('bypass node access') && $uid != $node_owner_id) {
+      $query->condition('c.uid', $uid, '=');
+    };
+    };
+  };
+};
+
+
+//
+//         Sending emails
+//
+
+function sending_emails($form, FormStateInterface $form_state) {
+
+  //get user administrator or manager
+  $accounts['admin']['source'] = \Drupal\user\Entity\User::load(1);
+  //get user owner of a node or zaal
+  $accounts['owner']['source'] = $form_state->getFormObject()->getEntity()->getReservationedEntity()->getOwner();
+  //current node
+  $page['curent_page']['source'] = $form_state->getFormObject()->getEntity()->getReservationedEntity();
+  //current order
+  $reservation['curent_order']['source'] = $form_state->getFormObject()->getEntity();
+
+  //send email letters to the owner of the node, the author of the order and the site manager
+  // \Drupal::service('room_custom_setting.user_owner_mail')->send($accounts, $page, $reservation);
+  \Drupal::service('room_custom_setting.user_manager_mail')->send($accounts, $page, $reservation);
+  // \Drupal::service('room_custom_setting.user_author_mail')->send($accounts, $page, $reservation);
+};
+
+//validation of the order form so that orders do not coincide in time
+function room_custom_setting_validate_check_availability($form, FormStateInterface $form_state) {
+  if (0) {
+    $form_state->setErrorByName('field_date_booking', t('The value is validate_check_availability'));
+  };
+};
+

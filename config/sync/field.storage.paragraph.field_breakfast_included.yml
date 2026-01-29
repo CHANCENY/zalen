@@ -1,0 +1,18 @@
+uuid: acf75776-89c2-4d56-8c31-7fee4765a320
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_breakfast_included
+field_name: field_breakfast_included
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

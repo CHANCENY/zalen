@@ -1,0 +1,21 @@
+uuid: 1d78dbf1-5001-42e1-bf3c-abdbd67d80ea
+langcode: en
+status: true
+dependencies: {  }
+name: person_options
+label: 'Person Options(150 x 150)'
+effects:
+  433897bd-6c28-404d-934c-0895d31f042f:
+    uuid: 433897bd-6c28-404d-934c-0895d31f042f
+    id: image_convert
+    weight: -9
+    data:
+      extension: webp
+  1fd6025c-4d35-408c-8e9c-c7fa81573eb2:
+    uuid: 1fd6025c-4d35-408c-8e9c-c7fa81573eb2
+    id: image_scale_and_crop
+    weight: -10
+    data:
+      width: 150
+      height: 150
+      anchor: center-center

@@ -1,0 +1,38 @@
+uuid: e45b0590-2e6b-4d7b-a1b2-2f3fd06f37ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overnight_room_image
+    - paragraphs.paragraphs_type.sleeping_accommodation_room
+  module:
+    - image
+id: paragraph.sleeping_accommodation_room.field_overnight_room_image
+field_name: field_overnight_room_image
+entity_type: paragraph
+bundle: sleeping_accommodation_room
+label: Image
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: false
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

@@ -1,0 +1,24 @@
+uuid: bb86c62b-b695-4c3d-ac1d-3399f1e8348c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prijs_eenheid
+    - node.type.zaal
+  module:
+    - room_tariff
+id: node.zaal.field_prijs_eenheid
+field_name: field_prijs_eenheid
+entity_type: node
+bundle: zaal
+label: 'Unit prices'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: ''
+  use_converter: 1
+  currency_handle: convert
+field_type: room_tariff

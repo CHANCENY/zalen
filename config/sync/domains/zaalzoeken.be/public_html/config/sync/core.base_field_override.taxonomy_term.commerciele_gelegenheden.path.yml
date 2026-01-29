@@ -1,0 +1,20 @@
+uuid: 22e9faf5-e5b7-4f94-a67b-51212e4395bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.commerciele_gelegenheden
+  module:
+    - path
+id: taxonomy_term.commerciele_gelegenheden.path
+field_name: path
+entity_type: taxonomy_term
+bundle: commerciele_gelegenheden
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

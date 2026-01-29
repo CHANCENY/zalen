@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {% if content.description %}
+    <title>{{ content.description }}</title>
+  {% endif %}
+</head>
+<body style="font-family: Arial, sans-serif; color: #333; margin: 2em;">
+<h1 style="color: #444;">Invoice</h1>
+
+<div class="header" style="margin-top: 2em;">
+  <p><strong>Invoice Number:</strong> {{ content.invoice_number }}</p>
+  <p><strong>Issue Date:</strong> {{ content.date }}</p>
+  <p><strong>Supplier:</strong> {{ content.billed_from.name }}<br>
+    {{ content.billed_from.email }}<br>
+  </p>
+
+  <p><strong>Billed To:</strong><br>
+    {{ content.billed_to.name }}<br>
+    {{ content.billed_to.address.0.address_line1 }}<br>
+    {{ content.billed_to.address.0.postal_code }} {{ content.billed_to.address.0.locality }}, {{ getCountry(content.billed_to.address.0.country_code) }}</p>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+  <thead>
+  <tr>
+    <th style="padding: 10px; border: 1px solid #ccc; text-align: left;">Description</th>
+    <th style="padding: 10px; border: 1px solid #ccc; text-align: left;">Unit Price (Excl. VAT)</th>
+    <th style="padding: 10px; border: 1px solid #ccc; text-align: left;">VAT (21%)</th>
+    <th style="padding: 10px; border: 1px solid #ccc; text-align: left;">Total (Incl. VAT)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td style="padding: 10px; border: 1px solid #ccc; text-align: left;">{{ content.description }}</td>
+    <td style="padding: 10px; border: 1px solid #ccc; text-align: left;">{{ getCurrencySymbol(content.currency) }}{{ content.rates.price_excl_vat }}</td>
+    <td style="padding: 10px; border: 1px solid #ccc; text-align: left;">{{ getCurrencySymbol(content.currency) }}{{ content.rates.vat_amount }}</td>
+    <td style="padding: 10px; border: 1px solid #ccc; text-align: left;">{{ getCurrencySymbol(content.currency) }}{{ content.rates.total }}</td>
+  </tr>
+  <tr style="font-weight: bold; background-color: #f9f9f9;">
+    <td colspan="3" style="padding: 10px; border: 1px solid #ccc; text-align: left;">Total Amount Due</td>
+    <td style="padding: 10px; border: 1px solid #ccc; text-align: left;">{{ getCurrencySymbol(content.currency) }}{{ content.rates.total }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="footer" style="margin-top: 2em;">
+  <p>
+    <strong>Reference:</strong>  {{ content.invoice_number }}
+  </p>
+  <p><em>This invoice includes 21% VAT according to Belgian tax regulations.</em></p>
+</div>
+
+</body>
+</html>

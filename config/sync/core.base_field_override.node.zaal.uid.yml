@@ -1,0 +1,20 @@
+uuid: be93c3c2-35fe-47e9-a51f-da4d3900b4ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.zaal
+id: node.zaal.uid
+field_name: uid
+entity_type: node
+bundle: zaal
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

@@ -1,0 +1,14 @@
+uuid: e2592d78-95b9-48a6-8895-ffa033ba112b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.adverteerder
+  module:
+    - user
+id: user_add_role_action.adverteerder
+label: 'Add the Adverteerder role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: adverteerder

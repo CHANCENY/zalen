@@ -1,0 +1,23 @@
+uuid: ee2a79e9-e4cb-4bc9-9960-d1c86dd3f93d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_beperkingen
+    - node.type.bedrijf
+id: node.bedrijf.field_beperkingen
+field_name: field_beperkingen
+entity_type: node
+bundle: bedrijf
+label: 'Suitable for people with disabilities'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Mindervaliden
+  off_label: X
+field_type: boolean

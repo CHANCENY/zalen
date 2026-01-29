@@ -1,0 +1,18 @@
+uuid: bea3f365-dd20-4c05-b323-e50844b01dc2
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.faciliteiten_algemeen
+id: taxonomy_term.faciliteiten_algemeen.name
+field_name: name
+entity_type: taxonomy_term
+bundle: faciliteiten_algemeen
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

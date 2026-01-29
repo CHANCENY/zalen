@@ -1,0 +1,15 @@
+uuid: bf8151da-76d8-4d7a-bfcf-b6b1cf968f9c
+langcode: en
+status: true
+dependencies: {  }
+name: mini_thumbnail_70_x_70_
+label: 'Mini thumbnail (70 x 70)'
+effects:
+  b658ce9b-026b-4838-9746-08360b2e3ee0:
+    uuid: b658ce9b-026b-4838-9746-08360b2e3ee0
+    id: image_scale
+    weight: 1
+    data:
+      width: 70
+      height: 70
+      upscale: true

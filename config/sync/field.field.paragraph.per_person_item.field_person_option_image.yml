@@ -1,0 +1,38 @@
+uuid: faa6f207-853f-433f-abec-d73096c5e0a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_person_option_image
+    - paragraphs.paragraphs_type.per_person_item
+  module:
+    - image
+id: paragraph.per_person_item.field_person_option_image
+field_name: field_person_option_image
+entity_type: paragraph
+bundle: per_person_item
+label: 'Person option image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: false
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

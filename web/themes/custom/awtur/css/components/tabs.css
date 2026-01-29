@@ -1,0 +1,109 @@
+/* --------------- System Tabs  --------------- */
+
+/*
+    --brand-color: #BD8100;
+    --form-color: #fffff1;
+    --text-color: #000;
+    --pure-white: #fff;
+    --light-wood: #be8c5033;
+    --form-button: sienna;
+*/
+
+nav.tabs {
+    margin-bottom: 32px;
+    justify-items: center;
+}
+.tabs ul.primary li.is-active a {
+  border: none;
+  background-color: #fff;
+}
+.tabs ul.primary li a:hover {
+  background: #e6caa2;
+}
+div#block-awtur-local-tasks ul.primary li a.is-active {
+  color: var(--brand-color);
+  border-bottom: 3px solid var(--brand-color);
+  border-radius: 0;
+}
+.tabs ul.primary li a {
+  color: #8A8A8A;
+  font-size: clamp(0.875rem, 0.7574rem + 0.5882vw, 1.125rem);
+  letter-spacing: 1px;
+  display: flex;
+ }
+.tabs.primary {
+    display: flex;
+    flex-wrap: wrap;          
+    /*gap: 8px;                 */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .tabs.primary li {
+    flex: 1 1 auto;   
+    justify-items: start;        
+  }
+  .tabs.primary a {
+    display: block;
+    padding: 10px 14px;
+    text-align: center;
+    text-decoration: none;
+  }
+  .tabs.primary li.is-active a {
+    background: #2F9BFF;
+    color: var(--brand-color);
+    border-color: #2F9BFF;
+  }
+  .tabs.primary a:hover {
+    background: #eaeaea;
+  }
+
+/*-----------Tabs for the node edit pages-------------*/
+
+.pages-edit-add-node .tabs.primary a {
+  position: relative;
+  padding-left: 28px; 
+  line-height: 1.4;
+}
+.pages-edit-add-node .tabs.primary a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.pages-edit-add-node .tabs.primary li:nth-child(1) a::before {
+  background-image: url("../../images/icons/form/view-content-icon-grey.svg");
+}
+.pages-edit-add-node .tabs.primary li:nth-child(1).is-active a::before {
+  background-image: url("../../images/icons/form/view-content-icon-gold.svg");
+}
+.pages-edit-add-node .tabs.primary li:nth-child(2) a::before {
+  background-image: url("../../images/icons/form/edit-icon-grey.svg");
+}
+.pages-edit-add-node .tabs.primary li:nth-child(2).is-active a::before {
+  background-image: url("../../images/icons/form/edit-icon-gold.svg");
+}
+.pages-edit-add-node .tabs.primary li:nth-child(3) a::before {
+  background-image: url("../../images/icons/form/recycle-bin-icon-grey.svg");
+}
+.pages-edit-add-node .tabs.primary li:nth-child(3).is-active a::before {
+  background-image: url("../../images/icons/form/recycle-bin-icon-gold.svg");
+}
+.pages-edit-add-node .tabs.primary li:nth-child(4) a::before {
+  background-image: url("../../images/icons/form/revision-icon-grey.svg");
+}
+.pages-edit-add-node .tabs.primary li:nth-child(4).is-active a::before {
+  background-image: url("../../images/icons/form/revision-icon-gold.svg");
+}
+.pages-edit-add-node .tabs.primary li:nth-child(5) a::before {
+  background-image: url("../../images/icons/form/translate-icon-grey.svg");
+}
+.pages-edit-add-node .tabs.primary li:nth-child(5).is-active a::before {
+  background-image: url("../../images/icons/form/translate-icon-gold.svg");
+}

@@ -1,0 +1,29 @@
+uuid: 423bf927-cc42-4abc-8daa-a5c0a1013636
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_comercielegelegenheden
+    - node.type.zaal
+    - taxonomy.vocabulary.commerciele_gelegenheden
+id: node.zaal.field_comercielegelegenheden
+field_name: field_comercielegelegenheden
+entity_type: node
+bundle: zaal
+label: 'Commercial occupations'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      commerciele_gelegenheden: commerciele_gelegenheden
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

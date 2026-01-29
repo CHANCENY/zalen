@@ -1,0 +1,237 @@
+# Schema for the configuration files of the Reservation module.
+reservation.settings:
+  type: config_object
+  label: 'Reservation settings'
+  mapping:
+    log_ip_addresses:
+      type: boolean
+      label: 'Whether to log IP addresses with reservations or not.'
+
+field.formatter.settings.reservation_default:
+  type: mapping
+  label: 'Reservation display format settings'
+  mapping:
+    view_mode:
+      type: string
+      label: 'The reservation entity view mode to be used in this formatter'
+    pager_id:
+      type: integer
+      label: 'Pager ID'
+
+field.widget.settings.reservation_default:
+  type: mapping
+  label: 'Reservation display format settings'
+
+action.configuration.reservation_unpublish_by_keyword_action:
+  type: mapping
+  label: 'Unpublish reservation containing keyword(s) configuration'
+  mapping:
+    keywords:
+      type: sequence
+      label: 'Keywords'
+      sequence:
+        type: string
+        label: 'Keyword'
+
+reservation.type.*:
+  type: config_entity
+  label: 'Reservation type settings'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    target_entity_type_id:
+      type: string
+      label: 'Target Entity Type ID'
+    description:
+      type: text
+      label: 'Description'
+
+field.storage_settings.reservation:
+  type: mapping
+  label: 'Reservation settings'
+  mapping:
+    reservation_type:
+      label: 'Reservation type'
+      type: string
+
+field.value.reservation:
+  type: mapping
+  label: 'Default value'
+  mapping:
+    status:
+      type: integer
+      label: 'Reservation status'
+    cid:
+      type: integer
+      label: 'Last reservation ID'
+    last_reservation_timestamp:
+      type: integer
+      label: 'Last reservation timestamp'
+    last_reservation_name:
+      type: integer
+      label: 'Last reservation name'
+    last_reservation_uid:
+      type: integer
+      label: 'Last reservation user ID'
+    reservation_count:
+      type: integer
+      label: 'Number of reservations'
+
+field.field_settings.reservation:
+  type: mapping
+  label: 'Reservation settings'
+  mapping:
+    default_mode:
+      type: integer
+      label: 'Threading'
+    per_page:
+      type: integer
+      label: 'Reservations per page'
+    anonymous:
+      type: integer
+      label: 'Mode'
+    form_location:
+      type: boolean
+      label: 'Allow reservation title'
+    preview:
+      type: integer
+      label: 'Preview reservation'
+
+field.formatter.settings.reservation_permalink:
+  type: field.formatter.settings.string
+
+# Chance from here
+reservation.notify_email_of_booking_event:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+reservation.notify_email_payment_received:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
+reservation.notify_email_payment_instructions_sent:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
+reservation.not_instance_booking_done_email:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
+reservation.instance_booking_done_email:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
+reservation.payment_instruction_email:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
+
+reservation.paid_via_mollie_email:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
+reservation.organizer_reservation_canceled:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
+reservation.payment_not_received_email:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
+reservation.one_time_subscription_email:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
+reservation.subscription_email_one_time:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+reservation.magnus_reservation_paid_subscription_email:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'      

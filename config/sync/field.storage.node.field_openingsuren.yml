@@ -1,0 +1,19 @@
+uuid: fdd5f56f-ce3e-4395-aa6b-3fd45d4b8283
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - opentime
+id: node.field_openingsuren
+field_name: field_openingsuren
+entity_type: node
+type: opening_hours
+settings: {  }
+module: opentime
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

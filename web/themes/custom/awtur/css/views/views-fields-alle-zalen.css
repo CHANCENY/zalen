@@ -1,0 +1,223 @@
+.view-content {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-around;
+    column-gap: clamp(0.1875rem, -0.1322rem + 2.1311vw, 1rem);
+    row-gap: 56px;
+    margin: 0 4px;
+}
+@media (max-width: 549px) {
+    .view-content {
+      grid-template-columns: auto; 
+    }
+  }
+.alle-zalen-view {
+  max-width: 370px;
+  height: 100%;
+  border-radius: 0 0 8px 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+/*general header*/
+section .page-title {
+  margin-top: 60px;
+  border-bottom: 2px #bbb solid;
+}
+/*count of teasers*/
+.view-header {
+  padding: 3px 22px;
+  font-weight: bold;
+  text-align: end;
+}
+/*pager*/
+ul > li.pager__item {
+  margin: 4px;
+  padding: 4px 16px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #0B96DA;
+  border-radius: 8px;
+}
+.pager__item a:hover {
+  border-bottom-color: transparent;
+  background-color: #ddd;
+  transition: background-color 0.3s;
+}
+.alle-zalen-img img {
+  position: relative;  
+  border-radius: 8px 8px 0 0;
+}
+/*-----Bedrijf label-----*/
+.alle-zalen-label-foto h2 {
+  font-size: clamp(0.6875rem, 0.6137rem + 0.4918vw, 0.875rem) !important;  
+  background-color: #374151;
+  color: #CCCCCC;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 4px 8px;
+  position: relative;
+  top: 36px;
+  margin-top: -28px;
+  float: right;
+  margin-right: 8px;
+  z-index: 1;
+}
+.alle-zalen-label-city-price {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  bottom: 68px;
+  margin-bottom: -52px;
+  height: 62px;
+}
+.alle-zalen-label-city {
+  color: #CCCCCC;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.70), transparent);
+  width: fit-content;
+  padding: 4px 12px;
+  border-radius: 0 8px 0 0  
+}
+.alle-zalen-price {
+    background-color: #ff5f5f;
+    padding: 4px 12px; 
+    width: fit-content;
+    color: white;
+    border-radius: 8px 0 0 0  
+}
+.price-vanaf {
+  font-size: clamp(0.8125rem, 0.7138rem + 0.6579vw, 1.125rem);
+  font-weight: bold;
+}
+.price-variation {
+  font-size: clamp(0.625rem, 0.5658rem + 0.3947vw, 0.8125rem);
+}
+.alle-zalen-zaallabel {
+    font-size: clamp(0.8125rem, 0.7138rem + 0.6579vw, 1.125rem); /*240-13px; 1300-18px*/
+    font-weight: 600;
+}
+.alle-zalen-label-city a {
+    color: #CCCCCC;
+}
+
+.alle-zalen-city {
+  font-size: clamp(0.625rem, 0.5658rem + 0.3947vw, 0.8125rem);
+  text-transform: capitalize;
+}
+.alle-zalen-city::before {
+  content: url(../../images/icons/location-icon.svg);
+}
+/*-----Gelegenheden ( occasions )-----*/
+.alle-zalen-gelegenheden-lijst{
+  display: flex;   
+  flex-wrap: wrap;
+  justify-content: left; 
+}
+.alle-zalen-gelegenheden-lijst li {
+  list-style: none;
+  font-size: 13px;
+  margin-right: 2px;
+  letter-spacing: 0.2px;
+}
+.alle-zalen-gelegenheden-lijst li::before {
+ content: "\2022";
+ color: #ff5f5f;
+ font-weight: bold;
+ margin-left: 4px;
+}
+/*-----Capaciteit-troeven-----*/
+.alle-zalen-capaciteit-troeven {
+  display: flex; 
+  justify-content: space-between;
+  align-items: center; 
+}
+.alle-zalen-capaciteit {
+  display: inline-flex; 
+  color: #CCCCCC; 
+  background-color: #374151;
+  width: fit-content;
+  border-radius: 0 20px 20px 0;
+  padding: 4px 16px 4px 8px;
+  font-size: clamp(0.625rem, 0.5658rem + 0.3947vw, 0.8125rem);
+}
+.alle-zalen-bullet {
+  color: #C58F14;
+  font-weight: bold;  
+  margin: 4px;
+}
+.views-row .features > div {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #baceae;
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    margin-right: 5px;
+    background-color: #fff7ec;
+    border: 1px #e4ceae solid;
+    border-radius: 18px;
+    transition: 0.3s;
+}
+.views-row .features > div:hover {
+    background-color: navajowhite;
+    border: 1px #FF9800 solid;
+    box-shadow: 0px 3px 3px 0px rgba(255, 152, 0, 0.3);
+}
+.views-row .features p {
+    display: none;
+}
+.views-row .features > div:hover p {
+    display: block;
+    position: absolute;
+    margin-top: -30px;
+    padding: 1px 10px;
+    font-size: 12px;
+    color: #fff;
+    white-space: nowrap;
+    background: #555;
+    border-bottom: 2px #FF9800 solid;
+    border-radius: 8px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, 10%);
+}
+.views-row .features > div p:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: rgba(0, 0, 0, 0.2);
+    /* top: 0; */
+    bottom: 10px;
+    left: 50%;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+    border-width: 11px 14px 0 14px;
+    transform: translate(0%, 20px);
+}
+.views-row .features > div:last-child:hover p {/*fix width last element*/
+    transform: translate(-48%, 0px);
+}
+.views-row .features > div.field-nabij-bushalte {
+    background-image: url(../../images/icons/features-busstop.svg);
+}
+.views-row .features > div.field-nabij-metrohalte {
+    background-image: url(../../images/icons/features-metro.svg);
+}
+.views-row .features > div.field-nabij-tramhalte {
+    background-image: url(../../images/icons/features-tram.svg);
+}
+.views-row .features > div.field-nabij-trein-station {
+    background-image: url(../../images/icons/features-train.svg);
+}
+.views-row .features > div.field-kindvriendelijk {
+    background-image: url(../../images/icons/features-child-friendly.svg);
+}
+.views-row .features > div.field-groen-label {
+    background-image: url(../../images/icons/features-eco-friendly.svg);
+}
+.views-row .features > div.field-beperkingen {
+    background-image: url(../../images/icons/features-restrictions.svg);
+}
+
+

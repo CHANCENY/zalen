@@ -1,0 +1,18 @@
+uuid: f7eee413-55bb-47bf-9b16-e7e935c524cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bedrijf
+id: node.bedrijf.created
+field_name: created
+entity_type: node
+bundle: bedrijf
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

@@ -1,0 +1,14 @@
+uuid: 1b01c789-8795-47a5-9b24-cc1aa58f1564
+langcode: en
+status: true
+dependencies: {  }
+name: raam
+label: Raam
+effects:
+  586b2c83-756d-484c-bdce-f235c3a4dcc8:
+    uuid: 586b2c83-756d-484c-bdce-f235c3a4dcc8
+    id: image_resize
+    weight: 1
+    data:
+      width: 162
+      height: 100

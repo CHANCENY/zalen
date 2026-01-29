@@ -1,0 +1,19 @@
+uuid: 655279ec-9759-42ae-bada-683a5bef67dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_person_item_description
+field_name: field_person_item_description
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

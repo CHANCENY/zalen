@@ -1,0 +1,27 @@
+uuid: 4077703f-db43-4ea4-916a-76e6f89ddcfa
+langcode: nl
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - awtur
+_core:
+  default_config_hash: 8a31Ywc1t2zlddGd3bmDrFMefWqgSK2E02ceFdr-bfc
+id: awtur_account_menu
+theme: awtur
+region: secondary_menu
+weight: -12
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: Gebruikersmenu
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

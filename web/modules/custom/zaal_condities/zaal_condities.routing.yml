@@ -1,0 +1,117 @@
+zaal_condities.user.magnus_registratie:
+  path: '/magnus-registratie'
+  defaults:
+    _entity_form: 'user.register'
+    _title: 'Magnus registratie'
+  requirements:
+    _access_user_register: 'TRUE'
+
+zaal_condities.user.standaard_registratie:
+  path: '/standaard-registratie'
+  defaults:
+    _entity_form: 'user.registratie_standaard'
+    _title: 'Standaard bedrijf opname'
+  requirements:
+    _role: 'anonymous'
+
+zaal_condities.user.vip_registratie:
+  path: '/vip-registratie'
+  defaults:
+    _entity_form: 'user.registratie_vip'
+    _title: 'VIP bedrijf opname'
+  requirements:
+    _access_user_register: 'TRUE'
+
+zaal_condities.user.edit_bedrijf:
+ path: '/user/{user}/extra-bedrijfsgegevens'
+ defaults:
+   _entity_form: user.additioneel
+   _title: 'Bedrijfsgegevens'
+ requirements:
+   _role: 'administrator + premium_zaal + zaal_eigenaar'
+ options:
+   user: /d+
+
+zaal_condities.user.edit_profiel:
+ path: '/user/{user}/zalen-beheer'
+ defaults:
+   _entity_form: user.avatar
+   _title: 'Mijn zalen beheren'
+ requirements:
+   _user_is_logged_in: 'TRUE'
+ options:
+   user: /d+
+
+zaal_condities.user.verander_rol:
+ path: '/user/{user}/verander-rol'
+ defaults:
+   _entity_form: user.rol
+   _title: 'Account wijzigen'
+ requirements:
+   _role: 'administrator + magnus + zaal_eigenaar'
+ options:
+   user: /d+
+
+zaal_condities.user.reservaties_mijn_zalen:
+ path: '/user/{user}/mijn-zaal-reservaties'
+ defaults:
+   _controller: '\Drupal\zaal_condities\Controller\zaalConditiesMijnReservaties::content'
+   _title: 'Zaal reservaties'
+ requirements:
+   _role: 'administrator + premium_zaal + zaal_eigenaar'
+ options:
+   user: /d+
+
+zaal_condities.user.mijn_zalen_beheren:
+ path: '/user/{user}/mijn-zalen-beheren'
+ defaults:
+   _controller: '\Drupal\zaal_condities\Controller\zaalConditiesZaalBeheer::content'
+   _title: 'Mijn zalen'
+ requirements:
+   _role: 'administrator + premium_zaal + zaal_eigenaar'
+ options:
+   user: /d+
+
+zaal_condities.user.user_content_beheer:
+ path: '/user/{user}/mijn-inhoud-overzicht'
+ defaults:
+   _controller: '\Drupal\zaal_condities\Controller\zaalConditiesInhoudOverzicht::content'
+   _title: 'Overzicht inhoud'
+ requirements:
+   _role: 'administrator + premium_zaal + zaal_eigenaar'
+ options:
+   user: /d+
+
+zaal_condities.changes_user_role:
+  path: '/zaal-condities/changes-user-role'
+  defaults:
+    _title: 'Changes User Role'
+    _controller: '\Drupal\zaal_condities\Controller\ChangesUserRole'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: true
+    user: /d+
+
+zaal_condities.capacity_selection:
+  path: '/vip-capacity-selection'
+  defaults:
+    _title: 'Capacity Selection'
+    _form: 'Drupal\zaal_condities\Form\CapacitySelectionForm'
+  requirements:
+    _permission: 'access content'
+    _role: 'magnus + zaal_eigenaar + premium_zaal + administrator'
+  options:
+    no_cache: true
+
+
+zaal_condities.standard_payment:
+  path: '/become-standard-user'
+  defaults:
+    _title: 'Become Standard'
+    _form: 'Drupal\zaal_condities\Form\StandardPaymentForm'
+  requirements:
+    _permission: 'access content'
+    _role: 'magnus + zaal_eigenaar'
+  options:
+    no_cache: true

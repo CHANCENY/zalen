@@ -1,0 +1,80 @@
+/**
+ * @file
+ * Visual styles for AWTur's region page--front.html.twig.
+ */
+
+/*region wrapper*/
+@media all and (min-width: 851px) {
+    .layout-main .main-content {
+      position: relative;
+      float: none; /* LTR */
+    }
+    [dir="rtl"] .layout-main .main-content {
+      float: none;
+    }
+    .layout-two-sidebars .layout-main .main-content {
+      width: 100%;
+      margin-right: 5%;
+      margin-left: 5%;
+    }
+    .layout-one-sidebar .layout-main .main-content {
+      width: 100%;
+    }
+    .layout-no-sidebars .layout-main .main-content {
+      width: 100%;
+    }
+    .layout-sidebar-first .layout-main .main-content {
+      margin-right: 0; /* LTR */
+      margin-left: 0%; /* LTR */
+    }
+    [dir="rtl"] .layout-sidebar-first .layout-main .main-content {
+      margin-right: 0%;
+      margin-left: 0;
+    }
+    .layout-sidebar-second .layout-main .main-content {
+      margin-right: 0%; /* LTR */
+      margin-left: 0; /* LTR */
+    }
+    [dir="rtl"] .layout-sidebar-second .layout-main .main-content {
+      margin-right: 0;
+      margin-left: 0%;
+    }
+}
+@media all and (min-width: 560px) {
+    .layout-main .sidebar {
+      position: relative;
+      float: left; /* LTR */
+      width: 100%;
+    }
+    [dir="rtl"] .layout-main .sidebar {
+      float: right;
+    }
+    .layout-one-sidebar .layout-main .sidebar {
+      width: 100%;
+    }
+}
+@media all and (min-width: 851px) {
+    .layout-one-sidebar .layout-main .sidebar {
+      width: 100%;
+    }
+    #sidebar-first.sidebar {
+      width: 100%;
+      margin-left: 0%; /* LTR */
+    }
+    [dir="rtl"] #sidebar-first.sidebar {
+      margin-right: 0%;
+      margin-left: 0;
+    }
+    #sidebar-second.sidebar {
+      clear: none;
+      width: 100%;
+      margin-left: 0%; /* LTR */
+    }
+    [dir="rtl"] #sidebar-second.sidebar {
+      margin-right: 0%;
+      margin-left: 0;
+    }
+}
+
+
+

@@ -1,0 +1,21 @@
+uuid: ab3816d0-eae8-461e-9093-4c87a8278759
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_regels
+    - node.type.zaal
+  module:
+    - room_tariff
+id: node.zaal.field_regels
+field_name: field_regels
+entity_type: node
+bundle: zaal
+label: 'Price rules'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: tariff_rules

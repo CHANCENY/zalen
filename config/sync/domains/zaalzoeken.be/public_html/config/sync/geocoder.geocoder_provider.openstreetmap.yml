@@ -1,0 +1,14 @@
+uuid: 3d9048bd-646a-4a07-b611-d5d503fb0124
+langcode: en
+status: true
+dependencies: {  }
+id: openstreetmap
+label: OpenStreetMap
+plugin: openstreetmap
+configuration:
+  throttle:
+    period: 2
+    limit: 1
+  rootUrl: 'https://nominatim.openstreetmap.org'
+  userAgent: '© OpenStreetMap'
+  referer: auteurs

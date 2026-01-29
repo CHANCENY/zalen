@@ -1,0 +1,23 @@
+uuid: 1854a9cd-9d21-4d0a-a7c0-234ef5572051
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.reservation.field_bezetting
+    - reservation.type.type_booking
+id: reservation.type_booking.field_bezetting
+field_name: field_bezetting
+entity_type: reservation
+bundle: type_booking
+label: Bezetting
+description: 'Aantal mensen die aan de gelegenheid zullen deelnemen. <sub>Hou rekening met de minimum en maximum toegelaten capaciteit.</sub>'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

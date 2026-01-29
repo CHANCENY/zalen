@@ -1,0 +1,18 @@
+uuid: d7a45dd0-6eef-4802-befb-86aa5b1c9c9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.mindervaliden_faciliteiten
+id: taxonomy_term.mindervaliden_faciliteiten.name
+field_name: name
+entity_type: taxonomy_term
+bundle: mindervaliden_faciliteiten
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

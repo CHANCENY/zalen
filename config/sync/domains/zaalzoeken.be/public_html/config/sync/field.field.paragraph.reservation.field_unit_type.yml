@@ -1,0 +1,21 @@
+uuid: 33bcc985-ec66-4ed0-9194-4e0f15fd434d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_unit_type
+    - paragraphs.paragraphs_type.reservation
+  module:
+    - options
+id: paragraph.reservation.field_unit_type
+field_name: field_unit_type
+entity_type: paragraph
+bundle: reservation
+label: 'Unit Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

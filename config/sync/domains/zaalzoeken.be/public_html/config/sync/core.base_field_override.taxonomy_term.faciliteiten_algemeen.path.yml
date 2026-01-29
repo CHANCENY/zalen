@@ -1,0 +1,20 @@
+uuid: 4241dc08-2274-4691-8dca-98649affd45e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.faciliteiten_algemeen
+  module:
+    - path
+id: taxonomy_term.faciliteiten_algemeen.path
+field_name: path
+entity_type: taxonomy_term
+bundle: faciliteiten_algemeen
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

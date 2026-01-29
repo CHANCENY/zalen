@@ -1,0 +1,29 @@
+uuid: ad0a8daf-a67f-4e1b-a7a4-5e4986d87d3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - awtur
+id: useraccountmenu
+theme: awtur
+region: sidebar_first
+weight: -15
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/user/*\r\n/mijn-boekingen\r\n/mijn-zaal-lijst\r\n/onze-zaal-reservaties\r\n/node/2193\r\n/node/2192"

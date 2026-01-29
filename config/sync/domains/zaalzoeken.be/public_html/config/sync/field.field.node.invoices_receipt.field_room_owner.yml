@@ -1,0 +1,29 @@
+uuid: d35b7217-12c0-4f7b-a586-fd9a06b5c9ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_room_owner
+    - node.type.invoices_receipt
+id: node.invoices_receipt.field_room_owner
+field_name: field_room_owner
+entity_type: node
+bundle: invoices_receipt
+label: 'Room owner'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: _none
+    include_anonymous: true
+field_type: entity_reference

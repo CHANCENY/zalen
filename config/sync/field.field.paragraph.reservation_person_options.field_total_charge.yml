@@ -1,0 +1,23 @@
+uuid: 06770535-4ec6-4493-8fa0-e83142130a0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_total_charge
+    - paragraphs.paragraphs_type.reservation_person_options
+id: paragraph.reservation_person_options.field_total_charge
+field_name: field_total_charge
+entity_type: paragraph
+bundle: reservation_person_options
+label: 'Total Charge'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,14 @@
+id: zalen_d7
+label: 'Zalen D7 → D10'
+description: 'Custom curated migrations from legacy D7.'
+source_type: 'Drupal 7'
+shared_configuration:
+  source:
+    key: migrate
+status: true
+dependencies:
+  enforced:
+    module:
+      - zalen_migrate
+
+

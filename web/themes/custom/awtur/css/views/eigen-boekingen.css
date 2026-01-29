@@ -1,0 +1,147 @@
+  .own-boekings {
+    background-color: #FFFEF3;
+  }
+  .personal-reservations {
+    margin: 16px;
+    background-color: #ffff;
+    display: flex;
+    flex-direction: column;
+  }
+  .personal-reservations .reservation-loca-status {
+    background-color: #E5EFFF;
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    gap: clamp(2rem, 1.1429rem + 4.5714vw, 4rem);
+  }
+  .personal-reservations .reservation-loca-status img {
+    width: 25px;
+    height: auto;
+  }
+  .personal-reservations .reservation-status {
+    margin-left: auto;
+    order: 2;
+  }
+  .personal-reservations .event-finish img {
+    width: 38px;
+    height: auto;
+  }
+  .personal-reservations .event-pending img {
+    width: 15px;
+    height: auto;
+  }
+  .personal-reservations .event-approved img{
+    width: 22px;
+    height: auto;
+  }
+  .personal-reservations .event-rejected img{
+    width: 20px;
+    height: auto;
+  }
+  /*-----TOOLTIP-----*/
+  .status-tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  .hover-status-text {
+    visibility: hidden;
+    width: 130px;
+    background-color: #343434;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 4px;
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    right: 13px;
+    font-size: 11px;
+  }
+  .status-tooltip:hover .hover-status-text {
+    visibility: visible;
+  }
+  .personal-reservations .reservation-book-id {
+    color: black;
+    font-size: 13px;
+    padding: 16px 0;
+    margin-left: clamp(4rem, 3.1429rem + 4.5714vw, 6rem);
+  }
+  .personal-reservations .reservation-data {
+    display: flex;
+    gap: 16px;
+    border-top: 1px solid #E0BE58;
+    border-bottom: 1px solid #E0BE58;
+    flex-wrap: wrap;
+  }
+  .personal-reservations .reservation-hall {
+    display: flex;
+    gap: 4px;
+    padding: 16px;
+    color: #BD8100;
+  }
+  .personal-reservations .reservation-hall img {
+    width: 20px;
+    height: auto;
+  }
+  .personal-reservations .reservation-data a {
+    color: #BD8100;
+    font-weight: 700;
+  }
+  .personal-reservations img.image-style-reservation-teaser {
+    all: inherit;
+}
+.personal-reservations .reservation-datetime {
+  display: flex;
+  font-size: 13px;
+}
+.personal-reservations span.reservation-start-end {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  bottom: 8px;
+}
+.personal-reservations .reservation-startime {
+  border-right:1px solid  #E0BE58;
+  padding: 16px 16px 0 ;
+  text-align: center;
+}
+.personal-reservations .reservation-endtime {
+  padding: 16px 0 0 16px;
+  text-align: center;
+}
+.personal-reservations .reservation-occu-event {
+  display: flex;
+  gap: 4px;
+}
+.personal-reservations .reservation-details {
+  display: flex;
+  font-size: 13px;
+  padding: 16px 0 16px clamp(2rem, -14.6045rem + 88.5572vw, 13.125rem);
+  gap: 32px;
+  border-bottom: 1px solid #E0BE58;
+}
+.personal-reservations .reservation-occu-event img {
+  width: 18px;
+  height: auto;
+}
+.personal-reservations .reservation-operation-button {
+  align-self: flex-end; 
+  padding: 16px;
+}
+.personal-reservations .reservation-operation-button .dropbutton-widget {
+  background-color: #2F9BFF;
+  border-radius: 3px;
+  padding: 4px 32px;
+  border: none;
+}
+.personal-reservations .reservation-operation-button .dropbutton-widget 
+.dropbutton-arrow, .personal-reservations .reservation-operation-button
+.dropbutton a {
+  color: #ffff;
+}
+.personal-reservations .reservation-operation-button .dropbutton a:hover,
+.personal-reservations .reservation-operation-button .dropbutton-widget:hover {
+  background-color: #83bdf2;
+}

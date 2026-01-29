@@ -1,0 +1,11 @@
+uuid: 6fe89e75-1163-4385-b534-15f7401ed8e3
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.additioneel
+label: Additioneel
+description: ''
+targetEntityType: user
+cache: true

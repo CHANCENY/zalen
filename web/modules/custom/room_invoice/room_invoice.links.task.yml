@@ -1,0 +1,25 @@
+# Define the 'local' links for the module
+# The menu links in content for invoice module
+entity.invoice_payment.collection:
+  title: 'Invoices'
+  route_name: entity.invoice_payment.collection
+  base_route: system.admin_content
+
+
+# Links to view, edit and delete
+entity.invoice_payment.canonical:
+  title: 'View'
+  route_name: entity.invoice_payment.canonical
+  base_route: entity.invoice_payment.canonical
+
+entity.invoice_payment.edit_form:
+  title: 'Edit'
+  route_name: entity.invoice_payment.edit_form
+  base_route: entity.invoice_payment.canonical
+
+entity.invoice_payment.delete_form:
+  title: 'Delete'
+  route_name: entity.invoice_payment.delete_form
+  base_route: entity.invoice_payment.canonical
+
+

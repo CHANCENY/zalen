@@ -1,0 +1,101 @@
+{#
+/**
+ * @file
+ * Default theme implementation for reservations.
+ *
+ * Available variables:
+ * - author: Reservation author. Can be a link or plain text.
+ * - content: The content-related items for the reservation display. Use
+ *   {{ content }} to print them all, or print a subset such as
+ *   {{ content.field_example }}. Use the following code to temporarily suppress
+ *   the printing of a given child element:
+ *   @code
+ *   {{ content|without('field_example') }}
+ *   @endcode
+ * - created: Formatted date and time for when the reservation was created.
+ *   Preprocess functions can reformat it by calling DateFormatter::format()
+ *   with the desired parameters on the 'reservation.created' variable.
+ * - changed: Formatted date and time for when the reservation was last changed.
+ *   Preprocess functions can reformat it by calling DateFormatter::format()
+ *   with the desired parameters on the 'reservation.changed' variable.
+ * - permalink: Reservation permalink.
+ * - submitted: Submission information created from author and created
+ *   during template_preprocess_reservation().
+ * - user_picture: The reservation author's profile picture.
+ * - status: Reservation status. Possible values are:
+ *   unpublished, published, or preview.
+ * - title: Reservation title, linked to the reservation.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class may contain one or more of the following classes:
+ *   - reservation: The current template type; for instance, 'theming hook'.
+ *   - by-anonymous: Reservation by an unregistered user.
+ *   - by-{entity-type}-author: Reservation by the author of the parent entity,
+ *     eg. by-node-author.
+ *   - preview: When previewing a new or edited reservation.
+ *   The following applies only to viewers who are registered users:
+ *   - unpublished: An unpublished reservation visible only to administrators.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - content_attributes: List of classes for the styling of the reservation content.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - threaded: A flag indicating whether the reservations are threaded or not.
+ *
+ * These variables are provided to give context about the parent reservation (if
+ * any):
+ * - parent_reservation: Full parent reservation entity (if any).
+ * - parent_author: Equivalent to author for the parent reservation.
+ * - parent_created: Equivalent to created for the parent reservation.
+ * - parent_changed: Equivalent to changed for the parent reservation.
+ * - parent_title: Equivalent to title for the parent reservation.
+ * - parent_permalink: Equivalent to permalink for the parent reservation.
+ * - parent: A text string of parent reservation submission information created from
+ *   'parent_author' and 'parent_created' during template_preprocess_reservation().
+ *   This information is presented to help screen readers follow lengthy
+ *   discussion threads. You can hide this from sighted users using the class
+ *   visually-hidden.
+ *
+ * These two variables are provided for context:
+ * - reservation: Full reservation object.
+ * - entity: Entity the reservations are attached to.
+ *
+ * @see template_preprocess_reservation()
+ *
+ * @ingroup themeable
+ */
+#}
+<article{{ attributes.addClass('js-reservation') }} data-history-node-id="{{ reservation.id }}">
+  {#
+    Hide the "new" indicator by default, let a piece of JavaScript ask the
+    server which reservations are new for the user. Rendering the final "new"
+    indicator here would break the render cache.
+  #}
+  <mark class="hidden" data-reservation-timestamp="{{ new_indicator_timestamp }}"></mark>
+
+  <footer>
+    {{ user_picture }}
+    <p>{{ submitted }}</p>
+
+    {#
+      Indicate the semantic relationship between parent and child reservations for
+      accessibility. The list is difficult to navigate in a screen reader
+      without this information.
+    #}
+    {% if parent %}
+      <p class="visually-hidden">{{ parent }}</p>
+    {% endif %}
+
+    {{ permalink }}
+  </footer>
+
+  <div{{ content_attributes }}>
+    {% if title %}
+      {{ title_prefix }}
+      <h3{{ title_attributes }}>{{ title }}</h3>
+      {{ title_suffix }}
+    {% endif %}
+      {{ content }}
+  </div>
+</article>

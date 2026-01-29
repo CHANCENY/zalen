@@ -1,0 +1,10 @@
+uuid: 3fb29622-3d65-411f-9a67-3208d3c599c7
+langcode: en
+status: true
+dependencies: {  }
+id: per_person_item
+label: 'Person Unit'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

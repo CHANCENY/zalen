@@ -1,0 +1,30 @@
+uuid: 5f5c2e15-c3f7-4d1c-a2e2-2917dd420ec7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_streek
+    - taxonomy.vocabulary.regio
+  module:
+    - user
+id: user.user.field_streek
+field_name: field_streek
+entity_type: user
+bundle: user
+label: Streek
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      regio: regio
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

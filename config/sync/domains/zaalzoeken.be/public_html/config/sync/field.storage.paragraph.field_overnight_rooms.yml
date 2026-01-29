@@ -1,0 +1,19 @@
+uuid: f2bbd3ab-3ebe-414b-8412-6f36f4c8e48f
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_overnight_rooms
+field_name: field_overnight_rooms
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: paragraph
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,501 @@
+global-styling:
+  version: VERSION
+  js:
+    js/flatpickr/flatpickr.js: {}
+    js/reservation/reservation-booking-amount-preview.js: {}
+  css:
+    base:
+      css/base/base.css: {}
+      css/base/elements.css: {}
+      css/base/variables.css: {}
+      js/flatpickr/flatpickr.min.css: {}
+
+    component:
+      css/components/block.css: {}
+      css/components/book.css: {}
+      css/components/breadcrumb.css: {}
+      css/components/captions.css: {}
+      css/components/comments.css: {}
+      css/components/container-inline.module.css: {}
+      css/components/contextual.css: {}
+      css/components/demo-block.css: {}
+      # @see https://www.drupal.org/node/2389735
+      css/components/dropbutton.component.css: {}
+      css/components/featured-top.css: {}
+      css/components/feed-icon.css: {}
+      css/components/field.css: {}
+      css/components/form.css: {}
+      css/components/forum.css: {}
+      css/components/header.css: {}
+      css/components/help.css: {}
+      css/components/highlighted.css: {}
+      css/components/item-list.css: {}
+      css/components/list-group.css: {}
+      css/components/list.css: {}
+      css/components/main-content.css: {}
+      css/components/menu.css: {}
+      css/components/messages.css: {}
+      css/components/node.css: {}
+      css/components/node-preview.css: {}
+      css/components/page-title.css: {}
+      css/components/pager.css: {}
+      css/components/panel.css: {}
+      css/components/primary-menu.css: {}
+      css/components/search-form.css: {}
+      css/components/search-results.css: {}
+      css/components/secondary-menu.css: {}
+      css/components/shortcut.css: {}
+      css/components/skip-link.css: {}
+      css/components/sidebar.css: {}
+      css/components/site-branding.css: {}
+      css/components/site-footer.css: {}
+      css/components/table.css: {}
+      css/components/tablesort-indicator.css: {}
+      css/components/tabs.css: {}
+      css/components/text-formatted.css: {}
+      css/components/toolbar.css: {}
+      css/components/featured-bottom.css: {}
+      css/components/password-suggestions.css: {}
+      css/components/ui.widget.css: {}
+      # @see https://www.drupal.org/node/2389735
+      css/components/vertical-tabs.component.css: {}
+      css/components/views.css: {}
+      css/components/buttons.css: {}
+      css/components/image-button.css: {}
+      css/components/ui-dialog.css: {}
+      css/components/top-region.css: {}
+      css/components/ajax-progress.css: {}
+      css/components/header-animation.css: {}
+      css/components/language-switcher.css: {}
+      css/components/some_fix.css: {}
+    layout:
+      css/layout.css: {}
+    theme:
+      css/colors.css: {}
+      css/print.css: { media: print }
+      css/styles.css: {}
+
+messages:
+  version: VERSION
+  css:
+    component:
+      css/components/messages.css: { preprocess: false }
+
+maintenance_page:
+  version: VERSION
+  css:
+    theme:
+      css/maintenance-page.css: {}
+  dependencies:
+    - system/maintenance
+    - awtur/global-styling
+
+classy.base:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/action-links.css: { weight: -10 }
+      css/classy/components/breadcrumb.css: { weight: -10 }
+      css/classy/components/button.css: { weight: -10 }
+      css/classy/components/collapse-processed.css: { weight: -10 }
+      css/classy/components/container-inline.css: { weight: -10 }
+      css/classy/components/details.css: { weight: -10 }
+      css/classy/components/exposed-filters.css: { weight: -10 }
+      css/classy/components/field.css: { weight: -10 }
+      css/classy/components/form.css: { weight: -10 }
+      css/classy/components/icons.css: { weight: -10 }
+      css/classy/components/inline-form.css: { weight: -10 }
+      css/classy/components/item-list.css: { weight: -10 }
+      css/classy/components/link.css: { weight: -10 }
+      css/classy/components/links.css: { weight: -10 }
+      css/classy/components/menu.css: { weight: -10 }
+      css/classy/components/more-link.css: { weight: -10 }
+      css/classy/components/pager.css: { weight: -10 }
+      css/classy/components/tabledrag.css: { weight: -10 }
+      css/classy/components/tableselect.css: { weight: -10 }
+      css/classy/components/tablesort.css: { weight: -10 }
+      css/classy/components/tabs.css: { weight: -10 }
+      css/classy/components/textarea.css: { weight: -10 }
+      css/classy/components/ui-dialog.css: { weight: -10 }
+
+user:
+  version: VERSION
+  css:
+    component:
+      css/components/user.css: { weight: -10 }
+
+filter:
+  version: VERSION
+  css:
+    component:
+      css/theme/filter.admin.css: {}
+
+classy.book-navigation:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/book-navigation.css: {}
+
+classy.dialog:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/dialog.css: { weight: -10 }
+
+classy.dropbutton:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/dropbutton.css: { weight: -10 }
+
+classy.file:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/file.css: { weight: -10 }
+
+classy.forum:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/forum.css: { weight: -10 }
+
+classy.media_embed_ckeditor_theme:
+  version: VERSION
+  js:
+    js/classy/media_embed_ckeditor.theme.js: {}
+
+classy.media_embed_error:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/media-embed-error.css: {}
+
+classy.media_library:
+  version: VERSION
+  css:
+    layout:
+      css/classy/layout/media-library.css: {}
+
+classy.messages:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/messages.css: { weight: -10 }
+
+classy.node:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/node.css: { weight: -10 }
+
+classy.progress:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/progress.css: { weight: -10 }
+
+classy.search-results:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/search-results.css: {}
+
+tatyana-popup:
+  version: 1.0
+  css:
+    theme:
+      css/theme/tatpopup.css: {}
+  js:
+    js/theme/tatpopupw.js: {}
+    js/user/hover-delay-menu.js: {}
+    libraries/jquery-form/jquery.form.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.dialog.ajax
+    - jquery_ui_dialog/dialog
+
+personal-zaal:
+  version: 1.0
+  css:
+    layout:
+      css/personal/node/zaal-full.css: {}
+  js:
+    js/theme/zaal-node.js: {}
+
+personal-view-block-zaal:
+  version: 1.0
+  css:
+    layout:
+      css/views/view-block-zaal.css: {}
+
+flickity-carousels:
+  version: 1.0
+  css:
+    layout:
+      libraries/flickity/dist/flickity.min.css: {}
+  js:
+    libraries/flickity/dist/flickity.pkgd.min.js: {}
+
+personal-view-block-flickity-carousels:
+  version: 1.0
+  js:
+    js/theme/view-block-flickity-carousels.js: {}
+  dependencies:
+    - awtur/flickity-carousels
+
+personal-bedrijf:
+  version: 1.0
+  css:
+    layout:
+      css/personal/node/bedrijf-full.css: {}
+
+personal-menu-zaal-groepen:
+  version: 1.0
+  css:
+    layout:
+      css/personal/menu-zaal-groepen.css: {}
+
+personal-menu-provincie-filter:
+  version: 1.0
+  css:
+    layout:
+      css/personal/menu-provincie-filter.css: {}
+
+personal-views-fields-alle-zalen:
+  version: 1.0
+  css:
+    layout:
+      css/views/views-fields-alle-zalen.css: {}
+
+personal-front-block:
+  version: 1.0
+  css:
+    layout:
+      css/personal/front-page-block.css: {}
+      css/personal/front-page-region.css: {}
+
+page-refresh-user-logged:
+  version: 1.0
+  css:
+    theme:
+      css/theme/page-refresh-user-logged.css: {}
+
+page-refresh-user-unlogged:
+  version: 1.0
+  css:
+    theme:
+      css/theme/page-refresh-user-unlogged.css: {}
+
+page-refresh-user:
+  version: 1.0
+  css:
+    theme:
+      css/theme/page-refresh-user.css: {}
+
+page-refresh-kaart:
+  version: 1.0
+  css:
+    theme:
+      css/theme/page-refresh-kaart.css: {}
+
+modules-flag-bookmark:
+  version: 1.0
+  css:
+    theme:
+      css/theme/modules-flag-bookmark.css: {}
+
+modules-socialauthlogin:
+  version: 1.0
+  css:
+    theme:
+      css/theme/modules-socialauthlogin.css: {}
+
+tat-update-style:
+  version: 1.0
+  css:
+    theme:
+      css/theme/fix-update-style.css: {}
+
+multiselect-sumoselect:
+  version: 1.0
+  css:
+    layout:
+      libraries/jquery-sumoselect/sumoselect.min.css: {}
+    theme:
+      css/views/exposed-form.css: {}
+  js:
+    libraries/jquery-sumoselect/jquery.sumoselect.min.js: {}
+    js/theme/sumo-select-settings.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+    - core/drupalSettings
+
+jan-belba:
+  version: 1.0
+  css:
+    theme:
+      css/belba.css: {}
+  js:
+    js/theme/input-datetime-local.js: {}
+
+personal-node-bedrijf-teaser:
+  version: 1.0
+  css:
+    layout:
+      css/personal/node/node-bedrijf-teaser.css: {}
+  js:
+    js/theme/bedrijf-tabs.js: {}
+
+personal-bedrijf-default:
+  version: version
+  css:
+    layout:
+      css/personal/node/bedrijf-default.css: {}
+  js:
+    js/theme/bedrijf-default.js: {}
+
+personal-node-bedrijf-media:
+  version: 1.0
+  css:
+    layout:
+      css/personal/node/node-bedrijf-media.css: {}
+
+personal-bedrijven-dichtbij:
+  version: version
+  css:
+    layout:
+      css/views/bedrijven-dichtbij.css: {}
+
+foto-grid:
+  version: version
+  css:
+    layout:
+      css/personal/node/images-grid.css: {}
+
+personal-bedrijf-over:
+  version: version
+  css:
+    layout:
+      css/personal/node/bedrijf-over.css: {}
+  js:
+    js/theme/bedrijf-over.js: {}
+
+personal-bedrijf-locatie:
+  version: version
+  css:
+    layout:
+      css/personal/node/bedrijf-locatie.css: {}
+
+personal-bedrijf-comfort:
+  version: version
+  css:
+    layout:
+      css/personal/node/bedrijf-comfort.css: {}
+  js:
+    js/theme/bedrijf-comfort.js: {}
+
+personal-bedrijf-contact:
+  version: version
+  css:
+    layout:
+      css/personal/node/bedrijf-contact.css: {}
+
+extensive-filter :
+  version: version
+  css:
+    layout:
+      css/views/extensive-filter.css: {}
+
+form-bedrijf-edit:
+  version: version
+  css:
+    layout:
+      css/form/bedrijf-edit-form.css: {}
+  js:
+    js/form/label-tooltip.js: {}
+    js/form/number-input-controls.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+
+form-zaal-edit:
+  version: 1.x
+  css:
+    layout:
+      css/form/zaal-edit-form.css: {}
+  js:
+    js/form/label-tooltip.js: {}
+    js/form/room-layout-selections.js: {}
+    js/form/number-input-controls.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery    
+
+user-my-reservations:
+  version: version
+  css:
+    layout:
+      css/views/eigen-boekingen.css: {}
+
+per-person-options:
+  version: version
+  css:
+    layout:
+      css/form/person-options.css: {}
+  js:
+    js/reservation/person-toggle.js: {}
+
+tab_switch_behavior:
+  version: 1.x
+  js:
+    js/views/tab-switch-behavior.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+lang_switch_dropdown:
+  version: 1.x
+  css:
+    theme:
+      css/components/lang-switch-dropdown.css: {}
+  js:
+    js/components/lang-switch-dropdown.js: {}
+    js/components/lang-dropdown-delay.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+viewer_images:
+  version: 1.x
+  css:
+    theme:
+      libraries/viewerjs-1.11.7/dist/viewer.min.css: {}
+  js:
+    libraries/viewerjs-1.11.7/dist/viewer.min.js: {}
+    js/viewer/viewer.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+zaalopstellingen:
+  version: 1.x
+  css:
+    theme:
+      css/taxonomy/zaalopstellingen-mini-preview.css: {}
+      css/taxonomy/zaalopstellingen-full.css: {}
+  dependencies:
+    - core/drupal    
+
+
+
+
+
+
+
+
+

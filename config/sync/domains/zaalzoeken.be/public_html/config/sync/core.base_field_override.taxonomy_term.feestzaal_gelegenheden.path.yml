@@ -1,0 +1,20 @@
+uuid: 5a706a30-e92b-4146-bd93-896c7012dd5f
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.feestzaal_gelegenheden
+  module:
+    - path
+id: taxonomy_term.feestzaal_gelegenheden.path
+field_name: path
+entity_type: taxonomy_term
+bundle: feestzaal_gelegenheden
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

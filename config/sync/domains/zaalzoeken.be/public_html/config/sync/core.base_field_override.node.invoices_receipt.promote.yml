@@ -1,0 +1,22 @@
+uuid: 8a4bd26f-f84e-412c-a67c-ddc6bdbadd1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.invoices_receipt
+id: node.invoices_receipt.promote
+field_name: promote
+entity_type: node
+bundle: invoices_receipt
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

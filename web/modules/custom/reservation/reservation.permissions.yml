@@ -1,0 +1,13 @@
+administer reservations:
+  title: 'Administer reservations and reservation settings'
+administer reservation types:
+  title: 'Administer reservation types and settings'
+  restrict access: true
+access reservations:
+  title: 'View reservations'
+post reservations:
+  title: 'Post reservations'
+skip reservation approval:
+  title: 'Skip reservation approval'
+edit own reservations:
+  title: 'Edit own reservations'

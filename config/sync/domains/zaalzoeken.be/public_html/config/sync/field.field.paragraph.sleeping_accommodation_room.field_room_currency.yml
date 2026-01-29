@@ -1,0 +1,23 @@
+uuid: 09b03d5e-b8ed-43b5-9ae4-0577afbfabc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_room_currency
+    - paragraphs.paragraphs_type.sleeping_accommodation_room
+  module:
+    - options
+id: paragraph.sleeping_accommodation_room.field_room_currency
+field_name: field_room_currency
+entity_type: paragraph
+bundle: sleeping_accommodation_room
+label: Currency
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: eur
+default_value_callback: ''
+settings: {  }
+field_type: list_string

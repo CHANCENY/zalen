@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333;">
+<div class="header" style="background-color: #f7f7f7; padding: 20px;">
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td style="width: 50%;">
+        <h1 style="margin: 0; padding: 0;">Invoice</h1>
+      </td>
+      <td style="width: 50%; text-align: right;">
+        <h2 style="margin: 0; padding: 0;">{SITE_NAME}</h2>
+        <p style="margin: 0; padding: 0;">{SITE_EMAIL}</p>
+        <p style="margin: 0; padding: 0;">{SITE_CITY}, {SITE_ZIPCODE}</p>
+        <p style="margin: 0; padding: 0;">{SITE_PHONE}</p>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="content" style="padding: 20px;">
+  <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+    <tr>
+      <td style="width: 50%;">
+        <h3 style="margin: 0; padding: 0;">Bill To:</h3>
+        <p style="margin: 0; padding: 0;">{CLIENT_NAME}</p>
+        <p style="margin: 0; padding: 0;">{CLIENT_ADDRESS}</p>
+        <p style="margin: 0; padding: 0;">{CLIENT_CITY} {CLIENT_ZIPCODE}</p>
+      </td>
+      <td style="width: 50%; text-align: right;">
+        <h3 style="margin: 0; padding: 0;">Invoice Details</h3>
+        <p style="margin: 0; padding: 0;">Invoice #: {INVOICE_ID}</p>
+        <p style="margin: 0; padding: 0;">Date: {INVOICE_DATE}</p>
+      </td>
+    </tr>
+  </table>
+
+  <br><br>
+  <div style="margin-bottom: 10px; margin-top: 10px;">
+    <strong>Payment.</strong>
+  </div>
+  <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+    <thead>
+    <tr style="background-color: #f7f7f7;">
+      <th style="padding: 10px; border: 1px solid #ddd;">Description</th>
+      <th style="padding: 10px; border: 1px solid #ddd; text-align: right;">Currency</th>
+      <th style="padding: 10px; border: 1px solid #ddd; text-align: right;">Amount</th>
+      <th style="padding: 10px; border: 1px solid #ddd; text-align: right;">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">{PAYMENT_DESC}</td>
+      <td style="padding: 10px; border: 1px solid #ddd; text-align: right;">{CURRENCY_CODE}</td>
+      <td style="padding: 10px; border: 1px solid #ddd; text-align: right;">{CURRENCY}{AMOUNT}</td>
+      <td style="padding: 10px; border: 1px solid #ddd; text-align: right;">{STATUS}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <br><br>
+
+  <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+    <thead>
+    <tr style="background-color: #f7f7f7;">
+      <th style="padding: 10px; border: 1px solid #ddd;">Payment mode</th>
+      <th style="padding: 10px; border: 1px solid #ddd; text-align: right;">Receipt</th>
+      <th style="padding: 10px; border: 1px solid #ddd; text-align: right;">Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">{MODE}</td>
+      <td style="padding: 10px; border: 1px solid #ddd; text-align: right;">{RECEIPT}</td>
+      <td style="padding: 10px; border: 1px solid #ddd; text-align: right;">{TITLE}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer" style="background-color: #f7f7f7; padding: 20px; text-align: center;">
+  <p style="margin: 0; padding: 0;">Thank you for your business!</p>
+</div>
+</body>
+</html>
