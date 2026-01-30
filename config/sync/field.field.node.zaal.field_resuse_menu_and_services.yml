@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_resuse_menu_and_services
     - node.type.zaal
-    - paragraphs.paragraphs_type.extra_room_services
 id: node.zaal.field_resuse_menu_and_services
 field_name: field_resuse_menu_and_services
 entity_type: node
@@ -17,49 +16,10 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:paragraph'
+  handler: views
   handler_settings:
-    target_bundles:
-      extra_room_services: extra_room_services
-    negate: 0
-    target_bundles_drag_drop:
-      extra_room_services:
-        weight: 14
-        enabled: true
-      per_day_price_rules:
-        weight: 15
-        enabled: false
-      per_day_unit:
-        weight: 16
-        enabled: false
-      per_hour:
-        weight: 17
-        enabled: false
-      per_hour_unit_rules:
-        weight: 18
-        enabled: false
-      per_person_item:
-        weight: 19
-        enabled: false
-      person_price_rules:
-        weight: 20
-        enabled: false
-      price_unit:
-        weight: 21
-        enabled: false
-      reservation:
-        weight: 22
-        enabled: false
-      reservation_extra_services:
-        weight: 23
-        enabled: false
-      reservation_overnight_room:
-        weight: 24
-        enabled: false
-      reservation_person_options:
-        weight: 25
-        enabled: false
-      sleeping_accommodation_room:
-        weight: 26
-        enabled: false
+    view:
+      view_name: extra_menus_and_services
+      display_name: entity_reference_1
+      arguments: {  }
 field_type: entity_reference

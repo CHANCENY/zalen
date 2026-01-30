@@ -29,11 +29,6 @@ drupal.reservation-new-indicator:
 drupal.reservation-service:
   version: VERSION
   js:
-    js/tags/tagify.js: {}
-    js/tags/tagify.polyfills.min.js: {}
     js/tags/reservation-service.js: {}
-  css:
-    theme:
-      css/tags/tagify.css: {}
   dependencies:
     - core/jquery

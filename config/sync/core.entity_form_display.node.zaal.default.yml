@@ -25,6 +25,7 @@ dependencies:
     - field.field.node.zaal.field_prijs_per_persoon
     - field.field.node.zaal.field_reference_reservations
     - field.field.node.zaal.field_regels
+    - field.field.node.zaal.field_resuse_menu_and_services
     - field.field.node.zaal.field_room_layouts
     - field.field.node.zaal.field_room_pricing_settings
     - field.field.node.zaal.field_staanplaatsen
@@ -171,9 +172,19 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_resuse_menu_and_services:
+    type: entity_reference_autocomplete
+    weight: 34
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_room_layouts:
     type: room_layout_capacity_widget
-    weight: 51
+    weight: 33
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -242,14 +253,14 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 31
+    weight: 30
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 32
+    weight: 31
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -284,7 +295,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 32
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -295,6 +306,5 @@ hidden:
   field_person_currency: true
   field_prijs_eenheid: true
   field_regels: true
-  field_resuse_menu_and_services: true
   promote: true
   sticky: true

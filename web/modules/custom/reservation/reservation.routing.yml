@@ -150,3 +150,11 @@ reservation.emails_templates_settings:
     _permission: 'administrator'
   options:
     _admin_route: TRUE
+
+reservation.preview.paragraph:
+  path: '/reservation/room/menus-services/paragraph'
+  defaults:
+    _controller: '\Drupal\reservation\Controller\ZaalController::previewMenuServicesParagraphs'
+    _title: 'Preview Menus and Services'
+  requirements:
+    _permission: 'access content'
