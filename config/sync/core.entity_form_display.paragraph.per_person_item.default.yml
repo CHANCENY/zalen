@@ -103,4 +103,5 @@ content:
 hidden:
   created: true
   field_per_person_item_image: true
+  field_person_seasonal_pricings: true
   status: true

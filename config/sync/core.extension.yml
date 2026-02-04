@@ -4,6 +4,18 @@ module:
   address: 0
   admin_toolbar: 0
   admin_toolbar_tools: 0
+  advagg: 0
+  ai: 0
+  ai_agents: 0
+  ai_agents_explorer: 0
+  ai_api_explorer: 0
+  ai_assistant_api: 0
+  ai_automators: 0
+  ai_chatbot: 0
+  ai_ckeditor: 0
+  ai_content_suggestions: 0
+  ai_logging: 0
+  ai_observability: 0
   automated_cron: 0
   backup_migrate: 0
   better_exposed_filters: 0
@@ -22,6 +34,7 @@ module:
   ctools: 0
   currency: 0
   datetime: 0
+  datetime_flatpickr: 0
   datetime_range: 0
   dblog: 0
   dynamic_page_cache: 0
@@ -58,6 +71,7 @@ module:
   jquery_ui_dialog: 0
   jquery_ui_draggable: 0
   jquery_ui_resizable: 0
+  key: 0
   language: 0
   layout_builder: 0
   layout_discovery: 0
@@ -79,6 +93,7 @@ module:
   migrate_plus: 0
   migrate_tools: 0
   migrate_upgrade: 0
+  modeler_api: 0
   multivalue_form_element: 0
   mysql: 0
   node: 0

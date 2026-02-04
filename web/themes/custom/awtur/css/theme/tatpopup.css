@@ -42,14 +42,14 @@
     border: 1px #777 solid;
 }
 
-.tat-popup .ui-dialog-buttonset button {
-    background: #ff7600;
-    color: #fff;
-    box-shadow: 0 0 0px 4px rgba(0, 0, 0, 0.1);
-}
-.tat-popup .ui-dialog-buttonset button:hover {
-    background: #ff5200;
-}
+/*.tat-popup .ui-dialog-buttonset button {*/
+/*    background: #ff7600;*/
+/*    color: #fff;*/
+/*    box-shadow: 0 0 0px 4px rgba(0, 0, 0, 0.1);*/
+/*}*/
+/*.tat-popup .ui-dialog-buttonset button:hover {*/
+/*    background: #ff5200;*/
+/*}*/
 .tat-popup .ui-dialog-buttonpane {
     background: none;
 }

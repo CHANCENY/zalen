@@ -1,0 +1,47 @@
+uuid: ef880f5c-cbcb-4492-a330-d87a9f2190a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.seasonal_pricings.field_season_date_time_range
+    - field.field.paragraph.seasonal_pricings.field_seasonal_currency
+    - field.field.paragraph.seasonal_pricings.field_seasonal_price
+    - paragraphs.paragraphs_type.seasonal_pricings
+  module:
+    - datetime_range
+    - options
+id: paragraph.seasonal_pricings.default
+targetEntityType: paragraph
+bundle: seasonal_pricings
+mode: default
+content:
+  field_season_date_time_range:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      from_to: both
+      separator: '-'
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_seasonal_currency:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_seasonal_price:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

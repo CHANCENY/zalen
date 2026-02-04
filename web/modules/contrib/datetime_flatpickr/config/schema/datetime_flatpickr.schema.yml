@@ -1,0 +1,100 @@
+datetime_flatpickr_config:
+  type: mapping
+  mapping:
+    dateFormat:
+      type: string
+      label: 'Date format'
+    use_system_format:
+      type: boolean
+      label: 'Use system date format'
+    system_date_format:
+      type: string
+      label: 'System date format'
+    altFormat:
+      type: string
+      label: 'Alternative date format'
+    altInput:
+      type: boolean
+      label: 'Enable alternative input'
+    allowInput:
+      type: boolean
+      label: 'Enable direct date input'
+    defaultDate:
+      type: string
+      label: 'Default date'
+    defaultHour:
+      type: string
+      label: 'Default hour'
+    defaultMinute:
+      type: string
+      label: 'Default minute'
+    disabledWeekDays:
+      type: sequence
+      label: 'Disabled week days'
+      sequence:
+        type: string
+        label: 'Disabled week day'
+    disabledDates:
+      type: sequence
+      label: 'Disabled dates'
+      sequence:
+        type: string
+        label: 'Disabled date'
+    enableTime:
+      type: boolean
+      label: 'Enable time'
+    enableSeconds:
+      type: boolean
+      label: 'Enable second'
+    inline:
+      type: boolean
+      label: 'Inline'
+    maxDate:
+      type: string
+      label: 'Max Date'
+    minDate:
+      type: string
+      label: 'Min Date'
+    maxTime:
+      type: mapping
+      mapping:
+        hour:
+          type: string
+          label: 'hour'
+        min:
+          type: string
+          label: 'minute'
+    minTime:
+      type: mapping
+      mapping:
+        hour:
+          type: string
+          label: 'hour'
+        min:
+          type: string
+          label: 'minute'
+    minuteIncrement:
+      type: integer
+      label: 'Time increments'
+    position:
+      type: string
+      label: 'Position'
+    time_24hr:
+      type: boolean
+      label: '24h format'
+    weekNumbers:
+      type: boolean
+      label: 'Week numbers'
+    mode:
+      type: string
+      label: 'Mode'
+    jumpToDate:
+      type: string
+      label: 'Jump To Date'
+field.widget.settings.datetime_flatpickr:
+  label: 'Datetime flatpickr display format settings'
+  type: datetime_flatpickr_config
+
+field.widget.settings.datetime_range_flatpickr:
+  label: 'Datetime range flatpickr display format settings'
+  type: datetime_flatpickr_config

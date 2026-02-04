@@ -1,0 +1,256 @@
+flatpickr:
+  version: 1.x
+  css:
+    theme:
+      https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/flatpickr.min.css: {type: external, minified: true}
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/flatpickr.min.js: {type: external, minified: true}
+
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+
+flatpickr-init:
+  version: 1.x
+  css:
+    component:
+      css/datetime-flatpickr.css: {}
+  js:
+    js/datetime-flatpickr.js: {}
+
+  dependencies:
+    - datetime_flatpickr/flatpickr
+
+
+flatpickr_ar:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/ar.js: {type: external}
+
+flatpickr_at:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/at.js: {type: external}
+
+flatpickr_az:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/az.js: {type: external}
+
+flatpickr_be:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/be.js: {type: external}
+
+flatpickr_bg:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/bg.js: {type: external}
+
+flatpickr_bn:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/bn.js: {type: external}
+
+flatpickr_bs:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/bs.js: {type: external}
+
+flatpickr_cat:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/cat.js: {type: external}
+
+flatpickr_cs:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/cs.js: {type: external}
+
+flatpickr_cy:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/cy.js: {type: external}
+
+flatpickr_da:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/da.js: {type: external}
+
+flatpickr_de:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/de.js: {type: external}
+
+flatpickr_default:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/default.js: {type: external}
+
+flatpickr_eo:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/eo.js: {type: external}
+
+flatpickr_es:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/es.js: {type: external}
+
+flatpickr_et:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/et.js: {type: external}
+
+flatpickr_fa:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/fa.js: {type: external}
+
+flatpickr_fi:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/fi.js: {type: external}
+
+flatpickr_fo:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/fo.js: {type: external}
+
+flatpickr_fr:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/fr.js: {type: external}
+
+flatpickr_ga:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/ga.js: {type: external}
+
+flatpickr_gr:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/gr.js: {type: external}
+
+flatpickr_he:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/he.js: {type: external}
+
+flatpickr_hi:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/hi.js: {type: external}
+
+flatpickr_hr:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/hr.js: {type: external}
+
+flatpickr_hu:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/hu.js: {type: external}
+
+flatpickr_id:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/id.js: {type: external}
+
+flatpickr_is:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/is.js: {type: external}
+
+flatpickr_it:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/it.js: {type: external}
+
+flatpickr_ja:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/ja.js: {type: external}
+
+flatpickr_ka:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/ka.js: {type: external}
+
+flatpickr_km:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/km.js: {type: external}
+
+flatpickr_ko:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/ko.js: {type: external}
+
+flatpickr_kz:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/kz.js: {type: external}
+
+flatpickr_lt:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/lt.js: {type: external}
+
+flatpickr_lv:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/lv.js: {type: external}
+
+flatpickr_mk:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/mk.js: {type: external}
+
+flatpickr_mn:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/mn.js: {type: external}
+
+flatpickr_ms:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/ms.js: {type: external}
+
+flatpickr_my:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/my.js: {type: external}
+
+flatpickr_nl:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/nl.js: {type: external}
+
+flatpickr_no:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/no.js: {type: external}
+
+flatpickr_pa:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/pa.js: {type: external}
+
+flatpickr_pl:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/pl.js: {type: external}
+
+flatpickr_pt:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/pt.js: {type: external}
+
+flatpickr_ro:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/ro.js: {type: external}
+
+flatpickr_ru:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/ru.js: {type: external}
+
+flatpickr_si:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/si.js: {type: external}
+
+flatpickr_sk:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/sk.js: {type: external}
+
+flatpickr_sl:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/sl.js: {type: external}
+
+flatpickr_sq:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/sq.js: {type: external}
+
+flatpickr_sr:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/sr.js: {type: external}
+
+flatpickr_sv:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/sv.js: {type: external}
+
+flatpickr_th:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/th.js: {type: external}
+
+flatpickr_tr:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/tr.js: {type: external}
+
+flatpickr_uk:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/uk.js: {type: external}
+
+flatpickr_vn:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/vn.js: {type: external}
+
+flatpickr_zh:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.11/l10n/zh.js: {type: external}

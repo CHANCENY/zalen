@@ -55,4 +55,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_day_seasonal_pricings: true
   status: true

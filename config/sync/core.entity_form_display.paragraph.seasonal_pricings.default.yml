@@ -1,0 +1,66 @@
+uuid: 4ffe781f-9138-4c69-bdbc-d0cfd6efbbbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.seasonal_pricings.field_season_date_time_range
+    - field.field.paragraph.seasonal_pricings.field_seasonal_currency
+    - field.field.paragraph.seasonal_pricings.field_seasonal_price
+    - paragraphs.paragraphs_type.seasonal_pricings
+  module:
+    - datetime_flatpickr
+id: paragraph.seasonal_pricings.default
+targetEntityType: paragraph
+bundle: seasonal_pricings
+mode: default
+content:
+  field_season_date_time_range:
+    type: datetime_range_flatpickr
+    weight: 0
+    region: content
+    settings:
+      dateFormat: 'Y-m-d H:i'
+      use_system_format: false
+      system_date_format: eu_day_datetime
+      altFormat: 'd F, Y'
+      altInput: true
+      allowInput: false
+      defaultDate: ''
+      defaultHour: ''
+      defaultMinute: ''
+      disabledWeekDays: {  }
+      disabledDates: ''
+      enableTime: false
+      enableSeconds: false
+      inline: false
+      maxDate: ''
+      minDate: ''
+      maxTime:
+        hour: ''
+        min: ''
+      minTime:
+        hour: ''
+        min: ''
+      minuteIncrement: 5
+      position: auto
+      time_24hr: false
+      weekNumbers: false
+      mode: single
+      jumpToDate: ''
+    third_party_settings: {  }
+  field_seasonal_currency:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_seasonal_price:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

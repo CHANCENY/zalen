@@ -1,0 +1,19 @@
+uuid: b3fa5b03-8c36-426b-b23f-0259209db378
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_day_seasonal_pricings
+field_name: field_day_seasonal_pricings
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: paragraph
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

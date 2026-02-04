@@ -1,0 +1,10 @@
+uuid: eaefdffb-5a8c-4bb4-93ff-8e28d9d407cc
+langcode: en
+status: true
+dependencies: {  }
+id: seasonal_pricings
+label: 'Seasonal Pricings'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

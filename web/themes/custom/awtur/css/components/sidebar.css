@@ -43,12 +43,11 @@
 .sidebar .block {
   /*margin: 0 0 20px;*/
   padding: 15px 20px;
-  /*border-width: 1px;
-  border-style: solid;*/
+  /*border-width: 1px;*/
+  /*border-style: solid;*/
   background: #FFFFFF;
-  /*box-shadow: 8px 8px 44px rgb(0 0 0 / 10%);*/
+  box-shadow: 8px 8px 44px rgb(0 0 0 / 10%);
   /*border-radius: 10px;*/
-  text-align: center;
 }
 .sidebar h2 {
   margin: 0 0 0.5em;

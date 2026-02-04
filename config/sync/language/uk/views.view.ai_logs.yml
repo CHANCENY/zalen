@@ -1,0 +1,69 @@
+display:
+  default:
+    display_title: Базово
+    display_options:
+      fields:
+        bundle:
+          label: Тип
+          separator: ', '
+        created:
+          label: Дата
+          separator: ', '
+        prompt:
+          label: Нагадування
+          separator: ', '
+        output_text:
+          label: Відповідь
+          separator: ', '
+        extra_data:
+          separator: ', '
+        provider:
+          label: Постачальник
+          separator: ', '
+        model:
+          label: Модель
+          separator: ', '
+        tags_value:
+          label: Теґи
+          separator: ', '
+        view_ai_log:
+          text: Перегляд
+        edit_ai_log:
+          text: Редагувати
+        delete_ai_log:
+          text: Видалити
+        dropbutton:
+          label: Дії
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« Перша'
+            last: 'Остання »'
+          expose:
+            items_per_page_label: 'Елементів на сторінку'
+            items_per_page_options_all_label: '- Усе -'
+            offset_label: Зміщення
+      exposed_form:
+        options:
+          submit_button: Застосувати
+          reset_button_label: Скинути
+          exposed_sorts_label: 'Впорядкувати за'
+          sort_asc_label: Зрост
+          sort_desc_label: Спад
+      filters:
+        bundle:
+          expose:
+            label: Тип
+        created_1:
+          expose:
+            label: До
+        provider:
+          expose:
+            label: Постачальник
+        model:
+          expose:
+            label: Модель
+  page_1:
+    display_title: Сторінка

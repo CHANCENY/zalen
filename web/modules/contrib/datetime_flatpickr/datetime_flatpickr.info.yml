@@ -1,0 +1,13 @@
+name: 'Flatpickr datetime picker'
+description: 'Implements the <a href="https://flatpickr.js.org/" target="_blank">flatpickr</a> javascript library.'
+core_version_requirement: ^10.3 || ^11
+type: module
+package: Date/Time
+
+dependencies:
+  - drupal:datetime
+
+# Information added by Drupal.org packaging script on 2025-11-13
+version: '3.0.7'
+project: 'datetime_flatpickr'
+datestamp: 1763038084

@@ -1,0 +1,23 @@
+uuid: 1766eefc-2949-4524-b92d-cfad87f6d7cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_seasonal_price
+    - paragraphs.paragraphs_type.seasonal_pricings
+id: paragraph.seasonal_pricings.field_seasonal_price
+field_name: field_seasonal_price
+entity_type: paragraph
+bundle: seasonal_pricings
+label: 'Seasonal Price'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

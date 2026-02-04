@@ -13,8 +13,8 @@
   float: left;
 }
 .kollom-links{
-  min-width: 130px;
-  min-height: 161px;
+  min-width: 160px;
+  min-height: 160px;
 }
 .kollom-rechts{
   width: 77%;
@@ -29,7 +29,7 @@
   border-color: #f9f9f9;
   background-color: #f6f6f2;
   border-radius: 10px;
-  margin: 45px 0 0 16px;
+  margin: 24px 0 0 16px;
   box-shadow: 0 0 3px #999;
 }
 
@@ -69,4 +69,10 @@
 }
 .reservation-form #edit-field-bezetting-0-value {
   width: 95px !important;
+}
+
+@media (max-width: 767) {
+    .kollom-rechts{
+        width: 100%;
+    }
 }

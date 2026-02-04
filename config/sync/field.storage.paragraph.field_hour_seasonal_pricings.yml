@@ -1,0 +1,19 @@
+uuid: 375e770d-8b63-412a-bae6-3dcd174f23c5
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_hour_seasonal_pricings
+field_name: field_hour_seasonal_pricings
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: paragraph
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

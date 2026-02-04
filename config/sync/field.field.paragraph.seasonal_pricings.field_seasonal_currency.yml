@@ -1,0 +1,23 @@
+uuid: 1c27a6fd-fcc7-45a6-bb29-1b0c7aa73269
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_seasonal_currency
+    - paragraphs.paragraphs_type.seasonal_pricings
+  module:
+    - options
+id: paragraph.seasonal_pricings.field_seasonal_currency
+field_name: field_seasonal_currency
+entity_type: paragraph
+bundle: seasonal_pricings
+label: 'Seasonal Currency'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: eur
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,13 @@
+uuid: d1a68dc5-176f-4b1f-97e7-93a45b88fc03
+langcode: nl
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_content_suggestions
+_core:
+  default_config_hash: zH424sYShmZlcwjEz3MWX0D9JLR7CMKx3olXmqKcdKc
+id: suggest_tags
+label: 'Suggest tags'
+variables: {  }
+tokens: {  }

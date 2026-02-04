@@ -9,7 +9,7 @@ id: node.zaal.field_resuse_menu_and_services
 field_name: field_resuse_menu_and_services
 entity_type: node
 bundle: zaal
-label: 'Resuse menu and services'
+label: 'Extra menus and services'
 description: ''
 required: false
 translatable: false

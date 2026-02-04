@@ -115,4 +115,5 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
-hidden: {  }
+hidden:
+  field_person_seasonal_pricings: true

@@ -12,6 +12,7 @@
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Render\Markup;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\reservation\Plugin\BookingConfirmationEmail;
@@ -148,6 +149,14 @@ function reservation_theme() {
         'content' => NULL,
       ],
       'template' => 'payments_breakdown_standard_layout',
+    ],
+    'menu_services_preview' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+        'list' =>  []
+      ],
+      'template' => 'menu-services-preview',
     ],
   ];
 }
@@ -803,6 +812,16 @@ function payment_provider_entity_presave(\Drupal\Core\Entity\EntityInterface $en
 
 }
 
+function __remove_special_characters(?string $string): ?string {
+  if (empty($string)) return $string;
+
+  // replace all special characters with space
+  $string = preg_replace('/[^A-Za-z0-9\-]/', ' ', $string);
+
+  // remove multiple spaces
+  $string = preg_replace('/\s+/', ' ', $string);
+  return trim($string);
+}
 
 /**
  * Implements hook_form_FORM_ID_alter() to customize the reservation form.
@@ -827,6 +846,7 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
 
       // Check if the current route is 'entity.reservation.edit_form'.
       if (\Drupal::routeMatch()->getRouteName() == 'entity.reservation.edit_form') {
+
         // Get the reservation entity from the current route.
         $reservation = \Drupal::routeMatch()->getParameter('reservation');
 
@@ -868,12 +888,19 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
   ];
 
   $services = $room_node?->get('field_extra_room_services')?->referencedEntities() ?? [];
+  $reused_services = $room_node?->get('field_resuse_menu_and_services')?->referencedEntities() ?? [];
+  $services = array_merge($services, $reused_services);
   $additional_services = [];
 
   if (count($services) >= 1) {
+    $wellServices = array_filter($services, function($service) {
+      return $service->hasField('field_service_short_description') && !empty($service->get('field_service_short_description')?->value);
+    });
+    $services = array_values($wellServices);
+    $first_paragraph = $services[0]?->get('field_service_short_description')?->value;
 
-    $first_paragraph = reset($services)?->get('field_service_short_description')?->value;
     if (!empty($first_paragraph)) {
+
       $form['additional_services_fieldset'] = [
         '#type' => 'fieldset',
         '#title' => t('Extra Services'),
@@ -883,8 +910,10 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
       foreach ($services as $service) {
 
         if (!empty($service->get('field_service_short_description')?->value) && !empty($service->get('field_service_minimum_order')->value) && !empty($service->get('field_service_amount')->value)) {
-          $name_service = strtolower(str_replace(' ', '_', $service->get('field_service_short_description')?->value ?? ''));
+          $name_service = strtolower(str_replace(' ', '_', __remove_special_characters($service->get('field_service_short_description')?->value ?? '')));
+
           $wrapper_id = 'service-count-wrapper-' . $name_service;
+
           $additional_services[$name_service] = [
             'name'=> $service->get('field_service_short_description')?->value ?? '',
             'amount'=> $service->get('field_service_amount')?->value ?? '',
@@ -908,21 +937,28 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
             '#ajax' => [
               'callback' => 'reservation_toggle_service_count',
               'event' => 'change',
-            ]
+            ],
+
           ];
+
+          // 4. 🟦 Reuse Menus & Services Across Halls
 
           if ($service->get('field_service_minimum_order')?->value) {
             $title .= ' (minimum ' . $service->get('field_service_minimum_order')?->value . ')';
           }
+
           // Number field
           $form['additional_services_fieldset'][$name_service . '_count'] = [
             '#type' => 'number',
             '#title' => t($title),
             '#min' => $service->get('field_service_minimum_order')?->value ?? 0,
-            '#prefix' => '<div id="' . $wrapper_id . '" class="reservation-service-count-wrapper">',
+            '#prefix' => Markup::create(
+              '<div id="' . $wrapper_id . '" class="reservation-service-count-wrapper" style="display: none;">'
+            ),
             '#suffix' => '</div>',
             '#default_value' => $service->get('field_service_minimum_order')?->value ?? 0,
           ];
+
         }
       }
 
@@ -1923,6 +1959,19 @@ function reservation_form_alter(&$form, &$form_state, $form_id): void {
 
     // attach library
     $form['#attached']['library'][] = 'reservation/drupal.reservation-service';
+    $form['field_resuse_menu_and_services']['widget']['#after_build'][] =
+      'reservation_alter_paragraph_autocomplete_display';
+  }
+
+  if ($form_id === "clone_paragraph_form") {
+    $paragraph = Drupal::routeMatch()->getParameter('paragraph');
+    if (is_numeric($paragraph)) {
+      $paragraph = Paragraph::load($paragraph);
+      $form['#title'] = t("<em>Edit @type</em> @title",[
+        "@type" => ucfirst($paragraph->get('field_is_service_or_menu')->value),
+        "@title" => $paragraph->get('field_service_short_description')->value,
+      ]);
+    }
   }
 
 }
@@ -1960,7 +2009,6 @@ function reservation_node_zaal_form_validate($form, FormStateInterface $form_sta
     return;
   }
 }
-
 
 function hasAtLeastOnePricingAmount(array $paragraphs): array
 {
@@ -2061,30 +2109,35 @@ function validatePricingCurrency(array $paragraphs): array
   return ['status' => true, 'message' => ''];
 }
 
-function removeEmptyPricingParagraphs(array &$paragraphs): void
-{
-  foreach ($paragraphs as $key => $paragraph) {
+function reservation_alter_paragraph_autocomplete_display(array $element, FormStateInterface $form_state) {
 
-    if(!is_array($paragraph) || empty($paragraph['inline_entity_form'])) {
-      unset($paragraphs[$key]);
+  foreach ($element as $delta => &$item) {
+    if (!is_numeric($delta) || empty($item['target_id']['#default_value'])) {
       continue;
     }
 
-    $form = $paragraph['inline_entity_form'];
+    $paragraph = is_array($item['target_id']['#default_value']) ? $item['target_id']['#default_value'][0] : $item['target_id']['#default_value'];
 
-    $hasAmount =
-      !empty($form['field_hourly_unit'][0]['inline_entity_form']
-      ['field_per_hour_price'][0]['value'])
-      || !empty($form['field_per_day_unit'][0]['inline_entity_form']
-      ['field_day_amount'][0]['value'])
-      || !empty($form['field_pricing_unit'][0]['inline_entity_form']
-      ['field_per_person_item_price'][0]['value']);
-
-    if (!$hasAmount) {
-      unset($paragraphs[$key]);
+    if (!$paragraph instanceof Paragraph) {
+      continue;
     }
+
+    if ($paragraph->bundle() !== 'extra_room_services') {
+      continue;
+    }
+
+    // Build the label you want.
+    $symbol = \Drupal::service('reservation.currencies')
+      ->getSymbol($paragraph->get('field_service_currency')->value);
+
+    $title = ucfirst($paragraph->get('field_is_service_or_menu')->value);
+    $desc = $paragraph->get('field_service_short_description')->value;
+    $amount = $paragraph->get('field_service_amount')->value;
+
+    $label = "{$title}: {$desc} {$symbol}{$amount} ({$paragraph->id()})";
+
+    $item['target_id']['#attributes']['value'] = $label;
   }
 
-  // Reindex for Drupal
-  $paragraphs = array_values($paragraphs);
+  return $element;
 }

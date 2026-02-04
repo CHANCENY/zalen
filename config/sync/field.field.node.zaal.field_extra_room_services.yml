@@ -10,7 +10,7 @@ id: node.zaal.field_extra_room_services
 field_name: field_extra_room_services
 entity_type: node
 bundle: zaal
-label: 'Extra Room Services'
+label: 'Add new menus or services'
 description: ''
 required: false
 translatable: false
@@ -46,5 +46,20 @@ settings:
         enabled: false
       price_unit:
         weight: 16
+        enabled: false
+      reservation:
+        weight: 22
+        enabled: false
+      reservation_extra_services:
+        weight: 23
+        enabled: false
+      reservation_overnight_room:
+        weight: 24
+        enabled: false
+      reservation_person_options:
+        weight: 25
+        enabled: false
+      sleeping_accommodation_room:
+        weight: 26
         enabled: false
 field_type: entity_reference

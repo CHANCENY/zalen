@@ -1,0 +1,14 @@
+.field--widget-datetime-range-flatpickr .form-item,
+.field--widget-datetime-flatpickr .form-item,
+.js-form-type-datetime-flatpickr,
+.field--widget-datetime-range-separate-inputs-flatpickr div.form-item:not(.same-day) {
+  background: url("../images/calendar.svg") no-repeat left bottom;
+  background-size: 20px 20px;
+}
+
+.field--widget-datetime-range-flatpickr .form-item input,
+.field--widget-datetime-flatpickr .form-item input,
+.js-form-type-datetime-flatpickr input,
+.field--widget-datetime-range-separate-inputs-flatpickr div.form-item input {
+  margin-left: 25px;
+}

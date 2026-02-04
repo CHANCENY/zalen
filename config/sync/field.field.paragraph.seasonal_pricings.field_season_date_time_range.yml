@@ -1,0 +1,21 @@
+uuid: 98ca04fe-37aa-48a2-87d4-0d37598b7e8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_season_date_time_range
+    - paragraphs.paragraphs_type.seasonal_pricings
+  module:
+    - datetime_range
+id: paragraph.seasonal_pricings.field_season_date_time_range
+field_name: field_season_date_time_range
+entity_type: paragraph
+bundle: seasonal_pricings
+label: 'Season Date time range'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

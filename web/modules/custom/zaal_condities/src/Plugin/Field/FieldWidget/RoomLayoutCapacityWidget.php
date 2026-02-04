@@ -117,11 +117,13 @@ class RoomLayoutCapacityWidget extends WidgetBase {
       // Icon
       $icon = '';
       if ($term && !$term->get('field_room_layout_icon')->isEmpty()) {
+        $array = [
+          'type' => 'image',
+          'label' => 'hidden',
+        ];
+        $view = $term->get('field_room_layout_icon')->view($array);
         $rendered = \Drupal::service('renderer')->renderPlain(
-          $term->get('field_room_layout_icon')->view([
-            'type' => 'image',
-            'label' => 'hidden',
-          ])
+          $view
         );
         if (preg_match('/<img[^>]+>/i', $rendered, $m)) {
           $icon = $m[0];

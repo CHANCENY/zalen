@@ -1,0 +1,20 @@
+uuid: 8aebc1b5-cde5-485e-99df-caf58b169132
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_seasonal_price
+field_name: field_seasonal_price
+entity_type: paragraph
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

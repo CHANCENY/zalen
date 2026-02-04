@@ -20,15 +20,17 @@
   padding: 0.25em 1.063em;
   cursor: pointer;
   text-align: center;
-  color: #3a3a3a;
+  /*color: #3a3a3a;*/
+  color: #fff;
+  background: #bd8100;
   border: 1px solid #e4e4e4;
   border-right-color: #d2d2d2;
   border-bottom-color: #b4b4b4;
   border-left-color: #d2d2d2;
   border-radius: 1em;
-  background-color: #fff;
-  background-image: -webkit-linear-gradient(top, #f3f3f3, #e8e8e8);
-  background-image: linear-gradient(to bottom, #f3f3f3, #e8e8e8);
+  /*background-color: #fff;*/
+  /*background-image: -webkit-linear-gradient(top, #f3f3f3, #e8e8e8);*/
+  /*background-image: linear-gradient(to bottom, #f3f3f3, #e8e8e8);*/
   font-size: 0.929em;
   font-weight: normal;
 }

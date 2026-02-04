@@ -158,3 +158,11 @@ reservation.preview.paragraph:
     _title: 'Preview Menus and Services'
   requirements:
     _permission: 'access content'
+
+reservation.reservation.paragraph.edit:
+  path: '/reservation/room/menus-services/paragraph/{paragraph}/edit'
+  defaults:
+    _title: 'Edit Paragraph'
+    _form: 'Drupal\reservation\Form\CloneParagraphForm'
+  requirements:
+    _permission: 'access content'

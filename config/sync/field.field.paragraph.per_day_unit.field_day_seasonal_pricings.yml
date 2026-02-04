@@ -1,0 +1,68 @@
+uuid: 1974bd4e-d031-4e65-887b-fc7f293fd329
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_day_seasonal_pricings
+    - paragraphs.paragraphs_type.per_day_unit
+    - paragraphs.paragraphs_type.seasonal_pricings
+id: paragraph.per_day_unit.field_day_seasonal_pricings
+field_name: field_day_seasonal_pricings
+entity_type: paragraph
+bundle: per_day_unit
+label: 'Day Seasonal Pricings'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      seasonal_pricings: seasonal_pricings
+    negate: 0
+    target_bundles_drag_drop:
+      extra_room_services:
+        weight: 15
+        enabled: false
+      per_day_price_rules:
+        weight: 16
+        enabled: false
+      per_day_unit:
+        weight: 17
+        enabled: false
+      per_hour:
+        weight: 18
+        enabled: false
+      per_hour_unit_rules:
+        weight: 19
+        enabled: false
+      per_person_item:
+        weight: 20
+        enabled: false
+      person_price_rules:
+        weight: 21
+        enabled: false
+      price_unit:
+        weight: 22
+        enabled: false
+      reservation:
+        weight: 23
+        enabled: false
+      reservation_extra_services:
+        weight: 24
+        enabled: false
+      reservation_overnight_room:
+        weight: 25
+        enabled: false
+      reservation_person_options:
+        weight: 26
+        enabled: false
+      seasonal_pricings:
+        weight: 27
+        enabled: true
+      sleeping_accommodation_room:
+        weight: 28
+        enabled: false
+field_type: entity_reference
