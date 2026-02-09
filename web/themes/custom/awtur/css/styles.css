@@ -1,24 +1,15 @@
 .path-mijn-zaal-lijst .layout-main,
-.user-logged-in.path-user .layout-main,
+.path-user .layout-main,
 .path-onze-zaal-reservaties .layout-main,
-.path-alle-zalen .layout-main {
+.path-alle-zalen .layout-main, .path-mijn-boekingen .layout-main {
     box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
     display: flex;
 }
 
-@media (max-width:560px) {
-
-    .path-mijn-zaal-lijst .layout-main,
-    .user-logged-in.path-user .layout-main,
-    .path-onze-zaal-reservaties .layout-main,
-    .path-alle-zalen .layout-main {
-        flex-direction: column;
-    }
-}
 .path-alle-zalen #sidebar-first{
     border: 2px solid #f5eddc;
 }
-.path-alle-zale .sidebar .block {
+.path-alle-zale .sidebar .block, .path-alle-zalen .sidebar {
     box-shadow: none;
 }
 
@@ -82,19 +73,27 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst .button {
     background: #bd8100;
     border-radius: 4px;
     border: unset;
+    font-weight: unset;
 }
 
-form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 {
-    display: flex;
+form#views-form-flag-bookmark-page-mijn-zaal-lijst .SumoSelect > p.CaptionCont > span {
+     font-weight: unset; 
 }
 
-form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 {
-    border-left: 2px solid #e6d1a0;
-    margin-left: 50px;
-}
+@media (min-width:991px) {
+    form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 {
+        display: flex;
+        align-items: flex-end;
+    }
 
-form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 .button {
-    margin-left: 50px;
+    form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 .button {
+        margin-left: 50px;
+    }
+
+    form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 {
+        border-left: 2px solid #e6d1a0;
+        margin-left: 50px;
+    }
 }
 
 form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .form-item label {
@@ -102,21 +101,25 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
     margin-bottom: 5px;
 }
 
-.user-logged-in.path-user .sidebar .block {
+.path-user .sidebar .block {
     box-shadow: none;
 }
 
 .path-mijn-zaal-lijst .main-content,
-.user-logged-in.path-user .main-content {
+.path-user .main-content {
     box-shadow: none !important;
 }
 
-.user-logged-in.path-user .user-form {
+.path-user .user-form {
     padding: 10px 30px;
 }
 
-.user-logged-in.path-user div#block-awtur-local-tasks {
+.path-user div#block-awtur-local-tasks {
     border-bottom: 1px solid #cccccc;
+}
+
+.path-user #edit-actions input {
+    margin-right: unset;
 }
 
 .user-logged-in.path-user #edit-actions input.button,
@@ -124,9 +127,10 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
     background: #2f9bff;
     border: unset;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.user-logged-in.path-user .tabs ul.primary li a {
+.path-user .tabs ul.primary li a {
     color: #000;
     border-width: unset;
     border-style: unset;
@@ -134,104 +138,109 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
     background-color: unset;
 }
 
-.path-user .tabs ul.primary li a:hover {
-    background-color: unset;
+.path-user .tabs ul.primary li a:hover,
+.path-node .tabs ul.primary li a:hover,
+.path-node .tabs a:focus,
+.path-node .tabs a:hover,
+.path-user .tabs a:focus,
+.path-user .tabs a:hover {
+    background: unset;
 }
-
-.user-logged-in.path-user .block-local-tasks-block {
+.path-user .block-local-tasks-block {
     background-color: #fff;
 }
 
-.user-logged-in.path-user .content-user {
+.path-user .content-user {
     text-align: center;
     padding: 0 20px;
 }
 
-.user-logged-in.path-user h2.content-user,
-.user-logged-in.path-user .view-id-zalen_per_gebruiker .view-header a {
+.path-user h2.content-user,
+.path-user .view-id-zalen_per_gebruiker .view-header a {
     color: #bd8100;
 }
 
-.user-logged-in.path-user .view-id-zalen_per_gebruiker .view-footer {
+.path-user .view-id-zalen_per_gebruiker .view-footer {
     margin-top: 20px;
 }
 
-.user-logged-in.path-user .view-id-zalen_per_gebruiker .view-footer a {
+.path-user .view-id-zalen_per_gebruiker .view-footer a {
     color: #fff;
     background: #2f9bff;
     padding: 8px 20px;
     border-radius: 5px;
 }
 
-.user-logged-in.path-user main .view-zalen-per-gebruiker,
-.user-logged-in.path-user .block-views-blockzalen-per-gebruiker-blok-mijn-zalen h2 {
+.path-user main .view-zalen-per-gebruiker,
+.path-user .block-views-blockzalen-per-gebruiker-blok-mijn-zalen h2 {
     padding: 0 30px;
 }
 
-.user-logged-in.path-user .view-zalen-per-gebruiker table {
+.path-user .view-zalen-per-gebruiker table {
     margin-bottom: 40px;
 }
 
-.user-logged-in.path-user .sidebar .block.block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf {
+.path-user .sidebar .block.block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf {
     border-bottom: 1px solid #e6d1a0;
     border-top: 1px solid #e6d1a0;
     margin: unset;
 }
 
-.user-logged-in.path-user .sidebar:has(.block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf) #user-ident {
+.path-user .sidebar:has(.block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf) #user-ident {
     border: none !important;
 }
 
-.user-logged-in.path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf img {
+.path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf .view-content{
+    text-align: center;
+}
+
+.path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf img {
     width: 100px;
     height: 100px;
     border: 2px solid #bd8100;
     object-fit: cover;
 }
 
-
-.user-logged-in.path-user .layout-main:has(.view-zalen-per-gebruiker, .profile),
-.user-logged-in.path-user .main-content:has(.view-zalen-per-gebruiker, .profile) {
+.path-user .layout-main:has(.view-zalen-per-gebruiker, .profile),
+.path-user .main-content:has(.view-zalen-per-gebruiker, .profile) {
     background-color: #fffef3;
 }
 
-.user-logged-in.path-user .profile .account-details-label {
+.path-user .profile .account-details-label {
     font-size: 20px;
     color: #bd8100;
     margin-top: 40px;
 }
 
-.user-logged-in.path-user .profile .field,
+.path-user .profile .field,
 .path-user .profile .form-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(180px, 30%) 1fr;
+    gap: 8px 20px;
+    align-items: start;
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
-.user-logged-in.path-user .profile .field .field__label,
-.path-user .profile .form-item h4.label {
-    width: 30%;
-    display: block;
-}
 
 .path-user table tr {
     background: #fff;
 }
 
-.user-logged-in.path-user .sidebar {
+.path-user .sidebar {
     background-color: #fff;
 }
 
-.user-logged-in.path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf .views-field {
+.path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf .views-field {
     padding-bottom: 10px;
 }
 
-.user-logged-in.path-user .sidebar .views-field.views-field-edit-node {
+.path-user .sidebar .views-field.views-field-edit-node {
     margin: 10px 0;
 }
 
-.user-logged-in.path-user .sidebar .views-field.views-field-edit-node a,
-.user-logged-in.path-user .sidebar .view-empty a {
+.path-user .sidebar .views-field.views-field-edit-node a,
+.path-user .sidebar .view-empty a {
     background: #2f9bff;
     color: #fff;
     padding: 4px 8px;
@@ -239,11 +248,15 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
     border-radius: 5px;
 }
 
-.user-logged-in.path-user summary {
+.path-user .sidebar .view-empty{
+    text-align: center;
+}
+
+.path-user summary {
     background: #2f9bff;
 }
 
-.user-logged-in.path-user .sidebar .user-profile-photo,
+.path-user .sidebar .user-profile-photo,
 .path-mijn-zaal-lijst .sidebar .user-profile-photo,
 .path-onze-zaal-reservaties .sidebar .user-profile-photo {
     display: none;
@@ -253,15 +266,15 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
     margin-right: 8px;
 }
 
-.user-logged-in.path-user div#block-awtur-local-tasks nav {
+.path-user div#block-awtur-local-tasks nav {
     display: unset;
 }
 
-.user-logged-in.path-user form.user-additioneel-form details {
+.path-user form.user-additioneel-form details {
     background: #fffef3;
 }
 
-.user-logged-in.path-user form.user-additioneel-form {
+.path-user form.user-additioneel-form {
     padding: unset !important;
     border: unset !important;
     box-shadow: unset !important;
@@ -273,12 +286,12 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
     text-transform: capitalize;
 }
 
-.user-logged-in.path-user .profile,
-.user-logged-in.path-user .contact-message-personal-form {
+.path-user .profile,
+.path-user .contact-message-personal-form {
     padding: 30px;
 }
 
-.user-logged-in.path-user .profile .text-capitalize {
+.path-user .profile .text-capitalize {
     color: #2f9bff;
     font-weight: bold;
 }
@@ -290,4 +303,75 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 .path-onze-zaal-reservaties div#sidebar-first {
     max-width: 272px;
     border: 2px solid #f5eddc;
+}
+
+.path-alle-zalen .sidebar .form-item {
+    margin-top: unset;
+}
+
+.path-mijn-zaal-lijst .SumoSelect .form-select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+
+  width: 220px;
+  padding: 10px 44px 10px 12px;
+
+  border: 1px solid #e0be59;
+  border-radius: 4px;
+
+  background-image:
+    url("data:image/svg+xml;utf8,\<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'>\<path d='M1 1l6 6 6-6' stroke='%23ffffff' stroke-width='2.5' fill='none' stroke-linecap='round'/>\</svg>"),
+    linear-gradient(to left, #e0be59 42px, #ffffff 42px);
+
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 14px center, right center;
+  background-size: 14px 9px, 100% 100%;
+
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.path-mijn-zaal-lijst .SumoSelect .form-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(224, 190, 89, 0.35);
+}
+
+.path-mijn-zaal-lijst .SumoSelect .form-select::-ms-expand {
+    display: none;
+}
+
+.path-mijn-zaal-lijst .SumoSelect>.CaptionCont>label>i::after {
+    content: unset;
+}
+
+/*Responsive*/
+@media (max-width:850px) {
+    .path-alle-zalen .layout-main {
+        flex-direction: column;
+    }
+}
+
+@media (max-width:767px) {
+    .path-user #edit-actions a {
+        margin: unset;
+    }
+}
+
+@media (max-width:560px) {
+    div#main-wrapper {
+        padding: 0 20px;
+    }
+    
+    div#sidebar-first {
+        border-bottom: 1px solid #C48B2C;
+    }
+    .path-mijn-zaal-lijst .layout-main,
+    .path-user .layout-main,
+    .path-onze-zaal-reservaties .layout-main,
+    .path-mijn-boekingen .layout-main {
+        flex-direction: column;
+    }
 }

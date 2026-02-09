@@ -1,7 +1,7 @@
 (function($){
 
   document.addEventListener('DOMContentLoaded', function(){
-    var reuseService = document.querySelector("#edit-field-resuse-menu-and-services-wrapper");
+    var reuseService = document.querySelector("#edit-field-resuse-menu-and-services--wrapper");
 
     if (reuseService) {
 
@@ -18,10 +18,8 @@
         const selectedParagraphIds = [];
         inputFields.forEach(function(inputField){
           const value = inputField.value;
-          if (value.length > 0) {
-            let id = value.split('(');
-            id = id[id.length - 1];
-            id = id.split(')')[0].trim();
+          if (value.length > 0 && inputField.checked === true) {
+            let id = value;
 
             if (parseInt(id) > 0 && !isAlreadySelected(id, selectedParagraphIds)) {
               selectedParagraphIds.push({
@@ -78,7 +76,11 @@
           isLoading = true;
 
           try {
-            let host = window.location.origin + "/web";
+            let host = window.location.origin;
+
+            if (window.location.pathname.includes('web')) {
+              host += "/web"
+            }
 
             const response = await fetch(host+'/reservation/room/menus-services/paragraph', {
               method: 'POST',
@@ -281,7 +283,6 @@
 
           if (instance.element === button) {
             try {
-              console.log(instance)
               instance.execute();
               return true;
             } catch (error) {
@@ -290,6 +291,25 @@
           }
         }
         return false;
+      }
+
+      /**
+       *
+       * @param {string} element
+       * @param {Element} form
+       * @returns {Promise<void>}
+       */
+      async function rebuildForm(element, form) {
+        const response = await fetch(`/reservation/room/menus-services/paragraph/rebuild`,{
+          method: 'POST',
+          body: JSON.stringify(element)
+        });
+        const data = await response.json();
+        if (data?.status) {
+          form.querySelector("input[name='form_build_id']").value = data.form_build_id;
+       //   form.querySelector("input[name='form_token']").value = data.form_token;
+          lastLength = null;
+        }
       }
 
       /**
@@ -317,7 +337,34 @@
                })
 
                if (inputFieldElement) {
-                 inputFieldElement.value = pids.label;
+
+                 if (pids.old === pids.new) {
+                   inputField.value = pids.new;
+                   const label = document.querySelector(`label[for="${inputField.id}"]`);
+
+                   if (label) {
+                     const span = label.querySelector('span');
+
+                     if (span) {
+                       span.innerHTML = pids.new + '&nbsp;';
+                     }
+
+                     // Replace the remaining label text
+                     label.childNodes.forEach(node => {
+                       if (node.nodeType === Node.TEXT_NODE) {
+                         node.textContent = pids.label;
+                       }
+                     });
+                   }
+                 }
+
+                 else {
+                   createNewCheckBox(pids);
+                   inputFieldElement.checked = false;
+                 }
+
+                 const form_build_id = inputFieldElement.form.querySelector("input[name='form_build_id']").value;
+                 rebuildForm({form_build_id}, inputFieldElement.form)
                }
              }
           })
@@ -345,13 +392,25 @@
         return simpleHash(JSON.stringify(normalized));
       }
 
-      setInterval(async function (){
+      function createNewCheckBox(pids) {
+        const html = `<input data-drupal-selector="edit-field-resuse-menu-and-services-${pids.new}" type="checkbox" id="edit-field-resuse-menu-and-services-${pids.new}"
+                              value="${pids.new}" checked="checked"
+                              class="form-checkbox">
+                              <label for="edit-field-resuse-menu-and-services-${pids.new}" class="option">
+                              <span class="views-field views-field-id">${pids.new} &nbsp;</span>${pids.label}</label>
+                              <input type="hidden" name="field_resuse_menu_and_services_hidden[]" value="${pids.new}" >`
+        const div = document.createElement('div');
+        div.className = `js-form-item form-item js-form-type-checkbox form-type-checkbox js-form-item-field-resuse-menu-and-services-${pids.new} form-item-field-resuse-menu-and-services-${pids.new}`
+        div.innerHTML = html;
+        reuseService.querySelector('#edit-field-resuse-menu-and-services').appendChild(div);
+      }
 
-        const inputFields = reuseService.querySelectorAll("input[type='text']");
+      setInterval(async ()=>{
+        const inputFields = reuseService.querySelectorAll("input[type='checkbox']");
         selectedParagraphIds = collectParagraphIds(inputFields);
         await buildSelectedParagraphsPreview(selectedParagraphIds);
         editFinished(inputFields, selectedParagraphIds);
-      }, 2000);
+      },1000)
 
     }
   })

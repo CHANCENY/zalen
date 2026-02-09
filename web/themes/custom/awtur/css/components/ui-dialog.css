@@ -17,7 +17,7 @@
   font-size: 0.9em;
 }
 .ui-dialog .button {
-  padding: 0.25em 1.063em;
+  /*padding: 0.25em 1.063em;*/
   cursor: pointer;
   text-align: center;
   /*color: #3a3a3a;*/

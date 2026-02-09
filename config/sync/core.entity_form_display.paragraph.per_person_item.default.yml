@@ -12,6 +12,7 @@ dependencies:
     - field.field.paragraph.per_person_item.field_person_item_description
     - field.field.paragraph.per_person_item.field_person_option_image
     - field.field.paragraph.per_person_item.field_person_pricing_rules
+    - field.field.paragraph.per_person_item.field_person_seasonal_pricings
     - field.field.paragraph.per_person_item.field_short_description
     - image.style.thumbnail
     - paragraphs.paragraphs_type.per_person_item
@@ -92,6 +93,19 @@ content:
       revision: false
       removed_reference: optional
     third_party_settings: {  }
+  field_person_seasonal_pricings:
+    type: inline_entity_form_simple
+    weight: 9
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      revision: false
+    third_party_settings: {  }
   field_short_description:
     type: string_textfield
     weight: 2
@@ -103,5 +117,4 @@ content:
 hidden:
   created: true
   field_per_person_item_image: true
-  field_person_seasonal_pricings: true
   status: true

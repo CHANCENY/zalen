@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.per_day_unit.field_day_amount
     - field.field.paragraph.per_day_unit.field_day_currency
+    - field.field.paragraph.per_day_unit.field_day_seasonal_pricings
     - field.field.paragraph.per_day_unit.field_minimum_day_to_book
     - field.field.paragraph.per_day_unit.field_pricing_rules
     - paragraphs.paragraphs_type.per_day_unit
@@ -27,6 +28,19 @@ content:
     weight: 1
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_day_seasonal_pricings:
+    type: inline_entity_form_simple
+    weight: 4
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      revision: false
     third_party_settings: {  }
   field_minimum_day_to_book:
     type: number

@@ -4,9 +4,15 @@ namespace Drupal\reservation\Form;
 
 use Drupal;
 use Drupal\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseDialogCommand;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\MessageCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -14,7 +20,7 @@ class CloneParagraphForm extends FormBase
 {
 
 
-  public function __construct(protected Paragraph $paragraph, protected string $redirectUrl, protected Request $request)
+  public function __construct(protected $paragraph, protected string $redirectUrl)
   {
   }
 
@@ -23,9 +29,8 @@ class CloneParagraphForm extends FormBase
     $pid = $container->get('request_stack')->getCurrentRequest()->get('paragraph');
     $redirectUrl = $container->get('request_stack')->getCurrentRequest()->get('redirect');
     return new static(
-      $container->get('entity_type.manager')->getStorage('paragraph')->load($pid),
-      $redirectUrl,
-      $container->get('request_stack')->getCurrentRequest()
+      $pid,
+      $redirectUrl
     );
   }
 
@@ -38,7 +43,10 @@ class CloneParagraphForm extends FormBase
   {
     $form['#tree'] = TRUE;
 
-    $service_type = ucfirst($this->paragraph->get('field_is_service_or_menu')->value);
+    $paragraph = Paragraph::load($this->paragraph);
+    $request = Drupal::request();
+
+    $service_type = ucfirst($paragraph->get('field_is_service_or_menu')->value);
     $title = $this->t('Edit @service_type', ['@service_type' => $service_type]);
 
     // Add AJAX wrapper for silent submission
@@ -51,7 +59,7 @@ class CloneParagraphForm extends FormBase
 
     $form['redirect_url'] = [
       '#type' => 'hidden',
-      '#value' => $this->request->headers->get('referer'),
+      '#value' => $request->headers->get('referer'),
     ];
 
     $form['fieldset_wrapper'] = [
@@ -65,7 +73,7 @@ class CloneParagraphForm extends FormBase
       '#type' => 'textfield',
       '#title' => $this->t($service_type.' Name'),
       '#required' => TRUE,
-      '#default_value' => $this->paragraph->get('field_service_short_description')->value,
+      '#default_value' => $paragraph->get('field_service_short_description')->value,
       '#description' => $this->t('Enter a descriptive name for this '.strtolower($service_type)),
       '#weight' => 0,
     ];
@@ -74,8 +82,8 @@ class CloneParagraphForm extends FormBase
       '#type' => 'text_format',
       '#title' => $this->t($service_type.' Description'),
       '#required' => FALSE,
-      '#default_value' => $this->paragraph->get('field_service_description')->value ?? '',
-      '#format' => $this->paragraph->get('field_service_description')->format ?? 'basic_html',
+      '#default_value' => $paragraph->get('field_service_description')->value ?? '',
+      '#format' => $paragraph->get('field_service_description')->format ?? 'basic_html',
       '#description' => $this->t('Provide a detailed description of the '.strtolower($service_type).'.'),
       '#rows' => 3,
       '#weight' => 1,
@@ -89,7 +97,7 @@ class CloneParagraphForm extends FormBase
         'menu' => $this->t('Menu')
       ],
       '#required' => TRUE,
-      '#default_value' => $this->paragraph->get('field_is_service_or_menu')->value,
+      '#default_value' => $paragraph->get('field_is_service_or_menu')->value,
       '#description' => $this->t('Select whether this is a '.strtolower($service_type).' or a menu item.'),
       '#weight' => 2,
     ];
@@ -105,7 +113,7 @@ class CloneParagraphForm extends FormBase
       '#type' => 'number',
       '#title' => $this->t('Amount'),
       '#required' => TRUE,
-      '#default_value' => $this->paragraph->get('field_service_amount')->value,
+      '#default_value' => $paragraph->get('field_service_amount')->value,
       '#min' => 0,
       '#step' => 0.01,
       '#description' => $this->t('Enter the price amount.'),
@@ -119,7 +127,7 @@ class CloneParagraphForm extends FormBase
         'usd' => $this->t('USD (US Dollar)'),
       ],
       '#required' => TRUE,
-      '#default_value' => $this->paragraph->get('field_service_currency')->value,
+      '#default_value' => $paragraph->get('field_service_currency')->value,
       '#description' => $this->t('Select the currency for this '.strtolower($service_type).'.'),
     ];
 
@@ -127,7 +135,7 @@ class CloneParagraphForm extends FormBase
       '#type' => 'number',
       '#title' => $this->t('Minimum Order'),
       '#required' => false,
-      '#default_value' => $this->paragraph->get('field_service_minimum_order')->value,
+      '#default_value' => $paragraph->get('field_service_minimum_order')->value,
       '#min' => 0,
       '#description' => $this->t('Minimum quantity required. Enter 0 for no minimum order.'),
     ];
@@ -149,7 +157,7 @@ class CloneParagraphForm extends FormBase
         'file_validate_size' => [2 * 1024 * 1024], // 2 MB
       ],
       '#description' => $this->t('Upload an image for this service. Allowed formats: png, jpg, jpeg, gif. Maximum size: 2MB.'),
-      '#default_value' => $this->paragraph->get('field_extra_service_image')->target_id ? [$this->paragraph->get('field_extra_service_image')->target_id] : NULL,
+      '#default_value' => $paragraph->get('field_extra_service_image')->target_id ? [$paragraph->get('field_extra_service_image')->target_id] : NULL,
       '#attributes' => [
         'accept' => 'image/*', // ensures only images can be selected in file dialog
       ],
@@ -189,19 +197,69 @@ class CloneParagraphForm extends FormBase
     return $form;
   }
 
+  private function isParagraphAttachedAlready(Paragraph $paragraph, int $nid): bool {
+    $pid = $paragraph->id();
+    if (!$pid) {
+      return FALSE;
+    }
+
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'zaal')
+      ->condition('nid', $nid, '=')
+      ->accessCheck(FALSE);
+
+    $or = $query->orConditionGroup()
+      ->condition('field_extra_room_services', $pid)
+      ->condition('field_resuse_menu_and_services', $pid);
+
+    $query->condition($or);
+
+    // 👇 this is the key fix
+    $count = $query->count()->execute();
+    return $count > 0;
+  }
+
+  private function getOneRoom(): array|int
+  {
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'zaal')
+      ->condition('status', 1)
+      ->condition('uid', Drupal::currentUser()->id())
+      ->accessCheck(FALSE);
+
+    $query->range(0, 1);
+
+    return $query->execute();
+  }
+
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
     try {
 
+      $paragraph = Paragraph::load($this->paragraph);
       $redirect_url_value = $form_state->getValue('redirect_url');
       $parsed_url = parse_url($redirect_url_value,PHP_URL_PATH);
 
       $clonedParagraph = null;
+      $edited = false;
+      $node = false;
       if (str_ends_with($parsed_url, "/edit")) {
-        $clonedParagraph = $this->paragraph;
+
+        $nid = substr($parsed_url, 1, -5);
+        $nid = substr($nid,  strrpos($nid, "/")+1, strlen($nid));
+
+        if (is_numeric($nid)) {
+          if ($this->isParagraphAttachedAlready($paragraph, $nid)) {
+            $clonedParagraph = $paragraph;
+          } else {
+            $clonedParagraph = $paragraph->createDuplicate();
+            $edited = true;
+            $node = Node::load($nid);
+          }
+        }
       }
       else {
-        $clonedParagraph = $this->paragraph->createDuplicate();
+        $clonedParagraph = $paragraph->createDuplicate();
       }
 
       // Get form values
@@ -231,26 +289,47 @@ class CloneParagraphForm extends FormBase
       $clonedParagraph->set('field_service_amount', $values['pricing']['service_amount']);
       $clonedParagraph->set('field_service_currency', $values['pricing']['service_currency']);
       $clonedParagraph->set('field_service_minimum_order', $values['pricing']['service_minimum_order']);
+      $clonedParagraph->set('field_author',['target_id' => Drupal::currentUser()->id()]);
 
       // Handle image upload
-      $image_fid = $values['media']['extra_service_image'][0] ?? null;
-      if ($image_fid) {
-        $clonedParagraph->set('field_extra_service_image', ['target_id' => $image_fid]);
+      $image_fids = $form_state->getValue(['fieldset_wrapper', 'media', 'extra_service_image']);
+      if (!empty($image_fids[0])) {
+        $file = File::load($image_fids[0]);
+        if ($file) {
+          $file->setPermanent();
+          $file->save();
+          $clonedParagraph->set('field_extra_service_image', ['target_id' => $file->id()]);
+        }
       }
 
       // Save the cloned paragraph
       $clonedParagraph->save();
 
+//      if ($edited && $node) {
+//
+//        $olds = $node->get('field_extra_room_services')->getValue();
+//        $olds[] = [
+//          'target_id' => $clonedParagraph->id(),
+//          'target_revision_id' => $clonedParagraph->getRevisionId(),
+//        ];
+//
+//        $node->set('field_extra_room_services', $olds);
+//
+//        $node->save();
+//      }
+
       $symbol = Drupal::service('reservation.currencies')->getSymbol($clonedParagraph->get('field_service_currency')->value);
       $title = ucfirst($clonedParagraph->get('field_is_service_or_menu')->value);
-      $label = "{$title}: {$clonedParagraph->get('field_service_short_description')->value} {$symbol}{$clonedParagraph->get('field_service_amount')->value} ({$clonedParagraph->id()})";
+      $label = "{$title}: {$clonedParagraph->get('field_service_short_description')->value} {$symbol}{$clonedParagraph->get('field_service_amount')->value}";
 
       // Store success data for AJAX callback
       $pids = [
-        'old' => $this->paragraph->id(),
+        'old' => $paragraph->id(),
         'new' => $clonedParagraph->id(),
         'label' => $label,
       ];
+
+      // renderer array for previews
       $base64 = base64_encode(json_encode($pids));
       $redirect_url = $values['redirect_url'] ?? '';
 
@@ -263,7 +342,7 @@ class CloneParagraphForm extends FormBase
 
       // Log the action
       $this->logger('reservation')->notice('Cloned paragraph @pid to @new_pid with updated values', [
-        '@pid' => $this->paragraph->id(),
+        '@pid' => $paragraph->id(),
         '@new_pid' => $clonedParagraph->id(),
       ]);
 
@@ -282,11 +361,11 @@ class CloneParagraphForm extends FormBase
    * AJAX callback for form submission.
    */
   public function ajaxSubmitCallback(array &$form, FormStateInterface $form_state) {
-    $response = new \Drupal\Core\Ajax\AjaxResponse();
+    $response = new AjaxResponse();
 
     // Check for errors
     if ($error = $form_state->get('clone_error')) {
-      $response->addCommand(new \Drupal\Core\Ajax\HtmlCommand('#clone-paragraph-form-wrapper',
+      $response->addCommand(new HtmlCommand('#clone-paragraph-form-wrapper',
         '<div class="messages messages--error">' . $error['message'] . '</div>'
       ));
       return $response;
@@ -295,13 +374,13 @@ class CloneParagraphForm extends FormBase
     // Check for success
     if ($success = $form_state->get('clone_success')) {
       // Close dialog/modal
-      $response->addCommand(new \Drupal\Core\Ajax\CloseDialogCommand());
+      $response->addCommand(new CloseDialogCommand());
 
       // Show a success message
-      $response->addCommand(new \Drupal\Core\Ajax\MessageCommand($success['message']));
+      $response->addCommand(new MessageCommand($success['message']));
 
       // Insert the new paragraph ID into the noscript element
-      $response->addCommand(new \Drupal\Core\Ajax\HtmlCommand(
+      $response->addCommand(new HtmlCommand(
         '#clone-paragraph-new-id',
         json_encode($success)
       ));

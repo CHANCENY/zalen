@@ -11,7 +11,7 @@ entity_type: paragraph
 bundle: seasonal_pricings
 label: 'Seasonal Price'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

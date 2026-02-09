@@ -11,8 +11,11 @@
  */
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Field\FieldFilteredMarkup;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Render\Markup;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\reservation\Plugin\BookingConfirmationEmail;
@@ -36,6 +39,7 @@ use Drupal\user\UserInterface;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\views\ViewExecutable;
+use Drupal\views\Views;
 
 /**
  * The time cutoff for reservations marked as read for entity types other node.
@@ -157,6 +161,14 @@ function reservation_theme() {
         'list' =>  []
       ],
       'template' => 'menu-services-preview',
+    ],
+    'menu_services_checkbox' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+        'data' => []
+      ],
+      'template' => 'menu-service-checkbox',
     ],
   ];
 }
@@ -340,6 +352,7 @@ function reservation_entity_storage_load($entities, $entity_type) {
  * Implements hook_entity_insert().
  */
 function reservation_entity_insert(EntityInterface $entity) {
+
   // Allow bulk updates and inserts to temporarily disable the
   // maintenance of the {reservation_entity_statistics} table.
   if (\Drupal::state()->get('reservation.maintain_entity_statistics') &&
@@ -350,6 +363,76 @@ function reservation_entity_insert(EntityInterface $entity) {
 
     // Reservation email start from here upon booking.
     (new BookingConfirmationEmail($entity))->processRequiredMail();
+  }
+
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'zaal') {
+
+    $uid = $entity->getOwnerId();
+
+    $tempstore = \Drupal::service('tempstore.private')
+      ->get('reservation_extra_services');
+
+    $data = $tempstore->get("zaal_extra_services_{$uid}");
+
+    if (!empty($data['pids']) && is_array($data['pids'])) {
+
+      // Clean existing values
+      $existing = array_filter($entity->get('field_resuse_menu_and_services')->getValue());
+      $existing_pids = array_column($existing, 'target_id');
+
+      foreach ($data['pids'] as $pid) {
+        $pid = (int) $pid;
+        if ($pid && !in_array($pid, $existing_pids)) {
+          $existing[] = ['target_id' => $pid];
+        }
+      }
+
+      // Attach and save
+      $entity->set('field_resuse_menu_and_services', $existing);
+      $entity->save();
+
+      // Clear tempstore
+      $tempstore->delete("zaal_extra_services_{$uid}");
+    }
+  }
+
+
+}
+
+function reservation_entity_update(EntityInterface $entity)
+{
+  if ($entity->getEntityTypeId() === 'node' || $entity->bundle() === 'zaal') {
+    $uid = $entity->getOwnerId();
+
+    $tempstore = \Drupal::service('tempstore.private')
+      ->get('reservation_extra_services');
+
+    $data = $tempstore->get("zaal_extra_services_{$uid}");
+
+    if (empty($data['pids']) || !is_array($data['pids'])) {
+      return;
+    }
+
+    // Existing field values
+    $existing = array_filter($entity->get('field_resuse_menu_and_services')->getValue());
+    $existing_pids = array_column($existing, 'target_id');
+
+    foreach ($data['pids'] as $pid) {
+      $pid = (int) $pid;
+      if ($pid && !in_array($pid, $existing_pids)) {
+        $existing[] = ['target_id' => $pid];
+      }
+    }
+
+    // Update field
+    $entity->set('field_resuse_menu_and_services', $existing);
+
+    /**
+     * IMPORTANT:
+     * Do NOT call $entity->save() here.
+     * Entity is already in update cycle.
+     */
+    $tempstore->delete("zaal_extra_services_{$uid}");
   }
 }
 
@@ -889,7 +972,8 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
 
   $services = $room_node?->get('field_extra_room_services')?->referencedEntities() ?? [];
   $reused_services = $room_node?->get('field_resuse_menu_and_services')?->referencedEntities() ?? [];
-  $services = array_merge($services, $reused_services);
+
+  $services = array_merge($reused_services,$services);
   $additional_services = [];
 
   if (count($services) >= 1) {
@@ -909,8 +993,9 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
 
       foreach ($services as $service) {
 
-        if (!empty($service->get('field_service_short_description')?->value) && !empty($service->get('field_service_minimum_order')->value) && !empty($service->get('field_service_amount')->value)) {
-          $name_service = strtolower(str_replace(' ', '_', __remove_special_characters($service->get('field_service_short_description')?->value ?? '')));
+        if (!empty($service->get('field_service_short_description')?->value) && !empty($service->get('field_service_amount')->value)) {
+          $name_service = strtolower(str_replace(' ', '_',
+            __remove_special_characters($service->get('field_service_short_description')?->value ?? '').' '.$service->id()));
 
           $wrapper_id = 'service-count-wrapper-' . $name_service;
 
@@ -1256,10 +1341,20 @@ function _get_nested_paragraphs(Paragraph $paragraph, string $field_name): array
             'currency' => $child->get('field_per_person_item_currency')?->value ?? 0,
             'name'=> $child->get('field_short_description')->value ?? '',
             'bookingAdvanceRules' => array_filter(array_map(function ($entity){
-              if ($entity instanceof Paragraph) {
+              if ($entity instanceof Paragraph && $entity->bundle() !== 'seasonal_pricings') {
                 return [
                   'amount' => (int) $entity->get('field_rule_amount')?->value ?? 0,
                   'miniPersons' => (int) $entity->get('field_if_minimum_person_is')?->value ?? 0,
+                ];
+              }
+              return null;
+            },  $child->referencedEntities() ?? [])),
+            'seasonal_rules' => array_filter(array_map(function ($entity){
+              if ($entity instanceof Paragraph && $entity->bundle() === 'seasonal_pricings') {
+                return [
+                  'amount' => (int) $entity->get('field_seasonal_price')?->value ?? 0,
+                  'currency' => (int) $entity->get('field_seasonal_currency')?->value ?? 'eur',
+                  'date_range' => $entity->get('field_season_date_time_range')?->getValue() ?? [],
                 ];
               }
               return null;
@@ -1272,10 +1367,20 @@ function _get_nested_paragraphs(Paragraph $paragraph, string $field_name): array
             'miniHours' => (int) $child->get('field_minimum_hours_to_book')?->value ?? 0,
             'currency' => $child->get('field_currency')?->value ?? 0,
             'bookingAdvanceRules' => array_filter(array_map(function ($entity){
-              if ($entity instanceof Paragraph) {
+              if ($entity instanceof Paragraph && $entity->bundle() !== 'seasonal_pricings') {
                 return [
                   'amount' => (int) $entity->get('field_amount')?->value ?? 0,
                   'miniHours' => (int) $entity->get('field_if_hours_exceed')?->value ?? 0,
+                ];
+              }
+              return null;
+            },  $child->referencedEntities() ?? [])),
+            'seasonal_rules' => array_filter(array_map(function ($entity){
+              if ($entity instanceof Paragraph && $entity->bundle() === 'seasonal_pricings') {
+                return [
+                  'amount' => (int) $entity->get('field_seasonal_price')?->value ?? 0,
+                  'currency' => (int) $entity->get('field_seasonal_currency')?->value ?? 'eur',
+                  'date_range' => $entity->get('field_season_date_time_range')?->getValue() ?? [],
                 ];
               }
               return null;
@@ -1288,10 +1393,20 @@ function _get_nested_paragraphs(Paragraph $paragraph, string $field_name): array
             'miniDays' => (int) $child->get('field_minimum_day_to_book')?->value ?? 0,
             'currency' => $child->get('field_day_currency')?->value ?? 0,
             'bookingAdvanceRules' => array_filter(array_map(function ($entity){
-              if ($entity instanceof Paragraph) {
+              if ($entity instanceof Paragraph && $entity->bundle() !== 'seasonal_pricings') {
                 return [
                   'amount' => (int) $entity->get('field_set_amount')?->value ?? 0,
                   'miniDays' => (int) $entity->get('field_if_days_booked')?->value ?? 0,
+                ];
+              }
+              return null;
+            },  $child->referencedEntities() ?? [])),
+            'seasonal_rules' => array_filter(array_map(function ($entity){
+              if ($entity instanceof Paragraph && $entity->bundle() === 'seasonal_pricings') {
+                return [
+                  'amount' => (int) $entity->get('field_seasonal_price')?->value ?? 0,
+                  'currency' => (int) $entity->get('field_seasonal_currency')?->value ?? 'eur',
+                  'date_range' => $entity->get('field_season_date_time_range')?->getValue() ?? [],
                 ];
               }
               return null;
@@ -1924,7 +2039,7 @@ function reservation_entity_presave(Drupal\Core\Entity\EntityInterface $entity) 
  * Implements hook_form_alter().
  * @throws \Drupal\Core\TypedData\Exception\MissingDataException
  */
-function reservation_form_alter(&$form, &$form_state, $form_id): void {
+function reservation_form_alter(&$form, FormStateInterface &$form_state, $form_id): void {
 
   if ($form_id == 'user_form') {
     // Check if the field exists in the form.
@@ -1959,8 +2074,60 @@ function reservation_form_alter(&$form, &$form_state, $form_id): void {
 
     // attach library
     $form['#attached']['library'][] = 'reservation/drupal.reservation-service';
-    $form['field_resuse_menu_and_services']['widget']['#after_build'][] =
-      'reservation_alter_paragraph_autocomplete_display';
+
+    if ($form_id === 'node_zaal_form') {
+
+      $current_user = Drupal::currentUser();
+
+      $nids = \Drupal::entityQuery('node')
+        ->condition('type', 'zaal')
+        ->condition('uid', $current_user->id())
+        ->condition('status', 1)
+        ->range(0, 1)
+        ->accessCheck(false)
+        ->execute();
+
+      $node = $nids ? \Drupal\node\Entity\Node::load(reset($nids)) : NULL;
+      if (($node instanceof Node) === false) {
+        $form['field_resuse_menu_and_services']['#access'] = FALSE;
+      }
+    }
+
+    if ($form_id === 'node_zaal_edit_form') {
+
+      $node = Drupal::routeMatch()->getParameter('node');
+      if (($node instanceof Node) === false) {
+        $form['field_resuse_menu_and_services']['#access'] = FALSE;
+      }
+
+    }
+
+    $form['field_resuse_menu_and_services'] = [
+      '#type' => 'checkboxes',
+      '#title' => t('Reuse menu and services from previous zaal'),
+      '#options' => __reservation_get_extra_services_paragraphs(),
+      '#default_value' => __reservation_get_extra_services_paragraphs_default(),
+    ];
+
+    $form['field_resuse_menu_and_services_hidden'] = [
+      '#type' => 'hidden',
+      '#default_value' => "",
+      '#name' => 'field_resuse_menu_and_services_hidden[]',
+    ];
+
+    if (!empty($form['field_extra_room_services']['widget'][0]['inline_entity_form'])) {
+      foreach ($form['field_extra_room_services']['widget'] as $key => $widget) {
+        if (is_numeric($key)) {
+          $paragraph = $widget['inline_entity_form']['#default_value'] ?? null;
+          if (!empty($paragraph) && $paragraph instanceof Paragraph) {
+            if (empty($paragraph->get('field_service_short_description')->value) && empty($paragraph->get('field_service_amount')->value)) {
+              unset($form['field_extra_room_services']['widget'][$key]);
+            }
+          }
+        }
+      }
+    }
+
   }
 
   if ($form_id === "clone_paragraph_form") {
@@ -1977,19 +2144,41 @@ function reservation_form_alter(&$form, &$form_state, $form_id): void {
 }
 
 function reservation_node_zaal_form_submit($form, FormStateInterface $form_state) {
+
   $pricing = $form_state->getValue('field_room_pricing_settings');
 
-  if (empty($pricing)) {
-    return;
+  if (!empty($pricing)) {
+    $form_state->setValue('field_room_pricing_settings', $pricing);
   }
 
-  // Now it is SAFE to mutate
-  //removeEmptyPricingParagraphs($pricing);
+  if (!empty($form_state->getValue('field_resuse_menu_and_services_hidden'))) {
 
-  $form_state->setValue('field_room_pricing_settings', $pricing);
+    $paragraphs = $form_state->getValue('field_resuse_menu_and_services_hidden');
+
+    if (!empty($paragraphs)) {
+
+      $node = $form_state->getFormObject()->getEntity();
+      $uid = \Drupal::currentUser()->id();
+
+      // Extract only target_ids
+      $pids = array_column($paragraphs, 'target_id');
+
+      // Store in tempstore
+      $tempstore = \Drupal::service('tempstore.private')
+        ->get('reservation_extra_services');
+
+      $tempstore->set("zaal_extra_services_{$uid}", [
+        'pids' => $pids,
+      ]);
+
+    }
+
+  }
+
 }
 
 function reservation_node_zaal_form_validate($form, FormStateInterface $form_state) {
+
   $pricing = $form_state->getValue('field_room_pricing_settings');
   if (empty($pricing)) {
     return;
@@ -2008,6 +2197,24 @@ function reservation_node_zaal_form_validate($form, FormStateInterface $form_sta
     $form_state->setErrorByName('field_room_pricing_settings', $result['message']);
     return;
   }
+
+  $values = $form_state->getUserInput();
+
+  $hidden_field = $values['field_resuse_menu_and_services_hidden'] ?? [];
+  $list = [];
+
+  foreach ($hidden_field as $paragraph_id) {
+    if (is_numeric($paragraph_id)) {
+      $paragraph = Paragraph::load($paragraph_id);
+      if ($paragraph instanceof Paragraph) {
+        // Only target_id is needed for reference field
+        $list[$paragraph->id()] = ['target_id' => $paragraph->id()];
+      }
+    }
+  }
+
+  // Set back the array of properly structured references
+  $form_state->setValue('field_resuse_menu_and_services_hidden', array_values($list));
 }
 
 function hasAtLeastOnePricingAmount(array $paragraphs): array
@@ -2140,4 +2347,71 @@ function reservation_alter_paragraph_autocomplete_display(array $element, FormSt
   }
 
   return $element;
+}
+
+function __reservation_get_extra_services_paragraphs(): array {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $paragraphs = [];
+
+  $query = \Drupal::entityQuery('paragraph')
+    ->condition('type', 'extra_room_services')
+    ->condition('field_author.target_id', \Drupal::currentUser()->id())
+    ->accessCheck(FALSE);
+
+  // Editing existing zaal → exclude already attached paragraphs
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    $exclude = $node->get('field_extra_room_services')->getValue();
+    $exclude_ids = array_column($exclude, 'target_id');
+
+    if (!empty($exclude_ids)) {
+      $query->condition('id', $exclude_ids, 'NOT IN');
+    }
+  }
+
+  $pids = $query->execute();
+
+  if (!empty($pids)) {
+    $paragraphs = Paragraph::loadMultiple($pids);
+  }
+
+  $options = [];
+  foreach ($paragraphs as $paragraph) {
+    if (!$paragraph instanceof Paragraph) {
+      continue;
+    }
+
+    if (
+      $paragraph->hasField('field_service_short_description') &&
+      $paragraph->hasField('field_is_service_or_menu') &&
+      $paragraph->hasField('field_service_amount') &&
+      !$paragraph->get('field_service_short_description')->isEmpty()
+    ) {
+      $id = $paragraph->id();
+      $symbol = \Drupal::service('reservation.currencies')
+        ->getSymbol($paragraph->get('field_service_currency')->value);
+
+      $title = ucfirst($paragraph->get('field_is_service_or_menu')->value);
+      $label = "{$title}: {$paragraph->get('field_service_short_description')->value} {$symbol}{$paragraph->get('field_service_amount')->value}";
+
+      $options[$id] = FieldFilteredMarkup::create(
+        '<span class="views-field views-field-id">
+          <span class="field-content">' . $id . '&nbsp;</span>
+        </span>' . $label
+      );
+    }
+  }
+
+  return $options;
+}
+
+
+function __reservation_get_extra_services_paragraphs_default()
+{
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof Node) {
+    $exclude = $node->get('field_resuse_menu_and_services')->getValue();
+    $exclude_ids = array_column($exclude, 'target_id');
+    return $exclude_ids;
+  }
+  return [];
 }

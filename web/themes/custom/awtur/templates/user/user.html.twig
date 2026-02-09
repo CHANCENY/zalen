@@ -21,6 +21,9 @@
     {% if logged_in %}
       <span class="ident-name text-capitalize">{{ user.displayname }}</span>
     {% endif %}
+    <div class="account-details-label">
+        {% trans %}Accountgegevens{% endtrans %}:
+    </div>
     {{- content -}}
   {% endif %}
 </article>

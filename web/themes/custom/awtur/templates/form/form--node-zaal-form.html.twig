@@ -11,6 +11,7 @@
     {{ element.form_build_id }}
     {{ element.form_id }}
     {{ element.form_token }}
+    {{ element.field_resuse_menu_and_services_hidden }}
 
     {# ================= LANGUAGE ================= #}
     <fieldset class="form-section" id="zaal-langcode-language">
@@ -84,9 +85,11 @@
 
       <details>
         <summary>{{ 'Extra Services'|t }}</summary>
+        {% if element.field_resuse_menu_and_services['#access'] %}
         <div class="description-of-extra-menus-and-services">
           <p>{{ "You can search for an existing menu or service below and edit it if you don’t want to create a new one. If you’d rather add something new, simply proceed to the Create New Menu/Service section to create a new entry."|t }}</p>
         </div>
+        {% endif %}
         {{ element.field_resuse_menu_and_services }}
         <div class="resuse-menus-services" id="zaal-form-resuse-menus-services">
 

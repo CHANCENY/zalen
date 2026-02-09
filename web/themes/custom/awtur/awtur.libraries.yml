@@ -268,6 +268,12 @@ personal-views-fields-alle-zalen:
     layout:
       css/views/views-fields-alle-zalen.css: {}
 
+personal-views-fields-page-alle-zalen:
+  version: 1.0
+  css:
+    layout:
+      css/views/views-fields-page-alle-zalen.css: {}
+
 personal-front-block:
   version: 1.0
   css:
@@ -490,6 +496,17 @@ zaalopstellingen:
       css/taxonomy/zaalopstellingen-full.css: {}
   dependencies:
     - core/drupal    
+    
+alle_zalen_slider:
+  css:
+    theme:
+      https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css: { type: external }
+  js:
+    https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js: { type: external }
+    js/views/alle-zalen-slider.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
 
 
 

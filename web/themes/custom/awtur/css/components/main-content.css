@@ -13,6 +13,14 @@
   line-height: 1.4;
 }
 
+.layout-no-sidebars .main-content {
+  padding: 0 20px;
+}
+
+body.path-node.layout-no-sidebars .main-content {
+  padding: 0;
+}
+
 @media all and (min-width: 851px) {
   .main-content {
     position: relative;

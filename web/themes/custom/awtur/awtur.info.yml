@@ -14,6 +14,7 @@ libraries:
   - awtur/global-styling 
   - awtur/tat-update-style
   - awtur/jan-belba
+  - awtur/alle_zalen_slider
 libraries-extend:
   core/drupal.dialog:
     - awtur/classy.dialog

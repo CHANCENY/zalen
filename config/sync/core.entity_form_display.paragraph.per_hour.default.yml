@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.per_hour.field_currency
+    - field.field.paragraph.per_hour.field_hour_seasonal_pricings
     - field.field.paragraph.per_hour.field_hourly_pricing_rules
     - field.field.paragraph.per_hour.field_minimum_hours_to_book
     - field.field.paragraph.per_hour.field_per_hour_price
@@ -20,6 +21,19 @@ content:
     weight: 1
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_hour_seasonal_pricings:
+    type: inline_entity_form_simple
+    weight: 4
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      revision: false
     third_party_settings: {  }
   field_hourly_pricing_rules:
     type: inline_entity_form_complex

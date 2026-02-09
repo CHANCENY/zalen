@@ -1,0 +1,300 @@
+.view-content {
+  padding: 30px;
+}
+
+.alle-zalen-view {
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  column-gap: clamp(0.1875rem, -0.1322rem + 2.1311vw, 1rem);
+  height: 100%;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 8px 8px 44px rgb(0 0 0 / 10%);
+}
+
+.alle-zalen-img {
+  height: 280px;
+}
+
+.alle-zalen-img img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  position: relative;
+  border-radius: 8px 0 0 8px;
+}
+
+.alle-zalen-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-pagination {
+  left: 50% !important;
+  bottom: 10px;
+  width: auto !important;
+  color: #fff !important;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  transform: translateX(-50%) !important;
+}
+
+.alle-zalen-slider .swiper-button-prev,
+.alle-zalen-slider .swiper-button-next {
+  background: none;
+  width: auto;
+  height: auto;
+  top: 99% !important;
+  transform: translateY(-50%);
+  margin: 0;
+  color: #fff;
+}
+
+.alle-zalen-slider .swiper-button-prev {
+  left: 100px !important;
+}
+
+.alle-zalen-slider .swiper-button-next {
+  right: 100px !important;
+}
+
+.alle-zalen-slider .swiper-button-prev::after,
+.alle-zalen-slider .swiper-button-next::after {
+  font-size: 30px;
+  font-weight: 300;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.alle-zalen-details {
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/*general header*/
+section .page-title {
+  margin-top: 60px;
+  border-bottom: 2px #bbb solid;
+}
+
+/*count of teasers*/
+.view-header {
+  padding: 3px 22px;
+  font-weight: bold;
+  text-align: end;
+}
+
+/*pager*/
+ul>li.pager__item {
+  margin: 4px;
+  padding: 4px 16px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #0B96DA;
+  border-radius: 8px;
+}
+
+.pager__item a:hover {
+  border-bottom-color: transparent;
+  background-color: #ddd;
+  transition: background-color 0.3s;
+}
+
+
+/*-----Bedrijf label-----*/
+.alle-zalen-label-foto {
+  font-size: clamp(0.6875rem, 0.6137rem + 0.4918vw, 0.875rem) !important;
+  font-weight: bold;
+}
+
+.alle-zalen-gelegenheden-price {
+  display: grid;
+  grid-template-columns: auto auto;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.feature-tot {
+  margin-right: 20px;
+}
+
+.alle-zalen-price {
+  padding: 4px 12px;
+  color: #000;
+}
+
+.price-vanaf {
+  font-size: clamp(0.8125rem, 0.7138rem + 0.6579vw, 1.125rem);
+  font-weight: bold;
+}
+
+.price-variation {
+  font-size: clamp(0.625rem, 0.5658rem + 0.3947vw, 0.8125rem);
+}
+
+.alle-zalen-zaallabel {
+  font-size: clamp(0.8125rem, 0.7138rem + 0.6579vw, 1.125rem);
+  font-weight: 600;
+}
+
+.alle-zalen-label-city a {
+  color: #bd8100;
+}
+
+.alle-zalen-city {
+  font-size: clamp(0.625rem, 0.5658rem + 0.3947vw, 0.8125rem);
+  text-transform: capitalize;
+}
+
+.alle-zalen-city::before {
+  content: url(../../images/icons/location-icon.svg);
+}
+
+/*-----Gelegenheden ( occasions )-----*/
+ .alle-zalen-gelegenheden-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.alle-zalen-gelegenheden-tags .tag {
+  padding: 8px 14px;
+  border: 1px solid #cfcfcf;
+  background: #fff;
+  font-size: 12px;
+  line-height: 1;
+  cursor: default;
+  font-weight: bold;
+}
+
+.alle-zalen-gelegenheden-tags .tag-toggle {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.alle-zalen-gelegenheden-tags .tag-toggle.is-less {
+  color: red;
+}
+
+.alle-zalen-gelegenheden-tags .is-hidden {
+  display: none;
+}
+
+
+.alle-zalen-capaciteit {
+  display: inline-flex;
+  color: #3b3b3b;
+  padding: 4px 16px 4px 8px;
+  font-weight: bold;
+}
+
+
+.views-row .alle-zalen-view .features {
+  text-align: right;
+}
+
+.views-row .features>div {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: #baceae;
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 5px;
+  background-color: #fff7ec;
+  border: 1px #e4ceae solid;
+  border-radius: 18px;
+  transition: 0.3s;
+}
+
+.views-row .features>div:hover {
+  background-color: navajowhite;
+  border: 1px #FF9800 solid;
+  box-shadow: 0px 3px 3px 0px rgba(255, 152, 0, 0.3);
+}
+
+.views-row .features p {
+  display: none;
+}
+
+.views-row .features>div:hover p {
+  display: block;
+  position: absolute;
+  margin-top: -30px;
+  padding: 1px 10px;
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+  background: #555;
+  border-bottom: 2px #FF9800 solid;
+  border-radius: 8px;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, 10%);
+}
+
+.views-row .features>div p:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.2);
+  bottom: 10px;
+  left: 50%;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  border-width: 11px 14px 0 14px;
+  transform: translate(0%, 20px);
+}
+
+.views-row .features>div:last-child:hover p {
+  transform: translate(-48%, 0px);
+}
+
+.views-row .features>div.field-nabij-bushalte {
+  background-image: url(../../images/icons/features-busstop.svg);
+}
+
+.views-row .features>div.field-nabij-metrohalte {
+  background-image: url(../../images/icons/features-metro.svg);
+}
+
+.views-row .features>div.field-nabij-tramhalte {
+  background-image: url(../../images/icons/features-tram.svg);
+}
+
+.views-row .features>div.field-nabij-trein-station {
+  background-image: url(../../images/icons/features-train.svg);
+}
+
+.views-row .features>div.field-kindvriendelijk {
+  background-image: url(../../images/icons/features-child-friendly.svg);
+}
+
+.views-row .features>div.field-groen-label {
+  background-image: url(../../images/icons/features-eco-friendly.svg);
+}
+
+.views-row .features>div.field-beperkingen {
+  background-image: url(../../images/icons/features-restrictions.svg);
+}
+
+@media(max-width: 560px) {
+  .alle-zalen-view {
+    display: block;
+  }
+
+  .alle-zalen-img img {
+    position: relative;
+    border-radius: 8px;
+  }
+
+  .alle-zalen-details {
+    padding: 10px;
+  }
+}

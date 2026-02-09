@@ -17,11 +17,11 @@
   background-position: top;
 }*/
 
-@media all and (max-width: 461px) {
-  .region-header.clearfix {
-    margin-top: 120px;
- }
-}
+/*@media all and (max-width: 461px) {*/
+/*  .region-header.clearfix {*/
+/*    margin-top: 120px;*/
+/* }*/
+/*}*/
 .header .section {
   position: relative;
 }

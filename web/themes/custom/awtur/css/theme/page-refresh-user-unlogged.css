@@ -2,22 +2,22 @@
 /*page kaart for global styling*/
 
 /*fix region sidebar*/
-@media (min-width: 851px) {
-  main#content {
-    float: none;
-    margin: 0;
-    margin-bottom: 30px;
-    padding: 10px;
-    width: auto;
-  }
-  div#sidebar-first, div#sidebar-second {
-    margin: 0;
-    margin-bottom: 30px;
-    padding: 10px;
-    box-sizing: border-box;
-    width: 50%;
-  }
-}
+/*@media (min-width: 851px) {*/
+/*  main#content {*/
+/*    float: none;*/
+/*    margin: 0;*/
+/*    margin-bottom: 30px;*/
+/*    padding: 10px;*/
+/*    width: auto;*/
+/*  }*/
+/*  div#sidebar-first, div#sidebar-second {*/
+/*    margin: 0;*/
+/*    margin-bottom: 30px;*/
+/*    padding: 10px;*/
+/*    box-sizing: border-box;*/
+/*    width: 50%;*/
+/*  }*/
+/*}*/
 
 
 

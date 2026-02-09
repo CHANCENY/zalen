@@ -173,14 +173,10 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_resuse_menu_and_services:
-    type: entity_reference_autocomplete
+    type: options_buttons
     weight: 34
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_room_layouts:
     type: room_layout_capacity_widget
