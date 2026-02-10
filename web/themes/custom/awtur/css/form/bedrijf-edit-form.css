@@ -2,7 +2,7 @@
 
 /*
 :root {
-    --brand-color: #BD8100;
+    --border-color: #BD8100;
     --form-color: #fffff1;
     --text-color: #000;
     --pure-white: #fff;
@@ -18,42 +18,64 @@
   box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
   background: var(--pure-white);
   padding: 16px clamp(0.5rem, -0.2059rem + 3.5294vw, 2rem);
-  margin: 0 clamp(0.5rem, -1.1471rem + 8.2353vw, 4rem);
+  /*margin: 0 clamp(0.5rem, -1.1471rem + 8.2353vw, 4rem);*/
 }
-.bedrijf-form label{
+
+@media(max-width: 1400px) {
+  .bedrijf-form {
+    margin: 0 clamp(0.5rem, -1.1471rem + 8.2353vw, 4rem);
+  }
+}
+
+.bedrijf-form label {
   color: #000;
 }
+
+.bedrijf-form img {
+  border: 2px solid #bd8100;
+}
+
 .bedrijf-form fieldset {
-  border: 1px solid var(--brand-color);
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.bedrijf-form .SumoSelect > p.CaptionCont {
-  border: 1px solid var(--brand-color);
+
+.bedrijf-form .SumoSelect>p.CaptionCont {
+  border: 1px solid var(--border-color);
   background: var(--pure-white);
   border-radius: 4px;
   outline: none;
 }
-.bedrijf-form input.form-text, .bedrijf-form input.form-date,
- .bedrijf-form input.form-number, .bedrijf-form .bedrijf-form-afvanced input[type="date"],
- .bedrijf-form .bedrijf-form-afvanced input[type="time"], .bedrijf-form input[type="tel"] {
-  border: 1px solid var(--brand-color);
+
+.bedrijf-form input.form-text,
+.bedrijf-form input.form-date,
+.bedrijf-form input.form-number,
+.bedrijf-form .bedrijf-form-afvanced input[type="date"],
+.bedrijf-form .bedrijf-form-afvanced input[type="time"],
+.bedrijf-form input[type="tel"] {
+  border: 1px solid var(--border-color);
   background: var(--form-color);
   border-radius: 4px;
   outline: none;
 }
+
 .bedrijf-form input.form-date {
   background: var(--pure-white);
 }
-.form-group.bedrijf-field-telefoon input, .form-group.bedrijf-field-gsm input {
-    max-width: 280px;
+
+.form-group.bedrijf-field-telefoon input,
+.form-group.bedrijf-field-gsm input {
+  max-width: 280px;
 }
+
 .bedrijf-form .form-checkboxes {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(clamp(6.875rem, 3.9338rem + 14.7059vw, 13.125rem), 1fr));
   gap: clamp(0.25rem, -0.1029rem + 1.7647vw, 1rem);
 }
+
 .bedrijf-form .form-checkboxes label {
   white-space: nowrap;
   overflow: hidden;
@@ -62,10 +84,12 @@
   max-width: 100%;
   margin-left: clamp(0.375rem, 0.1776rem + 1.3158vw, 1rem);
 }
+
 .bedrijf-form .form-checkboxes .form-item {
   position: relative;
   display: flex;
 }
+
 .bedrijf-form .form-checkboxes .form-item[data-full-text]::after {
   content: attr(data-full-text);
   display: none;
@@ -73,100 +97,144 @@
   position: absolute;
   left: 0;
   top: 100%;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   color: #fff;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-size: 0.875rem;
   white-space: normal;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   z-index: 9999;
   margin-top: 0.3rem;
   pointer-events: none;
   transition: opacity 0.3s ease-in-out;
 }
+
 .bedrijf-form .form-checkboxes .form-item.show-tooltip[data-full-text]::after {
   display: block;
   opacity: 1;
 }
+
 @media(hover: hover) {
   .bedrijf-form .form-checkboxes .form-item[data-full-text]:hover::after {
     display: block;
     opacity: 1;
   }
 }
-.bedrijf-form input[type="checkbox"]:before, .bedrijf-form [type="radio"]:before {
-  border: 1px solid var(--brand-color);
+
+.bedrijf-form input[type="checkbox"]:before,
+.bedrijf-form [type="radio"]:before {
+  border: 1px solid var(--border-color);
   background-color: var(--pure-white);
   border-radius: 2px;
 }
-.bedrijf-form input[type="submit"] {
+
+/* .bedrijf-form input[type="submit"] {
   background: var(--form-button);
+} */
+
+.bedrijf-form summary,
+.bedrijf-form table th {
+  background: #2f9bff;
 }
+
+.bedrijf-form details,
+.bedrijf-form .form-item {
+  margin: unset;
+}
+
+.bedrijf-form details>.details-wrapper {
+  padding: 0.5em 14px;
+}
+
+.bedrijf-form table .label {
+  color: #fff;
+}
+
 .bedrijf-form .input-openingsuren fieldset {
   border: none;
 }
+
 .bedrijf-form .input-openingsuren label {
   margin-left: 8px;
 }
+
 .bedrijf-form .input-openingsuren .timepicker {
   background-color: #fff;
   max-width: clamp(15rem, 10.7143rem + 21.4286vw, 18.75rem);
 }
+
 .bedrijf-form .input-openingsuren .form-checkboxes {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 16px;
   padding-bottom: clamp(1rem, 0.5294rem + 2.3529vw, 2rem);
 }
+
 .bedrijf-form .details-wrapper fieldset {
   border: none;
-  margin:16px 0;
+  margin: 16px 0;
   padding: 0;
 }
-.bedrijf-form .form-composite > legend, .label {
+
+.bedrijf-form .form-composite>legend,
+.label {
   display: none;
 }
-.bedrijf-form tr td, .bedrijf-form th {
-  border: 1px solid var(--brand-color);
+
+.bedrijf-form tr td,
+.bedrijf-form th {
+  border: 1px solid var(--border-color);
   background-color: var(--form-color);
   margin-bottom: -1px;
   padding: 16px;
 }
+
 .bedrijf-form tr .odd {
   background-color: unset;
   background: unset;
 }
+
 .bedrijf-form input.locality {
   max-width: 75%;
 }
-.bedrijf-form .opening-hours-start, .bedrijf-form .opening-hours-end {
+
+.bedrijf-form .opening-hours-start,
+.bedrijf-form .opening-hours-end {
   max-width: 100%;
 }
+
 .bedrijf-form .opening-hours-remove {
   margin-left: auto;
 }
-.bedrijf-form .closing-period-start-end, .bedrijf-form .opening-hours-times {
+
+.bedrijf-form .closing-period-start-end,
+.bedrijf-form .opening-hours-times {
   display: flex;
   gap: 8px;
   margin-bottom: 16px;
   flex-wrap: wrap;
 }
+
 .bedrijf-form .closing-period-items {
   background-color: var(--form-color);
-  border: 1px solid var(--brand-color);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 16px 8px;
 }
+
 .bedrijf-form .closing-period-remove {
   justify-self: right;
 }
+
 .bedrijf-form .closing-period-add-more {
   margin-top: 8px;
 }
+
 .bedrijf-form .closing-period-start-end input {
   background-color: var(--pure-white);
 }
+
 .bedrijf-form .bedrijf-invisible-elements {
   display: flex;
   flex-wrap: wrap;
@@ -177,77 +245,94 @@
 .bedrijf-form .no-term-reference-tree-button {
   background-color: transparent;
 }
+
 .bedrijf-form .term-reference-tree-button {
   filter: sepia(1);
 }
-.bedrijf-form .SumoSelect > p.CaptionCont {
-  border: 1px solid var(--brand-color);
+
+.bedrijf-form .SumoSelect>p.CaptionCont {
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   background-color: var(--form-color);
 }
+
 .bedrijf-form .SumoSelect>.CaptionCont>label>i::after {
-  color: var(--brand-color);
+  color: var(--border-color);
   opacity: 1;
 }
+
 .bedrijf-form .field-multiple-table span.fieldset-legend {
   display: none;
 }
-@media (max-width: 740px) {
 
-  .bedrijf-form table.field-multiple-table thead {
-    display: block;
-  }
-  .bedrijf-form table.field-multiple-table tbody tr {
-    display: block;
-    margin-bottom: 1em;
-    background: unset;
-  }
-  .bedrijf-form table.field-multiple-table td {
-    display: block;
-    width: 100%;
-  }
-  .bedrijf-form table.field-multiple-table td.field-multiple-drag {
-    display: flex;
-    padding: 16px;
-    justify-content: center;
-  }
-  .bedrijf-form table.field-multiple-table td.delta-order {
-    display: block;
-  }
-  .bedrijf-form table.field-multiple-table thead > tr {
-    border-bottom: none;
-    background-color: transparent;
-  }
-.bedrijf-form th {
-  border: none;
-  background-color: transparent;
-}
+/*@media (max-width: 740px) {*/
 
-}
+/*  .bedrijf-form table.field-multiple-table thead {*/
+/*    display: block;*/
+/*  }*/
+
+/*  .bedrijf-form table.field-multiple-table tbody tr {*/
+/*    display: block;*/
+/*    margin-bottom: 1em;*/
+/*    background: unset;*/
+/*  }*/
+
+/*  .bedrijf-form table.field-multiple-table td {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*  }*/
+
+/*  .bedrijf-form table.field-multiple-table td.field-multiple-drag {*/
+/*    display: flex;*/
+/*    padding: 16px;*/
+/*    justify-content: center;*/
+/*  }*/
+
+/*  .bedrijf-form table.field-multiple-table td.delta-order {*/
+/*    display: block;*/
+/*  }*/
+
+/*  .bedrijf-form table.field-multiple-table thead>tr {*/
+/*    border-bottom: none;*/
+/*    background-color: transparent;*/
+/*  }*/
+
+/*  .bedrijf-form th {*/
+/*    border: none;*/
+/*    background-color: transparent;*/
+/*  }*/
+
+/*}*/
+
 .bedrijf-form .SumoSelect {
   max-width: 320px;
 }
-.bedrijf-form .SumoSelect > p.CaptionCont > span {
+
+.bedrijf-form .SumoSelect>p.CaptionCont>span {
   font-weight: normal;
   color: #bababa;
   font-style: italic;
 }
-.bedrijf-form .bedrijf-form-afvanced {
+
+/* .bedrijf-form .bedrijf-form-afvanced {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   justify-content: space-between;
-}
+} */
 .bedrijf-form .bedrijf-form-afvanced details {
   border: none;
   border-radius: 5px 0 0 0;
+  margin-top: 1em;
+  margin-bottom: 1em
 }
-.bedrijf-form .bedrijf-form-afvanced details > .details-wrapper {
+
+/* .bedrijf-form .bedrijf-form-afvanced details > .details-wrapper {
   border: 10px solid lightgoldenrodyellow;
   background-color: #2c2330;
   color: var(--pure-white);
   border-radius: 0 5px 5px;
-}
+} */
 .bedrijf-form .bedrijf-form-afvanced summary {
   list-style: none;
   display: inline-flex;
@@ -257,6 +342,7 @@
   color: #30353b;
   border-radius: 5px 5px 0 0;
 }
+
 .bedrijf-form .bedrijf-form-afvanced summary::after {
   content: '';
   width: 18px;
@@ -267,36 +353,126 @@
   margin-left: .75em;
   transition: 0.2s;
 }
-.bedrijf-form .bedrijf-form-afvanced details[open] > summary::after {
+
+.bedrijf-form .bedrijf-form-afvanced details[open]>summary::after {
   transform: rotate(180deg);
 }
-.bedrijf-form .bedrijf-form-afvanced  summary::-webkit-details-marker {
+
+.bedrijf-form .bedrijf-form-afvanced summary::-webkit-details-marker {
   display: none;
 }
-.bedrijf-form .bedrijf-form-afvanced .form-item label {
+
+/* .bedrijf-form .bedrijf-form-afvanced .form-item label {
   color: var(--pure-white);
-}
+} */
 .bedrijf-form .form-group.bedrijf-field-aanpreekvorm {
   display: flex;
   align-items: center;
   /*gap: clamp(0.5rem, -0.1429rem + 3.4286vw, 2rem);*/
 }
+
 .bedrijf-form .SumoSelect.sumo_field_aanspreekvorm {
-    width: clamp(4.375rem, 3.5714rem + 4.2857vw, 6.25rem);
+  width: clamp(4.375rem, 3.5714rem + 4.2857vw, 6.25rem);
 }
+
 .bedrijf-form .element-field-contactpersoon {
   width: clamp(9.375rem, 1.0714rem + 44.2857vw, 28.75rem);
 }
+
 .upgrade-vip {
   border: 3px solid red !important;
-  p{
+
+  p {
     font-weight: bold;
   }
 }
-@media(max-width: 420px) {
-  .form-group.bedrijf-field-telefoon, .form-group.bedrijf-field-gsm {
-    text-align-last: center;
-    justify-items: center;
-  }
+
+.bedrijf-form #edit-actions input[type="submit"],
+.bedrijf-form #edit-actions .button--danger {
+  background-color: #2f9bff;
 }
 
+.bedrijf-form #edit-actions .button--danger:hover {
+  color: #fff;
+  border: unset;
+}
+
+.bedrijf-form .form-item-field-keurmerken-3>div,
+.bedrijf-form .form-item-field-foto-0>div,
+.bedrijf-form .form-item-field-foto-3>div,
+.bedrijf-form .form-item-field-foto-6>div,
+.bedrijf-form .form-item-field-prijslijsten-0>div,
+.bedrijf-form .form-item-field-keurmerken-0>div,
+.bedrijf-form .form-item-field-prijslijsten-2>div{
+  background: var(--form-color);
+  text-align: center;
+}
+
+.bedrijf-form .form-item-field-keurmerken-3>div.image-widget,
+.bedrijf-form .form-item-field-foto-0>div.image-widget,
+.bedrijf-form .form-item-field-foto-3>div.image-widget,
+.bedrijf-form .form-item-field-foto-6>div.image-widget,
+.bedrijf-form .form-item-field-prijslijsten-0>div#edit-field-prijslijsten-0,
+.bedrijf-form .form-item-field-keurmerken-0>div.image-widget,
+.bedrijf-form .form-item-field-prijslijsten-2>div#edit-field-prijslijsten-2{
+  border: 1px solid var(--border-color);
+  border-bottom: unset;
+  padding-top: 20px;
+}
+
+.bedrijf-form .form-item-field-keurmerken-3>div.description,
+.bedrijf-form .form-item-field-foto-0>div.description,
+.bedrijf-form .form-item-field-foto-3>div.description,
+.bedrijf-form .form-item-field-foto-6>div.description,
+.bedrijf-form .form-item-field-prijslijsten-0>div.description,
+.bedrijf-form .form-item-field-keurmerken-0>div.description,
+.bedrijf-form .form-item-field-prijslijsten-2>div.description{
+  border: 1px solid var(--border-color);
+  border-top: unset;
+  padding-bottom: 30px;
+}
+
+.node-bedrijf-edit-form .form-item-field-avatar-0>div.image-widget {
+  background: var(--form-color);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  padding: 30px 0;
+}
+
+.node-bedrijf-form .form-item-field-avatar-0>div {
+  background: var(--form-color);
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.node-bedrijf-form .form-item-field-avatar-0>div.image-widget .image-preview {
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+  padding: 10px;
+}
+
+.node-bedrijf-form .form-item-field-avatar-0>div.description {
+  border-top: unset;
+}
+
+.node-bedrijf-form .form-item-field-avatar-0>div.image-widget .image-widget-data,
+.node-bedrijf-form .form-item-field-avatar-0>div.image-widget {
+  border-bottom: unset;
+}
+
+.bedrijf-form .media-library-item__preview img {
+  border: unset;
+}
+
+.bedrijf-form .form-item-field-avatar-0-alt label {
+  width: 100%;
+}
+
+/*@media(max-width: 420px) {*/
+
+/*  .form-group.bedrijf-field-telefoon,*/
+/*  .form-group.bedrijf-field-gsm {*/
+/*    text-align-last: center;*/
+/*    justify-items: center;*/
+/*  }*/
+/*}*/

@@ -267,7 +267,8 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 }
 
 .path-user div#block-awtur-local-tasks nav {
-    display: unset;
+    margin: unset;
+    justify-items: unset;
 }
 
 .path-user form.user-additioneel-form details {
@@ -346,6 +347,11 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 .path-mijn-zaal-lijst .SumoSelect>.CaptionCont>label>i::after {
     content: unset;
 }
+
+.path-vip-capacity-selection .main-content {
+    padding: 0 20px;
+}
+
 
 /*Responsive*/
 @media (max-width:850px) {

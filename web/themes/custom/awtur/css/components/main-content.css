@@ -13,9 +13,9 @@
   line-height: 1.4;
 }
 
-.layout-no-sidebars .main-content {
-  padding: 0 20px;
-}
+/*.layout-no-sidebars .main-content {*/
+/*  padding: 0 20px;*/
+/*}*/
 
 body.path-node.layout-no-sidebars .main-content {
   padding: 0;

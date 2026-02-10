@@ -2355,7 +2355,6 @@ function __reservation_get_extra_services_paragraphs(): array {
 
   $query = \Drupal::entityQuery('paragraph')
     ->condition('type', 'extra_room_services')
-    ->condition('field_author.target_id', \Drupal::currentUser()->id())
     ->accessCheck(FALSE);
 
   // Editing existing zaal → exclude already attached paragraphs
@@ -2366,6 +2365,10 @@ function __reservation_get_extra_services_paragraphs(): array {
     if (!empty($exclude_ids)) {
       $query->condition('id', $exclude_ids, 'NOT IN');
     }
+    $query->condition('field_author.target_id', $node->getOwnerId());
+  }
+  else {
+    $query->condition('field_author.target_id', \Drupal::currentUser()->id());
   }
 
   $pids = $query->execute();

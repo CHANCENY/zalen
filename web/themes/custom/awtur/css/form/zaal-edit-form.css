@@ -30,20 +30,20 @@
   color: #000;
 }
 
+.zaal-form img {
+  border: 2px solid #bd8100;
+}
+
 .zaal-form fieldset {
-  border: 1px solid var(--brand-color);
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.zaal-form details {
-  /*border: none;*/
-   border: 1px solid #E9D2AA; 
-}
 
 .zaal-form .SumoSelect>p.CaptionCont {
-  border: 1px solid var(--brand-color);
+  border: 1px solid var(--border-color);
   background: var(--pure-white);
   border-radius: 4px;
   outline: none;
@@ -52,7 +52,7 @@
 .zaal-form input.form-text,
 .zaal-form input.form-date,
 .zaal-form input.form-number {
-  border: 1px solid var(--brand-color);
+  border: 1px solid var(--border-color);
   background: var(--pure-white);
   border-radius: 4px;
   outline: none;
@@ -74,7 +74,7 @@
 
 .zaal-form input[type="checkbox"]:before,
 .bedrijf-form [type="radio"]:before {
-  border: 1px solid var(--brand-color);
+  border: 1px solid var(--border-color);
   background-color: var(--pure-white);
   border-radius: 2px;
 }
@@ -154,6 +154,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: clamp(1rem, 0.0526rem + 6.3158vw, 4rem);
+}
+
+.zaal-form #edit-actions .button--danger:hover{
+    color: #fff;
+    border: unset;
 }
 
 /*.zaal-form .zaal-form-advanced {*/
@@ -408,14 +413,14 @@ button.summary-remove:hover {
 .zaal-form .form-item-field-plattegrond-0>div,
 .zaal-form .form-item-field-foto-0>div,
 .zaal-form .form-item-field-foto-4>div {
-  background: #fffef3;
+  background: var(--form-color);
   text-align: center;
 }
 
 .zaal-form .form-item-field-plattegrond-0>div.image-widget,
 .zaal-form .form-item-field-foto-0>div.image-widget,
 .zaal-form .form-item-field-foto-4>div.image-widget {
-  border: 1px solid #E9D2AA;
+  border: 1px solid var(--border-color);
   border-bottom: unset;
   padding-top: 20px;
 }
@@ -423,18 +428,18 @@ button.summary-remove:hover {
 .zaal-form .form-item-field-plattegrond-0>div.description,
 .zaal-form .form-item-field-foto-0>div.description,
 .zaal-form .form-item-field-foto-4>div.description {
-  border: 1px solid #E9D2AA;
+  border: 1px solid var(--border-color);
   border-top: unset;
   padding-bottom: 30px;
 }
 
 .zaal-form table tr {
-  background: #fffef3;
+  background: var(--form-color);
 }
 
 .zaal-form table tr td,
 .zaal-form table tr th {
-  border: 1px solid #E9D2AA;
+  border: 1px solid var(--border-color);
 }
 
 .zaal-form details > .details-wrapper {
@@ -449,4 +454,85 @@ button.summary-remove:hover {
 .zaal-form #edit-field-resuse-menu-and-services-wrapper,
 .zaal-form .description-of-extra-menus-and-services{
   padding: 0 14px;
+}
+
+
+  .menu-services-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .service-card {
+    width: 30%;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .service-image img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px 6px 0 0;
+  }
+
+  .service-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .service-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+
+  .service-description {
+    font-size: 13px;
+    color: #555;
+    margin: 0 0 10px;
+    flex: 1;
+  }
+
+  .service-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .service-price {
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .service-edit {
+    font-size: 12px;
+    color: #0074bd;
+    text-decoration: none;
+  }
+
+  .service-edit:hover {
+    text-decoration: underline;
+  }
+.zaal-form #edit-field-resuse-menu-and-services--wrapper, .zaal-form div#edit-field-extra-room-services-wrapper{
+  margin: 14px;
+}
+.zaal-form #zaal-form-resuse-menus-services{
+  margin: 0 14px;
+}
+@media(max-width: 768px) {
+    .service-card {
+        width: 100%;
+    }
+}
+@media(min-width: 560px) {
+  .zaal-form #edit-field-resuse-menu-and-services {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 }

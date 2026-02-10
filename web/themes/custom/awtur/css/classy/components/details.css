@@ -9,7 +9,8 @@
 details {
   margin-top: 1em;
   margin-bottom: 1em;
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
+  border: 1px solid var(--border-color);
 }
 details > .details-wrapper {
   padding: 0.5em 1.5em;
