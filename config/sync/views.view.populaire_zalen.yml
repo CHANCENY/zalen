@@ -131,10 +131,10 @@ display:
             image_style: medium
             image_loading:
               attribute: lazy
-            svg_render_as_image: true
             svg_attributes:
               width: 220
               height: 220
+            svg_render_as_image: true
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -212,6 +212,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 44
           total_pages: null
           id: 0
@@ -226,7 +227,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -486,10 +486,10 @@ display:
             image_style: medium
             image_loading:
               attribute: lazy
-            svg_render_as_image: true
             svg_attributes:
               width: 220
               height: 220
+            svg_render_as_image: true
           group_column: ''
           group_columns: {  }
           group_rows: true

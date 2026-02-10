@@ -111,15 +111,15 @@ final class ReservationCommands extends DrushCommands {
         }
 
         // Skip if already set (optional safety)
-//        if (!$paragraph->get('field_author')->isEmpty()) {
-//          $rows[] = [
-//            'nid' => $node->id(),
-//            'pid' => $paragraph->id(),
-//            'uid' => $uid,
-//            'status' => 'Skipped (already set)',
-//          ];
-//          continue;
-//        }
+        if (!$paragraph->get('field_author')->isEmpty()) {
+          $rows[] = [
+            'nid' => $node->id(),
+            'pid' => $paragraph->id(),
+            'uid' => $uid,
+            'status' => 'Skipped (already set)',
+          ];
+          continue;
+        }
 
         $paragraph->set('field_author', $uid);
         $paragraph->save();

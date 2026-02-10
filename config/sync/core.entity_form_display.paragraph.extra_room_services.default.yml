@@ -73,5 +73,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_author: true
   field_service_image: true
   status: true

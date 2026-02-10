@@ -1446,8 +1446,8 @@ display:
               secondary_label: 'Advanced options'
               secondary_open: false
               reset_button_always_show: false
-              autosubmit_breakpoint: ''
               auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
             sort:
               plugin_id: bef_links
               advanced:
@@ -1458,6 +1458,7 @@ display:
                 collapsible: false
                 collapsible_label: 'Sort options'
                 is_secondary: false
+                combine_param: sort_bef_combine
             filter:
               field_comercielegelegenheden_target_id:
                 plugin_id: default
@@ -1470,10 +1471,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
               field_concertgelegenheden_target_id:
                 plugin_id: default
                 advanced:
@@ -1485,10 +1486,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
               field_feestgelegenheid_target_id:
                 plugin_id: default
                 advanced:
@@ -1500,10 +1501,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
               field_vergadergelegenheden_target_id:
                 plugin_id: default
                 advanced:
@@ -1515,10 +1516,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
               field_lat_long_proximity:
                 plugin_id: default
                 advanced:
@@ -1526,10 +1527,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
               field_kindvriendelijk_value:
                 plugin_id: bef_single
                 advanced:
@@ -1541,10 +1541,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 treat_as_false: false
               field_groen_label_value:
                 plugin_id: bef_single
@@ -1557,10 +1557,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 treat_as_false: false
               field_beperkingen_value:
                 plugin_id: bef_single
@@ -1573,10 +1573,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 treat_as_false: false
               field_slaapgelegenheid_value:
                 plugin_id: bef_single
@@ -1589,10 +1589,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 treat_as_false: false
               field_nabij_bushalte_value:
                 plugin_id: bef_single
@@ -1605,10 +1605,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 treat_as_false: false
               field_nabij_metrohalte_value:
                 plugin_id: bef_single
@@ -1621,10 +1621,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 treat_as_false: false
               field_nabij_tramhalte_value:
                 plugin_id: bef_single
@@ -1637,10 +1637,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 treat_as_false: false
               field_nabij_trein_station_value:
                 plugin_id: bef_single
@@ -1653,10 +1653,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 treat_as_false: false
               field_fietsen_value:
                 plugin_id: bef_number
@@ -1665,10 +1665,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
                 max: null
                 min: null
               field_motoren_value:
@@ -1678,10 +1677,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
                 max: null
                 min: null
               field_wagens_value:
@@ -1691,10 +1689,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
                 max: null
                 min: null
               field_bezetting_tot_value:
@@ -1704,10 +1701,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
                 max: null
                 min: null
               field_oppervlakte_value:
@@ -1717,10 +1713,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
                 max: null
                 min: null
               field_zitplaatsen_value:
@@ -1730,10 +1725,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
                 max: null
                 min: null
               field_buiten_voorzieningen_target_id:
@@ -1747,10 +1741,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: false
@@ -1768,10 +1762,10 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
-                  open_by_default: false
                   sort_options_method: alphabetical_asc
                   sort_options_natural: true
+                  open_by_default: false
+                  field_classes: ''
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: false
@@ -1785,10 +1779,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: true
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
                 max: null
                 min: null
               field_prijs_per_persoon_value:
@@ -1798,10 +1791,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
                 max: null
                 min: null
               field_uurprijs_value:
@@ -1811,10 +1803,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
                 max: null
                 min: null
               field_date_booking_value:
@@ -1825,10 +1816,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
               field_date_booking_end_value:
                 plugin_id: default
                 advanced:
@@ -1837,10 +1827,9 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                  field_classes: ''
                   open_by_default: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
+                  field_classes: ''
+                  sort_options_unsupported: ''
       access:
         type: perm
         options:

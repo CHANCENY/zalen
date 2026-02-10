@@ -1,0 +1,29 @@
+uuid: e3c6a2d2-3ed2-4195-9b58-010205c7a3d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_author
+    - paragraphs.paragraphs_type.extra_room_services
+id: paragraph.extra_room_services.field_author
+field_name: field_author
+entity_type: paragraph
+bundle: extra_room_services
+label: Author
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: _none
+    include_anonymous: true
+field_type: entity_reference
