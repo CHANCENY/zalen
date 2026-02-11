@@ -2075,38 +2075,13 @@ function reservation_form_alter(&$form, FormStateInterface &$form_state, $form_i
     // attach library
     $form['#attached']['library'][] = 'reservation/drupal.reservation-service';
 
-    if ($form_id === 'node_zaal_form') {
-
-      $current_user = Drupal::currentUser();
-
-      $nids = \Drupal::entityQuery('node')
-        ->condition('type', 'zaal')
-        ->condition('uid', $current_user->id())
-        ->condition('status', 1)
-        ->range(0, 1)
-        ->accessCheck(false)
-        ->execute();
-
-      $node = $nids ? \Drupal\node\Entity\Node::load(reset($nids)) : NULL;
-      if (($node instanceof Node) === false) {
-        $form['field_resuse_menu_and_services']['#access'] = FALSE;
-      }
-    }
-
-    if ($form_id === 'node_zaal_edit_form') {
-
-      $node = Drupal::routeMatch()->getParameter('node');
-      if (($node instanceof Node) === false) {
-        $form['field_resuse_menu_and_services']['#access'] = FALSE;
-      }
-
-    }
-
     $form['field_resuse_menu_and_services'] = [
       '#type' => 'checkboxes',
-      '#title' => t('Reuse menu and services from previous zaal'),
+      '#title' => t('Choose from your existing menus & Services'),
       '#options' => __reservation_get_extra_services_paragraphs(),
       '#default_value' => __reservation_get_extra_services_paragraphs_default(),
+      '#description' => t('You can reuse existing menus and services from your existing zaal.'),
+      '#access'  => __reservation_is_allowed_to_show_reused(),
     ];
 
     $form['field_resuse_menu_and_services_hidden'] = [
@@ -2407,7 +2382,6 @@ function __reservation_get_extra_services_paragraphs(): array {
   return $options;
 }
 
-
 function __reservation_get_extra_services_paragraphs_default()
 {
   $node = \Drupal::routeMatch()->getParameter('node');
@@ -2417,4 +2391,9 @@ function __reservation_get_extra_services_paragraphs_default()
     return $exclude_ids;
   }
   return [];
+}
+
+function __reservation_is_allowed_to_show_reused(): bool
+{
+  return !empty(__reservation_get_extra_services_paragraphs());
 }

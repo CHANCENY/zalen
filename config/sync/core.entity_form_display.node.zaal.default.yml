@@ -172,12 +172,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_resuse_menu_and_services:
-    type: options_buttons
-    weight: 34
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_room_layouts:
     type: room_layout_capacity_widget
     weight: 33
@@ -302,5 +296,6 @@ hidden:
   field_person_currency: true
   field_prijs_eenheid: true
   field_regels: true
+  field_resuse_menu_and_services: true
   promote: true
   sticky: true
