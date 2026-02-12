@@ -7,7 +7,7 @@
       temp = els[i].getElementsByTagName("a")[0];
       temp.classList.add("use-ajax");
       temp.setAttribute("data-dialog-type", "modal");
-      temp.setAttribute("data-dialog-options", '{"width":"300","height":"auto","dialogClass":"tat-popup"}');
+      temp.setAttribute("data-dialog-options", '{"width":"300","height":"auto","dialogClass":"tat-popup1"}');
     };
   };
 
@@ -19,7 +19,7 @@
       temp.classList.add("use-ajax");
       temp.setAttribute("data-dialog-type", "dialog");
       temp.setAttribute("data-dialog-renderer", "off_canvas");
-      temp.setAttribute("data-dialog-options", '{"width":"180","height":"auto","dialogClass":"tat-popup","title":"Bod per voertuig"}');
+      temp.setAttribute("data-dialog-options", '{"width":"180","height":"auto","dialogClass":"tat-popup1","title":"Bod per voertuig"}');
     };
   };
 
@@ -32,7 +32,7 @@
         temp = els[i];
         temp.classList.add("use-ajax");
         temp.setAttribute("data-dialog-type", "modal");
-        temp.setAttribute("data-dialog-options", '{"width":"300","height":"auto","dialogClass":"tat-popup"}');
+        temp.setAttribute("data-dialog-options", '{"width":"300","height":"auto","dialogClass":"tat-popup1"}');
       }
     };
   };

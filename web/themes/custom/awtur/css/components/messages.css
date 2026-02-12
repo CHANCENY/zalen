@@ -11,8 +11,8 @@
   padding: 0 8px 0 0;
 }
 .messages:first-child {
-  margin-top: 128px;
+  margin-top: 20px;
 }
 .messages:last-child {
-  margin-bottom: 128px;
+  margin-bottom: 20px;
 }

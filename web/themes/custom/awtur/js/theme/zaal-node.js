@@ -13,7 +13,7 @@
  }
   document.getElementById(comfortZaal).style.display = "block";
   evt.currentTarget.className += " active";
-  evt.currentTarget.style.borderBottom = "3px solid #FF5F5F"; 
+  evt.currentTarget.style.borderBottom = "3px solid var(--brand-color)"; 
   evt.currentTarget.style.color = "#3b3b3b";
   evt.currentTarget.style.filter = "opacity(1)";
 }
