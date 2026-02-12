@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.extra_room_services.field_author
     - field.field.paragraph.extra_room_services.field_extra_service_image
     - field.field.paragraph.extra_room_services.field_is_service_or_menu
     - field.field.paragraph.extra_room_services.field_service_amount

@@ -1,0 +1,21 @@
+uuid: 2921bd52-8c72-47c2-a48a-c2edee1f3235
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_seasonal_title
+field_name: field_seasonal_title
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

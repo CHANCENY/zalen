@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.seasonal_pricings.field_season_date_time_range
     - field.field.paragraph.seasonal_pricings.field_seasonal_currency
     - field.field.paragraph.seasonal_pricings.field_seasonal_price
+    - field.field.paragraph.seasonal_pricings.field_seasonal_title
     - paragraphs.paragraphs_type.seasonal_pricings
   module:
     - datetime_range
@@ -43,5 +44,13 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_seasonal_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden: {  }

@@ -394,6 +394,19 @@ function reservation_entity_insert(EntityInterface $entity) {
       // Clear tempstore
       $tempstore->delete("zaal_extra_services_{$uid}");
     }
+
+//    $paragraphs2 = array_column($entity->get('field_extra_room_services')->getValue(), 'target_id');
+//
+//    foreach ($paragraphs2 as $pid) {
+//      if (is_numeric($pid)) {
+//        $pard = Paragraph::load($pid);
+//        if ($pard instanceof Paragraph) {
+//          $pard->set('field_author', $entity->getOwnerId());
+//          $pard->save();
+//        }
+//      }
+//    }
+
   }
 
 
@@ -401,6 +414,7 @@ function reservation_entity_insert(EntityInterface $entity) {
 
 function reservation_entity_update(EntityInterface $entity)
 {
+
   if ($entity->getEntityTypeId() === 'node' || $entity->bundle() === 'zaal') {
     $uid = $entity->getOwnerId();
 
@@ -409,30 +423,44 @@ function reservation_entity_update(EntityInterface $entity)
 
     $data = $tempstore->get("zaal_extra_services_{$uid}");
 
-    if (empty($data['pids']) || !is_array($data['pids'])) {
-      return;
+    if (is_array($data['pids'])) {
+      // Existing field values
+      $existing = array_filter($entity->get('field_resuse_menu_and_services')->getValue());
+      $existing_pids = array_column($existing, 'target_id');
+
+      foreach ($data['pids'] as $pid) {
+        $pid = (int) $pid;
+        if ($pid && !in_array($pid, $existing_pids)) {
+          $existing[] = ['target_id' => $pid];
+        }
+      }
+
+      // Update field
+      $entity->set('field_resuse_menu_and_services', $existing);
+      /**
+       * IMPORTANT:
+       * Do NOT call $entity->save() here.
+       * Entity is already in update cycle.
+       */
+      $tempstore->delete("zaal_extra_services_{$uid}");
     }
 
-    // Existing field values
-    $existing = array_filter($entity->get('field_resuse_menu_and_services')->getValue());
-    $existing_pids = array_column($existing, 'target_id');
+    if ($entity->hasField('field_extra_room_services')) {
+      $paragraphs = array_column($entity->get('field_extra_room_services')
+        ->getValue(), 'target_id');
+      $paragraphs = array_values(array_filter($paragraphs));
 
-    foreach ($data['pids'] as $pid) {
-      $pid = (int) $pid;
-      if ($pid && !in_array($pid, $existing_pids)) {
-        $existing[] = ['target_id' => $pid];
+      foreach ($paragraphs as $pid) {
+        if (is_numeric($pid)) {
+          $pard = Paragraph::load($pid);
+          if ($pard instanceof Paragraph) {
+            $pard->set('field_author', $entity->getOwnerId());
+            $pard->save();
+          }
+        }
       }
     }
 
-    // Update field
-    $entity->set('field_resuse_menu_and_services', $existing);
-
-    /**
-     * IMPORTANT:
-     * Do NOT call $entity->save() here.
-     * Entity is already in update cycle.
-     */
-    $tempstore->delete("zaal_extra_services_{$uid}");
   }
 }
 
@@ -1353,8 +1381,9 @@ function _get_nested_paragraphs(Paragraph $paragraph, string $field_name): array
               if ($entity instanceof Paragraph && $entity->bundle() === 'seasonal_pricings') {
                 return [
                   'amount' => (int) $entity->get('field_seasonal_price')?->value ?? 0,
-                  'currency' => (int) $entity->get('field_seasonal_currency')?->value ?? 'eur',
+                  'currency' => $entity->get('field_seasonal_currency')?->value ?? 'eur',
                   'date_range' => $entity->get('field_season_date_time_range')?->getValue() ?? [],
+                  'label'      => $entity->get('field_seasonal_title')->value ?? "",
                 ];
               }
               return null;
@@ -1379,8 +1408,9 @@ function _get_nested_paragraphs(Paragraph $paragraph, string $field_name): array
               if ($entity instanceof Paragraph && $entity->bundle() === 'seasonal_pricings') {
                 return [
                   'amount' => (int) $entity->get('field_seasonal_price')?->value ?? 0,
-                  'currency' => (int) $entity->get('field_seasonal_currency')?->value ?? 'eur',
+                  'currency' => $entity->get('field_seasonal_currency')?->value ?? 'eur',
                   'date_range' => $entity->get('field_season_date_time_range')?->getValue() ?? [],
+                  'label'      => $entity->get('field_seasonal_title')->value ?? "",
                 ];
               }
               return null;
@@ -1405,8 +1435,9 @@ function _get_nested_paragraphs(Paragraph $paragraph, string $field_name): array
               if ($entity instanceof Paragraph && $entity->bundle() === 'seasonal_pricings') {
                 return [
                   'amount' => (int) $entity->get('field_seasonal_price')?->value ?? 0,
-                  'currency' => (int) $entity->get('field_seasonal_currency')?->value ?? 'eur',
+                  'currency' => $entity->get('field_seasonal_currency')?->value ?? 'eur',
                   'date_range' => $entity->get('field_season_date_time_range')?->getValue() ?? [],
+                  'label'      => $entity->get('field_seasonal_title')->value ?? "",
                 ];
               }
               return null;
@@ -1769,7 +1800,6 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
       }
     }
 
-
     if (!empty($submittedData['overnight_rooms']) && $room) {
       $location = $room->get('field_bedrijf_zaal')->referencedEntities();
       if (!empty($location)) {
@@ -2037,7 +2067,6 @@ function reservation_entity_presave(Drupal\Core\Entity\EntityInterface $entity) 
 
 /**
  * Implements hook_form_alter().
- * @throws \Drupal\Core\TypedData\Exception\MissingDataException
  */
 function reservation_form_alter(&$form, FormStateInterface &$form_state, $form_id): void {
 
@@ -2055,6 +2084,11 @@ function reservation_form_alter(&$form, FormStateInterface &$form_state, $form_i
         $form['field_vip_abonnement_vervaldatum']['#disabled'] = TRUE;
       }
     }
+  }
+
+  if($form_id == 'reservation_type_booking_form') {
+    $form['subject']['#prefix'] = "<div class='booking-form-wrapper'>";
+    $form['field_per_person']['#suffix'] = '</div>';
   }
 
   if ($form_id === 'node_zaal_form' || $form_id === 'node_zaal_edit_form') {
@@ -2104,6 +2138,7 @@ function reservation_form_alter(&$form, FormStateInterface &$form_state, $form_i
     }
 
   }
+
 
   if ($form_id === "clone_paragraph_form") {
     $paragraph = Drupal::routeMatch()->getParameter('paragraph');

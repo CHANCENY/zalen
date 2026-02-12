@@ -10,14 +10,13 @@ const timer_id = setInterval(function (){
     preview_calculation.addEventListener('click',(e)=>{
        e.preventDefault();
        const fields = fieldQuery();
-       console.log(fields);
        const xhr = new XMLHttpRequest();
        xhr.open('POST', '/web/reservation/booking/amount/preview', true);
        xhr.onload = function () {
          if(this.status === 200) {
            try{
-             const data = JSON.parse(this.responseText);
-             console.log(data);
+             const data = JSON.parse(this.responseText)
+             console.log(data)
              if(!data.hasOwnProperty('error')) {
                // Select the element with ID edit-calculation-report
                var calculationReportFieldset = document.getElementById('edit-calculation-report');
@@ -75,8 +74,8 @@ const timer_id = setInterval(function (){
   }
 },1000);
 
-function fieldQuery()
-{
+function fieldQuery() {
+
   const values = [];
   // Select the input element using its data-drupal-selector attribute
   var inputElement = document.querySelector('input[data-drupal-selector="edit-field-bezetting-0-value"]');

@@ -1,0 +1,19 @@
+uuid: 2b3fe852-558a-4937-8a09-65e0527aa14a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_seasonal_title
+    - paragraphs.paragraphs_type.seasonal_pricings
+id: paragraph.seasonal_pricings.field_seasonal_title
+field_name: field_seasonal_title
+entity_type: paragraph
+bundle: seasonal_pricings
+label: 'Seasonal title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -41,6 +41,51 @@
           }
         }
 
+        function isTodayWithinRange({ value, end_value }) {
+          const now = new Date();
+
+          const startDate = new Date(value);
+          const endDate = new Date(end_value);
+
+          return now >= startDate && now <= endDate;
+        }
+
+        function formatDateRange({ value, end_value }) {
+          if (!value || !end_value) return '';
+
+          const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+          const startDate = new Date(value);
+          const endDate = new Date(end_value);
+
+          if (isNaN(startDate) || isNaN(endDate)) return '';
+
+          return `${startDate.toLocaleDateString(undefined, options)} - ${endDate.toLocaleDateString(undefined, options)}`;
+        }
+
+        function isBookingDatesInSeasonalRange(dates, seasonalRange) {
+          
+          if (!dates || !seasonalRange) return false;
+
+           // Parse booking dates (replace space with T for proper parsing)
+            const bookingStart = new Date(dates.start.replace(' ', 'T'));
+            const bookingEnd = new Date(dates.end.replace(' ', 'T'));
+
+             // Parse seasonal rule dates
+             const seasonStart = new Date(seasonalRange.value);
+             const seasonEnd = new Date(seasonalRange.end_value);
+
+            // Validate dates
+            if (isNaN(bookingStart) || isNaN(bookingEnd) || isNaN(seasonStart) || isNaN(seasonEnd)) {
+                return false;
+            }
+
+            // Check if booking is fully inside seasonal range
+            return bookingStart >= seasonStart && bookingEnd <= seasonEnd;
+
+        }
+
+
         function pricingRulesValidation() {
           setTimeout(()=>{
             const $jsonField = $('#json_validation_data', context);
@@ -57,8 +102,10 @@
 
                       // checking for per-hour validation of rules.
                       if (CALCULATION_BY.id === 'edit-field-per-hour-calc-value') {
+
                         let $dates = getBookedDateTimes();
                         let hoursBooked = getHourDifference($dates.start, $dates.end);
+
                         if (hoursBooked <= 0) {
                           showErrorModal('Sorry, the booking start date must be earlier than the end date.');
                           return;
@@ -73,11 +120,24 @@
 
                         let lowestMiniHour = hoursBooked;
                         let amount = hourRate.amount;
+                        let seasonalApplied = false;
+                        let advanceRuleApplied = false;
 
                         Object.values(hourRate.bookingAdvanceRules).forEach(rule => {
                           if (lowestMiniHour >= rule.miniHours) {
                             amount = rule.amount;
+                            advanceRuleApplied = true;
                           }
+                        });
+
+                        Object.values(hourRate.seasonal_rules).forEach(rule => {
+                            if (rule?.date_range) {
+                              if (isBookingDatesInSeasonalRange($dates, rule.date_range[0])) {
+                                 amount = rule.amount;
+                                 seasonalApplied = true;
+                                 advanceRuleApplied = false;
+                              }
+                            }
                         });
 
                         // bring in services
@@ -92,6 +152,7 @@
                         let overnightRoomsTotalAmount = 0;
                         let overnightHeadTotalCount = 0;
                         let overnightSentement = '';
+
                         if (overnightRoomsSelected.length) {
                           overnightRoomsTotalAmount = overnightRoomsSelected.reduce((acc, item) => acc + item.totalAmount, 0);
                           overnightHeadTotalCount = overnightRoomsSelected.reduce((acc, item) => acc + item.totalCount, 0);
@@ -99,8 +160,7 @@
                           overnightSentement = `<li><strong>Overnight rooms total:</strong> &nbsp; ${symblonight} ${overnightRoomsTotalAmount}</li>`;
                         }
 
-
-                        // make the perview html elements
+                        // make the preview html elements
                         const currencySymbol = getCurrencySymbol(hourRate.currency);
                         let summaryElement = `<h3>Hourly Pricing Summary</h3><ul><li><strong>Booked hours:&nbsp;</strong> ${hoursBooked}</li>
                                                     <li><strong>Services total amount: &nbsp;</strong> ${currencySymbol}${servicesTotalAmount} </li>
@@ -116,7 +176,7 @@
                         }
 
                         Object.values(hourRate.bookingAdvanceRules).forEach(rule => {
-                          if (rule.amount === amount) {
+                          if (rule.amount === amount && advanceRuleApplied) {
                             summaryElement += `<li><strong>Booking ${rule.miniHours} hrs or more charge:&nbsp;</strong> ${currencySymbol}${rule.amount}/hr &nbsp;<em>applied</em></li>`;
                           }
                           else {
@@ -124,6 +184,22 @@
                           }
                         });
                         summaryElement += `</ul>`;
+
+                        if (hourRate.seasonal_rules) {
+                          summaryElement += "<h4>Seasonal pricing</h4>";
+                          summaryElement += "<ul>";
+                          Object.values(hourRate.seasonal_rules).forEach(rule => {
+
+                            const formattedDate = formatDateRange(rule.date_range[0]);
+                            if (rule.amount === amount && seasonalApplied) {
+                              summaryElement += `<li><strong>Booking between ${formattedDate} ${rule.label} season:&nbsp;</strong> ${currencySymbol}${rule.amount}/hr &nbsp;<em>applied</em></li>`;
+                            }
+                            else {
+                              summaryElement += `<li><strong>Booking between ${formattedDate} ${rule.label} season:&nbsp;</strong> ${currencySymbol}${rule.amount}/hr</li>`;
+                            }
+                          })
+                          summaryElement += "</ul>";
+                        }
 
                         if (servicesSelected.length) {
                           summaryElement += `<h4>Additional Services</h4><ul>`;
@@ -160,10 +236,23 @@
 
                         let lowestMiniHour = daysBooked;
                         let amount = dayRate.amount;
+                        let seasonalApplied = false;
+                        let advanceRuleApplied = false;
 
                         Object.values(dayRate.bookingAdvanceRules).forEach(rule => {
                           if (lowestMiniHour >= rule.miniDays) {
                             amount = rule.amount;
+                            advanceRuleApplied = true;
+                          }
+                        });
+
+                        Object.values(dayRate.seasonal_rules).forEach(rule => {
+                          if (rule?.date_range) {
+                            if (isBookingDatesInSeasonalRange($dates, rule.date_range[0])) {
+                              amount = rule.amount;
+                              seasonalApplied = true;
+                              advanceRuleApplied = false;
+                            }
                           }
                         });
 
@@ -212,6 +301,23 @@
                         });
                         summaryElement += `</ul>`;
 
+                        if (dayRate.seasonal_rules) {
+                          summaryElement += "<h4>Seasonal pricing</h4>";
+                          summaryElement += "<ul>";
+                          Object.values(dayRate.seasonal_rules).forEach(rule => {
+
+                            const formattedDate = formatDateRange(rule.date_range[0]);
+                            if (rule.amount === amount && seasonalApplied) {
+                              summaryElement += `<li><strong>Booking between ${formattedDate} ${rule.label} season:&nbsp;</strong> ${currencySymbol}${rule.amount}/hr &nbsp;<em>applied</em></li>`;
+                            }
+                            else {
+                              summaryElement += `<li><strong>Booking between ${formattedDate} ${rule.label} season:&nbsp;</strong> ${currencySymbol}${rule.amount}/hr</li>`;
+                            }
+
+                          })
+                          summaryElement += "</ul>";
+                        }
+
                         if (servicesSelected.length) {
                           summaryElement += `<h4>Additional Services</h4><ul>`;
                           servicesSelected.forEach(service => {
@@ -231,12 +337,13 @@
                       }
 
                       else if (CALCULATION_BY.id === 'edit-field-per-person-value') {
+
                         const $personOptions = validationData.person_booking;
                         const keys = Object.keys($personOptions);
                         const totalPersonCount = parseInt($("#edit-field-bezetting-0-value", context).val());
                         const personObjectData = [];
                         let flagMandatoryItemOneSelected = false;
-
+                       
                         keys.forEach(key => {
                           const $personOption = $(`#${key}`,context);
                           const personValidationItem = $personOptions[key][0] ?? {};
@@ -293,6 +400,42 @@
                         });
                         summaryElement += `</ul>`;
 
+
+                        if (personObjectData[0]['seasonals'].length > 0) {
+
+                          let seasonalUsed = "<h4>Seasonal pricing used</h4><ul>";
+                          let seasonals = "<h4>Available Seasonal Pricings</h4><ul>";
+                          let seasonalFlag = false;
+                          personObjectData.forEach((personItem)=>{
+
+                            // HERE
+                          
+                            if (personItem.isSeasonal) {
+                               const date = formatDateRange(personItem.seasonal.date_range[0]);
+                              seasonalUsed += `<li>${personItem.name}: booked between ${date} for ${personItem.seasonal.label} season: ${currencySymbol}${personItem.amount}/person</li>`;
+                              seasonalFlag = personItem.isSeasonal;
+                            }
+
+                            seasonalUsed += "</ul>";
+                            
+                            personItem.seasonals.forEach((seasonal)=>{
+                               const dateL = formatDateRange(seasonal.date_range[0]);
+                               seasonals += `<li>Book between ${dateL} for ${seasonal.label} season: ${currencySymbol}${seasonal.amount}/person</li>`
+                            });
+                            seasonals += "</ul>";
+
+                          })
+
+                          if (seasonalFlag) {
+                            summaryElement += seasonalUsed;
+                          }
+
+                          summaryElement += seasonals;
+
+                        }
+
+
+
                         if (servicesSelected.length) {
                           summaryElement += `<h4>Additional Services</h4><ul>`;
                           servicesSelected.forEach(service => {
@@ -315,6 +458,7 @@
                         showErrorModal(`<div class="pricing-summary">${summaryElement}</div>`, 'Summary');
 
                       }
+
                     }
 
                   });
@@ -508,12 +652,17 @@
 
         function personOptionObject(personValidationItem, personCount) {
           let object = {
+            sameAmount: personValidationItem.amount,
             amount: personValidationItem.amount,
             count: personCount,
             name: personValidationItem.name,
             flag: (!personCount) !== true,
             currency: personValidationItem.currency,
+            isSeasonal: false,
+            seasonals: [],
+            seasonal: {}
           }
+          const dates = getBookedDateTimes();
 
           Object.values(personValidationItem.bookingAdvanceRules).forEach(( rule) => {
              if (personCount >= rule.miniPersons) {
@@ -523,9 +672,27 @@
                  name: personValidationItem.name,
                  flag: (!personCount) !== true,
                  currency: personValidationItem.currency,
+                 isSeasonal: false,
+                 seasonals: [],
+                 seasonal: {},
+                 sameAmount: rule.amount
                }
              }
           })
+
+          Object.values(personValidationItem.seasonal_rules).forEach((rule)=>{
+
+            if (rule?.date_range) {
+              if (isBookingDatesInSeasonalRange(dates, rule.date_range[0])) {
+                object.amount = rule.amount
+                object.isSeasonal = true;
+                object.seasonal = rule;
+              }
+              object.seasonals.push(rule);
+            }
+
+          })
+
           return object;
 
         }

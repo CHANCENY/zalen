@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.seasonal_pricings.field_season_date_time_range
     - field.field.paragraph.seasonal_pricings.field_seasonal_currency
     - field.field.paragraph.seasonal_pricings.field_seasonal_price
+    - field.field.paragraph.seasonal_pricings.field_seasonal_title
     - paragraphs.paragraphs_type.seasonal_pricings
   module:
     - datetime_flatpickr
@@ -16,7 +17,7 @@ mode: default
 content:
   field_season_date_time_range:
     type: datetime_range_flatpickr
-    weight: 0
+    weight: 1
     region: content
     settings:
       dateFormat: 'Y-m-d H:i'
@@ -50,15 +51,23 @@ content:
     third_party_settings: {  }
   field_seasonal_currency:
     type: options_select
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   field_seasonal_price:
     type: number
-    weight: 2
+    weight: 3
     region: content
     settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_seasonal_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
       placeholder: ''
     third_party_settings: {  }
 hidden:

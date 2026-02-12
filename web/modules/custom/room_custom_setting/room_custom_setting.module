@@ -353,7 +353,12 @@ function room_custom_setting_delete_submit_handler($form, FormStateInterface $fo
 
    $form['availability_calendar'] = [
      '#prefix' => '<div class="availability-calendar">',
-     '#markup' => '<span>' . t('Verify availability') . '</span>',
+     '#markup' => '
+  <div class="availability-calendar-header">
+    <span>
+      <i class="fa-solid fa-shield-check"></i> ' . t('Verify availability') . '
+    </span>
+  </div>',
      '#suffix' => '</div>',
      '#attached' => ['library' => 'room_custom_setting/room_custom_setting'],
 
