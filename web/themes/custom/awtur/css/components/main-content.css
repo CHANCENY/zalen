@@ -4,7 +4,8 @@
  */
  .main-content{
   background: #FFFFFF;
-  box-shadow: 8px 8px 44px rgb(0 0 0 / 10%);
+  /* box-shadow: 8px 8px 44px rgb(0 0 0 / 10%); */
+  box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
   border-radius: 10px;
 }
 .main-content h2 {
@@ -13,9 +14,9 @@
   line-height: 1.4;
 }
 
-/*.layout-no-sidebars .main-content {*/
-/*  padding: 0 20px;*/
-/*}*/
+.layout-sidebar-first .main-content {
+    box-shadow: unset;
+} 
 
 body.path-node.layout-no-sidebars .main-content {
   padding: 0;

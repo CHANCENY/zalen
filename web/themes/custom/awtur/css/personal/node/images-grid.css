@@ -2,7 +2,8 @@
 .items-fotos{
      display: grid;
      gap: clamp(0.3125rem, 0.2138rem + 0.6579vw, 0.625rem);;
-     grid-template-columns: 37% 11% 11% 41%;
+     /* grid-template-columns: 37% 11% 11% 41%; */
+     grid-template-columns: repeat(3, 1fr);
      grid-template-rows: 101px 101px 98px;
      max-width: 1100px;
      margin: auto;

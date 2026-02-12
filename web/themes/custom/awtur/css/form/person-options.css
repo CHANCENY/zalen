@@ -99,6 +99,10 @@
     margin-bottom: 1rem;
   }
 
+  .overnight-selector-wrapper .js-form-type-checkbox {
+    margin: unset;
+  }
+  
   .reservation-overnight-room-image {
     flex: 0 0 100px;
     max-width: 100px;
@@ -128,8 +132,8 @@
   }
 
 }
-.reservation-overnightroom-count-wrapper {
+/* .reservation-overnightroom-count-wrapper {
   .form-date {
     margin: 10px 10px 10px 20px;
   }
-}
+} */

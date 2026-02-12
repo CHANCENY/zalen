@@ -4,171 +4,172 @@
 {% set thema_pad = drupal_url('themes/custom/awtur') %}
 
 <article class="blok-autor-header">
-  <div class="blok-autor-header1">
-    <div>
-      <div class="autor-header-logo-label">
-        <div class="autor-header-logo">
-          {{ content.field_logo.0 }}
-        </div>
-        <div class="autor-header-label">
-          <h1>
-            {{ label }}
-          </h1>
-        </div> 
-      </div>
-      <div class="autor-header-adres">
-        <img src="{{ thema_pad }}/images/bedrijf-adres.svg" alt="adres icon">
-          {{ content.field_adres.0.postal_code }}
-          {{ content.field_adres.0.locality }}
-      </div>
-    </div>
+	<div class="blok-autor-header1">
+		<div>
+			<div class="autor-header-logo-label">
+				<div class="autor-header-logo">
+					{{ content.field_logo.0 }}
+				</div>
+				<div class="autor-header-label">
+					<h1>
+						{{ label }}
+					</h1>
+					<div class="autor-header-adres">
+						<img src="{{ thema_pad }}/images/bedrijf-adres.svg" alt="adres icon">
+						{{ content.field_adres.0.postal_code }}
+						{{ content.field_adres.0.locality }}
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div class="troevenbar">
-      {% if node.field_groen_label.value == 1 %}
-      <div class="troeve-1">
-        <p>{{ content.field_groen_label.0 }}</p>
-        <img  src="{{ thema_pad }}/images/icons/achievement/achievement-greens.svg" alt="icoon eco vriendelijke evenement locatie">
-      </div>
-      {% endif %}
-      {% if node.field_beperkingen.value == 1 %}
-      <div class="troeve-2">
-        <p>{{ content.field_beperkingen.0}}</p>
-        <img  src="{{ thema_pad }}/images/icons/achievement/achievement-beperkingen.svg" alt="icoon evenemet locatie heeft voorzieningen voor midervaliden">
-      </div>
-      {% endif %} 
-      {% if node.field_slaapgelegenheid.value == 1 %}
-      <div class="troeve-3">
-        <p>{{ content.field_slaapgelegenheid.0 }}</p>
-        <img  src="{{ thema_pad }}/images/icons/achievement/achievement-slaapgelegenheid.svg" alt="icoon evenement locatie verhuurd kamers">
-      </div>
-      {% endif %} 
-      {% if node.field_kindvriendelijk.value == 1 %}
-      <div  class="troeve-4">
-        <p>{{ content.field_kindvriendelijk.0 }}</p>
-        <img  src="{{ thema_pad }}/images/icons/achievement/achievement-kindvriendelijk.svg" alt="icoon kindvriendelijk evenement locatie">
-      </div>
-      {% endif %}
-      {% if node.field_nabij_trein_station.value == 1 %}
-      <div class="troeve-5">
-        <p>{{ content.field_nabij_trein_station.0 }}</p>
-        <img  src="{{ thema_pad }}/images/icons/achievement/achievement-trein.svg" alt="icoon evenement locatie vlakbij het trein station">
-      </div>
-      {% endif %}
-      {% if node.field_nabij_bushalte.value == 1 %}
-      <div class="troeve-6">
-        <p>{{ content.field_nabij_bushalte.0 }}</p>
-        <img  src="{{ thema_pad }}/images/icons/achievement/achievement-tram.svg" alt="icoon  de tramhalte">
-      </div>
-      {% endif %}
-      {% if node.field_nabij_tramhalte.value == 1 %} 
-      <div class="troeve-7">
-        <p>{{ content.field_nabij_tramhalte.0 }}</p>
-        <img  src="{{ thema_pad }}/images/icons/achievement/achievement-bus.svg" alt="icoon evenement locatie vlakbij de bushalte">
-      </div>
-      {% endif %}
-      {% if node.field_nabij_metrohalte.value == 1 %} 
-      <div class="troeve-8">
-        <p>{{ content.field_nabij_metrohalte.0 }}</p>
-        <img  src="{{ thema_pad }}/images/icons/achievement/achievement-metro.svg" alt="icoon evenement locatie vlakbij het metro perron">
-      </div>
-      {% endif %}  
-    </div>
-  </div>
+		<div class="troevenbar">
+			{% if node.field_groen_label.value == 1 %}
+				<div class="troeve-1">
+					<p>{{ content.field_groen_label.0 }}</p>
+					<img src="{{ thema_pad }}/images/icons/achievement/achievement-greens.svg" alt="icoon eco vriendelijke evenement locatie">
+				</div>
+			{% endif %}
+			{% if node.field_beperkingen.value == 1 %}
+				<div class="troeve-2">
+					<p>{{ content.field_beperkingen.0}}</p>
+					<img src="{{ thema_pad }}/images/icons/achievement/achievement-beperkingen.svg" alt="icoon evenemet locatie heeft voorzieningen voor midervaliden">
+				</div>
+			{% endif %}
+			{% if node.field_slaapgelegenheid.value == 1 %}
+				<div class="troeve-3">
+					<p>{{ content.field_slaapgelegenheid.0 }}</p>
+					<img src="{{ thema_pad }}/images/icons/achievement/achievement-slaapgelegenheid.svg" alt="icoon evenement locatie verhuurd kamers">
+				</div>
+			{% endif %}
+			{% if node.field_kindvriendelijk.value == 1 %}
+				<div class="troeve-4">
+					<p>{{ content.field_kindvriendelijk.0 }}</p>
+					<img src="{{ thema_pad }}/images/icons/achievement/achievement-kindvriendelijk.svg" alt="icoon kindvriendelijk evenement locatie">
+				</div>
+			{% endif %}
+			{% if node.field_nabij_trein_station.value == 1 %}
+				<div class="troeve-5">
+					<p>{{ content.field_nabij_trein_station.0 }}</p>
+					<img src="{{ thema_pad }}/images/icons/achievement/achievement-trein.svg" alt="icoon evenement locatie vlakbij het trein station">
+				</div>
+			{% endif %}
+			{% if node.field_nabij_bushalte.value == 1 %}
+				<div class="troeve-6">
+					<p>{{ content.field_nabij_bushalte.0 }}</p>
+					<img src="{{ thema_pad }}/images/icons/achievement/achievement-tram.svg" alt="icoon  de tramhalte">
+				</div>
+			{% endif %}
+			{% if node.field_nabij_tramhalte.value == 1 %}
+				<div class="troeve-7">
+					<p>{{ content.field_nabij_tramhalte.0 }}</p>
+					<img src="{{ thema_pad }}/images/icons/achievement/achievement-bus.svg" alt="icoon evenement locatie vlakbij de bushalte">
+				</div>
+			{% endif %}
+			{% if node.field_nabij_metrohalte.value == 1 %}
+				<div class="troeve-8">
+					<p>{{ content.field_nabij_metrohalte.0 }}</p>
+					<img src="{{ thema_pad }}/images/icons/achievement/achievement-metro.svg" alt="icoon evenement locatie vlakbij het metro perron">
+				</div>
+			{% endif %}
+		</div>
+	</div>
 
-  <div class="blok-autor-header2">
-    <div class="autor-header-menu">
-      <div class="togglelinks" onclick="openBedrijfContent(event, 'media-toggle')">
-        {{ 'Media' | t }}
-      </div>
-      <div class="togglelinks" onclick="openBedrijfContent(event, 'contact-toggle')">
-        {{ 'contact' | t }}
-      </div>
-      <div  class="togglelinks" onclick="openBedrijfContent(event, 'beschrijving-toggle')">
-        {{ 'Over' | t }}
-      </div>
-      <div class="togglelinks" onclick="openBedrijfContent(event, 'locatie-toggle')">
-        {{ 'Locatie' | t }}
-      </div>
-      <div class="togglelinks" onclick="openBedrijfContent(event, 'comfort-toggle')">
-        {{ 'Comfort' | t }}
-      </div>
-      <div id="togglelinks" class="togglelinks" onclick="openBedrijfContent(event, 'volledig-toggle')">
-        {{ 'Alles' | t }}
-      </div>
-      <div id="togglelinks-wissen" class="togglelinks" onclick="openBedrijfContent(event, '')">
-        {{ '&#10006;' | t }}
-      </div>
-    </div>
+	<div class="blok-autor-header2">
+		<div class="autor-header-menu">
+			<div class="togglelinks" onclick="openBedrijfContent(event, 'media-toggle')">
+				{{ 'Media' | t }}
+			</div>
+			<div class="togglelinks" onclick="openBedrijfContent(event, 'contact-toggle')">
+				{{ 'contact' | t }}
+			</div>
+			<div class="togglelinks" onclick="openBedrijfContent(event, 'beschrijving-toggle')">
+				{{ 'Over' | t }}
+			</div>
+			<div class="togglelinks" onclick="openBedrijfContent(event, 'locatie-toggle')">
+				{{ 'Locatie' | t }}
+			</div>
+			<div class="togglelinks" onclick="openBedrijfContent(event, 'comfort-toggle')">
+				{{ 'Comfort' | t }}
+			</div>
+			<div id="togglelinks" class="togglelinks" onclick="openBedrijfContent(event, 'volledig-toggle')">
+				{{ 'Alles' | t }}
+			</div>
+			<div id="togglelinks-wissen" class="togglelinks" onclick="openBedrijfContent(event, '')">
+				{{ '&#10006;' | t }}
+			</div>
+		</div>
 
-    <div class="blok-header-keurmerk">
-      <div class="head-kmerk">
-        {% if content.field_keurmerken.0 %}
-          {{ content.field_keurmerken.0 }}
-        {% endif %}  
-      </div>
-      <div class="head-kmerk">
-        {% if content.field_keurmerken.1 %}
-          {{ content.field_keurmerken.1 }}
-        {% endif %}  
-      </div>
-      <div class="head-kmerk">
-        {% if content.field_keurmerken.2 %}
-          {{ content.field_keurmerken.2 }}
-        {% endif %}  
-      </div>
-    </div>
-   
-  </div>
+		<div class="blok-header-keurmerk">
+			<div class="head-kmerk">
+				{% if content.field_keurmerken.0 %}
+					{{ content.field_keurmerken.0 }}
+				{% endif %}
+			</div>
+			<div class="head-kmerk">
+				{% if content.field_keurmerken.1 %}
+					{{ content.field_keurmerken.1 }}
+				{% endif %}
+			</div>
+			<div class="head-kmerk">
+				{% if content.field_keurmerken.2 %}
+					{{ content.field_keurmerken.2 }}
+				{% endif %}
+			</div>
+		</div>
+
+	</div>
 </article>
 
 <article>
-  <div id="comfort-toggle" class="tabcontent">
-    {{ drupal_view('beschikbare_zalen', 'blok_bedrijf_comfort_auteur') }}
-  </div>
-</article> 
+	<div id="comfort-toggle" class="tabcontent">
+		{{ drupal_view('beschikbare_zalen', 'blok_bedrijf_comfort_auteur') }}
+	</div>
+</article>
 <article>
-  <div id="media-toggle" class="tabcontent">
-    {{ drupal_view('beschikbare_zalen', 'blok_media_bedrijf_auteur') }}
-  </div>
-</article> 
+	<div id="media-toggle" class="tabcontent">
+		{{ drupal_view('beschikbare_zalen', 'blok_media_bedrijf_auteur') }}
+	</div>
+</article>
 <article>
-  <div id="beschrijving-toggle" class="tabcontent">
-    {{ drupal_view('beschikbare_zalen', 'blok_beschrijving_bedrijf_auteur') }}
-  </div>
-</article>  
+	<div id="beschrijving-toggle" class="tabcontent">
+		{{ drupal_view('beschikbare_zalen', 'blok_beschrijving_bedrijf_auteur') }}
+	</div>
+</article>
 <article>
-  <div id="contact-toggle" class="tabcontent">
-    {{ drupal_view('beschikbare_zalen', 'blok_contact_bedrijf_auteur') }}
-  </div>
-</article> 
+	<div id="contact-toggle" class="tabcontent">
+		{{ drupal_view('beschikbare_zalen', 'blok_contact_bedrijf_auteur') }}
+	</div>
+</article>
 <article>
-  <div id="locatie-toggle" class="tabcontent">
-    {{ drupal_view('beschikbare_zalen', 'blok_locatie_bedrijf_auteur') }}
-  </div>
-</article> 
+	<div id="locatie-toggle" class="tabcontent">
+		{{ drupal_view('beschikbare_zalen', 'blok_locatie_bedrijf_auteur') }}
+	</div>
+</article>
 
 <article>
-  <div id="volledig-toggle" class="tabcontent">
-    {{ drupal_view('beschikbare_zalen', 'blok_bedrijf_auteur') }}
-  </div>
-</article> 
+	<div id="volledig-toggle" class="tabcontent">
+		{{ drupal_view('beschikbare_zalen', 'blok_bedrijf_auteur') }}
+	</div>
+</article>
 
-                  
+
 <script>
-  function openBedrijfContent(evt, contentBedrijf) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("togglelinks");
-  for (i = 0; i < tablinks.length; i++) {
-  tablinks[i].className = tablinks[i].className.replace(" active", "");
-  tablinks[i].style.color = "lightslategray";
-  }
-  document.getElementById(contentBedrijf).style.display = "block";
-  evt.currentTarget.className += " active";
-  evt.currentTarget.style.color = "#FF5F5F";
- }
-</script>      
-          
+	function openBedrijfContent(evt, contentBedrijf) {
+var i,
+tabcontent,
+tablinks;
+tabcontent = document.getElementsByClassName("tabcontent");
+for (i = 0; i < tabcontent.length; i++) {
+tabcontent[i].style.display = "none";
+}
+tablinks = document.getElementsByClassName("togglelinks");
+for (i = 0; i < tablinks.length; i++) {
+tablinks[i].className = tablinks[i].className.replace(" active", "");
+tablinks[i].style.color = "lightslategray";
+}
+document.getElementById(contentBedrijf).style.display = "block";
+evt.currentTarget.className += " active";
+evt.currentTarget.style.color = "#FF5F5F";
+}
+</script>
