@@ -98,4 +98,36 @@
     {% endif %}
       {{ content }}
   </div>
+  {% set reservationParagraph = reservation.field_reservation_information.entity %}
+
+  {% if reservationParagraph.field_reservation_season_applied.value == '1' %}
+    <div class="seasonal-pricing-applied reservation-with-seasonal">
+      <h3>Seasonal pricing applied</h3>
+      <span class="seasonal-icon">
+      <i class="fas fa-sun"></i>
+    </span>
+      <span class="seasonal-title">
+      {{ reservationParagraph.field_reservation_season_title.value }}
+    </span>
+
+      {% if reservationParagraph.field_unit_type.value == 'hourly' %}
+
+        <span class="season-reservation-type">
+          {{ getCurrencySymbol(reservationParagraph.field_reservation_currency.value) }}{{ reservationParagraph.field_reservation_season_amount.value }} / hour
+        </span>
+
+      {% elseif reservationParagraph.field_unit_type.value == 'daily' %}
+
+        <span class="season-reservation-type">
+          {{ getCurrencySymbol(reservationParagraph.field_reservation_currency.value) }}{{ reservationParagraph.field_reservation_season_amount.value }} / day
+        </span>
+
+      {% else %}
+
+        {{ dump(reservationParagraph.field_person_type_options.getValue()) }}
+
+      {% endif %}
+
+    </div>
+  {% endif %}
 </article>

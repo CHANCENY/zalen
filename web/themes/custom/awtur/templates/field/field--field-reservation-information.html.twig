@@ -73,6 +73,7 @@
       {% endif %}
       {% for item in items %}
         {% set id = item.content['#plain_text'] %}
+
         <div{{ item.attributes.addClass('field__item') }}>
           <a href="/reservation-information/{{ id }}" target="_blank">reservation information</a>
         </div>

@@ -1599,11 +1599,14 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
 
       foreach ($validation_data['seasonal_rules'] as $key => $value) {
         $seasonalApply = __get_seasonal_detail_apply($value['date_range'][0],[
-          'start'   =>  $reservation_data['field_starting_date'],
-          'end'     =>  $reservation_data['field_ending_date'],
+          'start'   =>  $start_date,
+          'end'     =>  $end_date,
         ]);
         if (!empty($seasonalApply)) {
-          $reservation_data['seasonal_apply'] = $seasonalApply;
+          $reservation_data['field_reservation_season_applied'] = 1;
+          $reservation_data['field_reservation_season_dates'] = $value['date_range'][0];
+          $reservation_data['field_reservation_season_title'] = $value['label'];
+          $reservation_data['field_reservation_season_amount'] = $value['amount'];
         }
       }
 
@@ -1721,11 +1724,14 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
 
       foreach ($validation_data['seasonal_rules'] as $key => $value) {
         $seasonalApply = __get_seasonal_detail_apply($value['date_range'][0],[
-          'start'   =>  $reservation_data['field_starting_date'],
-          'end'     =>  $reservation_data['field_ending_date'],
+          'start'   =>  $start_date,
+          'end'     =>  $end_date,
         ]);
         if (!empty($seasonalApply)) {
-          $reservation_data['seasonal_apply'] = $seasonalApply;
+          $reservation_data['field_reservation_season_applied'] = 1;
+          $reservation_data['field_reservation_season_dates'] = $value['date_range'][0];
+          $reservation_data['field_reservation_season_title'] = $value['label'];
+          $reservation_data['field_reservation_season_amount'] = $value['amount'];
         }
       }
 
@@ -1763,9 +1769,11 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
 
     $error_flags = [];
     $person_options = [];
+    $seasonal_used = [];
     foreach ($validation_data as $key => $value) {
 
        if (!empty($value['id'])) {
+
           $validationItem = reset($value);
           $field_key_name = $key . '_person_count';
           $submitted_value = intval($submittedData[$field_key_name] ?? 0);
@@ -1774,6 +1782,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
             $error_flags[$field_key_name] = TRUE;
           }
 
+          $seasonalApply = null;
           $amount_used = intval($validationItem['amount']);
           foreach ($validationItem['bookingAdvanceRules'] as $bookingAdvanceRule) {
             if ($submitted_value >= intval($bookingAdvanceRule['miniPersons'])) {
@@ -1781,33 +1790,44 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
             }
           }
 
+         if (!empty($validationItem['seasonal_rules'])) {
+           foreach ($validationItem['seasonal_rules'] as $k => $val) {
+             $seasonalApply = __get_seasonal_detail_apply($val['date_range'][0],[
+               'start'   =>  $start_date,
+               'end'     =>  $end_date,
+             ]);
+             if (!empty($seasonalApply)) {
+               $seasonalApply = $val;
+             }
+           }
+         }
+
+         $seasonal_data = [];
+         if (!empty($seasonalApply)) {
+           $amount_used = $seasonalApply['amount'];
+           $seasonal_data['field_seasonal_person_price'] = $seasonalApply['amount'];
+           $seasonal_data['field_seasonal_person_title'] = $seasonalApply['label'];
+           $seasonal_data['field_seasonal_person_dates'] = $seasonalApply['date_range'][0];
+         }
+
           $person_options[] = [
             'field_person_option' => Paragraph::load($validationItem['id']),
             'field_price' => $amount_used,
             'field_reserve_count' => $submitted_value,
             'field_total_charge' => ($amount_used * $submitted_value),
-            'type' => 'reservation_person_options'
+            'type' => 'reservation_person_options',
+            ...$seasonal_data,
           ];
-
-         if (!empty($value['seasonal_rules'])) {
-
-           foreach ($value['seasonal_rules'] as $k => $val) {
-             $seasonalApply = __get_seasonal_detail_apply($val['date_range'][0],[
-               'start'   =>  $start_date->format('d F Y H:i:s'),
-               'end'     =>  $end_date->format('d F Y H:i:s'),
-             ]);
-             if (!empty($seasonalApply)) {
-               $reservation_data['seasonal_apply'] = $seasonalApply;
-             }
-           }
-
-         }
-
+         $seasonal_used[] = !empty($seasonal_data);
        }
     }
 
     if (!empty($person_options)) {
       $reservation_data['options'] = $person_options;
+    }
+
+    if (in_array(true, $seasonal_used)) {
+      $reservation_data['field_reservation_season_applied'] = 1;
     }
 
     // Validate minimum hours.
@@ -1938,10 +1958,11 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
         $validation_data = reset( $submitted_data['noscript']['hour_booking']['hourlyRate']);
         $hours = $reservation_data['field_hours'];
 
-        if ($hours <= intval($validation_data['miniHours'])) {
-          $seasonal = array_filter($validation_data['seasonal_rules'], function($seasonal){
+        if (!empty($reservation_data['seasonal_apply'])) {
+          $validation_data['amount'] = $reservation_data['amount'] ?? $validation_data['amount'];
+        }
 
-          });
+        if ($hours <= intval($validation_data['miniHours'])) {
           $total_amount = ($hours * intval($validation_data['amount'])) + $total_amount;
         }
         else {
@@ -1961,12 +1982,18 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
     }
 
     elseif ($reservation_data['field_unit_type'] === 'day') {
+
       $dayRate = $reservation_data['field_price_units'] ?? null;
       if ($dayRate instanceof Paragraph && $dayRate->bundle() === 'per_day_unit') {
 
         //find suitable rule based on hours booked
         $validation_data = reset( $submitted_data['noscript']['day_booking']['dayRate']);
         $days = $reservation_data['field_days'];
+
+        if (!empty($reservation_data['seasonal_apply'])) {
+          $validation_data['amount'] = $reservation_data['amount'] ?? $validation_data['amount'];
+        }
+
         if ($days <= intval($validation_data['miniDays'])) {
           $total_amount = ($days * intval($validation_data['amount'])) + $total_amount;
         }
@@ -1981,6 +2008,7 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
           $total_amount = ($days * intval($amount)) + $total_amount;
 
         }
+
         $reservation_data['field_total_amount'] = $total_amount;
       }
     }
@@ -2020,7 +2048,8 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
   }
 }
 
-function __get_seasonal_detail_apply(array $seasonal, array $bookedDates): false|array {
+function __get_seasonal_detail_apply(array $seasonal, array $bookedDates): false|array
+{
   if (
     empty($seasonal['value']) ||
     empty($seasonal['end_value']) ||
@@ -2031,17 +2060,17 @@ function __get_seasonal_detail_apply(array $seasonal, array $bookedDates): false
   }
 
   try {
-    // Booking dates
-    $bookingStart = new DateTime($bookedDates['start']);
-    $bookingEnd   = new DateTime($bookedDates['end']);
+    // Always normalize to UTC (safest approach)
+    $tz = new DateTimeZone('UTC');
 
-    // Seasonal range
-    $seasonStart = new DateTime($seasonal['value']);
-    $seasonEnd   = new DateTime($seasonal['end_value']);
+    $bookingStart = new DateTime($bookedDates['start'], $tz);
+    $bookingEnd   = new DateTime($bookedDates['end'], $tz);
 
-    // Check if booking fully falls inside seasonal range
+    $seasonStart  = new DateTime($seasonal['value'], $tz);
+    $seasonEnd    = new DateTime($seasonal['end_value'], $tz);
+
     if ($bookingStart >= $seasonStart && $bookingEnd <= $seasonEnd) {
-      return $seasonal; // or return true if you only want boolean
+      return $seasonal;
     }
 
     return false;
