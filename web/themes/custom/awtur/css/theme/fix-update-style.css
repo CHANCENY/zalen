@@ -87,7 +87,9 @@ td.delta-order div.SumoSelect {
     box-shadow: 0 0 2px #cd8723;
     border-color: #cd8723 ;
 }
-
+.SumoSelect>.CaptionCont>span{
+    
+}
 @media screen and(max-width:600x) {
     .SumoSelect>.optWrapper>.options li.opt label {
         font-size: 0.8em;

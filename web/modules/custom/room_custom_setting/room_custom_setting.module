@@ -356,7 +356,7 @@ function room_custom_setting_delete_submit_handler($form, FormStateInterface $fo
      '#markup' => '
   <div class="availability-calendar-header">
     <span>
-      <i class="fa-solid fa-shield-check"></i> ' . t('Verify availability') . '
+      <i class="fa-solid fa-shield"></i> ' . t('Verify availability') . '
     </span>
   </div>',
      '#suffix' => '</div>',

@@ -156,7 +156,6 @@ tr.even .smartdate--widget .form-type--select label {
 .smartdate--time-inline .smartdate--separator {
   display: block;
   margin: 0 0.5rem;
-  text-align: center;
 }
 
 .smartdate--time-inline .form-datetime-wrapper .form-items-inline,
@@ -164,7 +163,7 @@ tr.even .smartdate--widget .form-type--select label {
 .smartdate--time-inline div.time-end {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  gap: 5px;
 }
 
 .smartdate--time-inline

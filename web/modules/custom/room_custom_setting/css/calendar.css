@@ -130,13 +130,13 @@ input[type="date"], input[type="month"], input[type="time"] {
 	padding: 6px;
 	outline: none;
 	font-size: 12px;
-	/* color: #001d00; */
+	color: #001d00;
 	font-weight: bold;
-    color: #729072;
+    /* color: #729072; */
     /* border: 1px #804c00 solid; */
-	border: 1px #999 solid;
-    border-radius: 8px;
-	background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 83%, rgb(255, 245, 215) 85%, rgba(255, 245, 215, 1) 100%);
+	border: 1px var(--border-color) solid;
+    border-radius: 5px;
+	/* background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 83%, rgb(255, 245, 215) 85%, rgba(255, 245, 215, 1) 100%); */
 }
 /* .calendar-item td:hover {
 	outline: 3px rgba(139, 195, 74, 0.6) solid;
