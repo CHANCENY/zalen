@@ -22,9 +22,12 @@
   align-items: center;
 }
 .my-per-person-item h4.person-option-label {
-  font-size: clamp(0.75rem, -0.5625rem + 3vw, 1.5rem);
+  font-size: 16px;
   padding-bottom: 8px;
   font-weight: 700;
+}
+.my-per-person-item .person-option-description p{
+  font-size: 16px;
 }
 .my-per-person-item .person-option-title input[type="checkbox"]:before{
   width: 20px;
