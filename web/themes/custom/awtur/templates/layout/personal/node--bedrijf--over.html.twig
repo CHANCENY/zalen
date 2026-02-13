@@ -9,7 +9,7 @@
   <p id="bedrijf-body-text-partial">{{ body_text|slice(0, max_length) ~ (show_read_more ? '...' : '') }}</p>
   <p id="bedrijf-body-text-full">{{ body_text }}</p>
   {% if show_read_more %}
-    <p class="body-bedrijf-read-more" id="bodyReadMoreTag" onclick="changeReadMore()">{{ 'meer weten'|t }}</p>
+    <button class="body-bedrijf-read-more" id="bodyReadMoreTag" onclick="changeReadMore()">{{ 'meer weten'|t }}</button>
   {% else %}
     <p class="body-bedrijf-no-more">{{ 'niets meer'|t }}</p>
   {% endif %}

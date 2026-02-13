@@ -58,8 +58,8 @@
   .room-card {
     padding: 1.5rem;
     border-radius: 12px;
-    background: #f9f9f9;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* background: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
     font-family: Arial, sans-serif;
   }
   .room-card h2 {

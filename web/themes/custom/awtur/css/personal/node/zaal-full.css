@@ -29,7 +29,7 @@
 }
 
 .zaal-full-statistics {
-  padding: 20px 0;
+  padding: 30px 0;
 }
 
 /* ------ block with user ------ */
@@ -341,7 +341,6 @@ header .node__meta span>span.field--name-uid>span {
 .node-zaal-occasions {
   display: grid;
   grid-template-columns: auto auto;
-  justify-content: space-evenly;
   gap: 32px;
   margin: 64px 0;
 }
@@ -672,7 +671,9 @@ div.availability-calendar #custom_calendar {
   border: 1px solid #ccc;
   padding: 20px;
 }
-
+.details-wrapper {
+  background: var(--form-color);
+}
 /*form field smartdate*/
 #edit-field-date-booking-wrapper .tabledrag-toggle-weight-wrapper button.link {
   padding: 2px 6px;
@@ -768,4 +769,50 @@ form#reservation-form div#edit-actions--4 input#edit-preview {
 
 .zaal-comfort-room-layouts .room-layout-capacity {
   font-weight: 700;
+}
+
+#edit-overnight-rooms {
+  .overnight-selector-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .overnight-selector-wrapper .js-form-type-checkbox {
+    margin: unset;
+  }
+  
+  .reservation-overnight-room-image {
+    flex: 0 0 100px;
+    max-width: 100px;
+  }
+
+  .reservation-overnight-room-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .js-form-type-checkbox {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 600px) {
+    .overnight-selector-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .reservation-overnight-room-image {
+      margin-bottom: 1rem;
+    }
+  }
+
 }
