@@ -1595,11 +1595,26 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
       }
     }
 
+    if (!empty($validation_data['seasonal_rules'])) {
+
+      foreach ($validation_data['seasonal_rules'] as $key => $value) {
+        $seasonalApply = __get_seasonal_detail_apply($value['date_range'][0],[
+          'start'   =>  $reservation_data['field_starting_date'],
+          'end'     =>  $reservation_data['field_ending_date'],
+        ]);
+        if (!empty($seasonalApply)) {
+          $reservation_data['seasonal_apply'] = $seasonalApply;
+        }
+      }
+
+    }
+
     if (empty($error_flags)) {
       $store = \Drupal::service('tempstore.private')->get('reservation');
       $store->set('reservation_data', $reservation_data);
       $form_state->setValue('reservation_data', $reservation_data);
     }
+
   }
 
   elseif (!empty($submittedData['field_calculate_payment_per_day']['value'])) {
@@ -1702,6 +1717,20 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
       }
     }
 
+    if (!empty($validation_data['seasonal_rules'])) {
+
+      foreach ($validation_data['seasonal_rules'] as $key => $value) {
+        $seasonalApply = __get_seasonal_detail_apply($value['date_range'][0],[
+          'start'   =>  $reservation_data['field_starting_date'],
+          'end'     =>  $reservation_data['field_ending_date'],
+        ]);
+        if (!empty($seasonalApply)) {
+          $reservation_data['seasonal_apply'] = $seasonalApply;
+        }
+      }
+
+    }
+
     if (empty($error_flags)) {
       $store = \Drupal::service('tempstore.private')->get('reservation');
       $store->set('reservation_data', $reservation_data);
@@ -1759,6 +1788,20 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
             'field_total_charge' => ($amount_used * $submitted_value),
             'type' => 'reservation_person_options'
           ];
+
+         if (!empty($value['seasonal_rules'])) {
+
+           foreach ($value['seasonal_rules'] as $k => $val) {
+             $seasonalApply = __get_seasonal_detail_apply($val['date_range'][0],[
+               'start'   =>  $start_date->format('d F Y H:i:s'),
+               'end'     =>  $end_date->format('d F Y H:i:s'),
+             ]);
+             if (!empty($seasonalApply)) {
+               $reservation_data['seasonal_apply'] = $seasonalApply;
+             }
+           }
+
+         }
 
        }
     }
@@ -1887,13 +1930,18 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
     }
 
     if ($reservation_data['field_unit_type'] === 'hourly') {
+
       $hourlyRate = $reservation_data['field_price_units'] ?? null;
       if ($hourlyRate instanceof Paragraph && $hourlyRate->bundle() === 'per_hour') {
 
         //find suitable rule based on hours booked
         $validation_data = reset( $submitted_data['noscript']['hour_booking']['hourlyRate']);
         $hours = $reservation_data['field_hours'];
+
         if ($hours <= intval($validation_data['miniHours'])) {
+          $seasonal = array_filter($validation_data['seasonal_rules'], function($seasonal){
+
+          });
           $total_amount = ($hours * intval($validation_data['amount'])) + $total_amount;
         }
         else {
@@ -1903,6 +1951,7 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
               $amount = intval($rule['amount']);
             }
           }
+
           $reservation_data['field_amount_used'] = $amount;
           $total_amount = ($hours * intval($amount)) + $total_amount;
 
@@ -1970,6 +2019,38 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
     }
   }
 }
+
+function __get_seasonal_detail_apply(array $seasonal, array $bookedDates): false|array {
+  if (
+    empty($seasonal['value']) ||
+    empty($seasonal['end_value']) ||
+    empty($bookedDates['start']) ||
+    empty($bookedDates['end'])
+  ) {
+    return false;
+  }
+
+  try {
+    // Booking dates
+    $bookingStart = new DateTime($bookedDates['start']);
+    $bookingEnd   = new DateTime($bookedDates['end']);
+
+    // Seasonal range
+    $seasonStart = new DateTime($seasonal['value']);
+    $seasonEnd   = new DateTime($seasonal['end_value']);
+
+    // Check if booking fully falls inside seasonal range
+    if ($bookingStart >= $seasonStart && $bookingEnd <= $seasonEnd) {
+      return $seasonal; // or return true if you only want boolean
+    }
+
+    return false;
+
+  } catch (Exception $e) {
+    return false;
+  }
+}
+
 
 /**
  * Getting all date within given two date.

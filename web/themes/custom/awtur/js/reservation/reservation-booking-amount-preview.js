@@ -64,7 +64,7 @@
         }
 
         function isBookingDatesInSeasonalRange(dates, seasonalRange) {
-          
+
           if (!dates || !seasonalRange) return false;
 
            // Parse booking dates (replace space with T for proper parsing)
@@ -131,6 +131,7 @@
                         });
 
                         Object.values(hourRate.seasonal_rules).forEach(rule => {
+                          console.log(rule, $dates)
                             if (rule?.date_range) {
                               if (isBookingDatesInSeasonalRange($dates, rule.date_range[0])) {
                                  amount = rule.amount;
@@ -343,7 +344,7 @@
                         const totalPersonCount = parseInt($("#edit-field-bezetting-0-value", context).val());
                         const personObjectData = [];
                         let flagMandatoryItemOneSelected = false;
-                       
+
                         keys.forEach(key => {
                           const $personOption = $(`#${key}`,context);
                           const personValidationItem = $personOptions[key][0] ?? {};
@@ -409,7 +410,7 @@
                           personObjectData.forEach((personItem)=>{
 
                             // HERE
-                          
+
                             if (personItem.isSeasonal) {
                                const date = formatDateRange(personItem.seasonal.date_range[0]);
                               seasonalUsed += `<li>${personItem.name}: booked between ${date} for ${personItem.seasonal.label} season: ${currencySymbol}${personItem.amount}/person</li>`;
@@ -417,7 +418,7 @@
                             }
 
                             seasonalUsed += "</ul>";
-                            
+
                             personItem.seasonals.forEach((seasonal)=>{
                                const dateL = formatDateRange(seasonal.date_range[0]);
                                seasonals += `<li>Book between ${dateL} for ${seasonal.label} season: ${currencySymbol}${seasonal.amount}/person</li>`

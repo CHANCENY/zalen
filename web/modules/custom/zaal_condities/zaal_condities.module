@@ -1171,7 +1171,7 @@ function zaal_condities_zaal_form_submit($form, \Drupal\Core\Form\FormStateInter
     }
 
     foreach ($room_settings as $room_setting) {
-      if (isset($room_setting[$field_name])) {
+      if (is_array($room_setting) && isset($room_setting[$field_name])) {
         $value = is_array($room_setting[$field_name]) ? reset($room_setting[$field_name]) : $room_setting[$field_name];
         $found[] = is_array($value) ? reset($value) : $value;
       } elseif (is_array($room_setting)) {
