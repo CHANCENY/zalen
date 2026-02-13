@@ -12,6 +12,10 @@
   border-radius: 0;
 }
 
+.pages-edit-add-node nav.tabs{
+  border: unset;
+}
+
 .zaal-form {
   border-radius: 8px;
   box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);

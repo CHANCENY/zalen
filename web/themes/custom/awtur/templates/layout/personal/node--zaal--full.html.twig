@@ -91,12 +91,6 @@
     </div>
   </div>
 
-  {#-----Zaal layouts, room layouts-----#}
-  <div class="zaal-comfort-room-layouts">
-    <h3>{{ 'Possible Room Layouts'|t }}</h3>
-    {{ content.field_room_layouts }}
-  </div>
-
   {#-----Zaal Media, Comfort and Thema-----#}
   <div class="zaal-comfort-linken">
     <div>
@@ -130,6 +124,16 @@
       </div>
     </div>
   </div>
+
+    {#-----Zaal layouts, room layouts-----#}
+  {% if content.field_room_layouts['#bundle'] == 'zaal' %}
+  <div class="zaal-comfort-room-layouts">
+    <h3>{{ 'Possible Room Layouts'|t }}</h3>
+    <div class="zaal-comfort-room">
+    {{ content.field_room_layouts }}
+    </div>
+  </div>
+  {% endif %}
 
   {#-----Body and floorplan-----#}
   <div class="zaal-plan">

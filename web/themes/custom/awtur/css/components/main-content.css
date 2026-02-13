@@ -18,7 +18,7 @@
     box-shadow: unset;
 } 
 
-body.path-node.layout-no-sidebars .main-content {
+body.path-node.layout-no-sidebars .pages-edit-add-node .main-content {
   padding: 0;
 }
 
