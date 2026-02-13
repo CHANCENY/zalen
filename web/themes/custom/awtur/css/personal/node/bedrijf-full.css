@@ -3,27 +3,28 @@
  * Visual styles for AWTur's node--bedrijf--full.html.twig.
  */
 
- .bedrijf-full{
-  padding: 0 clamp(0.125rem, -0.0357rem + 0.8571vw, 0.5rem);
-}
-
 /*-----------HEADER----------*/
-.bedrijf-full-header{
+.bedrijf-full-header {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  grid-column-gap: 16px;}
+  grid-column-gap: 16px;
+}
+
 .bedrijf-full-logo {
   align-self: center;
 }
+
 .bedrijf-full-label {
   align-self: center;
 }
-.bedrijf-full-label h1{
+
+.bedrijf-full-label h1 {
   margin: 0 0 0 16px;
   font-size: clamp(1.5rem, 1.3421rem + 1.0526vw, 2rem);
   font-weight: 600;
 }
+
 .bedrijf-full-header-adres,
 .bedrijf-full-regio {
   display: flex;
@@ -40,16 +41,16 @@
   width: 70px;
 }
 
-.bedrijf-full-regio img{
+.bedrijf-full-regio img {
   width: 50px;
 }
- 
+
 .bedrijf-full-header-adres {
   justify-content: flex-start;
 }
 
 .bedrijf-full-regio {
-  justify-content: center; 
+  justify-content: center;
 }
 
 /*---------------PUBLIC TRANSPORT & MAP------------------------*/
@@ -85,6 +86,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  margin: unset;
 }
 .tab-bedrijf-locatie-map {
 border: 2px solid rgb(159, 171, 182);
@@ -100,6 +102,7 @@ box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
 .flag-bookmark {
   margin-top: 32px;
 }
+
 .flag-bookmark a {
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -110,6 +113,7 @@ box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);
   padding: 4px 15px;
 }
+
 .flag-bookmark a:hover {
   color: #fff;
   border: 2px transparent solid;
@@ -117,12 +121,28 @@ box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
 }
 
 /*----Node views counter---*/
-.bedrijf-full .node__links{
-padding: 32px;
-}  
-.bedrijf-full .node__links li{
-color: #0B96DA;
-}  
+.bedrijf-full .node__links {
+  padding: 32px;
+}
+
+.bedrijf-full .node__links li {
+  color: #0B96DA;
+}
+
+/* ------ union-links  ------ */
+.union-links .node__links {
+  padding-top: 10px;
+}
+
+/* ------ links for: unregistered users (Log in or register) ------ */
+.node__links li.comment-forbidden a {
+  padding: 2px 16px 1px;
+  background: #000;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  box-sizing: border-box;
+}
 
 /*-----Trump bar-----*/
 .bedrijf-full .troevenicons {
@@ -139,26 +159,32 @@ color: #0B96DA;
   color: white;
   font-size: clamp(0.75rem, 0.6937rem + 0.3vw, 0.9375rem);
   position: relative;
-  top: 380px;
+  top: 333px;
   left: 16px;
   overflow: hidden;
+  z-index: 5;
 }
 
-/*----Views block to show all the function rooms belong to this company----*/  
+@media (max-width: 960px){
+  .header-slogan {
+    position: unset;
+    margin-top: 30px;
+  }
+}
+
+/*----Views block to show all the function rooms belong to this company----*/
 .bedrijf-full-zalen {
   text-align: center;
   background: #FFFFFF;
-  box-shadow: 8px 8px 44px rgb(0 0 0 / 10%);
+  /* box-shadow: 8px 8px 44px rgb(0 0 0 / 10%); */
   border-radius: 10px;
   padding: 32px 4px;
   color: #000;
-  
-  position: relative;
-  top: 32px;
 }
-.bedrijf-full-zalen h2{
-font-weight: 700;
-font-size: clamp(1.25rem, 1.0357rem + 1.1429vw, 1.75rem);
+
+.bedrijf-full-zalen h2 {
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.0357rem + 1.1429vw, 1.75rem);
 }
 
 /* ------ Quality labels ------ */
@@ -166,33 +192,40 @@ font-size: clamp(1.25rem, 1.0357rem + 1.1429vw, 1.75rem);
   display: flex;
   gap: 16px;
   justify-content: end;
-  margin: 64px 32px; 
+  margin: 64px 32px;
+  align-items: center;
 }
+
 @media all and (max-width: 559px) {
   .node__content div.field--name-field-keurmerken {
     margin-top: 32px;
   }
 }
+
 div.field--name-field-keurmerken .field__label {
   font-size: 12px;
   color: #bbb;
 }
+
 div.field--name-field-keurmerken .field__items {
   max-height: 120px;
   white-space: nowrap;
   overflow-y: hidden;
   overflow-x: auto;
 }
+
 div.field--name-field-keurmerken::-webkit-scrollbar,
 div.field--name-field-keurmerken .field__items::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
+
 div.field--name-field-keurmerken::-webkit-scrollbar-track,
 div.field--name-field-keurmerken .field__items::-webkit-scrollbar-track {
   background: #ffdfb0;
   border-radius: 5px;
 }
+
 div.field--name-field-keurmerken::-webkit-scrollbar-thumb,
 div.field--name-field-keurmerken .field__items::-webkit-scrollbar-thumb {
   background: #FF9800;
@@ -200,23 +233,26 @@ div.field--name-field-keurmerken .field__items::-webkit-scrollbar-thumb {
 }
 
 /* ------ price-lists ------ */
-.union-price-lists > div {
+.union-price-lists>div {
   margin: 30px 0;
   display: inline-block;
   vertical-align: middle;
 }
-.union-price-lists > div .field__label {
+
+.union-price-lists>div .field__label {
   margin: 0 0 0 10px;
   font-size: 0.9em;
   color: #bbb;
 }
-.union-price-lists > div .field__item {
+
+.union-price-lists>div .field__item {
   margin: 10px 0;
   float: left;
   width: 250px;
   min-height: 50px;
 }
-.union-price-lists > div .field__item:before {
+
+.union-price-lists>div .field__item:before {
   content: "";
   display: block;
   float: left;
@@ -225,11 +261,13 @@ div.field--name-field-keurmerken .field__items::-webkit-scrollbar-thumb {
   background-image: url(../../images/icons/price-lists.svg);
   background-size: cover;
 }
-.union-price-lists > div .field__item span {
+
+.union-price-lists>div .field__item span {
   display: block;
   background-image: none;
 }
-.union-price-lists > div .field__item a {
+
+.union-price-lists>div .field__item a {
   /* font-weight: bold; */
   display: block;
   padding: 5px;
@@ -238,14 +276,17 @@ div.field--name-field-keurmerken .field__items::-webkit-scrollbar-thumb {
   line-height: 1.2;
   overflow: hidden;
 }
-.union-price-lists > div .field__item a:hover {
+
+.union-price-lists>div .field__item a:hover {
   background: #f9f9f9;
 }
+
 @media all and (min-width: 560px) {
-  .union-price-lists > div {
+  .union-price-lists>div {
     margin: 30px;
   }
-  .union-price-lists > div .field__item {
+
+  .union-price-lists>div .field__item {
     margin: 10px;
     margin-right: 0;
   }
@@ -525,11 +566,3 @@ article.js-reservation .field__item .datetime {
   font-family: Arial, sans-serif;
   font-size: 12px;
 } */
-
-
-
-
-
-
-
-

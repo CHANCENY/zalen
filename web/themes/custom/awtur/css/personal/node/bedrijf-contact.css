@@ -1,142 +1,162 @@
-  .tab-bedrijf-contact{
-    margin: 64px 0;
-    font-size: clamp(0.8125rem, 0.77rem + 0.283vw, 1rem);
-    color: slategrey;
-    padding: 16px;
-    background: #fbfbfb;
-    border: 6px #eee solid;
-    border-top: 2px #ddd solid;
-    border-bottom: 2px #ddd solid;
-    border-radius: 8px;
-  }
-  .tab-bedrijf-contact-info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    row-gap: 64px;
-    column-gap: 4px;
-  }
-  .tab-bedrijf-contact a{
-    color: slategrey;
-  }
-  .tab-bedrijf-contact-avatar img{
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-size: cover;
-    border: 2px #CD8723 solid;
-    box-shadow: 0 0 6px #c12e00;
+.tab-bedrijf-contact {
+  margin: 64px 0;
+  padding: 40px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+  font-size: 0.95rem;
+  color: #475569;
 }
-.tab-bedrijf-contact-website ion-icon.md.hydrated, .tab-bedrijf-contact-adres ion-icon.md.hydrated, .tab-bedrijf-contact-persoon ion-icon.md.hydrated,
-.tab-bedrijf-contact-telefoon ion-icon.md.hydrated, .tab-bedrijf-contact-gsm ion-icon.md.hydrated, .tab-bedrijf-contact-whatsapp ion-icon.md.hydrated,
+
+.tab-bedrijf-contact-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.tab-bedrijf-contact-info>div {
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s ease;
+  /* min-height: 150px; */
+}
+
+.tab-bedrijf-contact a {
+  color: slategrey;
+}
+
+.tab-bedrijf-contact-avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-size: cover;
+  border: 2px #CD8723 solid;
+  box-shadow: 0 0 6px #c12e00;
+}
+
+.tab-bedrijf-contact-website ion-icon.md.hydrated,
+.tab-bedrijf-contact-adres ion-icon.md.hydrated,
+.tab-bedrijf-contact-persoon ion-icon.md.hydrated,
+.tab-bedrijf-contact-telefoon ion-icon.md.hydrated,
+.tab-bedrijf-contact-gsm ion-icon.md.hydrated,
+.tab-bedrijf-contact-whatsapp ion-icon.md.hydrated,
 .tab-bedrijf-contact-fb ion-icon.md.hydrated {
-    width: 22px;
-    height: 20px;
-    padding: 4px;
-    border-radius: 8px;
+  width: 22px;
+  height: 20px;
+  padding: 4px;
+  border-radius: 8px;
 }
+
 .tab-bedrijf-contact-website ion-icon.md.hydrated {
   background-color: rgba(211, 84, 255, 0.1);
   color: #7C059A;
 }
+
 .tab-bedrijf-contact-adres ion-icon.md.hydrated {
   background-color: rgba(11, 150, 218, 0.1);
   color: #0B96DA;
 }
+
 .tab-bedrijf-contact-persoon ion-icon.md.hydrated {
   background-color: rgba(255, 248, 0, 0.2);
   color: hsl(50, 84%, 50%);
 }
+
 .tab-bedrijf-contact-telefoon ion-icon.md.hydrated {
   background-color: rgba(255, 95, 95, 0.1);
   color: #FF5F5F;
 }
+
 .tab-bedrijf-contact-gsm ion-icon.md.hydrated {
   background-color: rgba(221, 137, 10, 0.1);
   color: #EB8906;
 }
+
 .tab-bedrijf-contact-whatsapp ion-icon.md.hydrated {
   background-color: rgba(4, 166, 1, 0.1);
   color: #02B102;
 }
+
 .tab-bedrijf-contact-fb ion-icon.md.hydrated {
   background-color: rgba(0, 0, 0, 0.1);
   color: #020802;
 }
-.tab-bedrijf-flex, .tab-bedrijf-contact .tab-bedrijf-p {
+
+.tab-bedrijf-flex,
+.tab-bedrijf-contact .tab-bedrijf-p {
   display: flex;
   gap: 4px;
 }
-.tab-bedrijf-flex{
+
+.tab-bedrijf-flex {
   align-items: center;
   margin: 16px 0 0 32px;
 }
+
 .tab-bedrijf-contact .tab-bedrijf-p {
- color: #020802;
+  color: #020802;
   font-size: clamp(0.875rem, 0.8325rem + 0.283vw, 1.0625rem);
 }
+
 .tab-bedrijf-contact-avatar {
   margin-left: 32px;
 }
-.tab-bedrijf-contact p.address, .tab-bedrijf-div2 {
+
+.tab-bedrijf-contact p.address,
+.tab-bedrijf-div2 {
   text-align: left;
   margin: 4px 0 0 32px;
 }
-.tab-bedrijf-contact-aanspreekvorm::after{
+
+.tab-bedrijf-contact-aanspreekvorm::after {
   content: ".";
   margin-left: -2.5px;
   font-weight: 600;
 }
-.tab-bedrijf-contact-contacteer{
+
+.tab-bedrijf-contact-contacteer {
   margin-top: 16px;
   border: 1px solid #0B96DA;
   padding: 4px;
   border-radius: 8px;
   text-align: center;
 }
+
 .tab-bedrijf-contact-contacteer:hover {
   background-color: #0B96DA;
 }
-.tab-bedrijf-contact-contacteer:hover >  a{
+
+.tab-bedrijf-contact-contacteer:hover>a {
   color: white;
 }
-.tab-bedrijf-contact-contacteer a{
+
+.tab-bedrijf-contact-contacteer a {
   letter-spacing: 1.2px;
 }
-.tab-bedrijf-contact-contacteer a:hover{
+
+.tab-bedrijf-contact-contacteer a:hover {
   border-bottom: none;
   color: white;
 }
 
-/*-----opening hours-----*/
-.bedrijf-open-tijd-hd{
+.bedrijf-open-tijd-hd {
   font-size: clamp(1.25rem, 1.1196rem + 0.8696vw, 1.5rem);
   text-align: center;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-weight: 600;
-  padding: 16px;
   gap: 4px;
 }
-.bedrijf-open-tijd-hd img{
-  clamp(2.5rem, 2.3026rem + 1.3158vw, 3.125rem);
-}
-.bedrijf-open-tijd-hd img{
+
+.bedrijf-open-tijd-hd img {
   width: clamp(2.5rem, 2.3026rem + 1.3158vw, 3.125rem);
 }
-.opening-hours li{
-  list-style: square;
-  list-style: none;
-}
-.field.field--name-field-sluit-periode.field--type-daterange {
-  text-align: center;
-}
-/*.field.field--name-field-sluit-periode.field--type-daterange .field__item{
-  font-size: clamp(1rem, 0.9464rem + 0.2857vw, 1.125rem);
-}*/
-.field.field--name-field-sluit-periode.field--type-daterange img{
+
+.field.field--name-field-sluit-periode.field--type-daterange img {
   width: clamp(1.75rem, 1.5921rem + 1.0526vw, 2.25rem);
 }
 
@@ -145,18 +165,68 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 16px;
-}
-span.closed-time-hd {
-    color: red;
-}
-span.open-time-hd {
-    color: black;
-}
-.tab-bedrijf-contact-opentimes {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-  justify-content: space-evenly;
 }
 
+span.closed-time-hd {
+  color: red;
+}
+
+span.open-time-hd {
+  color: black;
+}
+
+.tab-bedrijf-contact-opentimes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 48px;
+  align-items: center;
+}
+
+.tab-bedrijf-contact-opentimes h3 {
+  margin-bottom: 16px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.opening-hours ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.opening-hours li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.field--name-field-sluit-periode {
+  background: var(--form-color);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+@media (max-width: 1024px) {
+  .tab-bedrijf-contact-info {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tab-bedrijf-contact {
+    padding: 20px;
+  }
+
+  .tab-bedrijf-contact-info {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-bedrijf-contact-opentimes {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

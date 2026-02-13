@@ -13,6 +13,10 @@
   border-radius: 0;
 }
 
+.pages-edit-add-node nav.tabs {
+  border: unset;
+}
+
 .bedrijf-form {
   border-radius: 8px;
   box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
@@ -403,7 +407,7 @@
 .bedrijf-form .form-item-field-foto-6>div,
 .bedrijf-form .form-item-field-prijslijsten-0>div,
 .bedrijf-form .form-item-field-keurmerken-0>div,
-.bedrijf-form .form-item-field-prijslijsten-2>div{
+.bedrijf-form .form-item-field-prijslijsten-2>div {
   background: var(--form-color);
   text-align: center;
 }
@@ -414,7 +418,7 @@
 .bedrijf-form .form-item-field-foto-6>div.image-widget,
 .bedrijf-form .form-item-field-prijslijsten-0>div#edit-field-prijslijsten-0,
 .bedrijf-form .form-item-field-keurmerken-0>div.image-widget,
-.bedrijf-form .form-item-field-prijslijsten-2>div#edit-field-prijslijsten-2{
+.bedrijf-form .form-item-field-prijslijsten-2>div#edit-field-prijslijsten-2 {
   border: 1px solid var(--border-color);
   border-bottom: unset;
   padding-top: 20px;
@@ -426,7 +430,7 @@
 .bedrijf-form .form-item-field-foto-6>div.description,
 .bedrijf-form .form-item-field-prijslijsten-0>div.description,
 .bedrijf-form .form-item-field-keurmerken-0>div.description,
-.bedrijf-form .form-item-field-prijslijsten-2>div.description{
+.bedrijf-form .form-item-field-prijslijsten-2>div.description {
   border: 1px solid var(--border-color);
   border-top: unset;
   padding-bottom: 30px;

@@ -31,6 +31,18 @@
     </div>
   </div>
 
+  <div class="tab-bedrijf-contact-website">
+    <div>
+      <p class="tab-bedrijf-p"><ion-icon name="globe"></ion-icon>{{ 'Website'|t }}</p>
+    </div>
+    <div class="tab-bedrijf-div2">
+      {{ content.field_website.0 }}
+    <div class="tab-bedrijf-contact-contacteer">
+      <a href="../user/{{ node.getOwnerId() }}/contact">{{ "Mail "|t }}{{ label }}</a>
+    </div>
+    </div>
+  </div>
+
 
   <div class="tab-bedrijf-contact-telefoon">
     <div>
@@ -61,19 +73,6 @@
     </div>
   </div>
 
-
-  <div class="tab-bedrijf-contact-website">
-    <div>
-      <p class="tab-bedrijf-p"><ion-icon name="globe"></ion-icon>{{ 'Website'|t }}</p>
-    </div>
-    <div class="tab-bedrijf-div2">
-      {{ content.field_website.0 }}
-    <div class="tab-bedrijf-contact-contacteer">
-      <a href="../user/{{ node.getOwnerId() }}/contact">{{ "Mail "|t }}{{ label }}</a>
-    </div>
-    </div>
-  </div>
-    
   </div>  
   
    <div class="tab-bedrijf-contact-opentimes">

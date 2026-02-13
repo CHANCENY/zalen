@@ -7,17 +7,20 @@
     border-top: 2px #ddd solid;
     border-bottom: 2px #ddd solid;
     border-radius: 9px;
-    margin: 64px 0;
+    margin: 64px 0 32px;
   }
   .body-bedrijf-read-more, .body-bedrijf-no-more{
-    padding: 16px 16px 0; 
-    color: #ff5f5f;
-    cursor: pointer;
     font-weight: 700;
+    padding: 10px;
+    color: #cd8723;
+    border: 1px solid #cd8723;
+    cursor: pointer;
+    background: unset;
+    border-radius: 5px;
   }
-  .read-more-tag{
+  /* .read-more-tag{
     color: green;
-  }
+  } */
   .body-bedrijf-no-more{
     filter: blur();
   }

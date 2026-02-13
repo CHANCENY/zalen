@@ -57,8 +57,8 @@ details, fieldset, .filter-wrapper {
 summary {
   color: #fff;
   /*font-weight: bold;*/
-  background: rgba(190, 140, 80, 0.2);
-  /*background:  #2f9bff;*/
+  /* background: rgba(190, 140, 80, 0.2); */
+  background:  #2f9bff;
   text-shadow: 0 1px 0 #fff;
   padding: 14px;
   list-style: none;
