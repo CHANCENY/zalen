@@ -1,0 +1,17 @@
+{
+    "_hash": "8b93fceb78040036e4cfd2e32063030a884d2c9ebf376ecb1027d55514b44f13",
+    "patches": {
+        "drupal/inline_entity_form": [
+            {
+                "package": "drupal/inline_entity_form",
+                "description": "Fix add-more bug so multiple items can be added (3088901-16.patch)",
+                "url": "https://www.drupal.org/files/issues/2023-03-27/3088901-16.patch",
+                "sha256": "ae6a47ce6867d88b52d013b7e4bc3d80ed7a5399f6bfeb3f2b63d3676c79a8b7",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

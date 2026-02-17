@@ -1,0 +1,23 @@
+uuid: c5d5bbf9-eaaa-4237-9ba2-d01d3821f514
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_reservation_season_amount
+    - paragraphs.paragraphs_type.reservation
+id: paragraph.reservation.field_reservation_season_amount
+field_name: field_reservation_season_amount
+entity_type: paragraph
+bundle: reservation
+label: 'Reservation season amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

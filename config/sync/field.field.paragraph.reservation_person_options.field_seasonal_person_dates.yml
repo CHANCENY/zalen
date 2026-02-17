@@ -1,0 +1,21 @@
+uuid: 12810cea-cadc-4dd3-ab9a-722586a20b2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_seasonal_person_dates
+    - paragraphs.paragraphs_type.reservation_person_options
+  module:
+    - datetime_range
+id: paragraph.reservation_person_options.field_seasonal_person_dates
+field_name: field_seasonal_person_dates
+entity_type: paragraph
+bundle: reservation_person_options
+label: 'Seasonal Person Dates'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

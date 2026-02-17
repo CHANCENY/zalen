@@ -16,36 +16,37 @@ bundle: seasonal_pricings
 mode: default
 content:
   field_season_date_time_range:
-    type: datetime_range_flatpickr
+    type: datetime_range_separate_inputs_flatpickr
     weight: 1
     region: content
     settings:
-      dateFormat: 'Y-m-d H:i'
-      use_system_format: false
+      altFormat: 'F j, Y'
       system_date_format: eu_day_datetime
-      altFormat: 'd F, Y'
-      altInput: true
-      allowInput: false
-      defaultDate: ''
-      defaultHour: ''
-      defaultMinute: ''
-      disabledWeekDays: {  }
-      disabledDates: ''
-      enableTime: false
-      enableSeconds: false
-      inline: false
-      maxDate: ''
+      dateFormat: Y-m-d
       minDate: ''
-      maxTime:
-        hour: ''
-        min: ''
+      maxDate: ''
       minTime:
         hour: ''
         min: ''
-      minuteIncrement: 5
+      maxTime:
+        hour: ''
+        min: ''
+      minuteIncrement: ''
       position: auto
-      time_24hr: false
-      weekNumbers: false
+      time_24hr: '1'
+      disabledDates: ''
+      altInput: 0
+      use_system_format: 0
+      allowInput: 0
+      enableTime: 0
+      enableSeconds: 0
+      inline: 0
+      weekNumbers: 0
+      disabledWeekDays: {  }
+      sameDay: 0
+      defaultDate: ''
+      defaultHour: ''
+      defaultMinute: ''
       mode: single
       jumpToDate: ''
     third_party_settings: {  }

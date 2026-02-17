@@ -1,0 +1,21 @@
+uuid: 56ed2782-fe78-43cd-94a5-2f5ff6d09906
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_reservation_season_dates
+    - paragraphs.paragraphs_type.reservation
+  module:
+    - datetime_range
+id: paragraph.reservation.field_reservation_season_dates
+field_name: field_reservation_season_dates
+entity_type: paragraph
+bundle: reservation
+label: 'Reservation season dates'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

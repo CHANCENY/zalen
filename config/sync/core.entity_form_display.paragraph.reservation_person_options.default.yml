@@ -4,10 +4,16 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.reservation_person_options.field_person_option
+    - field.field.paragraph.reservation_person_options.field_person_option_currency
     - field.field.paragraph.reservation_person_options.field_price
     - field.field.paragraph.reservation_person_options.field_reserve_count
+    - field.field.paragraph.reservation_person_options.field_seasonal_person_dates
+    - field.field.paragraph.reservation_person_options.field_seasonal_person_price
+    - field.field.paragraph.reservation_person_options.field_seasonal_person_title
     - field.field.paragraph.reservation_person_options.field_total_charge
     - paragraphs.paragraphs_type.reservation_person_options
+  module:
+    - datetime_range
 id: paragraph.reservation_person_options.default
 targetEntityType: paragraph
 bundle: reservation_person_options
@@ -23,6 +29,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_person_option_currency:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_price:
     type: number
     weight: 2
@@ -35,6 +49,27 @@ content:
     weight: 1
     region: content
     settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_seasonal_person_dates:
+    type: daterange_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_seasonal_person_price:
+    type: number
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_seasonal_person_title:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
       placeholder: ''
     third_party_settings: {  }
   field_total_charge:

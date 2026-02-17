@@ -66,22 +66,24 @@
  * @ingroup themeable
  */
 #}
-<article{{ attributes.addClass('js-reservation') }} data-history-node-id="{{ reservation.id }}">
+<article{{ attributes.addClass('js-reservation') }}
+  data-history-node-id="{{ reservation.id }}">
   {#
-    Hide the "new" indicator by default, let a piece of JavaScript ask the
-    server which reservations are new for the user. Rendering the final "new"
-    indicator here would break the render cache.
+  Hide the "new" indicator by default, let a piece of JavaScript ask the
+  server which reservations are new for the user. Rendering the final "new"
+  indicator here would break the render cache.
   #}
-  <mark class="hidden" data-reservation-timestamp="{{ new_indicator_timestamp }}"></mark>
+  <mark class="hidden"
+        data-reservation-timestamp="{{ new_indicator_timestamp }}"></mark>
 
   <footer>
     {{ user_picture }}
     <p>{{ submitted }}</p>
 
     {#
-      Indicate the semantic relationship between parent and child reservations for
-      accessibility. The list is difficult to navigate in a screen reader
-      without this information.
+    Indicate the semantic relationship between parent and child reservations for
+    accessibility. The list is difficult to navigate in a screen reader
+    without this information.
     #}
     {% if parent %}
       <p class="visually-hidden">{{ parent }}</p>
@@ -96,35 +98,58 @@
       <h3{{ title_attributes }}>{{ title }}</h3>
       {{ title_suffix }}
     {% endif %}
-      {{ content }}
+    {{ content }}
   </div>
   {% set reservationParagraph = reservation.field_reservation_information.entity %}
 
   {% if reservationParagraph.field_reservation_season_applied.value == '1' %}
     <div class="seasonal-pricing-applied reservation-with-seasonal">
       <h3>Seasonal pricing applied</h3>
-      <span class="seasonal-icon">
-      <i class="fas fa-sun"></i>
-    </span>
-      <span class="seasonal-title">
-      {{ reservationParagraph.field_reservation_season_title.value }}
-    </span>
-
       {% if reservationParagraph.field_unit_type.value == 'hourly' %}
 
+        <span class="seasonal-icon">
+          <i class="fas fa-sun"></i>
+        </span>
+        <span class="seasonal-title">
+           {{ reservationParagraph.field_reservation_season_title.value }} special &nbsp;
+        </span>
         <span class="season-reservation-type">
           {{ getCurrencySymbol(reservationParagraph.field_reservation_currency.value) }}{{ reservationParagraph.field_reservation_season_amount.value }} / hour
         </span>
 
-      {% elseif reservationParagraph.field_unit_type.value == 'daily' %}
+      {% elseif reservationParagraph.field_unit_type.value == 'day' %}
 
+        <span class="seasonal-icon">
+          <i class="fas fa-sun"></i>
+        </span>
+        <span class="seasonal-title">
+           {{ reservationParagraph.field_reservation_season_title.value }} special &nbsp;
+        </span>
         <span class="season-reservation-type">
           {{ getCurrencySymbol(reservationParagraph.field_reservation_currency.value) }}{{ reservationParagraph.field_reservation_season_amount.value }} / day
         </span>
 
       {% else %}
 
-        {{ dump(reservationParagraph.field_person_type_options.getValue()) }}
+        {% set personOptions = reservationParagraph.field_person_type_options.getValue %}
+
+        {% for personOption in personOptions %}
+
+          {% set person = getParagraph(personOption.target_id) %}
+
+          {% if person.field_seasonal_person_title.value|length > 0 and person.field_seasonal_person_price.value|length > 0 %}
+            <span class="seasonal-icon">
+               <i class="fas fa-sun"></i>
+            </span>
+            <span class="seasonal-title">
+              {{ person.field_seasonal_person_title.value }} special for `{{ person.field_person_option.entity.field_short_description.value }}` person item &nbsp;
+            </span>
+            <span class="season-reservation-type">
+              {{ getCurrencySymbol(person.field_person_option_currency.value) }}{{ person.field_seasonal_person_price.value }} / person
+            </span>
+          {% endif %}
+
+        {% endfor %}
 
       {% endif %}
 

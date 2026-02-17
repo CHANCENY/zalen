@@ -13,11 +13,17 @@ dependencies:
     - field.field.paragraph.reservation.field_person_type_options
     - field.field.paragraph.reservation.field_price_units
     - field.field.paragraph.reservation.field_reservation_currency
+    - field.field.paragraph.reservation.field_reservation_season_amount
+    - field.field.paragraph.reservation.field_reservation_season_applied
+    - field.field.paragraph.reservation.field_reservation_season_dates
+    - field.field.paragraph.reservation.field_reservation_season_title
     - field.field.paragraph.reservation.field_services
     - field.field.paragraph.reservation.field_starting_date
     - field.field.paragraph.reservation.field_total_amount
     - field.field.paragraph.reservation.field_unit_type
     - paragraphs.paragraphs_type.reservation
+  module:
+    - datetime_range
 id: paragraph.reservation.default
 targetEntityType: paragraph
 bundle: reservation
@@ -98,6 +104,34 @@ content:
   field_reservation_currency:
     type: string_textfield
     weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_reservation_season_amount:
+    type: number
+    weight: 15
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_reservation_season_applied:
+    type: boolean_checkbox
+    weight: 17
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_reservation_season_dates:
+    type: daterange_default
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_reservation_season_title:
+    type: string_textfield
+    weight: 14
     region: content
     settings:
       size: 60

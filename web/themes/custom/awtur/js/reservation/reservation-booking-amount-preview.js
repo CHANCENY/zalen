@@ -63,28 +63,31 @@
           return `${startDate.toLocaleDateString(undefined, options)} - ${endDate.toLocaleDateString(undefined, options)}`;
         }
 
-        function isBookingDatesInSeasonalRange(dates, seasonalRange) {
+        function toDateOnlyString(dateInput) {
+          const d = new Date(dateInput.replace?.(' ', 'T') || dateInput);
+          if (isNaN(d)) return null;
 
-          if (!dates || !seasonalRange) return false;
+          const year  = d.getFullYear();
+          const month = String(d.getMonth() + 1).padStart(2, '0');
+          const day   = String(d.getDate()).padStart(2, '0');
 
-           // Parse booking dates (replace space with T for proper parsing)
-            const bookingStart = new Date(dates.start.replace(' ', 'T'));
-            const bookingEnd = new Date(dates.end.replace(' ', 'T'));
-
-             // Parse seasonal rule dates
-             const seasonStart = new Date(seasonalRange.value);
-             const seasonEnd = new Date(seasonalRange.end_value);
-
-            // Validate dates
-            if (isNaN(bookingStart) || isNaN(bookingEnd) || isNaN(seasonStart) || isNaN(seasonEnd)) {
-                return false;
-            }
-
-            // Check if booking is fully inside seasonal range
-            return bookingStart >= seasonStart && bookingEnd <= seasonEnd;
-
+          return `${year}-${month}-${day}`;
         }
 
+        function isBookingDatesInSeasonalRange(dates, seasonalRange) {
+          if (!dates || !seasonalRange) return false;
+
+          const bookingStart = toDateOnlyString(dates.start);
+          const bookingEnd   = toDateOnlyString(dates.end);
+          const seasonStart  = toDateOnlyString(seasonalRange.value);
+          const seasonEnd    = toDateOnlyString(seasonalRange.end_value);
+
+          if (!bookingStart || !bookingEnd || !seasonStart || !seasonEnd) {
+            return false;
+          }
+
+          return bookingStart >= seasonStart && bookingEnd <= seasonEnd;
+        }
 
         function pricingRulesValidation() {
           setTimeout(()=>{

@@ -1,0 +1,23 @@
+uuid: 7f4fe1f0-094f-4c1a-a7d7-ad122fb42997
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_seasonal_person_price
+    - paragraphs.paragraphs_type.reservation_person_options
+id: paragraph.reservation_person_options.field_seasonal_person_price
+field_name: field_seasonal_person_price
+entity_type: paragraph
+bundle: reservation_person_options
+label: 'Seasonal Person Price'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

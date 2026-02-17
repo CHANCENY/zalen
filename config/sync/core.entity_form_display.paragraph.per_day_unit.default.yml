@@ -30,7 +30,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_day_seasonal_pricings:
-    type: inline_entity_form_simple
+    type: inline_entity_form_complex
     weight: 4
     region: content
     settings:
@@ -38,9 +38,14 @@ content:
       override_labels: false
       label_singular: ''
       label_plural: ''
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
       collapsible: false
       collapsed: false
       revision: false
+      removed_reference: optional
     third_party_settings: {  }
   field_minimum_day_to_book:
     type: number

@@ -1,0 +1,21 @@
+uuid: 1789b863-7db0-49d9-83d4-035ec9cc9cf3
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_seasonal_person_title
+field_name: field_seasonal_person_title
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

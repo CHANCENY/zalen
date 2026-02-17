@@ -1,0 +1,151 @@
+diff --git a/src/Plugin/Field/FieldWidget/InlineEntityFormSimple.php b/src/Plugin/Field/FieldWidget/InlineEntityFormSimple.php
+index 51e0acc..6db7e9e 100644
+--- a/src/Plugin/Field/FieldWidget/InlineEntityFormSimple.php
++++ b/src/Plugin/Field/FieldWidget/InlineEntityFormSimple.php
+@@ -10,6 +10,10 @@ use Drupal\Core\Field\WidgetBase;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\Render\Element;
+ use Drupal\inline_entity_form\TranslationHelper;
++use Drupal\Core\TypedData\ComplexDataInterface;
++use Drupal\Core\TypedData\Exception\MissingDataException;
++use Drupal\Core\TypedData\ListInterface;
++use Drupal\Core\TypedData\TypedDataInterface;
+
+ /**
+  * Simple inline widget.
+@@ -90,17 +94,39 @@ class InlineEntityFormSimple extends InlineEntityFormBase {
+     // If we're using unlimited cardinality we don't display one empty item.
+     // Form validation will kick in if left empty which essentially means
+     // people won't be able to submit without creating another entity.
+-    if (!$form_state->isSubmitted() && $element['#cardinality'] == FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED && $element['#max_delta'] > 0) {
++    $user_input = $form_state->getUserInput();
++    $adding_element_to_this_item = isset($user_input['_triggering_element_name'], $element['add_more']['#name'])
++      && $user_input['_triggering_element_name'] === $element['add_more']['#name'];
++
++    if (!$form_state->isSubmitted()
++      && $element['#cardinality'] == FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED
++      && $element['#max_delta'] > 0
++      // Don't prevent users from intentionally adding items.
++      && !$adding_element_to_this_item
++    ) {
+       $max = $element['#max_delta'];
+-      unset($element[$max]);
+-      $element['#max_delta'] = $max - 1;
+-      $items->removeItem($max);
+-      // Decrement the items count.
+-      $field_name = $element['#field_name'];
+-      $parents = $element[0]['#field_parents'];
+-      $field_state = static::getWidgetState($parents, $field_name, $form_state);
+-      $field_state['items_count']--;
+-      static::setWidgetState($parents, $field_name, $form_state, $field_state);
++      if (isset($element[$max]['#field_parents'])) {
++        $element_input = NestedArray::getValue($user_input, array_merge(
++          $element[$max]['#field_parents'],
++          [$element['#field_name']],
++          [$max]
++        ));
++      }
++      else {
++        $element_input = [];
++      }
++      // Only remove empty elements.
++      if (empty($element_input) && $this->isItemEmpty($items, $max)) {
++        unset($element[$max]);
++        $element['#max_delta'] = $max - 1;
++        $items->removeItem($max);
++        // Decrement the items count.
++        $field_name = $element['#field_name'];
++        $parents = $element[0]['#field_parents'];
++        $field_state = static::getWidgetState($parents, $field_name, $form_state);
++        $field_state['items_count']--;
++        static::setWidgetState($parents, $field_name, $form_state, $field_state);
++      }
+     }
+
+     // Remove add options if the user cannot add new entities.
+@@ -206,6 +232,35 @@ class InlineEntityFormSimple extends InlineEntityFormBase {
+     return TRUE;
+   }
+
++  /**
++   * Check if specific item is empty.
++   *
++   * @param \Drupal\Core\Field\FieldItemListInterface $items
++   *   Item list.
++   * @param int $index
++   *   Item index.
++   *
++   * @return bool
++   *   TRUE if item is empty, false otherwise.
++   */
++  protected function isItemEmpty(FieldItemListInterface $items, $index): bool {
++    try {
++      $item = $items->get($index);
++      if ($item instanceof ComplexDataInterface || $item instanceof ListInterface) {
++        return $item->isEmpty();
++      }
++
++      if ($item instanceof TypedDataInterface) {
++        return $item->getValue() === NULL;
++      }
++      // Other items are treated as empty if they have no value only.
++      return $item === NULL;
++    }
++    catch (MissingDataException $exception) {
++      return TRUE;
++    }
++  }
++
+   /**
+    * Gets the bundle for the inline entity.
+    *
+diff --git a/tests/modules/inline_entity_form_test/inline_entity_form_test.module b/tests/modules/inline_entity_form_test/inline_entity_form_test.module
+new file mode 100644
+index 0000000..43ad387
+--- /dev/null
++++ b/tests/modules/inline_entity_form_test/inline_entity_form_test.module
+@@ -0,0 +1,30 @@
++<?php
++
++use Drupal\Core\Ajax\AjaxResponse;
++use Drupal\Core\Ajax\HtmlCommand;
++use Drupal\Core\Form\FormStateInterface;
++
++function inline_entity_form_test_form_node_ief_simple_single_form_alter(&$form, FormStateInterface $form_state) {
++  $form['ajax_value'] = [
++    '#id' => 'ajax-value',
++    '#type' => 'item',
++    '#title' => t('Ajax value'),
++    '#markup' => 'bar',
++  ];
++  $form['actions']['ajax_no_submit_callback'] = [
++    '#type' => 'button',
++    '#value' => t('No submit callbacks'),
++    '#ajax' => ['callback' => 'inline_entity_form_test_ajax_callback'],
++  ];
++}
++
++function inline_entity_form_test_ajax_callback(array &$form, FormStateInterface $form_state) {
++  $item = [
++    '#type' => 'item',
++    '#title' => t('Ajax value'),
++    '#markup' => 'AJAX complete',
++  ];
++  $response = new AjaxResponse();
++  $response->addCommand(new HtmlCommand('#ajax-value', $item));
++  return $response;
++}
+diff --git a/tests/src/FunctionalJavascript/SimpleWidgetTest.php b/tests/src/FunctionalJavascript/SimpleWidgetTest.php
+index 69d8397..c6abc64 100644
+--- a/tests/src/FunctionalJavascript/SimpleWidgetTest.php
++++ b/tests/src/FunctionalJavascript/SimpleWidgetTest.php
+@@ -109,6 +109,9 @@ class SimpleWidgetTest extends InlineEntityFormTestBase {
+         $assert_session->elementExists('xpath', $second_nested_title_field_xpath)->setValue('Nested single node 5');
+         $assert_session->elementExists('xpath', $second_positive_int_field_xpath)->setValue(42);
+
++        $assert_session->buttonExists('No submit callbacks')->press();
++        $assert_session->waitForText('AJAX complete');
++
+         // Press the 'add another item' button and add a third item.
+         $assert_session->buttonExists('Add another item')->press();
+         $this->assertNotEmpty($assert_session->waitForElement('xpath', $third_nested_title_field_xpath));

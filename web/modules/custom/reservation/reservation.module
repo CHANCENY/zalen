@@ -423,7 +423,7 @@ function reservation_entity_update(EntityInterface $entity)
 
     $data = $tempstore->get("zaal_extra_services_{$uid}");
 
-    if (is_array($data['pids'])) {
+    if (!empty($data['pids']) && is_array($data['pids'])) {
       // Existing field values
       $existing = array_filter($entity->get('field_resuse_menu_and_services')->getValue());
       $existing_pids = array_column($existing, 'target_id');
@@ -1816,6 +1816,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
             'field_reserve_count' => $submitted_value,
             'field_total_charge' => ($amount_used * $submitted_value),
             'type' => 'reservation_person_options',
+            'field_person_option_currency' =>  $validationItem['currency'] ?? 'eur',
             ...$seasonal_data,
           ];
          $seasonal_used[] = !empty($seasonal_data);
@@ -2060,14 +2061,11 @@ function __get_seasonal_detail_apply(array $seasonal, array $bookedDates): false
   }
 
   try {
-    // Always normalize to UTC (safest approach)
-    $tz = new DateTimeZone('UTC');
+    $bookingStart = (new DateTime($bookedDates['start']))->format('Y-m-d');
+    $bookingEnd   = (new DateTime($bookedDates['end']))->format('Y-m-d');
 
-    $bookingStart = new DateTime($bookedDates['start'], $tz);
-    $bookingEnd   = new DateTime($bookedDates['end'], $tz);
-
-    $seasonStart  = new DateTime($seasonal['value'], $tz);
-    $seasonEnd    = new DateTime($seasonal['end_value'], $tz);
+    $seasonStart  = (new DateTime($seasonal['value']))->format('Y-m-d');
+    $seasonEnd    = (new DateTime($seasonal['end_value']))->format('Y-m-d');
 
     if ($bookingStart >= $seasonStart && $bookingEnd <= $seasonEnd) {
       return $seasonal;
@@ -2079,7 +2077,6 @@ function __get_seasonal_detail_apply(array $seasonal, array $bookedDates): false
     return false;
   }
 }
-
 
 /**
  * Getting all date within given two date.

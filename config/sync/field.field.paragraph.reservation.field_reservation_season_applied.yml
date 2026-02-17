@@ -1,0 +1,21 @@
+uuid: bb450ea7-07d7-4236-9360-fb00d9459665
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_reservation_season_applied
+    - paragraphs.paragraphs_type.reservation
+id: paragraph.reservation.field_reservation_season_applied
+field_name: field_reservation_season_applied
+entity_type: paragraph
+bundle: reservation
+label: 'reservation season applied'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

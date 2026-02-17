@@ -1,0 +1,21 @@
+uuid: 673ccf03-dc14-49e7-a201-4e5a0ebf25d7
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_person_option_currency
+field_name: field_person_option_currency
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
