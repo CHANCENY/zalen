@@ -1520,7 +1520,10 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
     }
 
     // Validate minimum hours.
-    $hours = $start_date->diff($end_date)->h;
+    $hours = ($end_date->getTimestamp() - $start_date->getTimestamp()) / 3600;
+    $days = $start_date->diff($end_date)->days;
+    $days = $days > 0 ? $days+1 : 1;
+
     if ($hours < $validation_data['miniHours']) {
       $form_state->setErrorByName('field_date_booking', t('The minimum hours to book is @hours.', ['@hours' => $validation_data['miniHours']]));
       $error_flags['field_date_booking_2'] = TRUE;
@@ -1528,6 +1531,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
 
     // setting the reservation data.
     $reservation_data['field_hours'] = $hours;
+    $reservation_data['field_days'] = $days;
     $reservation_data['field_starting_date'] = $start_date->format('Y-m-d H:i:s');
     $reservation_data['field_ending_date'] = $end_date->format('Y-m-d H:i:s');
 
@@ -1602,6 +1606,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
           'start'   =>  $start_date,
           'end'     =>  $end_date,
         ]);
+
         if (!empty($seasonalApply)) {
           $reservation_data['field_reservation_season_applied'] = 1;
           $reservation_data['field_reservation_season_dates'] = $value['date_range'][0];
@@ -1649,6 +1654,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
     // Validate minimum hours.
     $days = $start_date->diff($end_date)->days;
     $days = $days > 0 ? $days+1 : 1;
+    $hours = ($end_date->getTimestamp() - $start_date->getTimestamp()) / 3600;
     if ($days < $validation_data['miniDays']) {
       $form_state->setErrorByName('field_date_booking', t('The minimum days to book is @days.', ['@days' => $validation_data['miniDays']]));
       $error_flags['field_date_booking_2'] = TRUE;
@@ -1656,6 +1662,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
 
     // setting the reservation data.
     $reservation_data['field_days'] = $days;
+    $reservation_data['field_hours'] = $hours;
     $reservation_data['field_starting_date'] = $start_date->format('d F Y H:i:s');
     $reservation_data['field_ending_date'] = $end_date->format('d F Y H:i:s');
 
@@ -1798,6 +1805,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
              ]);
              if (!empty($seasonalApply)) {
                $seasonalApply = $val;
+               $amount_used = $val['amount'];
              }
            }
          }
@@ -1834,7 +1842,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
     // Validate minimum hours.
     $days = $start_date->diff($end_date)->days;
     $days = $days > 0 ? $days+1 : 1;
-    $hours = $start_date->diff($end_date)->h;
+    $hours = ($end_date->getTimestamp() - $start_date->getTimestamp()) / 3600;
 
     // setting the reservation data.
     $reservation_data['field_days'] = $days;
@@ -1959,12 +1967,8 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
         $validation_data = reset( $submitted_data['noscript']['hour_booking']['hourlyRate']);
         $hours = $reservation_data['field_hours'];
 
-        if (!empty($reservation_data['seasonal_apply'])) {
-          $validation_data['amount'] = $reservation_data['amount'] ?? $validation_data['amount'];
-        }
-
         if ($hours <= intval($validation_data['miniHours'])) {
-          $total_amount = ($hours * intval($validation_data['amount'])) + $total_amount;
+          $reservation_data['field_amount_used'] = intval($validation_data['amount']);
         }
         else {
           $amount = intval($validation_data['amount']);
@@ -1973,11 +1977,14 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
               $amount = intval($rule['amount']);
             }
           }
-
           $reservation_data['field_amount_used'] = $amount;
-          $total_amount = ($hours * intval($amount)) + $total_amount;
-
         }
+
+        if (!empty($reservation_data['field_reservation_season_amount'])) {
+          $reservation_data['field_amount_used'] = $reservation_data['field_reservation_season_amount'];
+        }
+
+        $total_amount = $hours * intval($reservation_data['field_amount_used']) + $total_amount;
         $reservation_data['field_total_amount'] = $total_amount;
       }
     }
@@ -1991,10 +1998,6 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
         $validation_data = reset( $submitted_data['noscript']['day_booking']['dayRate']);
         $days = $reservation_data['field_days'];
 
-        if (!empty($reservation_data['seasonal_apply'])) {
-          $validation_data['amount'] = $reservation_data['amount'] ?? $validation_data['amount'];
-        }
-
         if ($days <= intval($validation_data['miniDays'])) {
           $total_amount = ($days * intval($validation_data['amount'])) + $total_amount;
         }
@@ -2006,10 +2009,14 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
             }
           }
           $reservation_data['field_amount_used'] = $amount;
-          $total_amount = ($days * intval($amount)) + $total_amount;
 
         }
 
+        if (!empty($reservation_data['field_reservation_season_amount'])) {
+          $reservation_data['field_amount_used'] = $reservation_data['field_reservation_season_amount'];
+        }
+
+        $total_amount = ($days * intval($reservation_data['field_amount_used'])) + $total_amount;
         $reservation_data['field_total_amount'] = $total_amount;
       }
     }

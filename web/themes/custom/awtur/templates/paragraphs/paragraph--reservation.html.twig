@@ -195,6 +195,60 @@
             </table>
           </div>
         {% endif %}
+
+        {% if paragraph.get('field_reservation_season_applied').value == 1 %}
+          <p>This reservation has seasonal pricing applied below</p>
+          {% if paragraph.get('field_unit_type').value == 'hourly' or paragraph.get('field_unit_type').value == 'day' %}
+            <table class="table table-stripped">
+              <thead>
+              <tr>
+                <th>Label</th>
+                <th>Applicable Period</th>
+                <th>Amount</th>
+              </tr>
+              </thead>
+              <tbody>
+               <tr>
+                 <td>{{ paragraph.get('field_reservation_season_title').value }}</td>
+                 <td>{{ paragraph.get('field_reservation_season_dates').getValue.0.value|date('d F, Y') }} / {{ paragraph.get('field_reservation_season_dates').getValue.0.end_value|date('d F, Y') }}</td>
+                 <td>
+                   {{ getCurrencySymbol(paragraph.get('field_reservation_currency').value|default('eur')|upper) }}{{ paragraph.get('field_reservation_season_amount').value|default('not applicable') }}
+                   {% if paragraph.get('field_unit_type').value == 'hourly' %} / hour {% else %} / day {% endif %}
+                 </td>
+               </tr>
+              </tbody>
+            </table>
+          {% else %}
+
+            {% set options = paragraph.get('field_person_type_options').getValue %}
+
+            <table class="table table-stripped">
+              <thead>
+              <tr>
+                <th>Label</th>
+                <th>Applicable Period</th>
+                <th>Amount</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for option in options %}
+                 {% set par = getParagraph(option.target_id) %}
+                {% if par.get('field_seasonal_person_title').value is not empty %}
+              <tr>
+                <td>{{ par.get('field_seasonal_person_title').value }}</td>
+                <td>{{ par.get('field_seasonal_person_dates').getValue.0.value|date('d F, Y') }} / {{ par.get('field_seasonal_person_dates').getValue.0.end_value|date('d F, Y') }}</td>
+                <td>
+                  {{ getCurrencySymbol(par.get('field_person_option_currency').value|default('eur')|upper) }}{{ par.get('field_seasonal_person_price').value|default('not applicable') }} / person
+                </td>
+              </tr>
+                {% endif %}
+               {% endfor %}
+              </tbody>
+            </table>
+
+          {% endif %}
+        {% endif %}
+
       </div>
     {% endblock %}
   </div>

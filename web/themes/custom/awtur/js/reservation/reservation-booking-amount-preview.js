@@ -404,7 +404,6 @@
                         });
                         summaryElement += `</ul>`;
 
-
                         if (personObjectData[0]['seasonals'].length > 0) {
 
                           let seasonalUsed = "<h4>Seasonal pricing used</h4><ul>";
@@ -437,8 +436,6 @@
                           summaryElement += seasonals;
 
                         }
-
-
 
                         if (servicesSelected.length) {
                           summaryElement += `<h4>Additional Services</h4><ul>`;
@@ -580,9 +577,14 @@
                     if ($personCount < personValidationItem.miniPersons) {
 
                       if (!$(this).data('prompted')) {
+                        //TODO
                         showErrorModal("This person '"+ personValidationItem.name +"' option requires minimum of "+personValidationItem.miniPersons+" persons.", 'Warning');
+                        $(this).prop('readonly', true);
                         $(this).val(personValidationItem.miniPersons)
-                        $(this).data('prompted', true)
+                        $(this).data('prompted', true);
+                        setTimeout(()=>{
+                          $(this).prop('readonly', false);
+                        }, 5000)
                         return;
                       }
                     }
