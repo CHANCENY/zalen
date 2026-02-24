@@ -1,0 +1,9 @@
+# Custom module library for general purposes.
+googlereviews.rating:
+  css:
+    theme:
+      css/googlereviews-rating.css: {}
+googlereviews.reviews:
+  css:
+    theme:
+      css/googlereviews-reviews.css: {}

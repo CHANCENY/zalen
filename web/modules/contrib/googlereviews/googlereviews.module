@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Google Reviews module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function googlereviews_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.googlereviews':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Google reviews module provides two blocks to show Google reviews and rating on your website.') . '</p>';
+      $output .= '<p>' . t('The Google reviews rating block show the average rating made by all users including stars. The block also includes a link to the reviews on Google.') . '</p>';
+      $output .= '<p>' . t('The reviews list block shows the 5 reviews Google finds the most relevant. They also show up in Google Maps next to the business listing. The block shows the author name, author profile picture, a link to all reviews by this user and the rating and description of the review.') . '</p>';
+      $output .= '<p>' . t('Visit the <a href=":project_link">Project page</a> on Drupal.org for more information.', [
+        ':project_link' => 'https://www.drupal.org/project/googlereviews',
+      ]);
+
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function googlereviews_theme($existing, $type, $theme, $path) {
+  return [
+    'googlereviews_rating_block' => [
+      'variables' => [
+        'user_ratings_total' => NULL,
+        'rating' => NULL,
+        'rating_percentage' => NULL,
+        'place_id' => NULL,
+        'place_url' => NULL,
+      ],
+    ],
+    'googlereviews_reviews_block' => [
+      'variables' => [
+        'reviews' => NULL,
+        'place_id' => NULL,
+      ],
+    ],
+  ];
+}

@@ -1,0 +1,6 @@
+googlereviews.settings_form:
+  title: 'Google Reviews'
+  description: 'Configure Google Reviews.'
+  parent: system.admin_config_system
+  route_name: googlereviews.settings_form
+  weight: 10

@@ -1,0 +1,62 @@
+/**
+ * CSS for googlereviews-reviews-block.html.twig
+ */
+
+.review-container {
+  margin-bottom: 2rem;
+}
+
+.review-container a {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.review-container .review-rating-container {
+  display: inline-flex;
+}
+
+.review-container .review-rating-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.review-container .review-rating {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.review-container .review-author-image {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+}
+
+.review-container .review-author-name {
+  font-weight: bold;
+}
+
+.review-container .review-date {
+  margin-top: -0.2rem;
+  margin-left: 0.75rem;
+  font-size: 0.75rem;
+}
+
+.review-container .stars-wrapper {
+  position: relative;
+}
+
+.googlereviews-ratings-container .stars-wrapper svg {
+  display: block;
+}
+
+.review-container .stars-foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.review-container .stars-wrapper svg {
+  width: auto;
+  height: 20px;
+}

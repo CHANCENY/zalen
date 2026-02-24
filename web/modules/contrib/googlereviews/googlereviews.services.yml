@@ -1,0 +1,4 @@
+services:
+  googlereviews.get_google_data:
+    class: Drupal\googlereviews\GetGoogleData
+    arguments: ['@http_client', '@logger.factory', '@messenger', '@config.factory', '@language_manager', '@url_generator', '@string_translation']

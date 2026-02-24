@@ -1,0 +1,39 @@
+# Schema for the configuration files of the Google Reviews module.
+googlereviews.settings:
+  type: config_object
+  label: 'Google Reviews settings'
+  mapping:
+    google_api_url:
+      type: string
+      label: 'Google Maps Places API URL'
+    google_auth_key:
+      type: string
+      label: 'Google Auth key'
+    google_place_id:
+      type: string
+      label: 'Google Place ID'
+    cache_max_age:
+      type: integer
+      label: 'Cache Max Age'
+
+block.settings.googlereviews_reviews:
+  type: block_settings
+  label: 'Google Reviews block'
+  mapping:
+    max_google_reviews:
+      type: integer
+      label: 'Amount of reviews'
+    google_reviews_sorting:
+      type: string
+      label: 'Reviews sorting'
+    google_place_id:
+      type: string
+      label: 'Google Place ID'
+
+block.settings.googlereviews_rating:
+  type: block_settings
+  label: 'Google Reviews rating block'
+  mapping:
+    google_place_id:
+      type: string
+      label: 'Google Place ID'

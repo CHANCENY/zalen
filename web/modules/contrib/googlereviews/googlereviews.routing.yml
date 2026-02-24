@@ -1,0 +1,7 @@
+googlereviews.settings_form:
+  path: '/admin/config/system/googlereviews'
+  defaults:
+    _title: 'Google Reviews settings'
+    _form: 'Drupal\googlereviews\Form\SettingsForm'
+  requirements:
+    _permission: 'administer googlereviews configuration'

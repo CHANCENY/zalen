@@ -1,0 +1,47 @@
+/**
+ * CSS for googlereviews-ratings-block.html.twig
+ */
+
+.googlereviews-ratings-container {
+  display: inline-flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.googlereviews-ratings-container .rating-source-logo {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.googlereviews-ratings-container .rating-container {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.googlereviews-ratings-container .rating-value {
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.googlereviews-ratings-container .stars-wrapper {
+  position: relative;
+}
+
+.googlereviews-ratings-container .stars-wrapper svg {
+  display: block;
+}
+
+.googlereviews-ratings-container .stars-foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.googlereviews-ratings-container .total-reviews {
+  font-size: 0.75rem;
+}

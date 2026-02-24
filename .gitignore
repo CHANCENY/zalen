@@ -2,3 +2,4 @@ web/core/
 web/sites/
 vendor/
 .idea
+config/sync/key.key.openai.yml

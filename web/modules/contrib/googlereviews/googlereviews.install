@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Google Reviews module.
+ */
+
+/**
+ * Add google_api_url param into the config.
+ */
+function googlereviews_update_8001() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('googlereviews.settings');
+  if (empty($config->get('google_api_url'))) {
+    $config->set('google_api_url', 'https://maps.googleapis.com/maps/api/place/details/json');
+    $config->save(TRUE);
+  }
+}
+
+/**
+ * Add cache_max_age param into the config.
+ */
+function googlereviews_update_8002() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('googlereviews.settings');
+  if (empty($config->get('cache_max_age'))) {
+    $config->set('cache_max_age', 86400);
+    $config->save(TRUE);
+  }
+}
