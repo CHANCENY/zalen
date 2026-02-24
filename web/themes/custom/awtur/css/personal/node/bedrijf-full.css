@@ -2,9 +2,9 @@
  * @file
  * Visual styles for AWTur's node--bedrijf--full.html.twig.
  */
-
 /*-----------HEADER----------*/
 .bedrijf-full-header {
+  padding-top: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

@@ -338,6 +338,19 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 }
 
 /*Responsive*/
+
+@media (min-width: 1150px) {
+  .path-onze-zaal-reservaties section.section {
+    margin-left: -20px;
+  }
+}
+
+@media (min-width: 1250px) {
+  .path-onze-zaal-reservaties section.section {
+    margin-left: -50px;
+  }
+}
+
 @media (max-width:850px) {
     .path-alle-zalen .layout-main {
         flex-direction: column;

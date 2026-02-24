@@ -3,6 +3,7 @@
     height: 50px;
     /* text-align: center; */
 }
+
 /*img*/
 .block-zalen article.profile:before {
     content: "";
@@ -25,6 +26,9 @@
     height: 40px;
     object-fit: cover;
     border-radius: 100%;
+}
+.block-zalen .node__meta{
+  margin-bottom: unset;
 }
 .block-zalen header .node__meta > span {
     display: block;
@@ -114,7 +118,7 @@
     padding: 4px 13px 5px;
     margin: -10px 4px 0;
 }
-.dag-paars #prijsPaars{
+.dag-paars #prijsPaars, .dag-paars #prijsGroen{
     background: #DBA4D5;
 }
 .uur-groen #prijsGroen{

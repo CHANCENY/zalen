@@ -194,9 +194,9 @@ header .node__meta span>span.field--name-uid>span {
 .union-booking-cost {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   margin: 0 4px 64px 4px;
-  row-gap: 32px;
+  gap: 32px;
 }
 
 .price-from {

@@ -12,7 +12,9 @@
 %}
 
 {{ attach_library('awtur/personal-bedrijf') }}
+{{ attach_library('awtur/personal-view-block-zaal') }}
 {{ attach_library('awtur/foto-grid') }}
+
 
 {% set base_path = drupal_token('site:base-path') ~ '/' %}
   {% set thema_pad = base_path ~ directory %} {# path('<front>') {{ directory }} or {{ active_theme_path() }} #}
