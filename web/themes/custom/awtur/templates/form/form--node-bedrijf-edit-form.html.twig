@@ -12,7 +12,7 @@
 
   {{ element.form_build_id }}
   {{ element.form_id }}
-  {{ element.form_token }} 
+  {{ element.form_token }}
 
   {# ================= Language ================= #}
 
@@ -34,7 +34,7 @@
     <div class="form-group">
       {{ element.field_slogan }}
     </div>
-    
+
     <div class="form-group">
       {{ element.field_logo }}
     </div>
@@ -202,7 +202,9 @@
     <div class="form-group">
       {{ element.field_google_review_count }}
     </div>
-      
+    <div class="form-group">
+      {{ element.field_google_place_id }}
+    </div>
   </fieldset>
 
   {# ================= ACTIONS ================= #}
@@ -249,9 +251,9 @@
       <div class="bedrijf-form-afvanced">
         {#{{ element.advanced.group.1 }}
         {{ element.advanced.group.2 }}#}
-        
+
         {{ element.advanced.group }}
-        
+
       </div>
 
   </fieldset>

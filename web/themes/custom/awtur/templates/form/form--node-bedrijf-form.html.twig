@@ -5,7 +5,7 @@
 {{ attach_library('awtur/multiselect-sumoselect') }}
 
 <form{{ attributes }}>
- 
+
 <div class="bedrijf-form" id="bedrijf-form-wrapper">
 
   {# Titel van het formulier (optioneel) #}
@@ -18,7 +18,7 @@
   {# ================= Language ================= #}
   <fieldset class="form-section" id="bedrijf-language-langcode">
     <legend>{{ 'Language of the content'|t }}</legend>
-    
+
     {{ element.langcode }}
   </fieldset>
 
@@ -88,6 +88,9 @@
 
     <div class="form-group">
       {{ element.field_google_review_count }}
+    </div>
+    <div class="form-group">
+      {{ element.field_google_place_id }}
     </div>
   </fieldset>
 
@@ -166,7 +169,7 @@
     <div class="form-group">
       {{ element.field_prijslijsten }}
     </div>
-    
+
     <div class="form-group">
       {{ element.field_foto }}
     </div>
@@ -257,14 +260,14 @@
       <div class="bedrijf-form-afvanced">
         {#{{ element.advanced.group.1 }}
         {{ element.advanced.group.2 }}#}
-        
+
         {{ element.advanced.group }}
-        
+
       </div>
 
   </fieldset>
  {% endif %}
- 
+
  {{ element.footer }}
 </div>
 
