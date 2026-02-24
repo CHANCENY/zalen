@@ -7,6 +7,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\googlereviews\GetGoogleDataInterface;
+use Drupal\node\Entity\Node;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -90,12 +91,27 @@ class GoogleRating extends BlockBase implements ContainerFactoryPluginInterface 
    * {@inheritdoc}
    */
   public function build() {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    $googlePlaceId = $this->configuration['google_place_id'];
+    if ($node instanceof Node) {
+
+      if ($node->bundle() === 'zaal') {
+        $location = $node->get('field_bedrijf_zaal')->entity;
+        if ($location instanceof Node && $location->hasField('field_google_place_id')) {
+          $googlePlaceId = $location->get('field_google_place_id')->value;
+        }
+      }
+      elseif ($node->bundle() === 'bedrijf' && $node->hasField('field_google_place_id')) {
+        $googlePlaceId = $node->get('field_google_place_id')->value;
+      }
+
+    }
     $rating = $this->getGoogleData->getGoogleReviews(
       ['rating', 'user_ratings_total', 'url'],
       5,
       'newest',
       '',
-      $this->configuration['google_place_id'] ?? ''
+      $googlePlaceId
     );
     $renderable = [];
     if (!empty($rating)) {
