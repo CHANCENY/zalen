@@ -123,7 +123,7 @@ class GoogleReviews extends BlockBase implements ContainerFactoryPluginInterface
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
-    $googlePlaceId = $this->configuration['google_place_id'];
+    $googlePlaceId = ""; //$this->configuration['google_place_id'];
     if ($node instanceof Node) {
 
       if ($node->bundle() === 'zaal') {
