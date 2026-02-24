@@ -392,7 +392,7 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 #google-reviews {
   padding: 30px;
   border-radius: 10px;
-  background: linear-gradient(to bottom, #f8f6f2, #ffffff);
+  background:#f8f6f2;
 }
 
 /* Remove nested container conflicts */
@@ -412,7 +412,7 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   border: 1px solid #efe5d6;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -475,7 +475,7 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   padding: 20px;
   border-radius: 20px;
   border: 1px solid #efe5d6;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   transition: all 0.35s ease;
 }
 
