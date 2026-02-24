@@ -89,6 +89,9 @@
 			<div class="togglelinks" onclick="openBedrijfContent(event, 'locatie-toggle')">
 				{{ 'Locatie' | t }}
 			</div>
+      <div class="togglelinks" onclick="openBedrijfContent(event, 'google-reviews')">
+        {{ 'Google Reviews' | t }}
+      </div>
 			<div class="togglelinks" onclick="openBedrijfContent(event, 'comfort-toggle')">
 				{{ 'Comfort' | t }}
 			</div>
@@ -151,6 +154,21 @@
 	<div id="volledig-toggle" class="tabcontent">
 		{{ drupal_view('beschikbare_zalen', 'blok_bedrijf_auteur') }}
 	</div>
+</article>
+
+<article>
+  <div id="google-reviews" class="tabcontent">
+    {% set reservation_block = drupal_block('reservation_reviews') %}
+    {% set reservation_block1 = drupal_block('reservation_google_rating') %}
+    <div class="reviews-container">
+      <div class="reviews-rating">
+        {{ reservation_block1 }}
+      </div>
+     <div class="reviews-list">
+       {{ reservation_block }}
+     </div>
+    </div>
+  </div>
 </article>
 
 
