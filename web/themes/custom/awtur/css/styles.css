@@ -384,13 +384,14 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
     }
 }
 
-/* =====================================================
+/* ================
    GOOGLE REVIEWS
-===================================================== */
+=================== */
 
 /* SECTION BACKGROUND */
 #google-reviews {
-  padding: 20px 20px;
+  padding: 30px;
+  border-radius: 10px;
   background: linear-gradient(to bottom, #f8f6f2, #ffffff);
 }
 
@@ -400,9 +401,9 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   margin: 0 auto;
 }
 
-/* =====================================================
+/* =======================
    RATING SUMMARY CARD
-===================================================== */
+========================== */
 
 .googlereviews-ratings-container {
   background: #ffffff;
@@ -430,11 +431,6 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   font-weight: 700;
   color: #b88a2b;
   line-height: 1;
-}
-
-/* Stars */
-.stars-wrapper {
-  margin-top: 8px;
 }
 
 .stars-wrapper svg {
@@ -470,6 +466,7 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 .reviews-list {
   max-width: 800px;
   margin: 0 auto;
+  text-align: left;
 }
 
 /* Individual Review Card */
@@ -491,11 +488,6 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 /* =====================================================
    AUTHOR SECTION
 ===================================================== */
-
-.review-rating-container {
-  margin-bottom: 18px;
-}
-
 .review-rating-container a {
   display: flex;
   align-items: center;
