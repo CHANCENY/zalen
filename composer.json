@@ -138,6 +138,11 @@
         }
     },
     "extra": {
+        "patches": {
+            "drupal/payment": {
+            "AI Agent Payment Error Fix": "patches/UnsetLineItem.patch"
+            }
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"

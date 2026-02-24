@@ -37,6 +37,10 @@
     padding: 1em 0;
 }
 
+dl.node-type-list {
+    padding: 0 30px;
+}
+
 .path-mijn-zaal-lijst table th,
 .path-user table th,
 .path-onze-zaal-reservaties table th,

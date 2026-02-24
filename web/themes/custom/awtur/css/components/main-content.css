@@ -22,6 +22,10 @@ body.path-node.layout-no-sidebars .pages-edit-add-node .main-content {
   padding: 0;
 }
 
+body.page-node-type-page.layout-no-sidebars .pages-edit-add-node .main-content {
+    padding: 0 30px;
+}
+
 @media all and (min-width: 851px) {
   .main-content {
     position: relative;
