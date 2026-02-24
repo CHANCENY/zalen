@@ -1437,6 +1437,8 @@ display:
           bef:
             general:
               autosubmit: true
+              auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
               autosubmit_textfield_minimum_length: 3
@@ -1446,216 +1448,214 @@ display:
               secondary_label: 'Advanced options'
               secondary_open: false
               reset_button_always_show: false
-              auto_submit_sort_only: false
-              autosubmit_breakpoint: ''
             sort:
               plugin_id: bef_links
               advanced:
                 combine: false
                 combine_rewrite: ''
+                combine_param: sort_bef_combine
                 reset: false
                 reset_label: ''
                 collapsible: false
                 collapsible_label: 'Sort options'
                 is_secondary: false
-                combine_param: sort_bef_combine
             filter:
               field_comercielegelegenheden_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
               field_concertgelegenheden_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
               field_feestgelegenheid_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
               field_vergadergelegenheden_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
               field_lat_long_proximity:
                 plugin_id: default
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
               field_kindvriendelijk_value:
                 plugin_id: bef_single
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 treat_as_false: false
               field_groen_label_value:
                 plugin_id: bef_single
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 treat_as_false: false
               field_beperkingen_value:
                 plugin_id: bef_single
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 treat_as_false: false
               field_slaapgelegenheid_value:
                 plugin_id: bef_single
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 treat_as_false: false
               field_nabij_bushalte_value:
                 plugin_id: bef_single
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 treat_as_false: false
               field_nabij_metrohalte_value:
                 plugin_id: bef_single
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 treat_as_false: false
               field_nabij_tramhalte_value:
                 plugin_id: bef_single
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 treat_as_false: false
               field_nabij_trein_station_value:
                 plugin_id: bef_single
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 treat_as_false: false
               field_fietsen_value:
@@ -1663,9 +1663,9 @@ display:
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
                 max: null
@@ -1675,9 +1675,9 @@ display:
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
                 max: null
@@ -1687,9 +1687,9 @@ display:
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
                 max: null
@@ -1699,9 +1699,9 @@ display:
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
                 max: null
@@ -1711,9 +1711,9 @@ display:
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
                 max: null
@@ -1723,9 +1723,9 @@ display:
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
                 max: null
@@ -1734,16 +1734,16 @@ display:
                 plugin_id: bef
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 select_all_none: false
                 select_all_none_nested: false
@@ -1755,16 +1755,16 @@ display:
                 plugin_id: bef
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  sort_options_method: alphabetical_asc
-                  sort_options_natural: true
-                  open_by_default: false
                   field_classes: ''
                 select_all_none: false
                 select_all_none_nested: false
@@ -1777,9 +1777,9 @@ display:
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: true
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
                 max: null
@@ -1789,9 +1789,9 @@ display:
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
                 max: null
@@ -1801,9 +1801,9 @@ display:
                 advanced:
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
                 max: null
@@ -1814,9 +1814,9 @@ display:
                   placeholder_text: ''
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
               field_date_booking_end_value:
@@ -1825,9 +1825,9 @@ display:
                   placeholder_text: ''
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
                   hide_label: false
-                  open_by_default: false
                   field_classes: ''
                   sort_options_unsupported: ''
       access:

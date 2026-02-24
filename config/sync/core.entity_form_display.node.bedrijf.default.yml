@@ -465,6 +465,7 @@ content:
     third_party_settings: {  }
 hidden:
   comment: true
+  field_google_reviews_link: true
   field_lat_long: true
   field_zaal_bedrijf: true
   flag: true

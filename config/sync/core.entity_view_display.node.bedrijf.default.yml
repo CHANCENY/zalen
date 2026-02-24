@@ -602,6 +602,7 @@ content:
     region: content
 hidden:
   comment: true
+  field_google_reviews_link: true
   field_zaal_bedrijf: true
   langcode: true
   layout_builder__layout: true

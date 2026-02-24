@@ -42,7 +42,7 @@
         "commerceguys/addressing": "^1.4",
         "composer/installers": "^2.0",
         "composer/semver": "^3.2",
-        "cweagans/composer-patches": "*",
+        "cweagans/composer-patches": "~2.0",
         "defuse/php-encryption": "^2.3",
         "drupal/address": "^1.12",
         "drupal/admin_toolbar": "^3.6",

@@ -12,7 +12,7 @@ dependencies:
 id: partnerviplijst
 theme: awtur
 region: content
-weight: -5
+weight: -7
 provider: null
 plugin: 'block_content:ba6d56a2-2dca-4e42-90c6-001d51917d8b'
 settings:

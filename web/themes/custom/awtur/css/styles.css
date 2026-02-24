@@ -383,3 +383,220 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
         flex-direction: column;
     }
 }
+
+/* =====================================================
+   GOOGLE REVIEWS
+===================================================== */
+
+/* SECTION BACKGROUND */
+#google-reviews {
+  padding: 20px 20px;
+  background: linear-gradient(to bottom, #f8f6f2, #ffffff);
+}
+
+/* Remove nested container conflicts */
+#google-reviews .reviews-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* =====================================================
+   RATING SUMMARY CARD
+===================================================== */
+
+.googlereviews-ratings-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 22px;
+  border: 1px solid #efe5d6;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Google Logo */
+.rating-source-logo svg {
+  height: 28px;
+  opacity: 0.9;
+}
+
+/* Big Rating Number */
+.rating-value {
+  font-size: 68px;
+  font-weight: 700;
+  color: #b88a2b;
+  line-height: 1;
+}
+
+/* Stars */
+.stars-wrapper {
+  margin-top: 8px;
+}
+
+.stars-wrapper svg {
+  height: 22px;
+}
+
+/* Gold stars */
+.stars-foreground .stars path {
+  fill: #d4a437 !important;
+}
+
+/* Review Link */
+.total-reviews {
+  margin-top: 10px;
+}
+
+.total-reviews a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #b88a2b;
+  transition: 0.3s ease;
+}
+
+.total-reviews a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* =====================================================
+   REVIEWS LIST
+===================================================== */
+
+.reviews-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Individual Review Card */
+.review-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #efe5d6;
+  margin-bottom: 10px;
+  transition: all 0.35s ease;
+}
+
+/* Hover Luxury Effect */
+.review-container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 60px rgba(184, 138, 43, 0.18);
+}
+
+/* =====================================================
+   AUTHOR SECTION
+===================================================== */
+
+.review-rating-container {
+  margin-bottom: 18px;
+}
+
+.review-rating-container a {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.review-container:hover .review-author-image img {
+  border-color: #d4a437;
+}
+
+/* Author Name */
+.review-author-name {
+  font-size: 19px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Stars + Date Row */
+.review-rating {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+/* Date */
+.review-date {
+  font-size: 14px;
+  color: #888;
+}
+
+/* =====================================================
+   REVIEW TEXT
+===================================================== */
+
+.review-text {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #555;
+}
+
+/* =====================================================
+   REMOVE DEFAULT SVG GREY THICKNESS
+===================================================== */
+
+.stars-background .stars path {
+  fill: #e5e5e5;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width: 992px) {
+
+  .googlereviews-ratings-container {
+    padding: 40px 25px;
+  }
+
+  .rating-value {
+    font-size: 54px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  #google-reviews {
+    padding: 60px 15px;
+  }
+
+  .review-rating-container a {
+    align-items: flex-start;
+  }
+
+  .review-author-image img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .review-author-name {
+    font-size: 17px;
+  }
+
+  .review-container {
+    padding: 22px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .rating-value {
+    font-size: 48px;
+  }
+
+  .stars-wrapper svg {
+    height: 18px;
+  }
+
+}

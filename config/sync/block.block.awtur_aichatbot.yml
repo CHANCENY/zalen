@@ -1,0 +1,32 @@
+uuid: b46c5d49-94a3-48b9-b216-aa5e85aaa54b
+langcode: en
+status: true
+dependencies:
+  module:
+    - ai_chatbot
+  theme:
+    - awtur
+id: awtur_aichatbot
+theme: awtur
+region: content
+weight: -17
+provider: null
+plugin: ai_chatbot_block
+settings:
+  id: ai_chatbot_block
+  label: 'AI Chatbot'
+  label_display: '0'
+  provider: ai_chatbot
+  ai_assistant: zalen_ai_assistant
+  bot_name: 'Generic Chatbot'
+  bot_image: /core/misc/druplicon.png
+  use_username: 1
+  default_username: User
+  use_avatar: 1
+  default_avatar: /core/misc/favicon.ico
+  first_message: 'Hello! How can I help you today?'
+  stream: 1
+  toggle_state: remember
+  output_type: markdown
+  show_structured_results: false
+visibility: {  }

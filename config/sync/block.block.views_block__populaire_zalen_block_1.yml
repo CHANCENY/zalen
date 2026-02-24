@@ -12,7 +12,7 @@ dependencies:
 id: views_block__populaire_zalen_block_1
 theme: awtur
 region: content
-weight: -7
+weight: -9
 provider: null
 plugin: 'views_block:populaire_zalen-block_1'
 settings:

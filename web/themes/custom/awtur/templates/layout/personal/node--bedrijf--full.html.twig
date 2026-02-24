@@ -58,10 +58,10 @@
   {% if content.field_slogan.0 and content.field_foto.0 %}
     <div class="header-slogan">{{ content.field_slogan.0 }}</div>
   {% endif %}
-  
+
   {# MEDIA #}
   {{ drupal_view('beschikbare_zalen', 'blok_media_bedrijf_auteur') }}
-  
+
   {#----CONTACT INFORMATION & BUSINESS HOURS----#}
   {{ drupal_entity('node', node.id, 'contact') }}
 
@@ -163,3 +163,18 @@
     <h2>Locaties in de buurt</h2>
     {{ drupal_view('aanbevelingen_dichtbij',  'blok_bedrijven_dichtbij')}}
   </div>
+
+<div class="bedrijf-full-zalen">
+  <div id="google-reviews">
+    {% set reservation_block = drupal_block('reservation_reviews') %}
+    {% set reservation_block1 = drupal_block('reservation_google_rating') %}
+    <div class="reviews-container">
+      <div class="reviews-rating">
+        {{ reservation_block1 }}
+      </div>
+      <div class="reviews-list">
+        {{ reservation_block }}
+      </div>
+    </div>
+  </div>
+</div>

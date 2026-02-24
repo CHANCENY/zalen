@@ -9,6 +9,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\payment\Entity\PaymentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 
 /**
  * Sets a status on a payment.
@@ -19,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   type = "payment"
  * )
  */
-class UnsetLineItem extends ConfigurableActionBase {
+class UnsetLineItem extends ConfigurableActionBase implements ContainerFactoryPluginInterface {
 
   /**
    * Constructs a new instance.

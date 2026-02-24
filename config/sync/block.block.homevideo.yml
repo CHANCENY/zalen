@@ -12,7 +12,7 @@ dependencies:
 id: homevideo
 theme: awtur
 region: content
-weight: -13
+weight: -12
 provider: null
 plugin: 'block_content:6688ff7d-25c4-41dc-a70b-738fb033c419'
 settings:

@@ -13,7 +13,7 @@ dependencies:
 id: views_block__beschikbare_zalen_blok_zalen_auteur_2
 theme: awtur
 region: content
-weight: -12
+weight: -11
 provider: null
 plugin: 'views_block:beschikbare_zalen-blok_zalen_auteur'
 settings:

@@ -9,7 +9,7 @@ _core:
 id: awtur_local_actions
 theme: awtur
 region: content
-weight: -15
+weight: -14
 provider: null
 plugin: local_actions_block
 settings:
