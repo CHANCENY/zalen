@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.bedrijf.field_fb
     - field.field.node.bedrijf.field_fietsen
     - field.field.node.bedrijf.field_foto
+    - field.field.node.bedrijf.field_google_place_id
     - field.field.node.bedrijf.field_google_rating
     - field.field.node.bedrijf.field_google_review_count
     - field.field.node.bedrijf.field_groen_label
@@ -210,6 +211,14 @@ content:
       photoswipe_view_mode: ''
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_google_place_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 46
     region: content
   field_google_rating:
     type: number_decimal

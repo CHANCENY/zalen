@@ -1,15 +1,17 @@
-uuid: f432b9e1-9d43-4b80-b5bf-f5fabee1c439
+uuid: 08a4b847-334a-4adc-87b3-c2de2e81b915
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_google_reviews_link
-field_name: field_google_reviews_link
+id: node.field_google_place_id
+field_name: field_google_place_id
 entity_type: node
-type: string_long
+type: string
 settings:
+  max_length: 255
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

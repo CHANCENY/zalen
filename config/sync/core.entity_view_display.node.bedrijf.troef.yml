@@ -20,6 +20,7 @@ dependencies:
     - field.field.node.bedrijf.field_fb
     - field.field.node.bedrijf.field_fietsen
     - field.field.node.bedrijf.field_foto
+    - field.field.node.bedrijf.field_google_place_id
     - field.field.node.bedrijf.field_google_rating
     - field.field.node.bedrijf.field_google_review_count
     - field.field.node.bedrijf.field_groen_label
@@ -159,6 +160,7 @@ hidden:
   field_fb: true
   field_fietsen: true
   field_foto: true
+  field_google_place_id: true
   field_google_rating: true
   field_google_review_count: true
   field_gsm: true

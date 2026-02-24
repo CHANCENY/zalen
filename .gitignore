@@ -3,3 +3,4 @@ web/sites/
 vendor/
 .idea
 config/sync/key.key.openai.yml
+config/sync/googlereviews.settings.yml

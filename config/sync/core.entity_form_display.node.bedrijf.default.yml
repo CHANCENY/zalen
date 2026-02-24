@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.bedrijf.field_fb
     - field.field.node.bedrijf.field_fietsen
     - field.field.node.bedrijf.field_foto
+    - field.field.node.bedrijf.field_google_place_id
     - field.field.node.bedrijf.field_google_rating
     - field.field.node.bedrijf.field_google_review_count
     - field.field.node.bedrijf.field_groen_label
@@ -179,6 +180,14 @@ content:
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_google_place_id:
+    type: string_textfield
+    weight: 52
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_google_rating:
     type: number
