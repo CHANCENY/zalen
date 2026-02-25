@@ -392,7 +392,10 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 #google-reviews {
   padding: 30px;
   border-radius: 10px;
-  background:#f8f6f2;
+  background: #fbfbfb;
+  border: 6px #eee solid;
+  border-top: 2px #ddd solid;
+  border-bottom: 2px #ddd solid;
 }
 
 /* Remove nested container conflicts */

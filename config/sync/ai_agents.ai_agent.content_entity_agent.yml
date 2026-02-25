@@ -44,7 +44,8 @@ tool_usage_limits:
       action: only_allow
       hide_property: 0
       values:
-        - 'Zaal, Bedrijf'
+        - zaal
+        - bedrijf
     entity_id:
       action: ''
       hide_property: 0
