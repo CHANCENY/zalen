@@ -19,11 +19,11 @@ settings:
   provider: ai_chatbot
   ai_assistant: zalen_ai_assistant
   bot_name: Assistant
-  bot_image: /core/misc/druplicon.png
+  bot_image: /web/core/misc/druplicon.png
   use_username: 1
   default_username: User
   use_avatar: 1
-  default_avatar: /core/misc/favicon.ico
+  default_avatar: /web/core/misc/favicon.ico
   first_message: 'Hello! How can I help you today?'
   stream: 1
   toggle_state: remember
