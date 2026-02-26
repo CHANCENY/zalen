@@ -1,0 +1,27 @@
+uuid: e893a01b-a964-476f-8fe2-c77a9aaeab99
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location_video
+    - node.type.bedrijf
+  module:
+    - file
+id: node.bedrijf.field_location_video
+field_name: field_location_video
+entity_type: node
+bundle: bedrijf
+label: 'Location Video'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'mp4 webm ogg mov'
+  max_filesize: 10MB
+  description_field: false
+field_type: file

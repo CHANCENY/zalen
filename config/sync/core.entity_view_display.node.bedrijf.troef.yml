@@ -23,12 +23,14 @@ dependencies:
     - field.field.node.bedrijf.field_google_place_id
     - field.field.node.bedrijf.field_google_rating
     - field.field.node.bedrijf.field_google_review_count
+    - field.field.node.bedrijf.field_google_reviews_link
     - field.field.node.bedrijf.field_groen_label
     - field.field.node.bedrijf.field_gsm
     - field.field.node.bedrijf.field_keurmerken
     - field.field.node.bedrijf.field_kindvriendelijk
     - field.field.node.bedrijf.field_kindvriendelijkheid
     - field.field.node.bedrijf.field_lat_long
+    - field.field.node.bedrijf.field_location_video
     - field.field.node.bedrijf.field_logo
     - field.field.node.bedrijf.field_migrated_photos
     - field.field.node.bedrijf.field_milieu
@@ -168,6 +170,7 @@ hidden:
   field_keurmerken: true
   field_kindvriendelijkheid: true
   field_lat_long: true
+  field_location_video: true
   field_logo: true
   field_migrated_photos: true
   field_milieu: true
