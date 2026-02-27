@@ -1,0 +1,228 @@
+control_field_max_length: false
+exclude_chunk_from_metadata: false
+indexing_options:
+  field_extra_room_services:
+    indexing_option: contextual_content
+    max: -1
+  field_adres:
+    indexing_option: contextual_content
+    max: -1
+  field_bedrijf_zaal:
+    indexing_option: contextual_content
+    max: -1
+  field_fietsen:
+    indexing_option: contextual_content
+    max: -1
+  field_form_booking:
+    indexing_option: contextual_content
+    max: -1
+  field_wagens:
+    indexing_option: contextual_content
+    max: -1
+  field_kindvriendelijkheid:
+    indexing_option: contextual_content
+    max: -1
+  field_kindvriendelijk:
+    indexing_option: contextual_content
+    max: -1
+  field_sluit_periode:
+    indexing_option: contextual_content
+    max: -1
+  field_comercielegelegenheden:
+    indexing_option: contextual_content
+    max: -1
+  field_confirmatie:
+    indexing_option: contextual_content
+    max: -1
+  field_contact_persoon:
+    indexing_option: contextual_content
+    max: -1
+  type:
+    indexing_option: contextual_content
+    max: -1
+  field_daily_currency:
+    indexing_option: contextual_content
+    max: -1
+  field_dagprijs:
+    indexing_option: contextual_content
+    max: -1
+  body_1:
+    indexing_option: contextual_content
+    max: -1
+  field_mindervaliden:
+    indexing_option: contextual_content
+    max: -1
+  field_afstand_metro:
+    indexing_option: contextual_content
+    max: -1
+  field_afstand_bus:
+    indexing_option: contextual_content
+    max: -1
+  field_afstand_tramhalte:
+    indexing_option: contextual_content
+    max: -1
+  field_afstand_trein_station:
+    indexing_option: contextual_content
+    max: -1
+  field_milieu:
+    indexing_option: contextual_content
+    max: -1
+  field_uitrusting:
+    indexing_option: contextual_content
+    max: -1
+  field_resuse_menu_and_services:
+    indexing_option: contextual_content
+    max: -1
+  field_faciliteiten:
+    indexing_option: contextual_content
+    max: -1
+  field_aanspreekvorm:
+    indexing_option: contextual_content
+    max: -1
+  field_hourly_currency:
+    indexing_option: contextual_content
+    max: -1
+  field_uurprijs:
+    indexing_option: contextual_content
+    max: -1
+  field_vergadergelegenheden:
+    indexing_option: contextual_content
+    max: -1
+  field_motoren:
+    indexing_option: contextual_content
+    max: -1
+  field_nabij_bushalte:
+    indexing_option: contextual_content
+    max: -1
+  field_nabij_metrohalte:
+    indexing_option: contextual_content
+    max: -1
+  field_nabij_trein_station:
+    indexing_option: contextual_content
+    max: -1
+  field_nabij_tramhalte:
+    indexing_option: contextual_content
+    max: -1
+  field_bezetting_tot:
+    indexing_option: contextual_content
+    max: -1
+  field_bezetting_van:
+    indexing_option: contextual_content
+    max: -1
+  days:
+    indexing_option: contextual_content
+    max: -1
+  end_time:
+    indexing_option: contextual_content
+    max: -1
+  start_time:
+    indexing_option: contextual_content
+    max: -1
+  field_buiten_voorzieningen:
+    indexing_option: contextual_content
+    max: -1
+  field_overnight_room:
+    indexing_option: contextual_content
+    max: -1
+  field_feestgelegenheid:
+    indexing_option: contextual_content
+    max: -1
+  field_person_currency:
+    indexing_option: contextual_content
+    max: -1
+  field_prijslijsten:
+    indexing_option: contextual_content
+    max: -1
+  field_prijs_per_persoon:
+    indexing_option: contextual_content
+    max: -1
+  price_1:
+    indexing_option: contextual_content
+    max: -1
+  rule_type:
+    indexing_option: contextual_content
+    max: -1
+  span_time:
+    indexing_option: contextual_content
+    max: -1
+  pattern_tariff:
+    indexing_option: contextual_content
+    max: -1
+  field_amount_used:
+    indexing_option: contextual_content
+    max: -1
+  created:
+    indexing_option: contextual_content
+    max: -1
+  field_zitplaatsen:
+    indexing_option: contextual_content
+    max: -1
+  field_slaapgelegenheid:
+    indexing_option: contextual_content
+    max: -1
+  field_status:
+    indexing_option: contextual_content
+    max: -1
+  field_beperkingen:
+    indexing_option: contextual_content
+    max: -1
+  field_oppervlakte:
+    indexing_option: contextual_content
+    max: -1
+  title:
+    indexing_option: main_content
+    max: -1
+  services:
+    indexing_option: contextual_content
+    max: -1
+  begin:
+    indexing_option: contextual_content
+    max: -1
+  child_friendly:
+    indexing_option: contextual_content
+    max: -1
+  currency:
+    indexing_option: contextual_content
+    max: -1
+  person_description:
+    indexing_option: contextual_content
+    max: -1
+  end:
+    indexing_option: contextual_content
+    max: -1
+  is_optional:
+    indexing_option: contextual_content
+    max: -1
+  person_label:
+    indexing_option: contextual_content
+    max: -1
+  price:
+    indexing_option: contextual_content
+    max: -1
+  range_data:
+    indexing_option: contextual_content
+    max: -1
+  range_type:
+    indexing_option: contextual_content
+    max: -1
+  service_description:
+    indexing_option: contextual_content
+    max: -1
+  require:
+    indexing_option: contextual_content
+    max: -1
+  services_minimum_order:
+    indexing_option: contextual_content
+    max: -1
+  special_offer:
+    indexing_option: contextual_content
+    max: -1
+  pattern:
+    indexing_option: contextual_content
+    max: -1
+  field_stadsgewest:
+    indexing_option: contextual_content
+    max: -1
+  field_zaal_bedrijf:
+    indexing_option: contextual_content
+    max: -1

@@ -1,0 +1,699 @@
+uuid: 758f9e12-0dfd-4d06-8ad4-00a21e8f2d2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_aanspreekvorm
+    - field.storage.node.field_adres
+    - field.storage.node.field_afstand_bus
+    - field.storage.node.field_afstand_metro
+    - field.storage.node.field_afstand_tramhalte
+    - field.storage.node.field_afstand_trein_station
+    - field.storage.node.field_bedrijf_zaal
+    - field.storage.node.field_beperkingen
+    - field.storage.node.field_bezetting_tot
+    - field.storage.node.field_bezetting_van
+    - field.storage.node.field_buiten_voorzieningen
+    - field.storage.node.field_comercielegelegenheden
+    - field.storage.node.field_confirmatie
+    - field.storage.node.field_contact_persoon
+    - field.storage.node.field_dagprijs
+    - field.storage.node.field_daily_currency
+    - field.storage.node.field_extra_room_services
+    - field.storage.node.field_faciliteiten
+    - field.storage.node.field_feestgelegenheid
+    - field.storage.node.field_fietsen
+    - field.storage.node.field_form_booking
+    - field.storage.node.field_hourly_currency
+    - field.storage.node.field_kindvriendelijk
+    - field.storage.node.field_kindvriendelijkheid
+    - field.storage.node.field_milieu
+    - field.storage.node.field_mindervaliden
+    - field.storage.node.field_motoren
+    - field.storage.node.field_nabij_bushalte
+    - field.storage.node.field_nabij_metrohalte
+    - field.storage.node.field_nabij_tramhalte
+    - field.storage.node.field_nabij_trein_station
+    - field.storage.node.field_openingsuren
+    - field.storage.node.field_oppervlakte
+    - field.storage.node.field_overnight_room
+    - field.storage.node.field_person_currency
+    - field.storage.node.field_prijs_eenheid
+    - field.storage.node.field_prijs_per_persoon
+    - field.storage.node.field_prijslijsten
+    - field.storage.node.field_regels
+    - field.storage.node.field_resuse_menu_and_services
+    - field.storage.node.field_room_pricing_settings
+    - field.storage.node.field_slaapgelegenheid
+    - field.storage.node.field_sluit_periode
+    - field.storage.node.field_stadsgewest
+    - field.storage.node.field_status
+    - field.storage.node.field_uitrusting
+    - field.storage.node.field_uurprijs
+    - field.storage.node.field_vergadergelegenheden
+    - field.storage.node.field_wagens
+    - field.storage.node.field_zaal_bedrijf
+    - field.storage.node.field_zitplaatsen
+    - field.storage.paragraph.field_amount_used
+    - search_api.server.zalen_server
+  module:
+    - node
+    - paragraphs
+id: default_index
+name: 'Default Index'
+description: ''
+read_only: false
+field_settings:
+  begin:
+    label: 'Unit prices » Beginning of period'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:begin'
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  body_1:
+    label: 'Description of the venue'
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  child_friendly:
+    label: 'Unit prices » Child Friendly'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:child_friendly'
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  created:
+    label: 'Room Pricing Settings » Paragraph » Authored on'
+    datasource_id: 'entity:node'
+    property_path: 'field_room_pricing_settings:entity:created'
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_room_pricing_settings
+      module:
+        - paragraphs
+  currency:
+    label: 'Unit prices » Currency'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:currency'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  days:
+    label: 'Opening hours » Days'
+    datasource_id: 'entity:node'
+    property_path: 'field_openingsuren:days'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_openingsuren
+  end:
+    label: 'Unit prices » End of period'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:end'
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  end_time:
+    label: 'Opening hours » End Time'
+    datasource_id: 'entity:node'
+    property_path: 'field_openingsuren:end_time'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_openingsuren
+  field_aanspreekvorm:
+    label: 'Form of address'
+    datasource_id: 'entity:node'
+    property_path: field_aanspreekvorm
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_aanspreekvorm
+  field_adres:
+    label: Address
+    datasource_id: 'entity:node'
+    property_path: field_adres
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_adres
+  field_afstand_bus:
+    label: 'Distance to bus stop'
+    datasource_id: 'entity:node'
+    property_path: field_afstand_bus
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_afstand_bus
+  field_afstand_metro:
+    label: 'Distance metro'
+    datasource_id: 'entity:node'
+    property_path: field_afstand_metro
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_afstand_metro
+  field_afstand_tramhalte:
+    label: 'Distance to tram stop'
+    datasource_id: 'entity:node'
+    property_path: field_afstand_tramhalte
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_afstand_tramhalte
+  field_afstand_trein_station:
+    label: 'Distance train station'
+    datasource_id: 'entity:node'
+    property_path: field_afstand_trein_station
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_afstand_trein_station
+  field_amount_used:
+    label: 'Room Pricing Settings » Paragraph » Amount Used'
+    datasource_id: 'entity:node'
+    property_path: 'field_room_pricing_settings:entity:field_amount_used'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_room_pricing_settings
+        - field.storage.paragraph.field_amount_used
+      module:
+        - paragraphs
+  field_bedrijf_zaal:
+    label: Bedrijf
+    datasource_id: 'entity:node'
+    property_path: field_bedrijf_zaal
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_bedrijf_zaal
+  field_beperkingen:
+    label: 'Suitable for people with disabilities'
+    datasource_id: 'entity:node'
+    property_path: field_beperkingen
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_beperkingen
+  field_bezetting_tot:
+    label: 'Occupancy up to'
+    datasource_id: 'entity:node'
+    property_path: field_bezetting_tot
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_bezetting_tot
+  field_bezetting_van:
+    label: 'Occupation of'
+    datasource_id: 'entity:node'
+    property_path: field_bezetting_van
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_bezetting_van
+  field_buiten_voorzieningen:
+    label: 'Outdoor facilities'
+    datasource_id: 'entity:node'
+    property_path: field_buiten_voorzieningen
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_buiten_voorzieningen
+  field_comercielegelegenheden:
+    label: 'Commercial occupations'
+    datasource_id: 'entity:node'
+    property_path: field_comercielegelegenheden
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_comercielegelegenheden
+  field_confirmatie:
+    label: 'Confirmation period of the reservation'
+    datasource_id: 'entity:node'
+    property_path: field_confirmatie
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_confirmatie
+  field_contact_persoon:
+    label: 'Contact person'
+    datasource_id: 'entity:node'
+    property_path: field_contact_persoon
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_contact_persoon
+  field_dagprijs:
+    label: 'Daily price'
+    datasource_id: 'entity:node'
+    property_path: field_dagprijs
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_dagprijs
+  field_daily_currency:
+    label: 'Daily Currency'
+    datasource_id: 'entity:node'
+    property_path: field_daily_currency
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_daily_currency
+  field_extra_room_services:
+    label: 'Add new menus or services'
+    datasource_id: 'entity:node'
+    property_path: field_extra_room_services
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_extra_room_services
+  field_faciliteiten:
+    label: Facilities
+    datasource_id: 'entity:node'
+    property_path: field_faciliteiten
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_faciliteiten
+  field_feestgelegenheid:
+    label: 'Party occasions'
+    datasource_id: 'entity:node'
+    property_path: field_feestgelegenheid
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_feestgelegenheid
+  field_fietsen:
+    label: Bicycles
+    datasource_id: 'entity:node'
+    property_path: field_fietsen
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_fietsen
+  field_form_booking:
+    label: 'Booking form'
+    datasource_id: 'entity:node'
+    property_path: field_form_booking
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_form_booking
+  field_hourly_currency:
+    label: 'Hourly Currency'
+    datasource_id: 'entity:node'
+    property_path: field_hourly_currency
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_hourly_currency
+  field_kindvriendelijk:
+    label: 'Child friendly'
+    datasource_id: 'entity:node'
+    property_path: field_kindvriendelijk
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_kindvriendelijk
+  field_kindvriendelijkheid:
+    label: 'Child friendliness'
+    datasource_id: 'entity:node'
+    property_path: field_kindvriendelijkheid
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_kindvriendelijkheid
+  field_milieu:
+    label: Environment
+    datasource_id: 'entity:node'
+    property_path: field_milieu
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_milieu
+  field_mindervaliden:
+    label: 'Disabled people'
+    datasource_id: 'entity:node'
+    property_path: field_mindervaliden
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_mindervaliden
+  field_motoren:
+    label: Motorcycles
+    datasource_id: 'entity:node'
+    property_path: field_motoren
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_motoren
+  field_nabij_bushalte:
+    label: 'Near bus stop'
+    datasource_id: 'entity:node'
+    property_path: field_nabij_bushalte
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_nabij_bushalte
+  field_nabij_metrohalte:
+    label: 'Near metro stop'
+    datasource_id: 'entity:node'
+    property_path: field_nabij_metrohalte
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_nabij_metrohalte
+  field_nabij_tramhalte:
+    label: 'Near tram stop'
+    datasource_id: 'entity:node'
+    property_path: field_nabij_tramhalte
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_nabij_tramhalte
+  field_nabij_trein_station:
+    label: 'Near train station'
+    datasource_id: 'entity:node'
+    property_path: field_nabij_trein_station
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_nabij_trein_station
+  field_oppervlakte:
+    label: 'Surface area'
+    datasource_id: 'entity:node'
+    property_path: field_oppervlakte
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_oppervlakte
+  field_overnight_room:
+    label: 'Overnight Room'
+    datasource_id: 'entity:node'
+    property_path: field_overnight_room
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_overnight_room
+  field_person_currency:
+    label: 'Person Currency'
+    datasource_id: 'entity:node'
+    property_path: field_person_currency
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_person_currency
+  field_prijs_per_persoon:
+    label: 'Price per person'
+    datasource_id: 'entity:node'
+    property_path: field_prijs_per_persoon
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_per_persoon
+  field_prijslijsten:
+    label: 'Price lists'
+    datasource_id: 'entity:node'
+    property_path: field_prijslijsten
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_prijslijsten
+  field_resuse_menu_and_services:
+    label: 'Extra menus and services'
+    datasource_id: 'entity:node'
+    property_path: field_resuse_menu_and_services
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_resuse_menu_and_services
+  field_slaapgelegenheid:
+    label: 'Sleeping accommodation'
+    datasource_id: 'entity:node'
+    property_path: field_slaapgelegenheid
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_slaapgelegenheid
+  field_sluit_periode:
+    label: 'Closing period'
+    datasource_id: 'entity:node'
+    property_path: field_sluit_periode
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_sluit_periode
+  field_stadsgewest:
+    label: 'Urban area'
+    datasource_id: 'entity:node'
+    property_path: field_stadsgewest
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_stadsgewest
+  field_status:
+    label: Status
+    datasource_id: 'entity:node'
+    property_path: field_status
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_status
+  field_uitrusting:
+    label: Equipment
+    datasource_id: 'entity:node'
+    property_path: field_uitrusting
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_uitrusting
+  field_uurprijs:
+    label: 'Hourly rate'
+    datasource_id: 'entity:node'
+    property_path: field_uurprijs
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_uurprijs
+  field_vergadergelegenheden:
+    label: 'Meeting occasions'
+    datasource_id: 'entity:node'
+    property_path: field_vergadergelegenheden
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_vergadergelegenheden
+  field_wagens:
+    label: Cars
+    datasource_id: 'entity:node'
+    property_path: field_wagens
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_wagens
+  field_zaal_bedrijf:
+    label: Zalen
+    datasource_id: 'entity:node'
+    property_path: field_zaal_bedrijf
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_zaal_bedrijf
+  field_zitplaatsen:
+    label: Seats
+    datasource_id: 'entity:node'
+    property_path: field_zitplaatsen
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_zitplaatsen
+  is_optional:
+    label: 'Unit prices » Is Optional'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:is_optional'
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  pattern:
+    label: 'Unit prices » Type of tariff'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:pattern'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  pattern_tariff:
+    label: 'Price rules » Type of tariff field or subtype rule'
+    datasource_id: 'entity:node'
+    property_path: 'field_regels:pattern_tariff'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_regels
+  person_description:
+    label: 'Unit prices » Description'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:person_description'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  person_label:
+    label: 'Unit prices » Label'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:person_label'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  price:
+    label: 'Unit prices » Price'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:price'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  price_1:
+    label: 'Price rules » Price'
+    datasource_id: 'entity:node'
+    property_path: 'field_regels:price'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_regels
+  range_data:
+    label: 'Unit prices » Range data'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:range_data'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  range_type:
+    label: 'Unit prices » Range type'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:range_type'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  require:
+    label: 'Unit prices » Service is mandatory'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:require'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  rule_type:
+    label: 'Price rules » Rule of tariff'
+    datasource_id: 'entity:node'
+    property_path: 'field_regels:rule_type'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_regels
+  service_description:
+    label: 'Unit prices » Service Description'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:service_description'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  services:
+    label: 'Unit prices » Additional services'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:services'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  services_minimum_order:
+    label: 'Unit prices » Service Minimum Order'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:services_minimum_order'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  span_time:
+    label: 'Price rules » Time period'
+    datasource_id: 'entity:node'
+    property_path: 'field_regels:span_time'
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_regels
+  special_offer:
+    label: 'Unit prices » Special Offer'
+    datasource_id: 'entity:node'
+    property_path: 'field_prijs_eenheid:special_offer'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_prijs_eenheid
+  start_time:
+    label: 'Opening hours » Start Time'
+    datasource_id: 'entity:node'
+    property_path: 'field_openingsuren:start_time'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_openingsuren
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - node
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - bedrijf
+        - page
+        - zaal
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  custom_value: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  delete_on_fail: true
+  index_directly: true
+  track_changes_in_references: true
+server: zalen_server
