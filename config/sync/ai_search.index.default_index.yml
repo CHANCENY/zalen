@@ -148,6 +148,9 @@ indexing_options:
   pattern_tariff:
     indexing_option: contextual_content
     max: -1
+  status:
+    indexing_option: contextual_content
+    max: -1
   field_amount_used:
     indexing_option: contextual_content
     max: -1
