@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9b9edeca41b63e0d83e859f6933a7e2",
+    "content-hash": "5309f20391940ad8a59a57c6774d42a6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2143,6 +2143,111 @@
             }
         },
         {
+            "name": "drupal/ai-ai_search",
+            "version": "1.2.10",
+            "require": {
+                "drupal/ai": "^1",
+                "drupal/core": "^10.4 || ^11"
+            },
+            "require-dev": {
+                "drupal/ai": "*",
+                "drupal/search_api": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "1.2.10",
+                    "datestamp": "1772031590",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "a.dmitriiev",
+                    "homepage": "https://www.drupal.org/user/3235287"
+                },
+                {
+                    "name": "abhisekmazumdar",
+                    "homepage": "https://www.drupal.org/user/3557964"
+                },
+                {
+                    "name": "andrewbelcher",
+                    "homepage": "https://www.drupal.org/user/655282"
+                },
+                {
+                    "name": "anjaliprasannan",
+                    "homepage": "https://www.drupal.org/user/3637917"
+                },
+                {
+                    "name": "b_sharpe",
+                    "homepage": "https://www.drupal.org/user/2512258"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "gxleano",
+                    "homepage": "https://www.drupal.org/user/3591999"
+                },
+                {
+                    "name": "kevinquillen",
+                    "homepage": "https://www.drupal.org/user/317279"
+                },
+                {
+                    "name": "kristen pol",
+                    "homepage": "https://www.drupal.org/user/8389"
+                },
+                {
+                    "name": "marcus_johansson",
+                    "homepage": "https://www.drupal.org/user/385947"
+                },
+                {
+                    "name": "michaellander",
+                    "homepage": "https://www.drupal.org/user/636494"
+                },
+                {
+                    "name": "murz",
+                    "homepage": "https://www.drupal.org/user/157092"
+                },
+                {
+                    "name": "robloach",
+                    "homepage": "https://www.drupal.org/user/61114"
+                },
+                {
+                    "name": "scott_euser",
+                    "homepage": "https://www.drupal.org/user/3267594"
+                },
+                {
+                    "name": "seogow",
+                    "homepage": "https://www.drupal.org/user/3065779"
+                },
+                {
+                    "name": "valthebald",
+                    "homepage": "https://www.drupal.org/user/239562"
+                },
+                {
+                    "name": "wouters_f",
+                    "homepage": "https://www.drupal.org/user/721548"
+                },
+                {
+                    "name": "yautja_cetanu",
+                    "homepage": "https://www.drupal.org/user/626050"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/ai",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ai"
+            }
+        },
+        {
             "name": "drupal/ai_agents",
             "version": "1.2.1",
             "source": {
@@ -2291,6 +2396,70 @@
             "homepage": "https://www.drupal.org/project/ai_provider_openai",
             "support": {
                 "source": "https://git.drupalcode.org/project/ai_provider_openai"
+            }
+        },
+        {
+            "name": "drupal/ai_vdb_provider_pinecone",
+            "version": "1.1.0-beta3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ai_vdb_provider_pinecone.git",
+                "reference": "1.1.0-beta3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ai_vdb_provider_pinecone-1.1.0-beta3.zip",
+                "reference": "1.1.0-beta3",
+                "shasum": "e6a4e5da0662fd129cea0d846bdd7861d405ce31"
+            },
+            "require": {
+                "drupal/ai": "^1.1.0",
+                "drupal/ai-ai_search": "*",
+                "drupal/core": "^10.2 || ^11",
+                "drupal/key": "^1.18",
+                "drupal/search_api": "*",
+                "scotteuser/pinecone-php": "^1.0.2"
+            },
+            "require-dev": {
+                "drupal/search_api": "^1.35"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.1.0-beta3",
+                    "datestamp": "1749792577",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "gxleano",
+                    "homepage": "https://www.drupal.org/user/3591999"
+                },
+                {
+                    "name": "marcus_johansson",
+                    "homepage": "https://www.drupal.org/user/385947"
+                },
+                {
+                    "name": "scott_euser",
+                    "homepage": "https://www.drupal.org/user/3267594"
+                },
+                {
+                    "name": "vivek panicker",
+                    "homepage": "https://www.drupal.org/user/3540616"
+                }
+            ],
+            "description": "Pinecone VDB provider implementation for the AI module for Drupal",
+            "homepage": "https://www.drupal.org/project/ai_vdb_provider_pinecone",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ai_vdb_provider_pinecone"
             }
         },
         {
@@ -5882,6 +6051,77 @@
             "homepage": "https://www.drupal.org/project/redirect",
             "support": {
                 "source": "https://git.drupalcode.org/project/redirect"
+            }
+        },
+        {
+            "name": "drupal/search_api",
+            "version": "1.40.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/search_api.git",
+                "reference": "8.x-1.40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.40.zip",
+                "reference": "8.x-1.40",
+                "shasum": "64ac71887786da63ced27a43e37342ea3b765a88"
+            },
+            "require": {
+                "drupal/core": "^10.3 || ^11"
+            },
+            "conflict": {
+                "drupal/search_api_solr": "2.* || 3.0 || 3.1"
+            },
+            "require-dev": {
+                "drupal/config_readonly": "1.x-dev",
+                "drupal/language_fallback_fix": "1.x-dev",
+                "drupal/search_api_autocomplete": "1.x-dev",
+                "drupal/search_api_db": "*"
+            },
+            "suggest": {
+                "drupal/facets": "Adds the ability to create faceted searches.",
+                "drupal/search_api_autocomplete": "Allows adding autocomplete suggestions to search fields.",
+                "drupal/search_api_solr": "Adds support for using Apache Solr as a backend."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.40",
+                    "datestamp": "1762031191",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "branch-alias": {
+                    "dev-8.x-1.x": "1.x-dev"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Seidl",
+                    "homepage": "https://www.drupal.org/u/drunken-monkey"
+                },
+                {
+                    "name": "Nick Veenhof",
+                    "homepage": "https://www.drupal.org/u/nick_vh"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/790418/committers"
+                }
+            ],
+            "description": "Provides a generic framework for modules offering search capabilities.",
+            "homepage": "https://www.drupal.org/project/search_api",
+            "support": {
+                "source": "https://git.drupalcode.org/project/search_api",
+                "issues": "https://www.drupal.org/project/issues/search_api",
+                "irc": "irc://irc.freenode.org/drupal-search-api"
             }
         },
         {
@@ -10285,6 +10525,144 @@
             "time": "2025-02-05T15:43:11+00:00"
         },
         {
+            "name": "saloonphp/saloon",
+            "version": "v3.14.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saloonphp/saloon.git",
+                "reference": "bdd2ab945fb490d51b3c419cc21c5937651f5ef4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saloonphp/saloon/zipball/bdd2ab945fb490d51b3c419cc21c5937651f5ef4",
+                "reference": "bdd2ab945fb490d51b3c419cc21c5937651f5ef4",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.6",
+                "guzzlehttp/promises": "^1.5 || ^2.0",
+                "guzzlehttp/psr7": "^2.0",
+                "php": "^8.2",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.1 || ^2.0"
+            },
+            "conflict": {
+                "sammyjo20/saloon": "*"
+            },
+            "require-dev": {
+                "ext-simplexml": "*",
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "illuminate/collections": "^10.0 || ^11.0 || ^12.0",
+                "league/flysystem": "^3.0",
+                "pestphp/pest": "^2.36.0 || ^3.8.2 || ^4.1.4",
+                "phpstan/phpstan": "^2.1.13",
+                "saloonphp/xml-wrangler": "^1.1",
+                "spatie/invade": "^2.1",
+                "symfony/dom-crawler": "^6.0 || ^7.0",
+                "symfony/var-dumper": "^6.3 || ^7.0"
+            },
+            "suggest": {
+                "illuminate/collections": "Required for the response collect() method.",
+                "saloonphp/xml-wrangler": "Required for the response xmlReader() method.",
+                "symfony/dom-crawler": "Required for the response dom() method.",
+                "symfony/var-dumper": "Required for default debugging drivers."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Saloon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Carré",
+                    "email": "29132017+Sammyjo20@users.noreply.github.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Build beautiful API integrations and SDKs with Saloon",
+            "homepage": "https://github.com/saloonphp/saloon",
+            "keywords": [
+                "api",
+                "api-integrations",
+                "saloon",
+                "sammyjo20",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/saloonphp/saloon/issues",
+                "source": "https://github.com/saloonphp/saloon/tree/v3.14.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sammyjo20",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-02-26T22:12:38+00:00"
+        },
+        {
+            "name": "scotteuser/pinecone-php",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scotteuser/pinecone-php.git",
+                "reference": "a211d2bfeed0409a8fd8d7435404416a336f16d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scotteuser/pinecone-php/zipball/a211d2bfeed0409a8fd8d7435404416a336f16d0",
+                "reference": "a211d2bfeed0409a8fd8d7435404416a336f16d0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "saloonphp/saloon": "^3.6"
+            },
+            "require-dev": {
+                "pestphp/pest": "^2.4",
+                "pestphp/pest-plugin-faker": "^2.0",
+                "pestphp/pest-plugin-watch": "^2.0",
+                "phpstan/phpstan": "^1.10",
+                "symfony/var-dumper": "^6.2",
+                "vlucas/phpdotenv": "^5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tests\\": "tests/",
+                    "Probots\\Pinecone\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcus Pohorely",
+                    "email": "marcus@probots.io"
+                }
+            ],
+            "description": "Unofficial PHP Client for Pinecone Vector Database (pinecone.io)",
+            "homepage": "https://probots.io",
+            "keywords": [
+                "client",
+                "database",
+                "pinecone",
+                "sdk",
+                "vector"
+            ],
+            "support": {
+                "source": "https://github.com/scotteuser/pinecone-php/tree/1.0.2"
+            },
+            "time": "2024-10-02T14:40:16+00:00"
+        },
+        {
             "name": "sebastian/diff",
             "version": "4.0.6",
             "source": {
@@ -14134,6 +14512,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/advagg": 15,
+        "drupal/ai_vdb_provider_pinecone": 10,
         "drupal/conditional_fields": 15,
         "drupal/fiu": 10,
         "drupal/flag": 10,
@@ -14146,6 +14525,6 @@
         "ext-curl": "*",
         "ext-fileinfo": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

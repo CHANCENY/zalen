@@ -17,6 +17,8 @@ module:
   ai_logging: 0
   ai_observability: 0
   ai_provider_openai: 0
+  ai_search: 0
+  ai_vdb_provider_pinecone: 0
   automated_cron: 0
   backup_migrate: 0
   better_exposed_filters: 0
@@ -122,6 +124,7 @@ module:
   room_invoice: 0
   room_tariff: 0
   search: 0
+  search_api: 0
   serial: 0
   shortcut: 0
   smart_date: 0

@@ -33,3 +33,4 @@ default_providers:
   text_to_speech:
     provider_id: openai
     model_id: tts-1-hd
+default_vdb_provider: pinecone
