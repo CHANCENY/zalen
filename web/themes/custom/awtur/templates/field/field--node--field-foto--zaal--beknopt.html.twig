@@ -1,4 +1,4 @@
- {#
+{#
 /**
  * @file
  * Theme override for a field.
@@ -46,56 +46,93 @@
     label_display == 'inline' ? 'clearfix',
   ]
 %}
+
 {%
   set title_classes = [
     'field__label',
     label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
+
+{# Total number of real images #}
 {% set fotos = items|length %}
 
-{% if label_hidden %}
-  {% if multiple %}
-    <div{{ attributes.addClass('items-fotos-beknopt') }}>
-      {% for item in items|slice(0, 5) %}
-        <div{{ item.attributes.addClass('item-foto-beknopt-' ~ loop.index0) }}>{{ item.content }}</div>
-      {% endfor %}
-      {% set nmb = items|length %}
-    {% for item in items|slice(5, nmb) %}
-      <div{{ item.attributes.addClass('hidden') }}>{{ item.content }}</div>
-      {% endfor %} 
-      <div class="number-fotos-beknopt field__item">{{ fotos }}{{ "+" }}</div> 
-      </div>
-  {% else %}
-    {% for item in items %}
-      <div{{ attributes.addClass(classes, 'field__item') }}>{{ item.content }}</div>
-      
-    {% endfor %}
-    
-  {% endif %}
-{% else %}
-  <div{{ attributes.addClass(classes) }}>
-    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
-    {% if multiple %}
-      <div class="items-fotos-beknopt">
-    {% endif %}
-    
-    
-    {% for item in items|slice(0, 5) %}
-      <div{{ item.attributes.addClass('item-foto-beknopt-' ~ loop.index0)}}>
-         {{ item.content }}
-      <div>
-      </div>
-      </div>
-      {% endfor %}
-      {% set nmb = items|length %}
-    {% for item in items|slice(5, nmb) %}
-      <div{{ item.attributes.addClass('hidden') }}>{{ item.content }}</div>
-      {% endfor %}  
-    {% if multiple %}
-    </div>
-    {% endif %}
-  </div>
-  
+{# Ensure at least 5 images for layout stability #}
+{% set min_items = 5 %}
+{% set total = items|length %}
+{% set display_items = items %}
+
+{% if total > 0 and total < min_items %}
+	{% for i in total..(min_items - 1) %}
+		{% set display_items = display_items|merge([items[i % total]]) %}
+	{% endfor %}
 {% endif %}
 
+{% if label_hidden %}
+	{% if multiple %}
+		<div{{attributes.addClass('items-fotos-beknopt')}}>
+
+			{# First 5 visible images #}
+			{% for item in display_items|slice(0, 5) %}
+				<div{{item.attributes.addClass('item-foto-beknopt-'~loop.index0)}}>
+					{{ item.content }}
+				</div>
+			{% endfor %}
+
+			{# Remaining hidden images (only real ones) #}
+			{% if fotos > 5 %}
+				{% for item in items|slice(5) %}
+					<div{{item.attributes.addClass('hidden')}}>
+						{{ item.content }}
+					</div>
+				{% endfor %}
+			{% endif %}
+
+			{# Image counter #}
+			{% if fotos > 5 %}
+				<div class="number-fotos-beknopt field__item">{{ fotos }}+</div>
+			{% endif %}
+
+		</div>
+
+	{% else %}
+		{% for item in items %}
+			<div{{attributes.addClass(classes,'field__item')}}>
+				{{ item.content }}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+{% else %}
+
+	<div{{attributes.addClass(classes)}}>
+		<div{{title_attributes.addClass(title_classes)}}>
+			{{ label }}
+		</div>
+
+		{% if multiple %}
+			<div class="items-fotos-beknopt">
+			{% endif %}
+
+			{# First 5 images for layout #}
+			{% for item in display_items|slice(0, 5) %}
+				<div{{item.attributes.addClass('item-foto-beknopt-'~loop.index0)}}>
+					{{ item.content }}
+				</div>
+			{% endfor %}
+
+			{# Hidden extra images #}
+			{% if fotos > 5 %}
+				{% for item in items|slice(5) %}
+					<div{{item.attributes.addClass('hidden')}}>
+						{{ item.content }}
+					</div>
+				{% endfor %}
+			{% endif %}
+
+			{% if multiple %}
+			</div>
+		{% endif %}
+	</div>
+
+{% endif %}
