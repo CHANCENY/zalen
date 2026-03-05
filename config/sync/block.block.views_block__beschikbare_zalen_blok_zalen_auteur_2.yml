@@ -1,6 +1,6 @@
 uuid: 9dc703fb-d482-466d-a129-66ee2ac85566
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.beschikbare_zalen
