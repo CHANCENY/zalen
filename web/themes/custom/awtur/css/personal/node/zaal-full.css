@@ -628,9 +628,10 @@ article.js-reservation .field__item .datetime {
 
 .availability-calendar-header {
   background: var(--form-color);
-  padding: 30px;
+  padding: 24px;
   text-align: center;
   box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
+  border: 1px solid var(--border-color);
 }
 
 div.availability-calendar-header>span {
@@ -726,7 +727,8 @@ div.availability-calendar #custom_calendar {
 }
 
 form#reservation-form div#edit-actions--4 input#edit-submit--2,
-form#reservation-form div#edit-actions--4 input#edit-preview {
+form#reservation-form div#edit-actions--4 input#edit-preview,
+form#reservation-form div#edit-actions--4 input#edit-submit--3 {
   background: #2f9bff !important;
 }
 

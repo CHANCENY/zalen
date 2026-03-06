@@ -1116,52 +1116,91 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
               $targets = $overnight_room->get('field_overnight_room_image')->getValue();
               $image = reset($targets);
               $uri = \Drupal\reservation\Twig\Extension\TwigFunctionExtension::factory()->getUri($image['target_id']);
-              $image = "<div class='reservation-overnight-room-image'>
-                          <a href='/overnight-room/{$overnight_room->id()}'><img src='$uri' alt=''></a>
-                      </div>";
+              $url = Url::fromUri('internal:/overnight-room/' . $overnight_room->id())->toString();
+              $image = '<div class="reservation-overnight-room-image">
+                          <a href="'.$url.'"><img src="'.$uri.'" alt=""></a>
+                      </div>';
             }
+
+            // $form['overnight_rooms'][$key] = [
+            //   '#type' => 'checkbox',
+            //   '#title' => t($title. ' ('.$price.'/night)'),
+            //   '#description' => t($overnight_room->get('field_description')?->value ?? ""),
+            //   '#ajax' => [
+            //     'callback' => 'reservation_toggle_overnight_room_count',
+            //     'event' => 'change',
+            //   ],
+            //   '#attributes' => [
+            //     'id' => $key,
+            //   ],
+            //   '#prefix' => '<div class="overnight-selector-wrapper">'.$image,
+            //   '#suffix' => '</div>',
+            // ];
+            // $form['overnight_rooms'][$key . '_count'] = [
+            //   '#type' => 'number',
+            //   '#title' => t('Number of rooms you want to book'),
+            //   '#attributes' => [
+            //     'id' => $key . '_count',
+            //   ],
+            //   '#prefix' => '<div class="reservation-overnightroom-count-wrapper '.$wrapper_id.'">',
+            //   '#suffix' => '</div>',
+            // ];
+            // $form['overnight_rooms'][$key . '_date'] = [
+            //   '#type' => 'date',
+            //   '#title' => t('Start Date'),
+            //   '#attributes' => [
+            //     'id' => $key . '_date',
+            //     'class' => ['flatpickr-input'],
+            //   ],
+            //   '#prefix' => '<div class="reservation-overnightroom-count-wrapper '.$wrapper_id.'">',
+            //   '#suffix' => '</div>',
+            // ];
+            // $form['overnight_rooms'][$key . '_night'] = [
+            //   '#type' => 'number',
+            //   '#title' => t('Number of nights'),
+            //   '#attributes' => [
+            //     'id' => $key . '_night',
+            //   ],
+            //   '#prefix' => '<div class="reservation-overnightroom-count-wrapper '.$wrapper_id.'">',
+            //   '#suffix' => '</div>',
+            // ];
 
             $form['overnight_rooms'][$key] = [
               '#type' => 'checkbox',
-              '#title' => t($title. ' ('.$price.'/night)'),
+              '#title' => t($title . ' (' . $price . '/night)'),
               '#description' => t($overnight_room->get('field_description')?->value ?? ""),
-              '#ajax' => [
-                'callback' => 'reservation_toggle_overnight_room_count',
-                'event' => 'change',
-              ],
-              '#attributes' => [
-                'id' => $key,
-              ],
               '#prefix' => '<div class="overnight-selector-wrapper">'.$image,
               '#suffix' => '</div>',
             ];
-            $form['overnight_rooms'][$key . '_count'] = [
+
+            $form['overnight_rooms'][$key . '_wrapper'] = [
+              '#type' => 'container',
+              '#attributes' => [
+                'class' => ['reservation-overnightroom-count-wrapper'],
+              ],
+              '#states' => [
+                'visible' => [
+                  ':input[name="overnight_rooms['.$key.']"]' => ['checked' => TRUE],
+                ],
+              ],
+            ];
+
+            $form['overnight_rooms'][$key . '_wrapper'][$key . '_count'] = [
               '#type' => 'number',
               '#title' => t('Number of rooms you want to book'),
-              '#attributes' => [
-                'id' => $key . '_count',
-              ],
-              '#prefix' => '<div class="reservation-overnightroom-count-wrapper '.$wrapper_id.'">',
-              '#suffix' => '</div>',
             ];
-            $form['overnight_rooms'][$key . '_date'] = [
+
+            $form['overnight_rooms'][$key . '_wrapper'][$key . '_date'] = [
               '#type' => 'date',
               '#title' => t('Start Date'),
               '#attributes' => [
-                'id' => $key . '_date',
                 'class' => ['flatpickr-input'],
               ],
-              '#prefix' => '<div class="reservation-overnightroom-count-wrapper '.$wrapper_id.'">',
-              '#suffix' => '</div>',
             ];
-            $form['overnight_rooms'][$key . '_night'] = [
+
+            $form['overnight_rooms'][$key . '_wrapper'][$key . '_night'] = [
               '#type' => 'number',
               '#title' => t('Number of nights'),
-              '#attributes' => [
-                'id' => $key . '_night',
-              ],
-              '#prefix' => '<div class="reservation-overnightroom-count-wrapper '.$wrapper_id.'">',
-              '#suffix' => '</div>',
             ];
             $overnight_rooms_options[$key] = [
               'name' => $title,

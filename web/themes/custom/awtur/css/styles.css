@@ -340,6 +340,13 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 #edit-delete:hover {
     color: #fff;
 }
+.zaal-full-zalen{
+    text-align: center;
+}
+.zaal-full-zalen h2 {
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.0357rem + 1.1429vw, 1.75rem);
+}
 
 /*Responsive*/
 

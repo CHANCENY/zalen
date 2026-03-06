@@ -100,6 +100,12 @@
         {% endif %}
       </div>
     </div>
+    {% if node.bundle == 'zaal' %}
+      <div class="layout-container zaal-full-zalen">
+        <h2>Alle zalen behorend tot {{ node.field_bedrijf_zaal.entity.label }}</h2>
+        {{ drupal_view('beschikbare_zalen', 'blok_zalen_auteur') }}
+      </div>
+    {% endif %}
     {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
       <div class="featured-bottom">
         <aside class="layout-container clearfix" role="complementary">
