@@ -348,9 +348,6 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   font-size: clamp(1.25rem, 1.0357rem + 1.1429vw, 1.75rem);
 }
 
-.zaal-full-zalen .zaal-per-auteur-view .view-content{
-    justify-content: space-evenly;
-}
 /*Responsive*/
 
 @media (min-width: 1150px) {
