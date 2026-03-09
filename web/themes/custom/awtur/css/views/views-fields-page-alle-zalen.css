@@ -2,6 +2,10 @@
   padding: 20px 0;
 }
 
+.view-content .views-row:first-child .alle-zalen-view {
+  background: #f5faff;
+}
+
 .alle-zalen-view {
   margin-bottom: 30px;
   display: grid;
@@ -146,16 +150,32 @@ ul>li.pager__item {
 }
 
 .alle-zalen-city {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2a86d1;
+  font-weight: 500;
   font-size: clamp(0.625rem, 0.5658rem + 0.3947vw, 0.8125rem);
   text-transform: capitalize;
 }
 
 .alle-zalen-city::before {
-  content: url(../../images/icons/location-icon.svg);
+  content: "";
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+
+  background-color: #2a86d1;
+
+  -webkit-mask: url("../../images/icons/location-icon.svg") no-repeat center;
+  mask: url("../../images/icons/location-icon.svg") no-repeat center;
+
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }
 
 /*-----Gelegenheden ( occasions )-----*/
- .alle-zalen-gelegenheden-tags {
+.alle-zalen-gelegenheden-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -192,24 +212,30 @@ ul>li.pager__item {
   font-weight: bold;
 }
 
-
 .views-row .alle-zalen-view .features {
   text-align: right;
 }
 
+.views-row .features {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
 .views-row .features>div {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  background: #baceae;
-  background-size: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background-color: #fff6cc;
+  border: 1px solid #fff6cc;
+  border-radius: 50%;
+  background-size: 18px;
   background-position: center;
   background-repeat: no-repeat;
-  margin-right: 5px;
-  background-color: #fff7ec;
-  border: 1px #e4ceae solid;
-  border-radius: 18px;
-  transition: 0.3s;
+  position: relative;
+  transition: all 0.25s ease;
 }
 
 .views-row .features>div:hover {
@@ -222,34 +248,30 @@ ul>li.pager__item {
   display: none;
 }
 
-.views-row .features>div:hover p {
+.views-row .features > div:hover p {
   display: block;
   position: absolute;
-  margin-top: -30px;
-  padding: 1px 10px;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 10px;
   font-size: 12px;
   color: #fff;
   white-space: nowrap;
   background: #555;
-  border-bottom: 2px #FF9800 solid;
-  border-radius: 8px;
-  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
-  transform: translate(-50%, 10%);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
 }
 
-.views-row .features>div p:before {
+.views-row .features > div p::after {
   content: "";
-  display: block;
   position: absolute;
-  width: 0;
-  height: 0;
-  background: rgba(0, 0, 0, 0.2);
-  bottom: 10px;
+  top: 100%;
   left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
-  border-width: 11px 14px 0 14px;
-  transform: translate(0%, 20px);
 }
 
 .views-row .features>div:last-child:hover p {
@@ -284,6 +306,10 @@ ul>li.pager__item {
   background-image: url(../../images/icons/features-restrictions.svg);
 }
 
+.views-row .features > div.field-groen-label {
+  background-color: #bbffd5;
+  border-color: #bbffd5;
+}
 @media(max-width: 560px) {
   .alle-zalen-view {
     display: block;

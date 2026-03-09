@@ -348,6 +348,29 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   font-size: clamp(1.25rem, 1.0357rem + 1.1429vw, 1.75rem);
 }
 
+.service-selector-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.service-selector-wrapper .reservation-service-room-image {
+  flex: 0 0 100px;
+  max-width: 100px;
+}
+.service-selector-wrapper .reservation-service-room-image img{
+  width:100%;
+  display: block;
+  border-radius: 4px;
+  max-height: 66px;
+  height: auto;
+}
+
 /*Responsive*/
 
 @media (min-width: 1150px) {
