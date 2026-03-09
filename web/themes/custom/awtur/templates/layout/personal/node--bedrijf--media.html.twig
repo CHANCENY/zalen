@@ -3,13 +3,13 @@
 <article>
   <div class="bedrijf-media">
     {{ content.field_foto }}
-    {% if content.field_video.0 %}
-    <div class="bedrijf-media-film">
+    {% if content.field_location_video %}
+    <div class="bedrijf-media-film okkkkkkk">
       <h3>{{ label }}{{ ' In picture'|t }}</h3>
-      {{ content.field_video.0|without('#theme') }}
+      {{ content.field_location_video }}
         <span class="bedrijf-media-balk"></span>
         <span class="bedrijf-media-voetsteun"></span>
-    </div>
+          </div>
     {% endif %}
     <h3>{{ 'Additional'|t }}</h3>
     <div class="bedrijf-media-additional">

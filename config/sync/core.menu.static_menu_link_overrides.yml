@@ -14,11 +14,11 @@ definitions:
     expanded: false
     enabled: true
   user__logout:
-    weight: -38
     menu_name: account
     parent: ''
-    enabled: true
+    weight: -38
     expanded: false
+    enabled: true
   standard__front_page:
     menu_name: main
     parent: ''

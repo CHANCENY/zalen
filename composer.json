@@ -80,6 +80,7 @@
         "drupal/mailsystem": "^4.5",
         "drupal/masquerade": "^2.0",
         "drupal/menu_link_attributes": "^1.5",
+        "drupal/menu_per_role": "^1.8",
         "drupal/migrate_plus": "^6.0",
         "drupal/migrate_tools": "^6.0",
         "drupal/migrate_upgrade": "^4.0",
