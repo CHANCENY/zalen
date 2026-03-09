@@ -172,7 +172,8 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-input[type="date"], input[type="month"], input[type="time"] {
+
+input[type="date"], input[type="month"], input[type="time"] #edit-field-date-booking-wrapper input[type="text"]{
 	padding: 6px;
 	outline: none;
 	font-size: 12px;
