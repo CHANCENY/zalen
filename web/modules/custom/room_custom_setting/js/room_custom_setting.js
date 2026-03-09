@@ -7,7 +7,37 @@
         // $('#custom_calendar td').once('myJsCalendarCustomBehavior').each(
         $(once('myJsCalendarCustomBehavior', '#custom_calendar td')).each(
           function(){
-            if (this.hasAttribute('data-availability')) {this.classList.add('day-claim');};
+            // if (this.hasAttribute('data-availability')) {this.classList.add('day-claim');};
+            document.querySelectorAll('[data-availability]').forEach(function(el) {
+
+              let availability = el.getAttribute('data-availability'); // e.g. 17:30-23:59
+              let [start, end] = availability.split('-');
+            
+              let [sh, sm] = start.split(':').map(Number);
+              let [eh, em] = end.split(':').map(Number);
+            
+              let startMinutes = sh * 60 + sm;
+              let endMinutes = eh * 60 + em;
+            
+              let diffHours = (endMinutes - startMinutes) / 60;
+            
+              if (diffHours >= 23.5) {
+                el.classList.add('day-claim');
+              } 
+              else if (diffHours > 18) {
+                el.classList.add('hours-claim-24');
+              } 
+              else if (diffHours > 12) {
+                el.classList.add('hours-claim-18');
+              } 
+              else if (diffHours > 6) {
+                el.classList.add('hours-claim-12');
+              } 
+              else {
+                el.classList.add('hours-claim-6');
+              }
+            
+            });
           }
           ).hover(
           function(){

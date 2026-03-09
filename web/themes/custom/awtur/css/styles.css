@@ -371,6 +371,9 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   height: auto;
 }
 
+.service-selector-wrapper .js-form-type-checkbox{
+   margin: unset;
+}
 /*Responsive*/
 
 @media (min-width: 1150px) {

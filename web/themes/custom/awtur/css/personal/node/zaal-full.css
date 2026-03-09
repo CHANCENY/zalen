@@ -658,7 +658,7 @@ div.availability-calendar #custom_calendar {
 
 #edit-navigation-calendar>div label {
   margin-left: 0px;
-  font-weight: normal;
+  margin-bottom: 6px;
   color: #000;
 }
 

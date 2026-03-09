@@ -4,7 +4,7 @@
 	vertical-align: top;
 	margin: 2px;
 	font: 14px/1.2 Arial, sans-serif;
-	box-shadow: 0 -2px 3px #dcdcdc;
+	/*box-shadow: 0 -2px 3px #dcdcdc;*/
 }
 .calendar-head {
 	margin-bottom: -10px;
@@ -12,6 +12,7 @@
 	padding: 5px;
 	font-weight: 700;
 	font-size: 14px;
+	background: #f6d743;
 }
 .calendar-item table {
 	border-collapse: collapse;
@@ -19,24 +20,27 @@
 }
 .calendar-item tr {
     background: rgba(0, 0, 0, 0.03);
+    border: unset;
 }
-.calendar-item tr:first-child {
-    border-bottom: 2px #FF9800 solid;
-    box-shadow: 0 3px 3px 0 #888;
-}
+/*.calendar-item tr:first-child {*/
+/*    border-bottom: 2px #FF9800 solid;*/
+/*    box-shadow: 0 3px 3px 0 #888;*/
+/*}*/
 .calendar-item th {
 	font-size: 12px;
 	padding: 6px 5px;
 	text-align: center;
-	color: #eee;
+	color: #000;
 	font-weight: normal;
-	background: #5f7282;
+	/*background: #5f7282;*/
+	background: #fff;
 }
 .calendar-item td {
 	font-size: 12px;
 	padding: 6px 9px;
 	text-align: center;
-	border: 1px solid #ddd;
+    border: 1px solid #ddd;
+    background: #d5ffd5;
 }
 /*.calendar-item tr th:nth-child(6), .calendar-item tr th:nth-child(7),*/
 /*.calendar-item tr td:nth-child(6), .calendar-item tr td:nth-child(7)  {*/
@@ -48,10 +52,52 @@
 .calendar-day.today {
 	font-weight: bold;
 }
-/* .calendar-day.day-claim {
-    background: #f8dcdc;
-    outline: 1px #FFC107 solid;
-} */
+/* .calendar-day.day-claim {*/
+/*    background: #fd8080;*/
+/*    outline: 1px #FFC107 solid;*/
+/*} */
+
+/* 24h – all red */
+.calendar-day.day-claim{
+  background: conic-gradient(
+    #fd8080 0% 100%
+  );
+  outline: unset;
+}
+
+/* 18h – 3 red, 1 yellow */
+.calendar-day.hours-claim-24{
+  background: conic-gradient(
+    #fd8080 0% 75%,
+    #f6d743 75% 100%
+  );
+}
+
+/* 12h – 2 red, 2 yellow */
+.calendar-day.hours-claim-18{
+  background: conic-gradient(
+    #fd8080 0% 50%,
+    #f6d743 50% 100%
+  );
+}
+
+/* 6h – 1 red, 3 yellow */
+.calendar-day.hours-claim-12{
+  background: conic-gradient(
+    #fd8080 0% 25%,
+    #f6d743 25% 100%
+  );
+}
+
+/* optional if needed */
+.calendar-day.hours-claim-6{
+  background: conic-gradient(
+    #fd8080 0% 25%,
+    #f6d743 25% 100%
+  );
+}
+
+
 /*.calendar-day.event {*/
 /*	background: #ffe2ad;*/
 /*	position: relative;*/
@@ -131,7 +177,7 @@ input[type="date"], input[type="month"], input[type="time"] {
 	outline: none;
 	font-size: 12px;
 	color: #001d00;
-	font-weight: bold;
+	/*font-weight: bold;*/
     /* color: #729072; */
     /* border: 1px #804c00 solid; */
 	border: 1px var(--border-color) solid;

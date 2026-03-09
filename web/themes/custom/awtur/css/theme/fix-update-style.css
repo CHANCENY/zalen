@@ -84,8 +84,8 @@ td.delta-order div.SumoSelect {
     transform: translate(0%, -50%);
 }
 .SumoSelect.open>.CaptionCont, .SumoSelect:focus>.CaptionCont, .SumoSelect:hover>.CaptionCont {
-    box-shadow: 0 0 2px #cd8723;
-    border-color: #cd8723 ;
+    box-shadow: 0 0 2px #cd8723 !important;
+    border-color: #cd8723 !important;
 }
 .SumoSelect>.CaptionCont>span{
     
