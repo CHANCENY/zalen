@@ -59,6 +59,10 @@
 
 <div class="alle-zalen-view">
   <div class="alle-zalen-img">
+
+    <div class="alle-zalen-favorite">
+      {{ fields.link_flag.content }}
+    </div>
     {% set node = row._entity %}
 
     {% if node.field_foto is not empty %}
@@ -83,11 +87,11 @@
 
   <div class="alle-zalen-details">
     <div class="alle-zalen-label-city-features">
-      <div class="alle-zalen-label-city">
-        <span class="alle-zalen-zaallabel">{{ fields.title.content }}</span><br>
-        <span class="alle-zalen-label-foto">{{ fields.title_1.content }}</span><br>
-        <span class="alle-zalen-city">{{ fields.field_adres_locality.content }}</span>
-      </div>
+        <div class="alle-zalen-label-city">
+          <span class="alle-zalen-zaallabel">{{ fields.title.content }}</span><br>
+          <span class="alle-zalen-label-foto">{{ fields.title_1.content }}</span><br>
+          <span class="alle-zalen-city">{{ fields.field_adres_locality.content }}</span>
+        </div>
       <div class="features">
         {% if fields.field_nabij_bushalte.content|render|striptags|trim %}
         <div {{ 'class = ' ~ fields.field_nabij_bushalte.class }}>
