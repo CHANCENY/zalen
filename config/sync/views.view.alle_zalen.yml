@@ -24,6 +24,7 @@ dependencies:
     - field.storage.node.field_prijs_per_persoon
     - field.storage.node.field_uurprijs
     - field.storage.node.field_vergadergelegenheden
+    - flag.flag.bookmark
     - image.style.red_teaser_350_x_240_
     - image.style.thumbnail
     - node.type.zaal
@@ -50,6 +51,7 @@ dependencies:
   module:
     - address
     - better_exposed_filters
+    - flag
     - geofield
     - node
     - reservation
@@ -8203,6 +8205,56 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        link_flag:
+          id: link_flag
+          table: flagging
+          field: link_flag
+          relationship: flag_relationship
+          group_type: group
+          admin_label: ''
+          entity_type: flagging
+          plugin_id: flag_link
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
       exposed_form:
         type: basic
         options:
@@ -9602,6 +9654,18 @@ display:
           entity_type: node
           plugin_id: standard
           required: false
+        flag_relationship:
+          id: flag_relationship
+          table: node_field_data
+          field: flag_relationship
+          relationship: none
+          group_type: group
+          admin_label: Flags
+          entity_type: node
+          plugin_id: flag_relationship
+          required: false
+          flag: bookmark
+          user_scope: current
       use_ajax: false
       group_by: false
       display_description: ''
@@ -9616,6 +9680,7 @@ display:
         - url
         - url.query_args
         - 'url.query_args:sort_by'
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -9639,6 +9704,7 @@ display:
         - 'config:field.storage.node.field_prijs_per_persoon'
         - 'config:field.storage.node.field_uurprijs'
         - 'config:field.storage.node.field_vergadergelegenheden'
+        - flag.flag.bookmark
   page_commerciele_zalen:
     id: page_commerciele_zalen
     display_title: commerciele
