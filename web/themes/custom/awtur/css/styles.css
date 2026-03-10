@@ -11,11 +11,11 @@
     padding: 0 30px;
 }
 
-.path-mijn-zaal-lijst .layout-main,
-.path-user .layout-main,
-.path-onze-zaal-reservaties .layout-main,
-.path-alle-zalen .layout-main,
-.path-mijn-boekingen .layout-main {
+form#node-page-form{
+  padding: 16px clamp(0.5rem, -0.2059rem + 3.5294vw, 2rem);
+}
+
+.layout-one-sidebar .layout-main {
     box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
     display: flex;
 }
@@ -409,10 +409,7 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
         border-bottom: 1px solid #C48B2C;
     }
 
-    .path-mijn-zaal-lijst .layout-main,
-    .path-user .layout-main,
-    .path-onze-zaal-reservaties .layout-main,
-    .path-mijn-boekingen .layout-main {
+    .layout-one-sidebar .layout-main {
         flex-direction: column;
     }
 }

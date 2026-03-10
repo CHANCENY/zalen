@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: wz-ohZty4PdApE-oedaSgemMu_JhPbhMlrnfovaVnhc
+max_content_length: 30000
+request_timeout: 30
+allowed_content_types:
+  - bedrijf
+  - page
+  - zaal
+domain_blacklist:
+  - localhost
+  - 127.0.0.1
+  - '*.local'
+  - '*.internal'
+flood_limit: 5
+flood_window: 3600
