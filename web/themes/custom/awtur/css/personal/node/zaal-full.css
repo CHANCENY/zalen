@@ -742,7 +742,6 @@ form#reservation-form div#edit-actions--4 input#edit-submit--3 {
   gap: 30px;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
 }
 
 @media (max-width: 600px) {
@@ -755,20 +754,20 @@ form#reservation-form div#edit-actions--4 input#edit-submit--3 {
   text-align: center;
   border-radius: 8px;
   border: 1px solid #378CB0;
-  padding: 16px;
+  padding: 10px;
 }
 
 .zaal-comfort-room-layouts .room-layout-icon img {
-  max-width: 40px;
+  max-width: 50px;
   height: auto;
+  padding: 6px;
+  border-radius: 50%;
+  background: #dbe8f6;
 }
 
-.zaal-comfort-room-layouts .room-layout-label {
+.zaal-comfort-room-layouts .room-layout-label, .zaal-comfort-room-layouts .room-layout-capacity {
+  font-size: 14px;
   font-weight: 600;
-}
-
-.zaal-comfort-room-layouts .room-layout-capacity {
-  font-weight: 700;
 }
 
 #edit-overnight-rooms {
