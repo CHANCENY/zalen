@@ -19,8 +19,8 @@
       
         <div{{ attributes.addClass(classes) }}>
           <div{{ title_attributes.addClass(title_classes) }}>
-            <img src="{{ thema_pad }}/images/icons/bedrijf/sluit-periode.svg">
-            <h3>{{ label }}</h3>
+            {# <img src="{{ thema_pad }}/images/icons/bedrijf/sluit-periode.svg"> #}
+            <h4><ion-icon name="timer" class="time-icon"></ion-icon><br>{{ label }}</h4>
           </div>
           {% if multiple %}
             <div class="field__items bedrijf-sluit-periode">

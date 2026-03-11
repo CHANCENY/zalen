@@ -3,7 +3,10 @@
 {% set base_path = drupal_token('site:base-path') ~ '/' %}
   {% set thema_pad = base_path ~ directory %} 
 
-<h3 class="bedrijf-open-tijd-hd"><img src="{{ thema_pad }}/images/icons/bedrijf/klok-vierkant.svg">{{ 'Openingsuren'|t }}</h3>
+<h4 class="bedrijf-open-tijd-hd">
+  {# <img src="{{ thema_pad }}/images/icons/bedrijf/klok-vierkant.svg"> #}
+  <ion-icon name="time" class="time-icon"></ion-icon><br>{{ 'Openingsuren'|t }}
+</h4>
 
 <div class="opening-hours">
   <ul>
