@@ -4,12 +4,13 @@
   font-size: clamp(0.8125rem, 0.77rem + 0.283vw, 1rem);
   color: slategrey;
   padding: 16px;
-  background: #fbfbfb;
+  /* background: #fbfbfb;
   border: 6px #eee solid;
   border-top: 2px #ddd solid;
-  border-bottom: 2px #ddd solid;
-  border-radius: 9px;
+  border-bottom: 2px #ddd solid; */
+  border-radius: 10px;
   margin: 64px 0;
+  box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
 }
 @media only screen and (max-width: 520px) {
   .tab-bedrijf-locatie{

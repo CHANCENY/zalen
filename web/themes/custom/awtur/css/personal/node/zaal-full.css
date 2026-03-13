@@ -39,7 +39,7 @@ header.zaal-full article.profile {
   margin: -5px 1em 0 0;
   width: 100px;
   height: 100px;
-  background-image: url(../../images/default-user.svg);
+  background-image: url(https://zaalzoeken.be/web/themes/custom/awtur/images/default-user.svg);
   background-size: cover;
   border: 5px #FF9800 solid;
   border-radius: 50%;
@@ -557,7 +557,7 @@ article.js-reservation footer>a {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url(../../images/icons/chain.svg);
+  background-image: url(https://zaalzoeken.be/web/themes/custom/awtur/images/icons/chain.svg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -565,7 +565,7 @@ article.js-reservation footer>a {
 }
 
 article.js-reservation footer>a:hover {
-  background-image: url(../../images/icons/chain-hover.svg);
+  background-image: url(https://zaalzoeken.be/web/themes/custom/awtur/images/icons/chain-hover.svg);
 }
 
 article.js-reservation>div {

@@ -367,7 +367,7 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   width:100%;
   display: block;
   border-radius: 4px;
-  max-height: 66px;
+  max-height: 100px;
   height: auto;
 }
 
@@ -422,10 +422,7 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 #google-reviews {
   padding: 30px;
   border-radius: 10px;
-  background: #fbfbfb;
-  border: 6px #eee solid;
-  border-top: 2px #ddd solid;
-  border-bottom: 2px #ddd solid;
+  box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
 }
 
 /* Remove nested container conflicts */

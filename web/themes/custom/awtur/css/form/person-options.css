@@ -68,8 +68,8 @@
   right: 20px;
   bottom: -15px;
 }
-.my-per-person-item span.person-option-price {
-  font-size: 36px;
+.my-per-person-item .person-option-tarif {
+  font-size: 20px;
 }
 /* .my-per-person-item .person-option-tarif {
   position: absolute;

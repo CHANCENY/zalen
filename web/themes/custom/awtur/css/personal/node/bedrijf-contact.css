@@ -4,7 +4,7 @@
   width:100%;
   border-radius:14px;
   overflow:hidden;
-  /* border: 1px solid var(--border-color); */
+  border: 1px solid var(--border-color);
   box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
   margin:clamp(30px,5vw,60px) 0;
 }
