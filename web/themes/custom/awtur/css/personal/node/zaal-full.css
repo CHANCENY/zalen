@@ -742,6 +742,7 @@ form#reservation-form div#edit-actions--4 input#edit-submit--3 {
   gap: 30px;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 600px) {
