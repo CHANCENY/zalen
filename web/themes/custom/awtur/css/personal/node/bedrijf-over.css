@@ -8,7 +8,6 @@
     border-bottom: 2px #ddd solid; */
     border-radius: 10px;
     margin: 64px 0 32px;
-    border: 1px solid var(--border-color);
     box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
   }
   .body-bedrijf-read-more, .body-bedrijf-no-more{

@@ -8,28 +8,34 @@
   </header>
 
   <div class="photoswipe-gallery" data-once="photoswipe">
-    {% if data.get('field_overnight_room_image').value %}
-      <div class="items-fotos-beknopt">
-        {% for image in data.get('field_overnight_room_image').value %}
+  {% set images = data.get('field_overnight_room_image').value %}
+  {% set total = images|length %}
 
-          {% if loop.index <= 3 %}
-          {% set file = getUri(image.target_id) %}
-          <div class="item-foto-beknopt-{{ loop.index - 1 }}">
-            <a href="{{ file }}" class="photoswipe" data-overlay-title="{{ data.get('field_room_type').value }}">
-              <img src="{{ file }}" alt="{{ data.get('field_room_type').value }}" loading="lazy">
-            </a>
-          </div>
-            {% if loop.index == 3 %}
-              <div class="number-fotos-beknopt field__item">{{ (image|length) - 2 }}+</div>
-            {% endif %}
-          {% endif %}
+  {% if total > 0 %}
+    <div class="items-fotos-beknopt">
 
-        {% endfor %}
-      </div>
-    {% endif %}
-  </div>
+      {% for i in 0..2 %}
+        {% set img = images[i] ?? images[0] %}
+        {% set file = getUri(img.target_id) %}
 
-  <div class="block-part-edition clearfix">
+        <div class="item-foto-beknopt-{{ i }}">
+          <a href="{{ file }}" class="photoswipe" data-overlay-title="{{ data.get('field_room_type').value }}">
+            <img src="{{ file }}" alt="{{ data.get('field_room_type').value }}" loading="lazy">
+          </a>
+        </div>
+      {% endfor %}
+
+      {% if total > 3 %}
+        <div class="number-fotos-beknopt field__item">
+          {{ total - 2 }}+
+        </div>
+      {% endif %}
+
+    </div>
+  {% endif %}
+</div>
+
+  <div class="block-part-edition-room clearfix">
     <div class="zalen-blok-prijs">
       <span class="hover-text">
         <p class="prijs-vanaf">{{ 'startprijzen' }}</p>

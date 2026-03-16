@@ -383,6 +383,141 @@ form#flag-confirm-form {
   padding-top: 10px;
 }
 
+/* ===== Overnight room CARD ===== */
+.views-row.overnight-rooms .node--type-zaal{
+  width:340px;
+  background:#fff;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+  font-family:Arial, sans-serif;
+  padding: unset;
+}
+
+/* ===== TITLE BAR ===== */
+.views-row.overnight-rooms .node__title{
+  background:#3f6b86;
+  color:#fff;
+  text-align:center;
+  padding:12px;
+  margin:0;
+  font-size:16px;
+  font-weight:600;
+}
+
+.views-row.overnight-rooms .node__title a{
+  color:#fff;
+  text-decoration:none;
+}
+
+/* ===== IMAGE GRID ===== */
+.views-row.overnight-rooms .items-fotos-beknopt{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows: unset;
+  gap:6px;
+}
+
+/* BIG IMAGE */
+.views-row.overnight-rooms .items-fotos-beknopt .item-foto-beknopt-0{
+  grid-column:1 / span 2;
+}
+
+/* OVERRIDE OLD CSS */
+.views-row.overnight-rooms .items-fotos-beknopt .item-foto-beknopt-1{
+  grid-column:1 !important;
+}
+
+.views-row.overnight-rooms .items-fotos-beknopt .item-foto-beknopt-2{
+  grid-column:2 !important;
+}
+
+/* IMAGE STYLE */
+.views-row.overnight-rooms .items-fotos-beknopt img{
+  width:100%;
+  object-fit:cover;
+  border-radius:4px;
+}
+
+/* IMAGE HEIGHT */
+.views-row.overnight-rooms .item-foto-beknopt-0 img{
+  height:120px;
+}
+
+.views-row.overnight-rooms .item-foto-beknopt-1 img,
+.views-row.overnight-rooms .item-foto-beknopt-2 img{
+  height:90px;
+}
+
+/* CONTAINER */
+.block-part-edition-room{
+  padding: 0 18px;
+}
+
+/* EACH SECTION */
+.block-part-edition-room .zalen-blok-prijs,
+.block-part-edition-room .zalen-blok-capaciteit{
+  border-top:1px solid #e5e5e5;
+  padding-top:14px;
+}
+
+/* REMOVE LAST BORDER */
+.block-part-edition-room .zalen-blok-capaciteit{
+  border-bottom:none;
+}
+
+/* ROW LAYOUT */
+.block-part-edition-room .uur-groen,
+.block-part-edition-room .dag-paars{
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-rows:auto auto;
+  column-gap:10px;
+  text-align: left;
+  background:none !important;
+  border:none !important;
+  padding:0 !important;
+}
+
+/* LEFT TITLE */
+.block-part-edition-room .prijs-label{
+  grid-column:1;
+  grid-row:1;
+  font-weight:600;
+  font-size:16px;
+  margin:0;
+}
+.block-part-edition-room .uur-groen #prijsGroen, .block-part-edition-room .dag-paars #prijsPaars, .block-part-edition-room .dag-paars #prijsGroen {
+    background: unset;
+}
+
+/* LEFT SUBTEXT */
+.block-part-edition-room .prijs-vanaf{
+  grid-column:1;
+  grid-row:2;
+  font-size:12px;
+  color:#888;
+}
+
+/* RIGHT VALUE */
+.block-part-edition-room .veld-inhoud{
+  grid-column:2;
+  grid-row:1 / span 2;
+  align-self:center;
+  font-weight:600;
+  font-size:16px;
+}
+
+/* INFO ICON */
+.block-part-edition-room .blok-zalen-info{
+  display: none;
+}
+
+/* HIDE TOOLTIP TEXT */
+.block-part-edition-room .hover-text{
+  display:none;
+}
+
 /*Responsive*/
 
 @media (min-width: 1150px) {
