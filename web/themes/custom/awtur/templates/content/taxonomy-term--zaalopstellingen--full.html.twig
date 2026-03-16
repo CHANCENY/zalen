@@ -10,33 +10,42 @@
   role="region"
   aria-labelledby="term-title-{{ term.id() }}"
 >
-  <header class="zaalopstelling-full__header">
-    <h1 
-      class="zaalopstelling-full__title" 
-      id="term-title-{{ term.id() }}"
-    >
-      {{ name }}
-    </h1>
-  </header>
+
+<header class="zaalopstelling-full__header">
+  <h1 class="zaalopstelling-full__title" id="term-title-{{ term.id() }}">
+    {{ name }}
+  </h1>
+</header>
+
+<div class="zaalopstelling-card">
 
   <div class="zaalopstelling-full__content">
+
     <div class="zaalopstelling-full__diagram">
       {{ content.field_weergave_opstelling }}
     </div>
 
     <aside class="zaalopstelling-full__sidebar">
+
       <figure class="zaalopstelling-full__icon">
         {{ content.field_room_layout_icon }}
         <figcaption class="visually-hidden">
           {{ name }} icoon
         </figcaption>
       </figure>
+
       <div class="zaalopstelling-full__usage">
         {{ content.field_gebruik }}
       </div>
+
       <div class="zaalopstelling-full__description">
         {{ content.description }}
       </div>
+
     </aside>
+
   </div>
+
+</div>
+
 </article>

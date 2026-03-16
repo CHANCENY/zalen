@@ -172,7 +172,7 @@
 			<div class="zaal-per-auteur-view view view-beschikbare-zalen view-id-beschikbare_zalen view-display-id-block_zalen_auteur_all">
 				<div class="view-content">
 					{% for paragraph in node.field_overnight_room.value %}
-						<div class="views-row">
+						<div class="views-row overnight-rooms">
 							{% set paragraph_data = getParagraph(paragraph.target_id) %}
 							{% set data = {data: paragraph_data } %}
 							{% include 'themes/custom/awtur/templates/layout/personal/overnight-rooms.html.twig' with data %}
