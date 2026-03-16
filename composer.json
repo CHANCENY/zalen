@@ -98,6 +98,7 @@
         "drupal/search_api": "^1.40",
         "drupal/serial": "^2.1",
         "drupal/smart_date": "^4.2",
+        "drupal/smart_menu_links": "^1.0@alpha",
         "drupal/smtp": "^1.2",
         "drupal/svg_image": "3.2.1",
         "drupal/taxonomy_manager": "^2.0",

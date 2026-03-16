@@ -1,0 +1,5 @@
+google_place_field.settings:
+  title: 'Google Place Field'
+  description: 'Configure Google Places API settings'
+  parent: system.admin_config_services
+  route_name: google_place_field.settings

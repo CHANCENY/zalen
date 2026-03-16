@@ -86,17 +86,11 @@ custom'),
     '#description' => t('Set which of the duration increments provided above that should be selected by default.'),
   );
 
-//  $form['terms_of_use'] = array(
-//    //'#group' => 'advanced',
-//    '#type' => 'checkbox',
-//    '#title' => t("I agree with the website's terms and conditions."),
-//    '#required' => TRUE,
-//  );
-
   //set the handler to save our custom settings after saving or editing the node
   $form['actions']['submit']['#submit'][] = 'room_custom_setting_submit_handler';
   //set validation before saving your custom settings
   $form['#validate'][] = 'room_custom_setting_validate_handler';
+
 };
 
 
@@ -364,7 +358,6 @@ function room_custom_setting_delete_submit_handler($form, FormStateInterface $fo
 
     ];
 
-
    $form['availability_calendar']['navigation_calendar'] = [
      '#type' => 'container',
      '#name' => 'navigation_calendar',
@@ -388,8 +381,6 @@ function room_custom_setting_delete_submit_handler($form, FormStateInterface $fo
      ],
 
    ];
-
- //  dump($form['availability_calendar']['navigation_calendar']['navigation_calendar_select']); die();
 
    $date_current_value = new DrupalDateTime;
 
@@ -450,6 +441,7 @@ function room_custom_setting_delete_submit_handler($form, FormStateInterface $fo
 
    //add handler validation so that the booking does not overlap in time
    $form['#validate'][] = 'room_custom_setting_validate_check_availability';
+
 };
 
 

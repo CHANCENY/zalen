@@ -1,0 +1,5 @@
+api_key: ''
+field_masks:
+  - places.displayName
+  - places.formattedAddress
+  - places.location

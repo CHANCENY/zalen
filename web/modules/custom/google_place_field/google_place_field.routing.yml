@@ -1,0 +1,21 @@
+google_place_field.settings:
+  path: '/admin/config/services/google-place-field'
+  defaults:
+    _form: '\Drupal\google_place_field\Form\SettingsForm'
+    _title: 'Google Place Field Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+google_place_field.autocomplete:
+  path: '/google-place/autocomplete'
+  defaults:
+    _controller: '\Drupal\google_place_field\Controller\GooglePlaceController::autocomplete'
+  requirements:
+    _permission: 'access content'
+
+google_place_field.map_preview:
+  path: '/google-place/map-preview/{place_id}'
+  defaults:
+    _controller: '\Drupal\google_place_field\Controller\GooglePlaceController::mapPreview'
+  requirements:
+    _permission: 'access content'

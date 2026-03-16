@@ -6,17 +6,17 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Mail\MailFormatHelper;
 use Drupal\Core\Mail\MailInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Render\RendererInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\phpmailer_smtp\PluginManager\PhpmailerOauth2PluginManagerInterface;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\OAuth;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\OAuth;
+use PHPMailer\PHPMailer\PHPMailer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -49,11 +49,16 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
   protected $config;
 
   /**
-   * Whether to allow sending messages with an empty body.
+   * Overrides PHPMailer::AllowEmpty.
    *
    * @var bool
+   *
+   * Whether to allow sending messages with an empty body.
+   *
+   * @phpcs:disable Drupal.NamingConventions.ValidVariableName.LowerCamelName
    */
   public $AllowEmpty = TRUE;
+  // phpcs:enable
 
   /**
    * Verbose debug output level configured for Drupal.
@@ -80,8 +85,11 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
    * @var int
    *
    * Capture SMTP communication errors by default.
+   *
+   * @phpcs:disable Drupal.NamingConventions.ValidVariableName.LowerCamelName
    */
   public $SMTPDebug = 2;
+  // phpcs:enable
 
   /**
    * Stores the verbose debug output of the SMTP communication.
@@ -187,11 +195,11 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
 
     if (!empty($smtp_protocol)) {
       $ssl_verify_peer = $this->config->get('smtp_ssl_verify_peer');
-      $this->SMTPOptions['ssl']['verify_peer'] = isset($ssl_verify_peer) ? $ssl_verify_peer : 1;
+      $this->SMTPOptions['ssl']['verify_peer'] = $ssl_verify_peer ?? 1;
       $ssl_verify_peer_name = $this->config->get('smtp_ssl_verify_peer_name');
-      $this->SMTPOptions['ssl']['verify_peer_name'] = isset($ssl_verify_peer_name) ? $ssl_verify_peer_name : 1;
+      $this->SMTPOptions['ssl']['verify_peer_name'] = $ssl_verify_peer_name ?? 1;
       $ssl_allow_self_signed = $this->config->get('smtp_ssl_allow_self_signed');
-      $this->SMTPOptions['ssl']['allow_self_signed'] = isset($ssl_allow_self_signed) ? $ssl_allow_self_signed : 0;
+      $this->SMTPOptions['ssl']['allow_self_signed'] = $ssl_allow_self_signed ?? 0;
     }
 
     // Check for basic authentication.
@@ -311,37 +319,36 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
   }
 
   /**
-   * Provide more user-friendly error messages.
+   * Set Drupal-specific language translations for error messages.
    *
-   * Note: messages should not end with a dot.
+   * This method provides Drupal translations for PHPMailer error messages.
+   * It's called from the constructor to ensure translations are available.
    */
-  public function setLanguage($langcode = 'en', $lang_path = 'language/') {
-    // Retrieve English defaults to ensure all message keys are set.
-    parent::SetLanguage('en');
+  protected function setDrupalTranslations() {
+    static::setLanguage('en');
 
     // Overload with Drupal translations.
-    $this->language = [
-      'authenticate'        => $this->t('SMTP error: Could not authenticate.'),
-      'connect_host'        => $this->t('SMTP error: Could not connect to host.'),
-      'data_not_accepted'   => $this->t('SMTP error: Data not accepted.'),
-      'smtp_connect_failed' => $this->t('SMTP error: Could not connect to SMTP host.'),
-      'smtp_error'          => $this->t('SMTP server error:'),
+    static::$language = [
+        'authenticate'        => $this->t('SMTP error: Could not authenticate.'),
+        'connect_host'        => $this->t('SMTP error: Could not connect to host.'),
+        'data_not_accepted'   => $this->t('SMTP error: Data not accepted.'),
+        'smtp_connect_failed' => $this->t('SMTP error: Could not connect to SMTP host.'),
+        'smtp_error'          => $this->t('SMTP server error:'),
 
-      // Messages used during email generation.
-      'empty_message'       => $this->t('Message body empty'),
-      'encoding'            => $this->t('Unknown encoding:'),
-      'variable_set'        => $this->t('Cannot set or reset variable:'),
+        // Messages used during email generation.
+        'empty_message'       => $this->t('Message body empty'),
+        'encoding'            => $this->t('Unknown encoding:'),
+        'variable_set'        => $this->t('Cannot set or reset variable:'),
 
-      'file_access'         => $this->t('File error: Could not access file:'),
-      'file_open'           => $this->t('File error: Could not open file:'),
+        'file_access'         => $this->t('File error: Could not access file:'),
+        'file_open'           => $this->t('File error: Could not open file:'),
 
-      // Non-administrative messages.
-      'from_failed'         => $this->t('The following From address failed:'),
-      'invalid_address'     => $this->t('Invalid address'),
-      'provide_address'     => $this->t('You must provide at least one recipient e-mail address.'),
-      'recipients_failed'   => $this->t('The following recipients failed:'),
-    ] + $this->language;
-    return TRUE;
+        // Non-administrative messages.
+        'from_failed'         => $this->t('The following From address failed:'),
+        'invalid_address'     => $this->t('Invalid address'),
+        'provide_address'     => $this->t('You must provide at least one recipient e-mail address.'),
+        'recipients_failed'   => $this->t('The following recipients failed:'),
+      ] + static::$language;
   }
 
   /**
@@ -397,7 +404,7 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
 
       // Generate the HTML.
       $render = [
-        '#theme' => isset($message['params']['theme']) ? $message['params']['theme'] : 'phpmailer_smtp',
+        '#theme' => $message['params']['theme'] ?? 'phpmailer_smtp',
         '#body' => $message['body'],
         '#module' => $message['module'],
         '#key' => $message['key'],
@@ -406,7 +413,7 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
       ];
 
       // Theme the body content.
-      $rendered = $this->renderer->renderPlain($render);
+      $rendered = $this->renderer->renderInIsolation($render);
 
       // Generate email HTML including inline images.
       $this->msgHTML($rendered, DRUPAL_ROOT, TRUE);
@@ -487,6 +494,9 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
     // Initialise SMTP configuration.
     $this->smtpInit();
 
+    // Set up Drupal-specific language translations for error messages.
+    $this->setDrupalTranslations();
+
     // Default is to honour the content type header.
     $format = NULL;
 
@@ -532,7 +542,7 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
       }
 
       // Parse 'From' address.
-      $from = $this->parseAddresses($headers['from'], TRUE, self::CHARSET_UTF8);
+      $from = $this->parseAddresses($headers['from'], NULL, self::CHARSET_UTF8);
       $from = reset($from);
       $this->From = $from['address'];
 
@@ -547,17 +557,17 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
       $phpmailer_smtp_debug_email = $this->configFactory->get('system.maintenance')->get('phpmailer_smtp_debug_email');
       if (empty($phpmailer_smtp_debug_email)) {
         // Set recipients.
-        foreach ($this->parseAddresses($message['to'], TRUE, self::CHARSET_UTF8) as $address) {
+        foreach ($this->parseAddresses($message['to'], NULL, self::CHARSET_UTF8) as $address) {
           $this->AddAddress($address['address'], $address['name']);
         }
         // Extract CCs and BCCs from headers.
         if (!empty($headers['cc'])) {
-          foreach ($this->parseAddresses($headers['cc'], TRUE, self::CHARSET_UTF8) as $address) {
+          foreach ($this->parseAddresses($headers['cc'], NULL, self::CHARSET_UTF8) as $address) {
             $this->AddCC($address['address'], $address['name']);
           }
         }
         if (!empty($headers['bcc'])) {
-          foreach ($this->parseAddresses($headers['bcc'], TRUE, self::CHARSET_UTF8) as $address) {
+          foreach ($this->parseAddresses($headers['bcc'], NULL, self::CHARSET_UTF8) as $address) {
             $this->AddBCC($address['address'], $address['name']);
           }
         }
@@ -571,7 +581,7 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
 
       // Extract Reply-To from headers.
       if (isset($headers['reply-to'])) {
-        foreach ($this->parseAddresses($headers['reply-to'], TRUE, self::CHARSET_UTF8) as $address) {
+        foreach ($this->parseAddresses($headers['reply-to'], NULL, self::CHARSET_UTF8) as $address) {
           $this->AddReplyTo($address['address'], $address['name']);
         }
         unset($headers['reply-to']);
@@ -607,7 +617,7 @@ class PhpMailerSmtp extends PHPMailer implements MailInterface, ContainerFactory
       }
 
       // Set default sender address.
-      $envelopeSender = $this->parseAddresses($message['from'], TRUE, self::CHARSET_UTF8);
+      $envelopeSender = $this->parseAddresses($message['from'], NULL, self::CHARSET_UTF8);
       $envelopeSender = reset($envelopeSender);
       $this->Sender = $envelopeSender['address'];
 

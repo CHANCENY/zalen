@@ -46,7 +46,8 @@ function zaal_condities_help($route_name, RouteMatchInterface $route_match)
  * Implements hook_form_alter().
  */
 function zaal_condities_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{ //dump($form['field_extra_room_services']['widget']);
+{
+
   if (isset($_GET['redirect']) && $_GET['redirect'] == 'zaal') {
     $form['actions']['submit']['#submit'][] = 'zaal_v_condition_submit';
   }
@@ -400,17 +401,6 @@ function zaal_condities_AjaxCallback(&$form, \Drupal\Core\Form\FormStateInterfac
 /**
  * {@inheritdoc}
  */
-function zaal_v_condition_submit($form, FormStateInterface $form_stat)
-{
-//  $url = Url::fromUri('internal:/node/add/zaal')->toString();
-//  $redirect = new RedirectResponse($url);
-//  $redirect->send();
-//  exit();
-}
-
-/**
- * {@inheritdoc}
- */
 function custom_zaal_validate_handler($form, FormStateInterface $form_state)
 {
   $fields_to_check = [
@@ -606,93 +596,6 @@ function zaal_condities_form_search_form_alter(&$form, $form_id, $form_state)
 {
   $form['advanced']['types-fieldset']['#access'] = FALSE;
   $form['advanced']['lang-fieldset']['#access'] = FALSE;
-}
-
-/*
- * Implements hook_form_ID_alter().
- */
-function zaal_condities_form_reservation_type_booking_form_alter(&$form, &$form_state, $form_id)
-{
-
-  $nid = $form_state->getFormObject()->getEntity()->getReservationedEntityId();
-  $node = \Drupal\node\Entity\Node::load($nid);
-  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-  $node = $node_storage->load($nid);
-  $dropdown_array = [];
-  $min_value = [];
-  $max_value = [];
-  $zaal_title = $node->getTitle();
-
-  $form['booking_form_title'] = [
-    '#prefix' => '<div class="booking-form-title">',
-    '#markup' => '<h3>' . t('Reservation Form') . '</h3>',
-    '#suffix' => '</div>',
-    '#attached' => ['library' => 'room_custom_setting/room_custom_setting'],
-    '#weight' => -9,
-
-  ];
-
-  $form['subject']['widget'][0]['value']['#value'] = 'Reservatie' . ' ' . $zaal_title;
-  //Pls check ReservationForm.php line 146, it should be changed there!
-  $form['#title'] = 'Edit reservatie' . ' ' . $zaal_title;
-
-  if (!$node->get('field_feestgelegenheid')->isEmpty()) {
-    foreach ($node->field_feestgelegenheid as $item) {
-      if ($item->entity) {
-        $dropdown_array[$item->entity->id()] = t($item->entity->label());
-      }
-    }
-  }
-  if (!$node->get('field_concertgelegenheden')->isEmpty()) {
-    foreach ($node->field_concertgelegenheden as $item) {
-      if ($item->entity) {
-        $dropdown_array[$item->entity->id()] = t($item->entity->label());
-      }
-    }
-  }
-  if (!$node->get('field_comercielegelegenheden')->isEmpty()) {
-    foreach ($node->field_comercielegelegenheden as $item) {
-      if ($item->entity) {
-        $dropdown_array[$item->entity->id()] = t($item->entity->label());
-      }
-    }
-  }
-  if (!$node->get('field_vergadergelegenheden')->isEmpty()) {
-    foreach ($node->field_vergadergelegenheden as $item) {
-      if ($item->entity) {
-        $dropdown_array[$item->entity->id()] = t($item->entity->label());
-      }
-    }
-  }
-
-  $form['field_evenement']['widget']['#empty_option'] = t('Kies een evenement');
-  $options = $form['field_evenement']['widget']['#options'];
-
-  if (!empty($dropdown_array)) {
-    $options = array_intersect_key($options, $dropdown_array);
-  }
-  $form['field_evenement']['widget']['#options'] = $options;
-  $rules = $node->get('field_regels')->getValue();
-  $filtered = array_filter($rules, function ($rule) {
-    return $rule['rule_type'] === 'minprice' && $rule['pattern_tariff'] === 'i_person';
-  });
-
-  $filtered = array_values($filtered);
-  if (!empty($filtered)) {
-    $filtered = reset($filtered);
-    $min_value = (int)$filtered['span_time'];
-  } else {
-    $min_value = !empty($node->get('field_bezetting_van')->getValue()) ? $node->get('field_bezetting_van')->getValue()[0]['value'] : Null;
-  }
-  $max_value = !empty($node->get('field_bezetting_tot')->getValue()) ? $node->get('field_bezetting_tot')->getValue()[0]['value'] : NULL;
-
-
-  if ($min_value != NULL) {
-    $form['field_bezetting']['widget'][0]['value']['#min'] = $min_value;
-  }
-  if ($max_value != NULL) {
-    $form['field_bezetting']['widget'][0]['value']['#max'] = $max_value;
-  }
 }
 
 /**

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03a91788102095dc88f4a605fe4609dc",
+    "content-hash": "5d711723e8afdc3a7567fc2f65c619af",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6402,6 +6402,50 @@
                 "source": "https://git.drupalcode.org/project/smart_date",
                 "issues": "https://www.drupal.org/project/issues/smart_date",
                 "documentation": "https://www.drupal.org/docs/contributed-modules/smart-date"
+            }
+        },
+        {
+            "name": "drupal/smart_menu_links",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/smart_menu_links.git",
+                "reference": "1.0.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/smart_menu_links-1.0.0-alpha1.zip",
+                "reference": "1.0.0-alpha1",
+                "shasum": "bdfbe50cd3ab62f6facd839b8b843fab0c858751"
+            },
+            "require": {
+                "drupal/core": "^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-alpha1",
+                    "datestamp": "1746387062",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "mandclu",
+                    "homepage": "https://www.drupal.org/user/52136"
+                }
+            ],
+            "description": "Creates links relative to path-determined entities, with validation.",
+            "homepage": "https://www.drupal.org/project/smart_menu_links",
+            "support": {
+                "source": "https://git.drupalcode.org/project/smart_menu_links"
             }
         },
         {
@@ -14762,7 +14806,8 @@
         "drupal/flag": 10,
         "drupal/google_places": 10,
         "drupal/inline_entity_form": 5,
-        "drupal/multivalue_form_element": 10
+        "drupal/multivalue_form_element": 10,
+        "drupal/smart_menu_links": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -14770,6 +14815,6 @@
         "ext-curl": "*",
         "ext-fileinfo": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

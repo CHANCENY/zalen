@@ -1,0 +1,7 @@
+google_place_widget:
+  version: 1.0
+  js:
+    js/google_place_widget.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

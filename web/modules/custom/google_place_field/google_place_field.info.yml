@@ -1,0 +1,6 @@
+name: 'Google Place Field'
+type: module
+description: 'This module will provide settings for google api key and field type that will be used to autocomplete to google place'
+package: Custom
+core_version_requirement: ^10 || ^11
+configure: google_place_field.settings

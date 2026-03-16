@@ -12,4 +12,3 @@ phpmailer_smtp.format:
     _title: 'PHPMailer SMTP message format'
   requirements:
     _permission: 'administer phpmailer smtp settings'
-

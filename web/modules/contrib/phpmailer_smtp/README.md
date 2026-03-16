@@ -38,8 +38,8 @@ CONFIGURATION
 * Configure your Mail System settings at Administer >> Configuration >>
   Mail System.
 
-  Select "PHPMailer SMTP" as "Sender" and "Formatter" under "Default Mail System" and 
-  "Module-Specific Configuration" as required.
+Select "PHPMailer SMTP" as "Sender" and "Formatter" under "Default Mail System"
+and "Module-Specific Configuration" as required.
 
 EXAMPLES
 --------
@@ -94,8 +94,8 @@ A simple plugin type is used for OAuth2 integration.
 
 To implement, extend `Drupal\phpmailer_smtp\Plugin\PhpmailerOauth2\PhpmailerOauth2PluginBase`. 
 
-The method `getAuthOptions()` must return an array of options which PHPMailer expects, including
-the provider.  See `__construct()` in [PHPMailer's OAuth2 class](https://github.com/PHPMailer/PHPMailer/blob/master/src/OAuth.php).
+The method `getAuthOptions()` must return an array of options which PHPMailer
+expects, including the provider.  See `__construct()` in [PHPMailer's OAuth2 class](https://github.com/PHPMailer/PHPMailer/blob/master/src/OAuth.php).
 
 **Example Oauth2 Provider**
 
