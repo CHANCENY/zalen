@@ -337,7 +337,7 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
     background: #2f9bff;
 }
 
-#edit-delete:hover {
+#edit-delete:hover, #edit-cancel:hover {
     color: #fff;
 }
 .zaal-full-zalen{
@@ -374,6 +374,15 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 .service-selector-wrapper .js-form-type-checkbox{
    margin: unset;
 }
+
+.smartdate--time-inline .form-datetime-wrapper .form-items-inline, .smartdate--time-inline div.time-start, .smartdate--time-inline div.time-end {
+  gap:6px;
+}
+
+form#flag-confirm-form {
+  padding-top: 10px;
+}
+
 /*Responsive*/
 
 @media (min-width: 1150px) {
