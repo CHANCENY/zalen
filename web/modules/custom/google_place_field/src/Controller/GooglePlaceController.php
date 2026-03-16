@@ -72,40 +72,21 @@ class GooglePlaceController {
 
 
   public function mapPreview(string $place_id) {
-
     $api_key = \Drupal::config('google_place_field.settings')->get('api_key');
 
     if (!$place_id || !$api_key) {
-      return new Response('<div>Map not available</div>');
+      return [
+        '#markup' => '<div>Map not available</div>',
+      ];
     }
 
-    // Build the Google Maps Embed URL
+    // Build the Google Maps Embed URL server-side
     $embed_url = 'https://www.google.com/maps/embed/v1/place?key=' . $api_key . '&q=place_id:' . $place_id;
 
-    // Initialize cURL
-    $ch = curl_init($embed_url);
-    curl_setopt_array($ch, [
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_FOLLOWLOCATION => true, // follow redirects
-      CURLOPT_HEADER => false,         // we only want the body
-      CURLOPT_SSL_VERIFYPEER => true,
-      CURLOPT_USERAGENT => 'Drupal Google Place Field Module', // optional
-    ]);
-
-    $html = curl_exec($ch);
-
-    if (curl_errno($ch)) {
-      \Drupal::logger('google_place_field')->error('Curl error fetching map: @error', ['@error' => curl_error($ch)]);
-      curl_close($ch);
-      return new Response('<div>Map not available</div>');
-    }
-
-    curl_close($ch);
-
-    // Return the HTML directly
-    return new Response($html, 200, [
+    return new Response('<iframe src="' . $embed_url . '" width="100%" height="300" allowfullscreen loading="lazy"></iframe>',200,[
       'Content-Type' => 'text/html',
     ]);
+
   }
 
 }

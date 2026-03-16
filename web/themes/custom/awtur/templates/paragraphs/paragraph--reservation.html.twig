@@ -169,6 +169,7 @@
                <thead>
                   <tr>
                     <th>Room</th>
+                    <th>Start Date</th>
                     <th>Nights Count</th>
                     <th>Rooms Count</th>
                     <th>Price</th>
@@ -183,6 +184,7 @@
                 {% set currency = getCurrencySymbol(room_on_location.get('field_room_currency').value) %}
                 <tr>
                   <td><a href="/overnight-room/{{ room_on_location.id.value }}">{{ room_on_location.get('field_room_type').value }}</a></td>
+                  <td>{{ room_p.get('field_starting_overnight_date').value|date('d F, Y') }}</td>
                   <td>{{ room_p.get('field_nights').value }}</td>
                   <td>{{ room_p.get('field_roms_count').value }}</td>
                   <td>{{ currency }}{{ room_on_location.get('field_price_per_night').value }}</td>

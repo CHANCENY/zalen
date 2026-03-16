@@ -56,10 +56,10 @@
   }
   .bedrijf-comfort-linken{
     padding: 16px;
-    /* background: #fbfbfb;
-    border: 6px #eee solid;
-    border-top: 2px #ddd solid;
-    border-bottom: 2px #ddd solid; */
+    /*background: #fbfbfb;*/
+    /*border: 6px #eee solid;*/
+    /*border-top: 2px #ddd solid;*/
+    /*border-bottom: 2px #ddd solid;*/
     border-radius: 10px;
     margin: 64px 0;
     box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
@@ -106,15 +106,15 @@
   border-radius: 20px;
   padding: 4px 16px;
 }
-.comfort-terms .field__item:nth-child(3n+1){
-  background-color: #BDEBFF;
-}
-.comfort-terms .field__item:nth-child(3n+2){
-  background-color: #FAEDAD;
-}
-.comfort-terms .field__item:nth-child(3n+3){
-  background-color: #D4F8B9;
-}
+/*.comfort-terms .field__item:nth-child(3n+1){*/
+/*  background-color: #BDEBFF;*/
+/*}*/
+/*.comfort-terms .field__item:nth-child(3n+2){*/
+/*  background-color: #FAEDAD;*/
+/*}*/
+/*.comfort-terms .field__item:nth-child(3n+3){*/
+/*  background-color: #D4F8B9;*/
+/*}*/
 .linkscomfort, .comfortlinkss{
   padding: clamp(0.25rem, 0.025rem + 1.2vw, 1rem);
   filter: opacity(0.3);

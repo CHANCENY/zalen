@@ -46,10 +46,10 @@
 /* See .color-warning in Seven's colors.css */
 .messages--warning {
   color: #734c00;
-  border-color: #f4daa6;  /* LTR */
+  border-color: #f4daa6; /* LTR */
   background-color: #fffef3;
   background-image: url(../../../images/icons/messages/warning.svg);
-  /* box-shadow: -8px 0 0 #e09600; LTR */
+  /* box-shadow: -8px 0 0 #e09600;  LTR */
 }
 [dir="rtl"] .messages--warning {
   border-color: #f4daa6 transparent #f4daa6 #f4daa6;

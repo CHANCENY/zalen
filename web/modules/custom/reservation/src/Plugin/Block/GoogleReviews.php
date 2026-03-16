@@ -137,6 +137,12 @@ class GoogleReviews extends BlockBase implements ContainerFactoryPluginInterface
       }
 
     }
+    $config = \Drupal::configFactory()->get('googlereviews.settings');
+    $auth_key = $config->get('google_auth_key');
+
+    if (!empty($auth_key) && str_ends_with($auth_key, "dummy")) {
+      return [];
+    }
     $reviews = $this->getGoogleData->getGoogleReviews(
       ['rating', 'reviews'],
       $this->configuration['max_google_reviews'],

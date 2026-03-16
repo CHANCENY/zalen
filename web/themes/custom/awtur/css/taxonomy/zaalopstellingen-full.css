@@ -82,6 +82,7 @@
 
   .zaalopstelling-full__sidebar{
     border-left:none;
+    border-top:1px solid var(--brand-color);
     padding-left:0;
   }
 

@@ -33,7 +33,16 @@ class TwigFunctionExtension extends AbstractExtension implements ExtensionInterf
       new TwigFunction('getPrice', [$this, 'getPrice']),
       new TwigFunction('getFile', [$this, 'getFile']),
       new TwigFunction('getCountry', [$this, 'getCountry']),
+      new TwigFunction('is_live', [$this, 'isLive']),
     ];
+  }
+
+  public function isLive(): bool {
+    $current = Drupal::request()->getRequestUri();
+    if (str_starts_with($current, 'web')) {
+      return TRUE;
+    }
+    return FALSE;
   }
 
   /**
@@ -358,7 +367,7 @@ class TwigFunctionExtension extends AbstractExtension implements ExtensionInterf
       'EH' => 'Western Sahara',
       'YE' => 'Yemen',
       'ZM' => 'Zambia',
-      'ZW' => 'Zimbabwe'
+      'ZW' => 'Zimbabwe',
     ];
   }
 

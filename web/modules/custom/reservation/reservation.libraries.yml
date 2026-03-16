@@ -32,6 +32,3 @@ drupal.reservation-service:
     js/tags/reservation-service.js: {}
   dependencies:
     - core/jquery
-    - core/drupal
-    - core/drupal.ajax
-    - core/once

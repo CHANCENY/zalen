@@ -21,11 +21,9 @@ class GooglePlaceAutocompleteWidget extends WidgetBase {
     $address = $items[$delta]->address ?? '';
     $map_url = $items[$delta]->map_url ?? '';
 
-    dump($element);
-
     $element['search'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Business'),
+      '#title' => $this->t($element['#title']),
       '#default_value' => $value,
       '#autocomplete_route_name' => 'google_place_field.autocomplete',
       '#attributes' => ['class' => ['google-place-search']],

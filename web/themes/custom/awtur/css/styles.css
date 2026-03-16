@@ -1,44 +1,44 @@
 .main-content {
-    padding: 0 30px;
+  padding: 0 30px;
 }
 
 .main-content #block-awtur-local-tasks {
-    margin-left: -30px;
-    margin-right: -30px;
+  margin-left: -30px;
+  margin-right: -30px;
 }
 
 .page-node-type-zaal .main-content {
-    padding: 0 30px;
+  padding: 0 30px;
 }
 
-form#node-page-form{
+form#node-page-form {
   padding: 16px clamp(0.5rem, -0.2059rem + 3.5294vw, 2rem);
 }
 
 .layout-one-sidebar .layout-main {
-    box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
-    display: flex;
+  box-shadow: 0 0 11px rgba(189, 129, 0, 0.5);
+  display: flex;
 }
 
 .path-alle-zalen #sidebar-first {
-    border: 2px solid #f5eddc;
+  border: 2px solid #f5eddc;
 }
 
 .path-alle-zale .sidebar .block,
 .path-alle-zalen .sidebar {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 .path-onze-zaal-reservaties main#content {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 #block-useraccountmenu ul.menu li.menu-item {
-    padding: 1em 0;
+  padding: 1em 0;
 }
 
 dl.node-type-list {
-    padding: 0 30px;
+  padding: 0 30px;
 }
 
 .path-mijn-zaal-lijst table th,
@@ -47,94 +47,94 @@ dl.node-type-list {
 .path-mijn-zaal-lijst table td,
 .path-user table td,
 .path-onze-zaal-reservaties table td {
-    text-align: center;
+  text-align: center;
 }
 
 .path-mijn-zaal-lijst table tr,
 .path-user table tr,
 .path-onze-zaal-reservaties table tr td {
-    background: #fffef3;
+  background: #fffef3;
 }
 
 .path-mijn-zaal-lijst table tr th,
 .path-user table tr th,
 .path-onze-zaal-reservaties table tr th {
-    background-color: #2f9bff;
-    border: 1px solid #E9D2AA;
+  background-color: #2f9bff;
+  border: 1px solid #E9D2AA;
 }
 
 .path-mijn-zaal-lijst table tr td,
 .path-user table tr td,
 .path-onze-zaal-reservaties table tr td {
-    border: 1px solid #E9D2AA;
+  border: 1px solid #E9D2AA;
 }
 
 td.views-field-field-foto img {
-    width: 70px;
-    height: 70px;
-    border: 2px solid #bd8100;
-    object-fit: cover;
+  width: 70px;
+  height: 70px;
+  border: 2px solid #bd8100;
+  object-fit: cover;
 }
 
 form#views-form-flag-bookmark-page-mijn-zaal-lijst .button {
-    background: #bd8100;
-    border-radius: 4px;
-    border: unset;
-    font-weight: unset;
+  background: #bd8100;
+  border-radius: 4px;
+  border: unset;
+  font-weight: unset;
 }
 
 form#views-form-flag-bookmark-page-mijn-zaal-lijst .SumoSelect>p.CaptionCont>span {
-    font-weight: unset;
+  font-weight: unset;
 }
 
 @media (min-width:991px) {
-    form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 {
-        display: flex;
-        align-items: flex-end;
-    }
+  form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 {
+    display: flex;
+    align-items: flex-end;
+  }
 
-    form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 .button {
-        margin-left: 50px;
-    }
+  form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 .button {
+    margin-left: 50px;
+  }
 
-    form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 {
-        border-left: 2px solid #e6d1a0;
-        margin-left: 50px;
-    }
+  form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 {
+    border-left: 2px solid #e6d1a0;
+    margin-left: 50px;
+  }
 }
 
 form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .form-item label {
-    margin-left: unset;
-    margin-bottom: 5px;
+  margin-left: unset;
+  margin-bottom: 5px;
 }
 
 .path-user .sidebar .block {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 .path-mijn-zaal-lijst .main-content,
 .path-user .main-content {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .path-user #edit-actions input {
-    margin-right: unset;
+  margin-right: unset;
 }
 
 .user-logged-in.path-user #edit-actions input.button,
 .user-logged-in.path-user #edit-actions a {
-    background: #2f9bff;
-    border: unset;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  background: #2f9bff;
+  border: unset;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .path-user .tabs ul.primary li a {
-    color: #000;
-    border-width: unset;
-    border-style: unset;
-    border-color: unset;
-    background-color: unset;
+  color: #000;
+  border-width: unset;
+  border-style: unset;
+  border-color: unset;
+  background-color: unset;
 }
 
 .path-user .tabs ul.primary li a:hover,
@@ -143,190 +143,190 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 .path-node .tabs a:hover,
 .path-user .tabs a:focus,
 .path-user .tabs a:hover {
-    background: unset;
+  background: unset;
 }
 
 .path-user .block-local-tasks-block {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .path-user .content-user {
-    text-align: center;
-    padding: 0 20px;
+  text-align: center;
+  padding: 0 20px;
 }
 
 .path-user h2.content-user,
 .path-user .view-id-zalen_per_gebruiker .view-header a {
-    color: #bd8100;
+  color: #bd8100;
 }
 
 .path-user .view-id-zalen_per_gebruiker .view-footer {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .path-user .view-id-zalen_per_gebruiker .view-footer a {
-    color: #fff;
-    background: #2f9bff;
-    padding: 8px 20px;
-    border-radius: 5px;
+  color: #fff;
+  background: #2f9bff;
+  padding: 8px 20px;
+  border-radius: 5px;
 }
 
 .path-user .view-zalen-per-gebruiker table {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .path-user .sidebar .block.block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf {
-    border-bottom: 1px solid #e6d1a0;
-    border-top: 1px solid #e6d1a0;
-    margin: unset;
+  border-bottom: 1px solid #e6d1a0;
+  border-top: 1px solid #e6d1a0;
+  margin: unset;
 }
 
 .path-user .sidebar:has(.block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf) #user-ident {
-    border: none !important;
+  border: none !important;
 }
 
 .path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf .view-content {
-    text-align: center;
+  text-align: center;
 }
 
 .path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf img {
-    width: 100px;
-    height: 100px;
-    border: 2px solid #bd8100;
-    object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #bd8100;
+  object-fit: cover;
 }
 
 .path-user .layout-main:has(.view-zalen-per-gebruiker, .profile),
 .path-user .main-content:has(.view-zalen-per-gebruiker, .profile) {
-    background-color: #fffef3;
+  background-color: #fffef3;
 }
 
 .path-user .profile .account-details-label {
-    font-size: 20px;
-    color: #bd8100;
-    margin-top: 40px;
+  font-size: 20px;
+  color: #bd8100;
+  margin-top: 40px;
 }
 
 .path-user .profile .field,
 .path-user .profile .form-item {
-    display: grid;
-    grid-template-columns: minmax(180px, 30%) 1fr;
-    gap: 8px 20px;
-    align-items: start;
-    margin-top: 1em;
-    margin-bottom: 1em;
+  display: grid;
+  grid-template-columns: minmax(180px, 30%) 1fr;
+  gap: 8px 20px;
+  align-items: start;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 
 .path-user table tr {
-    background: #fff;
+  background: #fff;
 }
 
 .path-user .sidebar {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf .views-field {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .path-user .sidebar .views-field.views-field-edit-node {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .path-user .sidebar .views-field.views-field-edit-node a,
 .path-user .sidebar .view-empty a {
-    background: #2f9bff;
-    color: #fff;
-    padding: 4px 8px;
-    margin: 8px;
-    border-radius: 5px;
+  background: #2f9bff;
+  color: #fff;
+  padding: 4px 8px;
+  margin: 8px;
+  border-radius: 5px;
 }
 
 .path-user .sidebar .view-empty {
-    text-align: center;
+  text-align: center;
 }
 
 .path-user summary {
-    background: #2f9bff;
+  background: #2f9bff;
 }
 
 .path-user .sidebar .user-profile-photo,
 .path-mijn-zaal-lijst .sidebar .user-profile-photo,
 .path-onze-zaal-reservaties .sidebar .user-profile-photo {
-    display: none;
+  display: none;
 }
 
 .me-2 {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .path-user div#block-awtur-local-tasks nav {
-    justify-items: unset;
+  justify-items: unset;
 }
 
 .path-user form.user-additioneel-form details {
-    background: #fffef3;
+  background: #fffef3;
 }
 
 .path-user form.user-additioneel-form {
-    border: unset !important;
-    box-shadow: unset !important;
-    max-width: 100% !important;
+  border: unset !important;
+  box-shadow: unset !important;
+  max-width: 100% !important;
 }
 
 .text-capitalize {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .path-user .profile .text-capitalize {
-    color: #2f9bff;
-    font-weight: bold;
+  color: #2f9bff;
+  font-weight: bold;
 }
 
 body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
-    color: #0071b3;
+  color: #0071b3;
 }
 
 .path-onze-zaal-reservaties div#sidebar-first {
-    max-width: 272px;
-    border: 2px solid #f5eddc;
+  max-width: 272px;
+  border: 2px solid #f5eddc;
 }
 
 .path-alle-zalen .sidebar .form-item {
-    margin-top: unset;
+  margin-top: unset;
 }
 
 .SumoSelect .form-select {
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
-    padding: 10px 44px 10px 12px;
-    border: 1px solid #e0be59;
-    border-radius: 4px;
-    background-image:
-        url("data:image/svg+xml;utf8,\<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'>\<path d='M1 1l6 6 6-6' stroke='%23ffffff' stroke-width='2.5' fill='none' stroke-linecap='round'/>\</svg>"),
-        linear-gradient(to left, #e0be59 42px, #ffffff 42px);
-    background-repeat: no-repeat, no-repeat;
-    background-position: right 14px center, right center;
-    background-size: 14px 9px, 100% 100%;
-    background-color: #fff;
-    font-size: 14px;
-    color: #333;
-    cursor: pointer;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  padding: 10px 44px 10px 12px;
+  border: 1px solid #e0be59;
+  border-radius: 4px;
+  background-image:
+    url("data:image/svg+xml;utf8,\<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'>\<path d='M1 1l6 6 6-6' stroke='%23ffffff' stroke-width='2.5' fill='none' stroke-linecap='round'/>\</svg>"),
+    linear-gradient(to left, #e0be59 42px, #ffffff 42px);
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 14px center, right center;
+  background-size: 14px 9px, 100% 100%;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
 }
 
 .SumoSelect .form-select:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(224, 190, 89, 0.35);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(224, 190, 89, 0.35);
 }
 
 .SumoSelect .form-select::-ms-expand {
-    display: none;
+  display: none;
 }
 
 .SumoSelect>.CaptionCont>label>i::after {
-    content: unset !important;
+  content: unset !important;
 }
 
 /* .path-vip-capacity-selection .main-content {
@@ -334,15 +334,17 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 } */
 
 .path-vip-capacity-selection .zaal-condities-capacity-selection .button {
-    background: #2f9bff;
+  background: #2f9bff;
 }
 
 #edit-delete:hover, #edit-cancel:hover {
-    color: #fff;
+  color: #fff;
 }
-.zaal-full-zalen{
-    text-align: center;
+
+.zaal-full-zalen {
+  text-align: center;
 }
+
 .zaal-full-zalen h2 {
   font-weight: 700;
   font-size: clamp(1.25rem, 1.0357rem + 1.1429vw, 1.75rem);
@@ -363,16 +365,17 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   flex: 0 0 100px;
   max-width: 100px;
 }
-.service-selector-wrapper .reservation-service-room-image img{
-  width:100%;
+
+.service-selector-wrapper .reservation-service-room-image img {
+  width: 100%;
   display: block;
   border-radius: 4px;
   max-height: 100px;
   height: auto;
 }
 
-.service-selector-wrapper .js-form-type-checkbox{
-   margin: unset;
+.service-selector-wrapper .js-form-type-checkbox {
+  margin: unset;
 }
 
 .smartdate--time-inline .form-datetime-wrapper .form-items-inline, .smartdate--time-inline div.time-start, .smartdate--time-inline div.time-end {
@@ -382,6 +385,7 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
 form#flag-confirm-form {
   padding-top: 10px;
 }
+
 
 /* ===== Overnight room CARD ===== */
 .views-row.overnight-rooms .node--type-zaal{
@@ -533,29 +537,29 @@ form#flag-confirm-form {
 }
 
 @media (max-width:850px) {
-    .path-alle-zalen .layout-main {
-        flex-direction: column;
-    }
+  .path-alle-zalen .layout-main {
+    flex-direction: column;
+  }
 }
 
 @media (max-width:767px) {
-    div#main-wrapper {
-        padding: 0 20px;
-    }
+  div#main-wrapper {
+    padding: 0 20px;
+  }
 
-    .path-user #edit-actions a {
-        margin: unset;
-    }
+  .path-user #edit-actions a {
+    margin: unset;
+  }
 }
 
 @media (max-width:560px) {
-    div#sidebar-first {
-        border-bottom: 1px solid #C48B2C;
-    }
+  div#sidebar-first {
+    border-bottom: 1px solid #C48B2C;
+  }
 
-    .layout-one-sidebar .layout-main {
-        flex-direction: column;
-    }
+  .layout-one-sidebar .layout-main {
+    flex-direction: column;
+  }
 }
 
 /* ================

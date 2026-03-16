@@ -1129,7 +1129,12 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
               $uri = \Drupal\reservation\Twig\Extension\TwigFunctionExtension::factory()->getUri($image['target_id']);
               $url = Url::fromUri('internal:/overnight-room/' . $overnight_room->id())->toString();
               $image = '<div class="reservation-overnight-room-image">
-                          <a href="'.$url.'"><img src="'.$uri.'" alt=""></a>
+                          <a href="'.$url.'"
+                          class="use-ajax"
+                          data-dialog-type="modal"
+                          data-dialog-options="{&quot;width&quot;:900}"
+                          data-drupal-link-system-path="'.$url.'"
+                          ><img src="'.$uri.'" alt=""></a>
                       </div>';
             }
 

@@ -90,6 +90,7 @@
         }
 
         function pricingRulesValidation() {
+
           setTimeout(()=>{
             const $jsonField = $('#json_validation_data', context);
             if ($jsonField.length) {
@@ -134,7 +135,6 @@
                         });
 
                         Object.values(hourRate.seasonal_rules).forEach(rule => {
-                          console.log(rule, $dates)
                             if (rule?.date_range) {
                               if (isBookingDatesInSeasonalRange($dates, rule.date_range[0])) {
                                  amount = rule.amount;
@@ -779,7 +779,6 @@
 
           // Check for invalid dates
           if (isNaN(startDate) || isNaN(endDate)) {
-            console.warn('Invalid date format');
             return null;
           }
 
@@ -866,13 +865,84 @@
           const $msg = $('#error-modal-message');
 
           if (!$modal.length) {
-            console.error('Error modal container not found in DOM.');
             return;
           }
           $modal.find('#type').text(type);
           $msg.html(message);
           $modal.fadeIn();
         }
+
+        function datePickerBooking() {
+          flatpickr("#edit-field-date-booking-0-time-wrapper-value-date", {
+            dateFormat: "Y-m-d",
+          });
+          //edit-field-date-booking-0-time-wrapper-end-value-date
+          flatpickr("#edit-field-date-booking-0-time-wrapper-end-value-date", {
+            dateFormat: "Y-m-d",
+          });
+
+          var overnightRooms = $("#edit-overnight-rooms");
+
+          if (overnightRooms.length > 0) {
+            var dateFields = overnightRooms.find("input[type='date']");
+
+            if (dateFields.length > 0) {
+              dateFields.each(function () {
+                flatpickr(this, {
+                  dateFormat: "Y-m-d"
+                });
+              });
+            }
+          }
+        }
+
+        function switcherDateField() {
+          const calculationBay = $("#edit-field-calculate-payment-per-day-value");
+          const calculationBhour = $("#edit-field-per-hour-calc-value");
+          const calculationBperson = $("edit-field-per-person-value");
+
+          const timeStart = $("#edit-field-date-booking-0-time-wrapper-value-time");
+          const timeEnd =   $('#edit-field-date-booking-0-time-wrapper-end-value-time');
+
+          calculationBay.on('click', () => {
+            if (calculationBay.is(':checked')) {
+
+              if (timeEnd && timeStart) {
+                timeEnd.hide();
+                timeStart.hide();
+              }
+
+            } else {
+              timeStart.show();
+              timeEnd.show();
+            }
+          });
+
+          calculationBhour.on('click', () => {
+            if (calculationBhour.is(':checked')) {
+
+              if (timeEnd && timeStart) {
+                timeStart.show();
+                timeEnd.show();
+              }
+
+            }
+          });
+
+          calculationBperson.on('click', () => {
+            if (calculationBperson.is(':checked')) {
+
+              if (timeEnd && timeStart) {
+                timeStart.show();
+                timeEnd.show();
+              }
+
+            }
+          });
+
+        }
+
+        const is_booking_form = $("input[name='is_booking_form']");
 
         if ($('input[name="field_room_pricing_settings_add_more"]',context).length) {
           setTimeout(() => {
@@ -883,7 +953,8 @@
         calculationCheckBoxesToggler();
         pricingRulesValidation();
         modalInit();
-
+        datePickerBooking();
+        switcherDateField();
         if($("#section-overnight",context).length) {
           setTimeout(()=>{
             if ($("#section-overnight",context).hasClass('upgrade-vip')) {
@@ -905,6 +976,11 @@
             }
           },3000)
         }
+
+        $("body").on('click',()=>{
+          $("#edit-field-date-booking-0--duration-list").hide();
+        })
+
       });
     }
   };

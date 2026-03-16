@@ -152,7 +152,7 @@ input.form-file,
 input.form-number,
 input.form-color,
 textarea.form-textarea,
-#edit-overnight-rooms .flatpickr-input.form-date {
+#edit-overnight-rooms .flatpickr-input.form-date{
   padding: 5px 15px;
   font-weight: bold;
   color: #3b3b3b;
