@@ -219,8 +219,8 @@ dependencies:
     - 'taxonomy_term:regio:ffc254d1-e986-41d0-aab5-0ed8526c5901'
   module:
     - address
-    - image
     - node
+    - svg_image
     - taxonomy
     - user
 id: zalen_per_provincie
@@ -646,11 +646,13 @@ display:
         groups:
           1: AND
       style:
-        type: default
+        type: grid_responsive
         options:
           grouping: {  }
-          row_class: ''
-          default_row_class: true
+          columns: 3
+          cell_min_width: 100
+          grid_gutter: 30
+          alignment: horizontal
       row:
         type: fields
       query:
