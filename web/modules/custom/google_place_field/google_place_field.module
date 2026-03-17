@@ -19,5 +19,12 @@ function google_place_field_theme(): array {
       'variables' => ['map_url' => NULL],
       'template' => 'google-place-map',
     ],
+    'google_place_display_name' => ['variables' => ['detail' => NULL]],
+    'google_place_user_rating_count' => ['variables' => ['detail' => NULL]],
+    'google_place_address' => ['variables' => ['detail' => NULL]],
+    'google_place_phone' => ['variables' => ['detail' => NULL]],
+    'google_place_website' => ['variables' => ['detail' => NULL]],
+    'google_place_maps_uri' => ['variables' => ['detail' => NULL]],
+    'google_place_full' => ['variables' => ['detail' => NULL]],
   ];
 }

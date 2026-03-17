@@ -176,7 +176,6 @@ class SettingsForm extends ConfigFormBase {
       'Reviews & Summaries' => [
         'reviews' => 'Reviews',
         'reviewSummary' => 'Review Summary',
-        'routingSummaries' => 'Routing Summaries',
       ],
 
     ];

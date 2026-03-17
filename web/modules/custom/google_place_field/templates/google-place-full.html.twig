@@ -1,0 +1,24 @@
+<div class="google-place-full">
+  <h2>{{ detail.displayName.text }}</h2>
+  <p>{{ detail.formattedAddress }}</p>
+  <p>⭐ {{ detail.rating }} ({{ detail.userRatingCount }} reviews)</p>
+
+  <a href="{{ detail.websiteUri }}" target="_blank">Website</a><br>
+  <a href="{{ detail.googleMapsUri }}" target="_blank">View on Map</a>
+
+  <h3>Opening Hours</h3>
+  <ul>
+    {% for day in detail.regularOpeningHours.weekdayDescriptions %}
+      <li>{{ day }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Reviews</h3>
+  {% for review in detail.reviews %}
+    <div class="review">
+      <strong>{{ review.authorAttribution.displayName }}</strong>
+      <span>{{ review.rating }} ⭐</span>
+      <p>{{ review.text.text }}</p>
+    </div>
+  {% endfor %}
+</div>
