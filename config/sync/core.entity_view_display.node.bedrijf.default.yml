@@ -58,6 +58,7 @@ dependencies:
     - address
     - datetime_range
     - file
+    - google_place_field
     - layout_builder
     - leaflet
     - link
@@ -215,10 +216,9 @@ content:
     weight: 1
     region: content
   field_google_place_id:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
+    type: google_place_formatter
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
     weight: 48
     region: content
