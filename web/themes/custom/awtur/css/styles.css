@@ -419,6 +419,7 @@ form#flag-confirm-form {
   display:grid;
   grid-template-columns:1fr 1fr;
   grid-template-rows: unset;
+  margin-bottom: 10px;
   gap:6px;
 }
 
@@ -440,7 +441,7 @@ form#flag-confirm-form {
 .views-row.overnight-rooms .items-fotos-beknopt img{
   width:100%;
   object-fit:cover;
-  border-radius:4px;
+  border-radius:unset;
 }
 
 /* IMAGE HEIGHT */
@@ -492,7 +493,7 @@ form#flag-confirm-form {
   margin:0;
 }
 .block-part-edition-room .uur-groen #prijsGroen, .block-part-edition-room .dag-paars #prijsPaars, .block-part-edition-room .dag-paars #prijsGroen {
-    background: unset;
+  background: unset;
 }
 
 /* LEFT SUBTEXT */
@@ -522,6 +523,63 @@ form#flag-confirm-form {
   display:none;
 }
 
+.hydrated .node__links {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.hydrated .node__links ul {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.hydrated .node__links a {
+  font-size: 14px;
+  color: #777;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 6px;
+}
+.hydrated .node-readmore a {
+  color: var(--brand-color);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom-width: 3px;
+  border-bottom-color: #eaa306;
+  border-bottom-style: solid;
+}
+
+.hydrated .node__links a:hover {
+  text-decoration: none;
+  border-bottom-width: 3px;
+  border-bottom-color: #eaa306;
+  border-bottom-style: solid;
+}
+
+.hydrated .node__content .field--name-body {
+  text-align: center;
+  margin-top: 15px;
+  padding: 0 40px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.hydrated .node__content .field--name-body p {
+  margin-bottom: 12px;
+}
+
+
+.hydrated .node.node--type-zaal.node--view-mode-teaser header {
+  display: none;
+}
+
+.hydrated .node--view-mode-teaser{
+  margin-bottom: unset;
+}
 /*Responsive*/
 
 @media (min-width: 1150px) {
