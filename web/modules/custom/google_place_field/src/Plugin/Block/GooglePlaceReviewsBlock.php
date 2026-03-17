@@ -24,6 +24,9 @@ class GooglePlaceReviewsBlock extends BlockBase {
   public function build() {
 
     $placeId = $this->determineEntityGooglePlaceId();
+    if (empty($placeId)) {
+      return [];
+    }
     $googleApiCaller = new GoogleApiCaller(\Drupal::config('google_place_field.settings'));
     $placeDetails = $googleApiCaller->getPlaceDetails($placeId);
 

@@ -40,6 +40,9 @@ class GooglePlaceMapBlock extends BlockBase implements ContainerFactoryPluginInt
    */
   public function build(): array {
     $placeId = $this->determineEntityGooglePlaceId();
+    if (empty($placeId)) {
+      return [];
+    }
     $googleApiCaller = new GoogleApiCaller(\Drupal::config('google_place_field.settings'));
     $embed_url = $googleApiCaller->getGoogleMapEmbedUrl($placeId);
 
