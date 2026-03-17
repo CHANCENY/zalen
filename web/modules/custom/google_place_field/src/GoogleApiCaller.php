@@ -92,7 +92,6 @@ class GoogleApiCaller {
   }
 
   public function getGoogleMapEmbedUrl(string $placeId): string {
-    // Build embed URL (server-side)
     return 'https://www.google.com/maps/embed/v1/place?key=' . $this->apiKey . '&q=place_id:' . $placeId;
   }
 

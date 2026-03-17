@@ -51,58 +51,95 @@
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
       <div class="room-card">
-        <h2>Room Details</h2>
 
-        {# First inline section #}
+        <h2 class="room-title">Room Details</h2>
+
         <div class="room-details-inline">
+
           {% if paragraph.get('field_room_type').value %}
-            <div class="room-field">
-              <label>Room</label>
-              <div class="value">{{ paragraph.get('field_room_type').value }}</div>
+            <div class="room-info-box">
+              <div class="info-text">
+                <label>Room</label>
+                <div class="value">{{ paragraph.get('field_room_type').value }}</div>
+              </div>
+              <div class="info-icon">🏠</div>
             </div>
           {% endif %}
 
           {% if paragraph.get('field_number_of_rooms').value %}
-            <div class="room-field">
-              <label>Rooms Available</label>
-              <div class="value">{{ paragraph.get('field_number_of_rooms').value }}</div>
+            <div class="room-info-box">
+              <div class="info-text">
+                <label>Rooms Available</label>
+                <div class="value">{{ paragraph.get('field_number_of_rooms').value }}</div>
+              </div>
+              <div class="info-icon">🛏</div>
             </div>
           {% endif %}
 
           {% if paragraph.get('field_price_per_night').value %}
-            <div class="room-field">
-              <label>Price Night</label>
-              <div class="value">{{ getCurrencySymbol(paragraph.get('field_room_currency').value|default('eur')) }}{{ paragraph.get('field_price_per_night').value }}</div>
+            <div class="room-info-box">
+              <div class="info-text">
+                <label>Price Night</label>
+                <div class="value">
+                  {{ getCurrencySymbol(paragraph.get('field_room_currency').value|default('eur')) }}
+                  {{ paragraph.get('field_price_per_night').value }}
+                </div>
+              </div>
+              <div class="info-icon">💳</div>
             </div>
           {% endif %}
 
           {% if paragraph.get('field_breakfast_included').value == 1 %}
-            <div class="room-field">
-              <label>Breakfast Included</label>
-              <div class="value">Yes</div>
+            <div class="room-info-box">
+              <div class="info-text">
+                <label>Breakfast Included</label>
+                <div class="value">Yes</div>
+              </div>
+              <div class="info-icon">🍳</div>
             </div>
           {% endif %}
+
         </div>
 
-        {# Second section - Photos #}
+
+        {# Photos #}
+
         {% if paragraph.get('field_overnight_room_image').value %}
-          <div class="room-field">
-            <label>Photos</label>
-            <div class="room-photos">
-              {% set photos = paragraph.get('field_overnight_room_image').value %}
-              {% for photo in photos %}
-                {% set file = getUri(photo.target_id) %}
-                <img src="{{ file }}" alt="">
-              {% endfor %}
-            </div>
+          <h3 class="photo-title">Photos</h3>
+
+          <div class="room-photo-grid">
+
+            {% set photos = paragraph.get('field_overnight_room_image').value %}
+
+            {% for photo in photos %}
+              {% set file = getUri(photo.target_id) %}
+
+              {% if loop.first %}
+                <div class="photo-big">
+                  <img src="{{ file }}">
+                </div>
+
+                <div class="photo-small">
+              {% else %}
+                <img src="{{ file }}">
+              {% endif %}
+
+              {% if loop.last %}
+                </div>
+              {% endif %}
+
+            {% endfor %}
+
           </div>
         {% endif %}
 
-        {# Third section - Description #}
+
+        {# Description #}
+
         {% if paragraph.get('field_description').value %}
           <div class="room-description">
-            <label>Description</label>
-            <div class="value">{{ paragraph.get('field_description').value }}</div>
+            <h3>Description</h3>
+            <p>{{ paragraph.get('field_description').value }}</p>
           </div>
         {% endif %}
 
