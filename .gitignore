@@ -5,3 +5,4 @@ vendor/
 config/sync/key.key.openai.yml
 config/sync/googlereviews.settings.yml
 web/modules/contrib/
+config/sync/google_place_field.settings.yml

@@ -1,0 +1,27 @@
+{# Google Place Rating Block #}
+
+<div class="google-rating-block">
+
+  {% if rating.rating is defined %}
+    <div class="google-rating-summary">
+      <strong>Rating:</strong> {{ rating.rating }}
+      {% if rating.userRatingCount is defined %}
+        ({{ rating.userRatingCount }} reviews)
+      {% endif %}
+    </div>
+
+    <div class="google-rating-stars">
+      {% set score = rating.rating|default(0) %}
+      {% for i in 1..5 %}
+        {% if score >= i %}
+          <span class="star full">★</span>
+        {% else %}
+          <span class="star empty">★</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="google-rating-summary">0</div>
+  {% endif %}
+
+</div>

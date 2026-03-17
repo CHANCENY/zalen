@@ -79,59 +79,104 @@ class SettingsForm extends ConfigFormBase {
 
     return [
 
-      'Basic Information' => [
-        'places.id' => 'Place ID',
-        'places.displayName' => 'Display Name',
-        'places.types' => 'Types',
-        'places.primaryType' => 'Primary Type',
-        'places.primaryTypeDisplayName' => 'Primary Type Display Name',
+      'Identifiers & Names' => [
+        'id' => 'Place ID',
+        'name' => 'Resource Name',
+        'displayName' => 'Display Name',
+        'moved_place' => 'Moved Place Resource Name',
+        'moved_place_id' => 'Moved Place ID',
+      ],
+
+      'Basic & Classification' => [
+        'types' => 'Types',
+        'primaryType' => 'Primary Type',
+        'primaryTypeDisplayName' => 'Primary Type Display Name',
       ],
 
       'Address Information' => [
-        'places.formattedAddress' => 'Formatted Address',
-        'places.shortFormattedAddress' => 'Short Formatted Address',
-        'places.postalAddress' => 'Postal Address',
-        'places.addressComponents' => 'Address Components',
-        'places.adrFormatAddress' => 'ADR Format Address',
+        'formattedAddress' => 'Formatted Address',
+        'shortFormattedAddress' => 'Short Formatted Address',
+        'postalAddress' => 'Postal Address',
+        'adrFormatAddress' => 'ADR Format Address',
+        'addressComponents' => 'Address Components',
+        'addressDescriptor' => 'Address Descriptor',
+        'plusCode' => 'Plus Code',
       ],
 
-      'Location Information' => [
-        'places.location' => 'Location (Lat/Lng)',
-        'places.viewport' => 'Viewport',
-        'places.plusCode' => 'Plus Code',
+      'Geometry & Location' => [
+        'location' => 'Location (Lat/Lng)',
+        'viewport' => 'Viewport',
       ],
 
-      'Business Information' => [
-        'places.businessStatus' => 'Business Status',
-        'places.priceLevel' => 'Price Level',
-        'places.priceRange' => 'Price Range',
-      ],
-
-      'Ratings' => [
-        'places.rating' => 'Rating',
-        'places.userRatingCount' => 'User Rating Count',
+      'Business Status & Details' => [
+        'businessStatus' => 'Business Status',
+        'pureServiceAreaBusiness' => 'Pure Service Area Business',
+        'containingPlaces' => 'Containing Places',
+        'subDestinations' => 'Sub Destinations',
       ],
 
       'Contact Information' => [
-        'places.websiteUri' => 'Website',
-        'places.nationalPhoneNumber' => 'National Phone Number',
-        'places.internationalPhoneNumber' => 'International Phone Number',
+        'internationalPhoneNumber' => 'International Phone Number',
+        'nationalPhoneNumber' => 'National Phone Number',
+        'websiteUri' => 'Website URI',
       ],
 
       'Opening Hours' => [
-        'places.regularOpeningHours' => 'Regular Opening Hours',
-        'places.currentOpeningHours' => 'Current Opening Hours',
+        'regularOpeningHours' => 'Regular Opening Hours',
+        'currentOpeningHours' => 'Current Opening Hours',
+        'regularSecondaryOpeningHours' => 'Regular Secondary Opening Hours',
+        'currentSecondaryOpeningHours' => 'Current Secondary Opening Hours',
       ],
 
-      'Media' => [
-        'places.photos' => 'Photos',
-        'places.iconMaskBaseUri' => 'Icon Mask Base URI',
-        'places.iconBackgroundColor' => 'Icon Background Color',
+      'Price & Ratings' => [
+        'priceLevel' => 'Price Level',
+        'priceRange' => 'Price Range',
+        'rating' => 'Rating',
+        'userRatingCount' => 'User Rating Count',
       ],
 
-      'Google Maps' => [
-        'places.googleMapsUri' => 'Google Maps URI',
-        'places.googleMapsLinks' => 'Google Maps Links',
+      'Maps & Links' => [
+        'googleMapsUri' => 'Google Maps URI',
+        'googleMapsLinks' => 'Google Maps Links',
+      ],
+
+      'Icons & Media' => [
+        'photos' => 'Photos',
+        'iconMaskBaseUri' => 'Icon Mask Base URI',
+        'iconBackgroundColor' => 'Icon Background Color',
+      ],
+
+      'Timezone & Misc' => [
+        'timeZone' => 'Timezone',
+        'utcOffsetMinutes' => 'UTC Offset Minutes',
+      ],
+
+      'Atmosphere & Amenities' => [
+        'allowsDogs' => 'Allows Dogs',
+        'curbsidePickup' => 'Curbside Pickup',
+        'delivery' => 'Delivery',
+        'dineIn' => 'Dine In',
+        'editorialSummary' => 'Editorial Summary',
+        'evChargeAmenitySummary' => 'EV Charge Amenity Summary',
+        'evChargeOptions' => 'EV Charge Options',
+        'fuelOptions' => 'Fuel Options',
+        'goodForChildren' => 'Good For Children',
+        'goodForGroups' => 'Good For Groups',
+        'goodForWatchingSports' => 'Good For Watching Sports',
+        'liveMusic' => 'Live Music',
+        'menuForChildren' => 'Menu For Children',
+        'neighborhoodSummary' => 'Neighborhood Summary',
+        'parkingOptions' => 'Parking Options',
+        'paymentOptions' => 'Payment Options',
+        'outdoorSeating' => 'Outdoor Seating',
+        'reservable' => 'Reservable',
+        'restroom' => 'Restroom',
+      ],
+
+      'Reviews & Summaries' => [
+        'reviews' => 'Reviews',
+        'reviewSummary' => 'Review Summary',
+        'routingSummaries' => 'Routing Summaries',
       ],
 
     ];

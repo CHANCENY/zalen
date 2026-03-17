@@ -1,0 +1,52 @@
+{# Google Place Reviews Block #}
+<div class="google-reviews">
+
+  {# Overall rating summary (optional) #}
+  {% if reviews.rating %}
+    <div class="review-summary">
+      <strong>Rating:</strong> {{ reviews.rating }}
+      ({{ reviews.userRatingCount }} reviews)
+    </div>
+  {% endif %}
+
+  {# Loop directly over reviews from API #}
+  {% for review in reviews.reviews %}
+    <div class="review">
+      <div class="review-header">
+        {% set author = review.authorAttribution %}
+        {% if author.photoUri %}
+          <img src="{{ author.photoUri }}" alt="{{ author.displayName }}" class="review-author-photo"/>
+        {% endif %}
+        {% if author.uri %}
+          <a href="{{ author.uri }}" target="_blank"><strong>{{ author.displayName }}</strong></a>
+        {% else %}
+          <strong>{{ author.displayName }}</strong>
+        {% endif %}
+        {% if review.relativePublishTimeDescription %}
+          <span class="review-time">({{ review.relativePublishTimeDescription }})</span>
+        {% endif %}
+      </div>
+
+      <div class="review-stars">
+        {% set rating = review.rating|default(0) %}
+        {% for i in 1..5 %}
+          {% if rating >= i %}
+            <span class="star full">★</span>
+          {% else %}
+            <span class="star empty">★</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="review-text">
+        {{ review.text.text|default('') }}
+      </div>
+
+      {% if review.googleMapsUri %}
+        <div class="review-link">
+          <a href="{{ review.googleMapsUri }}" target="_blank">View on Google Maps</a>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

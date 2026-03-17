@@ -17,28 +17,58 @@ use Drupal\Core\TypedData\DataDefinition;
  */
 class GoogleBusinessItem extends FieldItemBase {
 
-  public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
+  public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition): array {
     $properties = [];
-    $properties['place_id'] = DataDefinition::create('string')->setLabel(t('Place ID'));
-    $properties['name'] = DataDefinition::create('string')->setLabel(t('Business Name'));
-    $properties['address'] = DataDefinition::create('string')->setLabel(t('Address'));
-    $properties['map_url'] = DataDefinition::create('string')->setLabel(t('Google Maps URL'));
+
+    $properties['place_id'] = DataDefinition::create('string')
+      ->setLabel(t('Place ID'))
+      ->setSetting('max_length', 255);
+
+    $properties['name'] = DataDefinition::create('string')
+      ->setLabel(t('Business Name'))
+      ->addConstraint('Length', ['max' => 255]);
+
+    $properties['address'] = DataDefinition::create('string')
+      ->setLabel(t('Address'))
+      ->setSetting('max_length', 512);
+
+    $properties['map_url'] = DataDefinition::create('string')
+      ->setLabel(t('Google Maps URL'))
+      ->setSetting('max_length', 512);
+
     return $properties;
   }
 
-  public static function schema(FieldStorageDefinitionInterface $field_definition) {
+  public static function schema(FieldStorageDefinitionInterface $field_definition): array {
     return [
       'columns' => [
-        'place_id' => ['type' => 'varchar', 'length' => 255, 'not null' => FALSE],
-        'name' => ['type' => 'varchar', 'length' => 255, 'not null' => FALSE],
-        'address' => ['type' => 'varchar', 'length' => 512, 'not null' => FALSE],
-        'map_url' => ['type' => 'varchar', 'length' => 512, 'not null' => FALSE],
+        'place_id' => [
+          'type' => 'varchar',
+          'length' => 555,
+          'not null' => FALSE,
+        ],
+        'name' => [
+          'type' => 'varchar',
+          'length' => 555,
+          'not null' => FALSE,
+        ],
+        // Use TEXT for longer values (recommended)
+        'address' => [
+          'type' => 'text',
+          'size' => 'big',
+          'not null' => FALSE,
+        ],
+        'map_url' => [
+          'type' => 'text',
+          'size' => 'big',
+          'not null' => FALSE,
+        ],
       ],
     ];
   }
 
-  public function isEmpty() {
-    $place_id = $this->get('place_id')->getValue();
-    return $place_id === NULL || $place_id === '';
+  public function isEmpty(): bool {
+    return empty($this->get('place_id')->getValue());
   }
+
 }

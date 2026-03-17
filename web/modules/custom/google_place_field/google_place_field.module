@@ -4,3 +4,20 @@
  * @file
  * Primary module hooks for Google Place Field module.
  */
+
+function google_place_field_theme(): array {
+  return [
+    'google_place_rating' => [
+      'variables' => ['rating' => NULL],
+      'template' => 'google-place-rating',
+    ],
+    'google_place_reviews' => [
+      'variables' => ['reviews' => []],
+      'template' => 'google-place-reviews',
+    ],
+    'google_place_map' => [
+      'variables' => ['map_url' => NULL],
+      'template' => 'google-place-map',
+    ],
+  ];
+}

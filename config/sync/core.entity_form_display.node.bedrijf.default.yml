@@ -59,6 +59,7 @@ dependencies:
     - conditional_fields
     - datetime_range
     - file
+    - google_place_field
     - inline_entity_form
     - link
     - media_library
@@ -184,12 +185,10 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
   field_google_place_id:
-    type: string_textfield
-    weight: 52
+    type: google_place_autocomplete
+    weight: 54
     region: content
-    settings:
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_google_rating:
     type: number

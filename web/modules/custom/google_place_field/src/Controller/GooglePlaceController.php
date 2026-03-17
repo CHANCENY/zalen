@@ -2,13 +2,14 @@
 
 namespace Drupal\google_place_field\Controller;
 
+use Drupal\google_place_field\GoogleApiCaller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class GooglePlaceController {
 
-  public function autocomplete(Request $request) {
+  public function autocomplete(Request $request): JsonResponse {
 
     $query = $request->query->get('q');
     if (!$query) {
@@ -16,38 +17,9 @@ class GooglePlaceController {
     }
 
     // Get API key from module config
-    $api_key = \Drupal::config('google_place_field.settings')->get('api_key');
+    $googleApiCaller = new GoogleApiCaller(\Drupal::config('google_place_field.settings'));
+    $results =$googleApiCaller->searchLocation($query);
 
-    $url = "https://places.googleapis.com/v1/places:searchText";
-
-    $data = [
-      "textQuery" => $query,
-    ];
-
-    $headers = [
-      "Content-Type: application/json",
-      "X-Goog-Api-Key: $api_key",
-      "X-Goog-FieldMask: places.displayName,places.formattedAddress,places.id,places.googleMapsUri",
-    ];
-
-    $ch = curl_init($url);
-    curl_setopt_array($ch, [
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_POST => true,
-      CURLOPT_POSTFIELDS => json_encode($data),
-      CURLOPT_HTTPHEADER => $headers,
-    ]);
-
-    $response = curl_exec($ch);
-
-    if (curl_errno($ch)) {
-      \Drupal::logger('google_place_field')->error('Curl error: @error', ['@error' => curl_error($ch)]);
-      return new JsonResponse([]);
-    }
-
-    curl_close($ch);
-
-    $results = json_decode($response, true);
     $suggestions = [];
 
     if (!empty($results['places'])) {

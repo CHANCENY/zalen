@@ -220,7 +220,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 46
+    weight: 48
     region: content
   field_google_rating:
     type: number_decimal

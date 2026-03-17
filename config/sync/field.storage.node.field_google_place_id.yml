@@ -1,18 +1,16 @@
-uuid: 08a4b847-334a-4adc-87b3-c2de2e81b915
+uuid: eb8dcd95-012f-4f62-857d-110169071b42
 langcode: en
 status: true
 dependencies:
   module:
+    - google_place_field
     - node
 id: node.field_google_place_id
 field_name: field_google_place_id
 entity_type: node
-type: string
-settings:
-  max_length: 255
-  case_sensitive: false
-  is_ascii: false
-module: core
+type: google_place_business
+settings: {  }
+module: google_place_field
 locked: false
 cardinality: 1
 translatable: true
