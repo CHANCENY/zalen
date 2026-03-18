@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_foto
+    - field.storage.node.field_google_place_id
     - field.storage.node.field_zaal_bedrijf
     - image.style.provincie_teaser
     - node.type.bedrijf
@@ -219,6 +220,7 @@ dependencies:
     - 'taxonomy_term:regio:ffc254d1-e986-41d0-aab5-0ed8526c5901'
   module:
     - address
+    - google_place_field
     - node
     - svg_image
     - taxonomy
@@ -420,6 +422,68 @@ display:
           empty_zero: false
           hide_alter_empty: true
           display_name: false
+        field_google_place_id:
+          id: field_google_place_id
+          table: node__field_google_place_id
+          field: field_google_place_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: place_id
+          type: google_place_rating
+          settings: {  }
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_zaal_bedrijf:
           id: field_zaal_bedrijf
           table: node__field_zaal_bedrijf
@@ -698,6 +762,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_1:
     id: page_1
@@ -802,6 +867,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_antwerpse_zalen:
     id: page_antwerpse_zalen
@@ -949,6 +1015,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_brusselse_zalen:
     id: page_brusselse_zalen
@@ -1107,6 +1174,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_henegouwse_zalen:
     id: page_henegouwse_zalen
@@ -1272,6 +1340,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_limburgse_zalen:
     id: page_limburgse_zalen
@@ -1424,6 +1493,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_luikse_zalen:
     id: page_luikse_zalen
@@ -1570,6 +1640,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_luxemburgse_zalen:
     id: page_luxemburgse_zalen
@@ -1722,6 +1793,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_naamse_zalen:
     id: page_naamse_zalen
@@ -1870,6 +1942,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_oost_vlaamse_zalen:
     id: page_oost_vlaamse_zalen
@@ -2020,6 +2093,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_vlaams_brabantse_zalen:
     id: page_vlaams_brabantse_zalen
@@ -2165,6 +2239,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_waals_brabantse_zalen:
     id: page_waals_brabantse_zalen
@@ -2306,6 +2381,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_waalse_zalen:
     id: page_waalse_zalen
@@ -2538,6 +2614,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
   page_west_vlaamse_zalen:
     id: page_west_vlaamse_zalen
@@ -2701,4 +2778,5 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_foto'
+        - 'config:field.storage.node.field_google_place_id'
         - 'config:field.storage.node.field_zaal_bedrijf'
