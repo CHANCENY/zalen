@@ -76,9 +76,9 @@
   right: 50px;
   top: 48px;
 } */
-.my-per-person-item .person-option-count .form-item{
+ .my-per-person-item .person-option-count .form-item{
   margin: unset;
-}
+ }
 .my-per-person-item .person-option-lees-meer a {
   display: flex;
   justify-content: end;
@@ -86,7 +86,7 @@
 .my-per-person-item .person-option-lees-meer a:hover,
 .my-per-person-item .person-option-lees-meer a:focus,
 .my-per-person-item .person-option-lees-meer a:active {
-  border-bottom: none;
+   border-bottom: none;
 }
 @media (max-width: 690px){
   .my-per-person-item {
@@ -179,7 +179,7 @@
   }
 
   .room-header label {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     margin: 0;
   }
@@ -222,7 +222,6 @@
   .reservation-overnightroom-count-wrapper .form-item {
     flex: 1;
   }
-
   .reservation-overnightroom-count-wrapper label {
     font-weight: 600;
     margin-bottom: 6px;
@@ -230,9 +229,9 @@
   }
 
   .reservation-overnightroom-count-wrapper input {
-    width: 50%;
+    width: 30%;
     padding: 10px !important;
-    border-radius: 6px;
+    border-radius: unset;
     border: 1px solid #ccc !important;
   }
 

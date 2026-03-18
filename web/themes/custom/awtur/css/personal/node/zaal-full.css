@@ -772,47 +772,200 @@ form#reservation-form div#edit-actions--4 input#edit-submit--3 {
 }
 
 #edit-overnight-rooms {
-  .overnight-selector-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 1rem;
-    border: 1px solid #ccc;
-    padding: 1rem;
+
+  /* 🔹 Card */
+  .overnight-room-parent {
+    border: 1px solid #cfd8e3;
     border-radius: 8px;
-    margin-bottom: 1rem;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
   }
 
-  .overnight-selector-wrapper .js-form-type-checkbox {
-    margin: unset;
+  /* Active card */
+  .overnight-room-parent:has(input[type="checkbox"]:checked) {
+    border: 1px solid #4a90e2;
+    background: #eaf4ff;
   }
-  
+
+  /* 🔹 TOP ROW */
+  .overnight-selector-wrapper {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  /* 🔹 Image */
   .reservation-overnight-room-image {
-    flex: 0 0 100px;
-    max-width: 100px;
+    width: 140px;
+    height: 100px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
   }
 
   .reservation-overnight-room-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    border-radius: 4px;
   }
 
-  .js-form-type-checkbox {
+  /* 🔹 Content */
+  .room-content {
     flex: 1;
-    min-width: 0;
   }
 
-  @media (max-width: 600px) {
+  /* HEADER (checkbox + title + price) */
+  .room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Checkbox + title */
+  .room-header .js-form-type-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: unset;
+  }
+
+  .room-header input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4a90e2;
+  }
+
+  .room-header input[type="checkbox"]:before {
+    border: 1px solid #4a90e2;
+  }
+
+  .room-header input[type="checkbox"]:checked:before {
+    background-color: #4a90e2;
+  }
+
+  .room-header input[type="checkbox"]:hover:before {
+    box-shadow: unset;
+  }
+
+  .room-header label {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  /* 🔹 Price */
+  .price-box {
+    text-align: right;
+    min-width: 100px;
+  }
+
+  .price-box .amount {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .price-box .per-night {
+    font-size: 13px;
+    color: #777;
+  }
+
+  /* 🔹 Description */
+  .room-desc {
+    font-size: 14px;
+    color: #666;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* 🔹 Bottom section */
+  .reservation-overnightroom-count-wrapper {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #4a90e2;
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+  }
+
+  /* Fields */
+  .reservation-overnightroom-count-wrapper .form-item {
+    flex: 1;
+  }
+
+  .reservation-overnightroom-count-wrapper label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .reservation-overnightroom-count-wrapper input {
+    width: 30%;
+    padding: 10px !important;
+    border-radius: unset;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Remove spacing */
+  .form-item {
+    margin-bottom: 0;
+  }
+
+  /* ================= MOBILE ================= */
+  @media (max-width: 768px) {
+
+    /* Card */
+    .overnight-room-parent {
+      padding: 15px;
+    }
+
+    /* Stack layout */
     .overnight-selector-wrapper {
       flex-direction: column;
-      align-items: stretch;
+      gap: 12px;
     }
 
+    /* Image full */
     .reservation-overnight-room-image {
-      margin-bottom: 1rem;
+      width: 100%;
+      height: 180px;
+    }
+
+    /* Header */
+    .room-header {
+      align-items: center;
+    }
+
+    .room-header label {
+      font-size: 16px;
+    }
+
+    /* Price smaller */
+    .price-box .amount {
+      font-size: 18px;
+    }
+
+    .price-box .per-night {
+      font-size: 12px;
+    }
+
+    /* Description */
+    .room-desc {
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    /* Bottom fields */
+    .reservation-overnightroom-count-wrapper {
+      flex-direction: column;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .reservation-overnightroom-count-wrapper input {
+      width: 100%;
     }
   }
-
 }
