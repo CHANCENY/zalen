@@ -81,6 +81,7 @@
 .provincie-city{
   display:flex;
   align-items:center;
+  justify-content: space-between;
   gap:6px;
   font-size:13px;
   color:#777;
@@ -229,8 +230,9 @@
     <h2>{{ fields.title_1.content }}</h2>
   </div>
   <div class="provincie-city">
-    <ion-icon style="color:#777" name="location-outline"></ion-icon>
-    {{ fields.field_adres_locality.content }}
+    <span><ion-icon style="color:#777" name="location-outline"></ion-icon>
+    {{ fields.field_adres_locality.content }}</span>
+    <span>{{ fields.field_google_place_id.content }}</span>
   </div>
   <div class="provincie-zalen">
     {{ fields.field_zaal_bedrijf.content }}

@@ -261,6 +261,18 @@ ul>li.pager__item {
   font-weight: bold;
 }
 
+.zaal-title-rating-wrapper{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+
+.zaal-rating-wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+}
+
 .views-row .alle-zalen-view .features {
   text-align: right;
 }

@@ -2,26 +2,34 @@
 
 <div class="google-rating-block">
 
-  {% if rating.rating is defined %}
-    <div class="google-rating-summary">
-      <strong>Rating:</strong> {{ rating.rating }}
-      {% if rating.userRatingCount is defined %}
-        ({{ rating.userRatingCount }} reviews)
-      {% endif %}
-    </div>
+	{% if rating.rating is defined %}
 
-    <div class="google-rating-stars">
-      {% set score = rating.rating|default(0) %}
-      {% for i in 1..5 %}
-        {% if score >= i %}
-          <span class="star full">★</span>
-        {% else %}
-          <span class="star empty">★</span>
-        {% endif %}
-      {% endfor %}
-    </div>
-  {% else %}
-    <div class="google-rating-summary">0</div>
-  {% endif %}
+		<div class="rating-left">
+			<div class="google-rating-stars">
+				{% set score = rating.rating|default(0) %}
+				{% for i in 1..5 %}
+					{% if score >= i %}
+						<span class="star full"><i class="fa-solid fa-star"></i></span>
+					{% else %}
+						<span class="star empty"><i class="fa-solid fa-star"></i></span>
+					{% endif %}
+				{% endfor %}
+			</div>
+
+			{% if rating.userRatingCount is defined %}
+				<div class="review-count">
+					{{ rating.userRatingCount }}
+					reviews
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="rating-score">
+			{{ rating.rating }}
+		</div>
+
+	{% else %}
+		<div class="google-rating-summary">0</div>
+	{% endif %}
 
 </div>
