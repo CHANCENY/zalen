@@ -3,6 +3,7 @@ global-styling:
   js:
     js/flatpickr/flatpickr.js: {}
     js/reservation/reservation-booking-amount-preview.js: {}
+    js/form/number-input-horizontal.js: {}
   css:
     base:
       css/base/base.css: {}
