@@ -31,9 +31,9 @@
         {% set rating = review.rating|default(0) %}
         {% for i in 1..5 %}
           {% if rating >= i %}
-            <span class="star full">★</span>
+            <span class="star full"><i class="fa-solid fa-star"></i></span>
           {% else %}
-            <span class="star empty">★</span>
+            <span class="star empty"><i class="fa-solid fa-star"></i></span>
           {% endif %}
         {% endfor %}
       </div>
