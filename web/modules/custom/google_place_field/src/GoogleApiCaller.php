@@ -2,6 +2,7 @@
 
 namespace Drupal\google_place_field;
 
+use Drupal;
 use Drupal\Core\Config\ImmutableConfig;
 
 class GoogleApiCaller {
@@ -19,6 +20,12 @@ class GoogleApiCaller {
   public function __construct(ImmutableConfig $config) {
     $this->apiKey = $config->get('api_key');
     $this->fields = $config->get('field_masks');
+    if (empty($this->fields)) {
+      $this->fields = ['id'];
+    }
+    elseif (!in_array('id', $this->fields)) {
+      $this->fields[] = 'id';
+    }
   }
 
   public function searchLocation(string $query) {
@@ -58,6 +65,15 @@ class GoogleApiCaller {
 
   public function getPlaceDetails(string $placeId) {
 
+    $cache = Drupal::cache();
+    $data = $cache->get($placeId);
+    if ($data) {
+      $returnable = $data->data;
+      if (is_array($returnable) && !empty($returnable['id'])) {
+        return $returnable;
+      }
+    }
+
     $url = "https://places.googleapis.com/v1/places/{$placeId}";
     $fields = !empty($this->fields) ? implode(',', $this->fields) : "id,rating,formattedAddress,displayName";
 
@@ -88,7 +104,11 @@ class GoogleApiCaller {
     // Decode JSON response
     $data = json_decode($response, TRUE);
 
-    return !empty($data) ? $data : [];
+    if (!empty($data)) {
+      $cache->set($placeId, $data);
+      return $data;
+    }
+    return [];
   }
 
   public function getGoogleMapEmbedUrl(string $placeId): string {
