@@ -772,10 +772,12 @@ form#flag-confirm-form {
 
 .star.full {
   color: #fbbc04;
+  font-size: small;
 }
 
 .star.empty {
   color: #d1d5db;
+  font-size: small;
 }
 
 #google-reviews .review-text {

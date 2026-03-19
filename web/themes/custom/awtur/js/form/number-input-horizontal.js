@@ -4,7 +4,7 @@
   Drupal.behaviors.awturNumberInputsHorizontal = {
     attach: function (context) {
 
-      const elements = once('awtur-horizontal', context.querySelectorAll('.overnight-room-parent input[type="number"], .reservation-service-count input[type="number"]'));
+      const elements = once('awtur-horizontal', context.querySelectorAll('.overnight-room-parent input[type="number"], .reservation-service-count input[type="number"], .person-option-count input[type="number"]'));
 
       elements.forEach(function (input) {
 
