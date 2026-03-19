@@ -34,12 +34,14 @@ use Drupal\Core\Url;
 use Drupal\field\FieldConfigInterface;
 use Drupal\field\FieldStorageConfigInterface;
 use Drupal\node\NodeInterface;
+use Drupal\user\Entity\User;
 use Drupal\user\RoleInterface;
 use Drupal\user\UserInterface;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * The time cutoff for reservations marked as read for entity types other node.
@@ -981,6 +983,11 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
 
   // 1) Extra validation handlers.
   $form['#validate'][] = 'reservation_reservation_form_validate';
+  $form['actions']['submit']['#submit'] = [
+    'reservation_reservation_form_anonymous_user',
+    ...$form['actions']['submit']['#submit'],
+  ];
+  $form['#validate'][] = 'reservation_reservation_form_validate';
   $form['actions']['submit']['#submit'][] = 'reservation_reservation_form_submit';
 
   // 2) Fetch zaal-node + 'field_prijs_eenheid' data.
@@ -1263,7 +1270,7 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
               '#type' => 'number',
               '#title' => t('Number of nights'),
             ];
-            
+
             $overnight_rooms_options[$key] = [
               'name' => $title,
               'amount' => ((int) $overnight_room->get('field_price_per_night')?->value ?? 0),
@@ -1450,6 +1457,30 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
 
   // 10) Reorder body
   $form['reservation_body']['#weight'] = 6;
+
+  if (Drupal::currentUser()->isAnonymous()) {
+    $form['reservation_user_form'] = [
+      '#type' => 'container',
+      '#weight' => 6,
+    ];
+
+    $form['reservation_user_form']['reservation_user_wrapper'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Reservation user account'),
+    ];
+    $form['reservation_user_form']['reservation_user_wrapper']['username'] = [
+      '#type' => 'email',
+      '#title' => t('Email address'),
+      '#required' => TRUE,
+      '#description' => t('Enter the email address. you would like to associate with the reservation.
+       note creation of account will be attempted if account dont exist already.'),
+    ];
+    $form['reservation_user_form']['reservation_user_wrapper']['password'] = [
+      '#type' => 'password_confirm',
+      '#required' => TRUE,
+    ];
+  }
+
 
   $nid = $form_state->getFormObject()->getEntity()->getReservationedEntityId();
   $node = \Drupal\node\Entity\Node::load($nid);
@@ -1666,6 +1697,48 @@ function reservation_toggle_service_count(array &$form, FormStateInterface $form
 function reservation_toggle_overnight_room_count(array &$form, FormStateInterface $form_state)
 {
   return $form['overnight_rooms'][$form_state->getTriggeringElement()['#name']];
+}
+
+/**
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ */
+function reservation_reservation_form_anonymous_user($form, \Drupal\Core\Form\FormStateInterface $form_state) {
+
+  //create account for anonymous user
+  if (Drupal::currentUser()->isAnonymous()) {
+    $password = $form_state->getValue('password');
+    $email = $form_state->getValue('username');
+
+    $existing = \Drupal::entityTypeManager()
+      ->getStorage('user')
+      ->loadByProperties(['mail' => $email]);
+
+    if ($existing) {
+      // for security reason redirect to login page
+      \Drupal::messenger()->addWarning(t('An account with this email already exists. Please log in.'));
+      // Force redirect immediately.
+      $url = Url::fromRoute('user.login')->toString();
+      $response = new RedirectResponse($url);
+      $response->send();
+      exit;
+    }
+    else {
+      $user = User::create([
+        'name' => $email,
+        'mail' => $email,
+        'pass' => $password,
+        'status' => 1,
+      ]);
+
+      // Add role
+      $user->addRole('magnus');
+      $user->save();
+      user_login_finalize($user);
+    }
+  }
+
 }
 
 /**
