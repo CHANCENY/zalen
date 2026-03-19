@@ -54,9 +54,7 @@
 }
 .my-per-person-item input[type="number"] {
   border: 1px solid #5392f9;
-  border-radius: 4px;
   background-color: #ffffff;
-  width: 130px;
   position: relative;
 }
 .my-per-person-item .person-option-count {
@@ -126,8 +124,8 @@
 
   /* 🔹 Image */
   .reservation-overnight-room-image {
-    width: 140px;
-    height: 100px;
+    width: 160px;
+    height: 120px;
     flex-shrink: 0;
     border-radius: 6px;
     overflow: hidden;
@@ -138,6 +136,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 6px;
   }
 
   /* 🔹 Content */
@@ -232,7 +231,6 @@
     width: 30%;
     padding: 10px !important;
     border-radius: unset;
-    border: 1px solid #ccc !important;
   }
 
   /* Remove spacing */

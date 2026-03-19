@@ -4,11 +4,10 @@
   Drupal.behaviors.awturNumberInputsHorizontal = {
     attach: function (context) {
 
-      const elements = once('awtur-horizontal', context.querySelectorAll('.overnight-room-parent input[type="number"]'));
+      const elements = once('awtur-horizontal', context.querySelectorAll('.overnight-room-parent input[type="number"], .reservation-service-count input[type="number"], .person-option-count input[type="number"]'));
 
       elements.forEach(function (input) {
 
-        // avoid conflict with old script
         if (input.closest('.awtur-number-wrap')) return;
 
         // wrapper
@@ -35,13 +34,31 @@
 
         // logic
         function step(delta) {
-          let value = parseInt(input.value) || 0;
-          value += delta;
 
-          if (value < 0) value = 0;
+          const stepAttr = input.getAttribute('step');
+          const step = stepAttr && stepAttr !== 'any' ? parseFloat(stepAttr) : 1;
 
-          // format 01, 02
-          input.value = String(value).padStart(2, '0');
+          const min = input.hasAttribute('min') ? parseFloat(input.getAttribute('min')) : 0;
+          const max = input.hasAttribute('max') ? parseFloat(input.getAttribute('max')) : Infinity;
+
+          // current value (default ya existing)
+          const raw = input.value === '' ? min : parseFloat(input.value);
+          const current = isNaN(raw) ? min : raw;
+
+          let next = current + (delta * step);
+
+          // decimal precision handle
+          const precision = (step.toString().split('.')[1] || '').length;
+          if (precision > 0) {
+            const factor = Math.pow(10, precision);
+            next = Math.round(next * factor) / factor;
+          }
+
+          // clamp min/max
+          if (next < min) next = min;
+          if (next > max) next = max;
+
+          input.value = next;
 
           input.dispatchEvent(new Event('input', { bubbles: true }));
           input.dispatchEvent(new Event('change', { bubbles: true }));

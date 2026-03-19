@@ -1053,36 +1053,86 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
 
           $menu = ($service->get('field_is_service_or_menu')?->value ?? null) === 'service' ? 'Service' : 'Menu';
           // Checkbox
-          $form['additional_services_fieldset'][$name_service] = [
-            '#type' => 'checkbox',
-            '#title' => t($title. ' ('.$menu.')'),
-            '#description' => t($service->get('field_service_description')?->value ?? ""),
-            '#ajax' => [
-              'callback' => 'reservation_toggle_service_count',
-              'event' => 'change',
-            ],
-            '#prefix' => '<div class="service-selector-wrapper">'.$image,
-            '#suffix' => '</div>',
-          ];
+        //   $form['additional_services_fieldset'][$name_service] = [
+        //     '#type' => 'checkbox',
+        //     '#title' => t($title. ' ('.$menu.')'),
+        //     '#description' => t($service->get('field_service_description')?->value ?? ""),
+        //     '#ajax' => [
+        //       'callback' => 'reservation_toggle_service_count',
+        //       'event' => 'change',
+        //     ],
+        //     '#prefix' => '<div class="service-selector-wrapper">'.$image,
+        //     '#suffix' => '</div>',
+        //   ];
 
-          // 4. 🟦 Reuse Menus & Services Across Halls
+          // Reuse Menus & Services Across Halls
 
           if ($service->get('field_service_minimum_order')?->value) {
             $title .= ' (minimum ' . $service->get('field_service_minimum_order')?->value . ')';
           }
 
           // Number field
-          $form['additional_services_fieldset'][$name_service . '_count'] = [
-            '#type' => 'number',
-            '#title' => t($title),
-            '#min' => $service->get('field_service_minimum_order')?->value ?? 0,
-            '#prefix' => Markup::create(
-              '<div id="' . $wrapper_id . '" class="reservation-service-count-wrapper" style="display: none;">'
-            ),
-            '#suffix' => '</div>',
-            '#default_value' => $service->get('field_service_minimum_order')?->value ?? 0,
+        //   $form['additional_services_fieldset'][$name_service . '_count'] = [
+        //     '#type' => 'number',
+        //     '#title' => t($title),
+        //     '#min' => $service->get('field_service_minimum_order')?->value ?? 0,
+        //     '#prefix' => Markup::create(
+        //       '<div id="' . $wrapper_id . '" class="reservation-service-count-wrapper" style="display: none;">'
+        //     ),
+        //     '#suffix' => '</div>',
+        //     '#default_value' => $service->get('field_service_minimum_order')?->value ?? 0,
+        //   ];
+        // Main wrapper
+          $form['additional_services_fieldset'][$name_service] = [
+            '#type' => 'container',
+            '#attributes' => [
+              'class' => ['service-selector-wrapper'],
+            ],
           ];
 
+          // Image
+          $form['additional_services_fieldset'][$name_service]['image'] = [
+            '#markup' => '<div class="service-image-wrapper">' . $image . '</div>',
+          ];
+
+          // Content (title + description)
+          $form['additional_services_fieldset'][$name_service]['content'] = [
+            '#type' => 'container',
+            '#attributes' => ['class' => ['service-content']],
+          ];
+
+          $form['additional_services_fieldset'][$name_service]['content']['title'] = [
+            '#markup' => '<div class="service-title">'
+              . ($service->get('field_service_short_description')->value ?? '')
+              . ' <span class="service-menu">(' . $menu . ')</span>'
+            . '</div>',
+          ];
+
+          $form['additional_services_fieldset'][$name_service]['content']['desc'] = [
+            '#markup' => '<div class="service-desc">' . ($service->get('field_service_description')->value ?? '') . '</div>',
+          ];
+
+          // RIGHT SIDE (Price + Quantity)
+          $form['additional_services_fieldset'][$name_service]['right'] = [
+            '#type' => 'container',
+            '#attributes' => ['class' => ['reservation-service-count']],
+          ];
+
+          // Price
+          $form['additional_services_fieldset'][$name_service]['right']['price'] = [
+            '#markup' => '<div class="service-price">' .
+              Drupal::service('reservation.currencies')->getSymbol($service->get('field_service_currency')->value ?? 'eur') .
+              ($service->get('field_service_amount')->value ?? '') .
+            '</div>',
+          ];
+
+          // Quantity
+          $form['additional_services_fieldset'][$name_service]['right']['qty'] = [
+            '#type' => 'number',
+            // '#title' => t($title),
+            '#default_value' => $service->get('field_service_minimum_order')->value ?? 0,
+            '#min' => $service->get('field_service_minimum_order')->value ?? 0,
+          ];
         }
       }
 
@@ -1138,32 +1188,70 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
                       </div>';
             }
 
-            $form['overnight_rooms'][$key] = [
-              '#type' => 'checkbox',
-              '#title' => t($title . ' (' . $price . '/night)'),
-              '#description' => t($overnight_room->get('field_description')?->value ?? ""),
-              '#prefix' => '<div class="overnight-selector-wrapper">'.$image,
-              '#suffix' => '</div>',
+            $form['overnight_rooms'][$key . '_parent'] = [
+              '#type' => 'container',
+              '#attributes' => [
+                'class' => ['overnight-room-parent'],
+              ],
             ];
 
-            $form['overnight_rooms'][$key . '_wrapper'] = [
+            $form['overnight_rooms'][$key . '_parent']['top'] = [
+              '#type' => 'container',
+              '#attributes' => [
+                'class' => ['overnight-selector-wrapper'],
+              ],
+            ];
+
+            $form['overnight_rooms'][$key . '_parent']['top']['image'] = [
+              '#markup' => $image,
+            ];
+
+            $form['overnight_rooms'][$key . '_parent']['top']['content'] = [
+              '#type' => 'container',
+              '#attributes' => ['class' => ['room-content']],
+            ];
+
+            $form['overnight_rooms'][$key . '_parent']['top']['content']['header'] = [
+              '#type' => 'container',
+              '#attributes' => ['class' => ['room-header']],
+            ];
+
+            $form['overnight_rooms'][$key . '_parent']['top']['content']['header'][$key] = [
+              '#type' => 'checkbox',
+              '#title' => t($title),
+            ];
+
+            $form['overnight_rooms'][$key . '_parent']['top']['content']['header']['price'] = [
+              '#markup' => '<div class="price-box">
+                  <div class="amount">'.$price.'</div>
+                  <div class="per-night">Per night</div>
+                </div>',
+            ];
+
+            $form['overnight_rooms'][$key . '_parent']['top']['content']['desc'] = [
+              '#markup' => '<div class="room-desc">'
+                . ($overnight_room->get('field_description')?->value ?? "") .
+              '</div>',
+            ];
+
+            $form['overnight_rooms'][$key . '_parent'][$key . '_wrapper'] = [
               '#type' => 'container',
               '#attributes' => [
                 'class' => ['reservation-overnightroom-count-wrapper'],
               ],
               '#states' => [
                 'visible' => [
-                  ':input[name="overnight_rooms['.$key.']"]' => ['checked' => TRUE],
+                  ':input[name="overnight_rooms['.$key.'_parent][top][content][header]['.$key.']"]' => ['checked' => TRUE],
                 ],
               ],
             ];
 
-            $form['overnight_rooms'][$key . '_wrapper'][$key . '_count'] = [
+            $form['overnight_rooms'][$key . '_parent'][$key . '_wrapper'][$key . '_count'] = [
               '#type' => 'number',
               '#title' => t('Number of rooms you want to book'),
             ];
 
-            $form['overnight_rooms'][$key . '_wrapper'][$key . '_date'] = [
+            $form['overnight_rooms'][$key . '_parent'][$key . '_wrapper'][$key . '_date'] = [
               '#type' => 'date',
               '#title' => t('Start Date'),
               '#attributes' => [
@@ -1171,10 +1259,11 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
               ],
             ];
 
-            $form['overnight_rooms'][$key . '_wrapper'][$key . '_night'] = [
+            $form['overnight_rooms'][$key . '_parent'][$key . '_wrapper'][$key . '_night'] = [
               '#type' => 'number',
               '#title' => t('Number of nights'),
             ];
+            
             $overnight_rooms_options[$key] = [
               'name' => $title,
               'amount' => ((int) $overnight_room->get('field_price_per_night')?->value ?? 0),
