@@ -8,6 +8,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\file\Entity\File;
 use Drupal\mailsystem\MailsystemManager;
 use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\payment_provider\Plugin\Pricing\Pricing;
 use Drupal\reservation\Entity\Reservation;
 use Drupal\user\Entity\User;
@@ -489,7 +490,7 @@ class Invoicing {
     $information = $this->reservation->get('field_reservation_information')->referencedEntities();
     $information = reset($information);
 
-    if ($information instanceof Node) {
+    if ($information instanceof Paragraph) {
 
       $node_room = \Drupal::service('entity_type.manager')->getStorage('node')->load($this->reservation->get('entity_id')->target_id ?? 0);
       $room_owner = \Drupal::service('entity_type.manager')->getStorage('user')->load($node_room?->getOwnerId());
@@ -525,7 +526,7 @@ class Invoicing {
         $remaining_balance = 0;
       }
 
-      Node::create(
+      $n = Node::create(
         [
           'type'=> 'invoices_receipt',
           'status' => 1,
@@ -545,7 +546,7 @@ class Invoicing {
           'field_settled_amount' => $this->pricing->formatCurrency($this->payment->getSettlementAmount()),
           'field_reservation' => ['target_id' => $this->reservation->id()],
           'field_room_ref' => ['target_id' => $node_room->id()],
-          'uid' => $room_owner?->id() ?? $reservation_owner->id(),
+          'uid' => $reservation_owner->id(),
           'field_invoice_pdf' => ['target_id' => $this->invoice_pdf_fid],
           'promote' => 0,
         ]

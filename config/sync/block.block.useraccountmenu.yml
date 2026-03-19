@@ -26,4 +26,4 @@ visibility:
   request_path:
     id: request_path
     negate: false
-    pages: "/user/*\r\n/mijn-boekingen\r\n/mijn-zaal-lijst\r\n/onze-zaal-reservaties\r\n/node/2193\r\n/node/2192\r\n/vip-capacity-selection\r\n/reservation-invoices"
+    pages: "/user/*\r\n/mijn-boekingen\r\n/mijn-zaal-lijst\r\n/onze-zaal-reservaties\r\n/node/2193\r\n/node/2192\r\n/vip-capacity-selection\r\n/reservation-invoices\r\n/reservation-invoice-magnus"

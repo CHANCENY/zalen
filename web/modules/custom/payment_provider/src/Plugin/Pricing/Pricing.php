@@ -419,7 +419,7 @@ class Pricing {
    */
   public function paymentInvoiceCreation(Payment $payment, Reservation $reservation, Node $room, User $room_owner): void {
 
-    $currentDate = (new \Drupal\Core\Datetime\DrupalDateTime)->getTimestamp();
+    $currentDate = (new \DateTime)->getTimestamp();
     $invoice = InvoicePayment::create(
       array(
         'title' => 'Reservation payment user (ID' . $reservation->getOwnerId(). ')',
