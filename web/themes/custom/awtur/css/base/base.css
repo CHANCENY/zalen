@@ -172,7 +172,7 @@
   @media (max-width: 600px) {
 
     .room-details-inline {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: auto;
     }
 
     .room-photo-grid {

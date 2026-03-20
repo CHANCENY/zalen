@@ -271,3 +271,8 @@ article.block-zalen{
     border-radius: 4px;
   }
 
+@media(max-width: 357px){
+  article.block-zalen{
+    max-width: 250px !important;
+  }
+}
