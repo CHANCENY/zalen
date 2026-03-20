@@ -4,7 +4,10 @@
   Drupal.behaviors.awturNumberInputsHorizontal = {
     attach: function (context) {
 
-      const elements = once('awtur-horizontal', context.querySelectorAll('.overnight-room-parent input[type="number"], .reservation-service-count input[type="number"], .person-option-count input[type="number"]'));
+      const elements = once(
+        'awtur-horizontal',
+        context.querySelectorAll('.overnight-room-parent input[type="number"], .reservation-service-count input[type="number"], .person-option-count input[type="number"]')
+      );
 
       elements.forEach(function (input) {
 
@@ -32,59 +35,80 @@
         wrapper.appendChild(input);
         wrapper.appendChild(btnUp);
 
-        // logic
+
+        if (input.value === '') {
+          if (input.defaultValue !== '') {
+            input.value = input.defaultValue;
+          } else if (input.min !== '') {
+            input.value = input.min;
+          }
+        }
+
+        // step logic
         function step(delta) {
+          let value;
 
-          const stepAttr = input.getAttribute('step');
-          const step = stepAttr && stepAttr !== 'any' ? parseFloat(stepAttr) : 1;
-
-          const min = input.hasAttribute('min') ? parseFloat(input.getAttribute('min')) : 0;
-          const max = input.hasAttribute('max') ? parseFloat(input.getAttribute('max')) : Infinity;
-
-          // current value (default ya existing)
-          const raw = input.value === '' ? min : parseFloat(input.value);
-          const current = isNaN(raw) ? min : raw;
-
-          let next = current + (delta * step);
-
-          // decimal precision handle
-          const precision = (step.toString().split('.')[1] || '').length;
-          if (precision > 0) {
-            const factor = Math.pow(10, precision);
-            next = Math.round(next * factor) / factor;
+          // Priority: current → default → min → 0
+          if (input.value !== '') {
+            value = parseInt(input.value);
+          } else if (input.defaultValue !== '') {
+            value = parseInt(input.defaultValue);
+          } else if (input.min !== '') {
+            value = parseInt(input.min);
+          } else {
+            value = 0;
           }
 
-          // clamp min/max
-          if (next < min) next = min;
-          if (next > max) next = max;
+          value += delta;
 
-          input.value = next;
+          const min = input.min !== '' ? parseInt(input.min) : 0;
+          const max = input.max !== '' ? parseInt(input.max) : null;
+
+          if (value < min) value = min;
+          if (max !== null && value > max) value = max;
+
+          input.value = value;
 
           input.dispatchEvent(new Event('input', { bubbles: true }));
           input.dispatchEvent(new Event('change', { bubbles: true }));
         }
 
-        btnUp.addEventListener('click', () => step(1));
-        btnDown.addEventListener('click', () => step(-1));
-
-        // hold support
+        // HOLD LOGIC
         let hold;
+        let isHolding = false;
+
         function start(delta) {
+          isHolding = true;
           step(delta);
-          hold = setInterval(() => step(delta), 120);
+          hold = setInterval(() => step(delta), 150);
         }
+
         function stop() {
           clearInterval(hold);
+          setTimeout(() => {
+            isHolding = false;
+          }, 50);
         }
 
+        // CLICK (only if not holding)
+        btnUp.addEventListener('click', () => {
+          if (!isHolding) step(1);
+        });
+
+        btnDown.addEventListener('click', () => {
+          if (!isHolding) step(-1);
+        });
+
+        // HOLD EVENTS
         btnUp.addEventListener('mousedown', () => start(1));
         btnDown.addEventListener('mousedown', () => start(-1));
+
         document.addEventListener('mouseup', stop);
 
         btnUp.addEventListener('mouseleave', stop);
         btnDown.addEventListener('mouseleave', stop);
 
-        // mobile
+        // MOBILE SUPPORT
         btnUp.addEventListener('touchstart', (e) => {
           e.preventDefault();
           start(1);
