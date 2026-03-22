@@ -18,6 +18,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\reservation\Entity\Reservation;
 use Drupal\reservation\Plugin\BookingConfirmationEmail;
 use Drupal\reservation\ReservationInterface;
 use Drupal\reservation\Entity\ReservationType;
@@ -942,6 +943,24 @@ function __remove_special_characters(?string $string): ?string {
 function reservation_form_reservation_type_booking_form_alter( &$form,
  \Drupal\Core\Form\FormStateInterface $form_state, $form_id):void {
 
+
+  $route = Drupal::routeMatch()->getRouteName();
+  $isBookingEdit = true;
+  $reservationEntity = Drupal::routeMatch()->getParameter('reservation');
+  $reservationInformation = null;
+  if ($reservationEntity instanceof Reservation) {
+    $reservationInformation = $reservationEntity->get('field_reservation_information')
+      ->entity;
+  }
+
+  if ($route === 'entity.node.canonical') {
+    $form['is_booking_form'] = [
+      '#type' => 'hidden',
+      '#value' => "booking",
+    ];
+    $isBookingEdit = false;
+  }
+
   if ($form_id == 'reservation_type_booking_form') {
     // Get the current route match service.
     $route_match = \Drupal::routeMatch();
@@ -1012,6 +1031,7 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
   $additional_services = [];
 
   if (count($services) >= 1) {
+
     $wellServices = array_filter($services, function($service) {
       return $service->hasField('field_service_short_description') && !empty($service->get('field_service_short_description')?->value);
     });
@@ -1059,37 +1079,12 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
           $title .=  $service->get('field_service_amount')?->value ?? '';
 
           $menu = ($service->get('field_is_service_or_menu')?->value ?? null) === 'service' ? 'Service' : 'Menu';
-          // Checkbox
-        //   $form['additional_services_fieldset'][$name_service] = [
-        //     '#type' => 'checkbox',
-        //     '#title' => t($title. ' ('.$menu.')'),
-        //     '#description' => t($service->get('field_service_description')?->value ?? ""),
-        //     '#ajax' => [
-        //       'callback' => 'reservation_toggle_service_count',
-        //       'event' => 'change',
-        //     ],
-        //     '#prefix' => '<div class="service-selector-wrapper">'.$image,
-        //     '#suffix' => '</div>',
-        //   ];
 
-          // Reuse Menus & Services Across Halls
-
+          // Reuse Menus & Services Across Hall
           if ($service->get('field_service_minimum_order')?->value) {
             $title .= ' (minimum ' . $service->get('field_service_minimum_order')?->value . ')';
           }
 
-          // Number field
-        //   $form['additional_services_fieldset'][$name_service . '_count'] = [
-        //     '#type' => 'number',
-        //     '#title' => t($title),
-        //     '#min' => $service->get('field_service_minimum_order')?->value ?? 0,
-        //     '#prefix' => Markup::create(
-        //       '<div id="' . $wrapper_id . '" class="reservation-service-count-wrapper" style="display: none;">'
-        //     ),
-        //     '#suffix' => '</div>',
-        //     '#default_value' => $service->get('field_service_minimum_order')?->value ?? 0,
-        //   ];
-        // Main wrapper
           $form['additional_services_fieldset'][$name_service] = [
             '#type' => 'container',
             '#attributes' => [
@@ -1133,12 +1128,15 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
             '</div>',
           ];
 
+          $serviceDefault = __is_service_selected($reservationInformation, $service->id());
+
           // Quantity
-          $form['additional_services_fieldset'][$name_service]['right']['qty'] = [
+          $form['additional_services_fieldset'][$name_service]['right'][$name_service.'_count'] = [
             '#type' => 'number',
             // '#title' => t($title),
-            '#default_value' => $service->get('field_service_minimum_order')->value ?? 0,
-            '#min' => $service->get('field_service_minimum_order')->value ?? 0,
+            '#attributes' => ['class' => [$wrapper_id]],
+            '#default_value' => is_array($serviceDefault) ?
+              $serviceDefault['total'] :  $service->get('field_service_minimum_order')?->value ?? 0,
           ];
         }
       }
@@ -1159,6 +1157,7 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
   $json_validation_data = [];
   $location = $room_node->get('field_bedrijf_zaal')?->target_id ? Node::load($room_node->get('field_bedrijf_zaal')?->target_id) : NULL;
   if ($location) {
+
     $overnight_rooms = $location->get('field_overnight_room')?->referencedEntities() ?? [];
     if (count($overnight_rooms)) {
       $form['overnight_rooms'] = [
@@ -1195,6 +1194,8 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
                       </div>';
             }
 
+            $overnightDefault = __is_overnightroom_selected($reservationInformation, $overnight_room->id());
+
             $form['overnight_rooms'][$key . '_parent'] = [
               '#type' => 'container',
               '#attributes' => [
@@ -1226,6 +1227,8 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
             $form['overnight_rooms'][$key . '_parent']['top']['content']['header'][$key] = [
               '#type' => 'checkbox',
               '#title' => t($title),
+              '#attributes'    => ['class' => [$key]],
+              '#default_value' => is_array($overnightDefault) ? $overnightDefault['default'] : ""
             ];
 
             $form['overnight_rooms'][$key . '_parent']['top']['content']['header']['price'] = [
@@ -1256,19 +1259,24 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
             $form['overnight_rooms'][$key . '_parent'][$key . '_wrapper'][$key . '_count'] = [
               '#type' => 'number',
               '#title' => t('Number of rooms you want to book'),
+              '#attributes' => ['class' => [ $key.'_count'] ],
+              '#default_value' => is_array($overnightDefault) ? $overnightDefault['total_room_count'] : ""
             ];
 
-            $form['overnight_rooms'][$key . '_parent'][$key . '_wrapper'][$key . '_date'] = [
+            $form['overnight_rooms'][$key . '_parent'][$key.'_wrapper'][$key . '_date'] = [
               '#type' => 'date',
               '#title' => t('Start Date'),
               '#attributes' => [
-                'class' => ['flatpickr-input'],
+                'class' => ['flatpickr-input', $key.'_date'],
               ],
+              '#default_value' => is_array($overnightDefault) ? $overnightDefault['starting_overnight_date'] : date("Y-m-d"),
             ];
 
             $form['overnight_rooms'][$key . '_parent'][$key . '_wrapper'][$key . '_night'] = [
               '#type' => 'number',
               '#title' => t('Number of nights'),
+              '#attributes' => ['class' => [$key.'_night'] ],
+              '#default_value'  =>  is_array($overnightDefault) ? $overnightDefault['total_night'] : 0
             ];
 
             $overnight_rooms_options[$key] = [
@@ -1327,24 +1335,29 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
   }
 
   // Setting the default calculation.
-  if (!empty($hours_items)) {
-    $form['field_per_hour_calc']['widget']['value']['#default_value'] = TRUE;
-  }
-  elseif (!empty($days_items)) {
-    $form['field_calculate_payment_per_day']['widget']['value']['#default_value'] = TRUE;
-  }
-  elseif (!empty($persons_items)) {
-    $form['field_per_person']['widget']['value']['#default_value'] = TRUE;
-  }
+  if (!$isBookingEdit) {
 
-  if (empty($hours_items)) {
-    $form['field_per_hour_calc']['#access'] = FALSE;
-  }
-  if (empty($days_items)) {
-    $form['field_calculate_payment_per_day']['#access'] = FALSE;
-  }
-  if (empty($persons_items)) {
-    $form['field_per_person']['#access'] = FALSE;
+    if (!empty($hours_items)) {
+      $form['field_per_hour_calc']['widget']['value']['#default_value'] = TRUE;
+    }
+    elseif (!empty($days_items)) {
+      $form['field_calculate_payment_per_day']['widget']['value']['#default_value'] = TRUE;
+    }
+    elseif (!empty($persons_items)) {
+      $form['field_per_person']['widget']['value']['#default_value'] = TRUE;
+    }
+
+    if (empty($hours_items)) {
+      $form['field_per_hour_calc']['#access'] = FALSE;
+    }
+    if (empty($days_items)) {
+      $form['field_calculate_payment_per_day']['#access'] = FALSE;
+    }
+    if (empty($persons_items)) {
+      $form['field_per_person']['#access'] = FALSE;
+    }
+
+
   }
 
   $json_validation_data = json_encode($json_validation_data, JSON_PRETTY_PRINT);
@@ -1404,6 +1417,8 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
               }
             }
 
+            $personDefault = __is_person_selected($reservationInformation, $person_rule->id());
+
             // In 1 container -> #theme => 'my_per_person_item'
             $form['per_person_options'][$container_id] = [
               '#type' => 'container',
@@ -1420,7 +1435,7 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
               $key.'_checkbox' => [
                 '#type' => 'checkbox',
                 '#title' => t('Select @title', ['@title' => $person_rule->get('field_short_description')?->value ?? '']),
-                '#default_value' => 0,
+                '#default_value' => is_array($personDefault) ? $personDefault['default'] : 0,
               ],
               $key.'_person_count' => [
                 '#type' => 'number',
@@ -1432,6 +1447,7 @@ function reservation_form_reservation_type_booking_form_alter( &$form,
                   ],
                   'id' => $key,
                 ],
+                '#default_value'  => is_array($personDefault) ? $personDefault['count'] : 0
               ],
             ];
           }
@@ -1797,7 +1813,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
     if (!empty($additionalServices)) {
       $keys = array_keys($additionalServices);
       foreach ($keys as $key) {
-        if (!empty($submittedData[$key])) {
+        if (!empty($submittedData[$key."_count"])) {
             $count_service = $submittedData[$key . '_count'];
             $service = $additionalServices[$key];
             if (intval($count_service) < intval($service['mini'])) {
@@ -1827,12 +1843,13 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
             foreach ($overnight_rooms as $overnight_room) {
               $title = ($overnight_room->get('field_room_type')?->value ?? '');
               $key = str_replace(' ', '_', $title).'_room_'.$overnight_room->id();
-              if (!empty($submittedData['overnight_rooms'][$key])) {
-                $nightstay = (int) $submittedData['overnight_rooms'][$key. '_night'];
-                $rooms_count = (int) $submittedData['overnight_rooms'][$key. '_count'];
-                $date = !empty($submittedData['overnight_rooms'][$key. '_date']) ? $submittedData['overnight_rooms'][$key. '_date'] :  $reservation_data['field_starting_date'];
+              $overnight_room_checked = __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key);
 
-                // TODO: compare date also here btw $submittedData['overnight_rooms'][$key. '_date'] and $reservation_data['field_starting_date']
+              if ($overnight_room_checked) {
+                $nightstay = (int) __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key. '_night');
+                $rooms_count = (int) __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key. '_count');
+                $date = __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key. '_date');
+
                 if ($rooms_count <= ((int) $overnight_room->get('field_number_of_rooms')?->value ?? 0)) {
                   $reservation_data['overnight_rooms'][] = [
                     'field_room' => $overnight_room,
@@ -1928,7 +1945,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
     if (!empty($additionalServices)) {
       $keys = array_keys($additionalServices);
       foreach ($keys as $key) {
-        if (!empty($submittedData[$key])) {
+        if (!empty($submittedData[$key."_count"])) {
           $count_service = $submittedData[$key . '_count'];
           $service = $additionalServices[$key];
           if (intval($count_service) < intval($service['mini'])) {
@@ -1947,7 +1964,6 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
     }
 
     if (!empty($submittedData['overnight_rooms']) && $room) {
-
       $location = $room->get('field_bedrijf_zaal')->referencedEntities();
       if (!empty($location)) {
         $location = reset($location);
@@ -1958,17 +1974,22 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
             foreach ($overnight_rooms as $overnight_room) {
               $title = ($overnight_room->get('field_room_type')?->value ?? '');
               $key = str_replace(' ', '_', $title).'_room_'.$overnight_room->id();
-              if (!empty($submittedData['overnight_rooms'][$key])) {
-                $nightstay = (int) $submittedData['overnight_rooms'][$key. '_night'];
-                $rooms_count = (int) $submittedData['overnight_rooms'][$key. '_count'];
+              $overnight_room_checked = __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key);
 
+              if ($overnight_room_checked) {
+                $nightstay = (int) __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key. '_night');
+                $rooms_count = (int) __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key. '_count');
+                $date = __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key. '_date');
+
+                // TODO: compare date also here btw $submittedData['overnight_rooms'][$key. '_date'] and $reservation_data['field_starting_date']
                 if ($rooms_count <= ((int) $overnight_room->get('field_number_of_rooms')?->value ?? 0)) {
                   $reservation_data['overnight_rooms'][] = [
                     'field_room' => $overnight_room,
                     'field_nights' => $nightstay,
                     'field_roms_count' => $rooms_count,
-                    'field_rooms_total_amount' => ($nightstay * ((int)$overnight_room->get('field_price_per_night')->value)) * $rooms_count,
-                    'type' => 'reservation_overnight_room'
+                    'field_rooms_total_amount' => $nightstay * ((int)$overnight_room->get('field_price_per_night')->value),
+                    'type' => 'reservation_overnight_room',
+                    'field_starting_overnight_date' => $date
                   ];
                 }
                 else {
@@ -2112,7 +2133,7 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
     if (!empty($additionalServices)) {
       $keys = array_keys($additionalServices);
       foreach ($keys as $key) {
-        if (!empty($submittedData[$key])) {
+        if (!empty($submittedData[$key."_count"])) {
           $count_service = $submittedData[$key . '_count'];
           $service = $additionalServices[$key];
           if (intval($count_service) < intval($service['mini'])) {
@@ -2141,17 +2162,22 @@ function reservation_reservation_form_validate($form, \Drupal\Core\Form\FormStat
             foreach ($overnight_rooms as $overnight_room) {
               $title = ($overnight_room->get('field_room_type')?->value ?? '');
               $key = str_replace(' ', '_', $title).'_room_'.$overnight_room->id();
-              if (!empty($submittedData['overnight_rooms'][$key])) {
-                $nightstay = (int) $submittedData['overnight_rooms'][$key. '_night'];
-                $rooms_count = (int) $submittedData['overnight_rooms'][$key. '_count'];
+              $overnight_room_checked = __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key);
 
+              if ($overnight_room_checked) {
+                $nightstay = (int) __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key. '_night');
+                $rooms_count = (int) __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key. '_count');
+                $date = __get_overnight_room_selected_data($submittedData['overnight_rooms'], $key. '_date');
+
+                // TODO: compare date also here btw $submittedData['overnight_rooms'][$key. '_date'] and $reservation_data['field_starting_date']
                 if ($rooms_count <= ((int) $overnight_room->get('field_number_of_rooms')?->value ?? 0)) {
                   $reservation_data['overnight_rooms'][] = [
                     'field_room' => $overnight_room,
                     'field_nights' => $nightstay,
                     'field_roms_count' => $rooms_count,
                     'field_rooms_total_amount' => $nightstay * ((int)$overnight_room->get('field_price_per_night')->value),
-                    'type' => 'reservation_overnight_room'
+                    'type' => 'reservation_overnight_room',
+                    'field_starting_overnight_date' => $date
                   ];
                 }
                 else {
@@ -2312,6 +2338,23 @@ function reservation_reservation_form_submit($form, \Drupal\Core\Form\FormStateI
       $node->save();
     }
   }
+}
+
+function __get_overnight_room_selected_data(array $array, $searchKey, $default = null) {
+  foreach ($array as $key => $value) {
+    if ($key === $searchKey) {
+      return $value;
+    }
+
+    if (is_array($value)) {
+      $result = __get_overnight_room_selected_data($value, $searchKey, $default);
+      if ($result !== $default) {
+        return $result;
+      }
+    }
+  }
+
+  return $default;
 }
 
 function __get_seasonal_detail_apply(array $seasonal, array $bookedDates): false|array
@@ -2803,4 +2846,65 @@ function __reservation_get_extra_services_paragraphs_default()
 function __reservation_is_allowed_to_show_reused(): bool
 {
   return !empty(__reservation_get_extra_services_paragraphs());
+}
+
+
+function __is_service_selected(?Paragraph $paragraph, int $service_id) {
+
+  if ($paragraph && $paragraph->bundle() === "reservation") {
+    $services = $paragraph->get('field_services')->referencedEntities();
+    foreach ($services as $service) {
+      if (intval($service->get('field_service')->target_id) === $service_id) {
+        return [
+          'default' => true,
+          'service' => $service,
+          'total'   => $service->get('field_booking_count')->value,
+        ];
+      }
+    }
+  }
+
+  return FALSE;
+}
+
+function __is_overnightroom_selected(?Paragraph $reservation, int $overnight_id) {
+
+  if (!empty($reservation) && $reservation->bundle() === "reservation") {
+
+    $over_night_rooms = $reservation->get('field_overnight_rooms')->referencedEntities();
+
+    foreach ($over_night_rooms as $room) {
+      if (intval($room->get('field_room')->target_id) === intval($overnight_id)) {
+        return [
+          'default' => true,
+          'room' => $room,
+          'total_night' => $room->get('field_nights')->value,
+          'total_room_count' => $room->get('field_roms_count')->value,
+          'starting_overnight_date' => $room->get('field_starting_overnight_date')->value,
+        ];
+      }
+    }
+
+  }
+  return false;
+}
+
+function __is_person_selected(?Paragraph $reservation, int $person_id) {
+
+  if (!empty($reservation) && $reservation->bundle() === "reservation") {
+
+    $persons = $reservation->get('field_person_type_options')->referencedEntities();
+    foreach ($persons as $person) {
+      if (intval($person->get('field_person_option')->target_id) === intval($person_id)) {
+        return [
+          'default' => !empty($person->get('field_reserve_count')->value),
+          'person' => $person,
+          'count'  => $person->get('field_reserve_count')->value,
+        ];
+      }
+    }
+  }
+
+  return FALSE;
+
 }

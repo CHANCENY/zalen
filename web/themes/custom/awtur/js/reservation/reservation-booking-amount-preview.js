@@ -359,6 +359,7 @@
                             }
                           }
                         });
+
                         if (personObjectData.length === 0) {
                           showErrorModal('Please select at least one person option.', 'Warning');
                           return;
@@ -725,24 +726,20 @@
           const keys = Object.keys(addtionalServices);
           let selectedAdditionalServices = [];
           keys.forEach(key => {
+            const service = addtionalServices[key] || {};
+            const qty = parseInt($(`.${service.wrapperId}`, context).val());
             const checkbox = $(`input[name="${key}"]`, context);
-            if (checkbox.is(':checked')) {
-              const $serviceCount = parseInt($(`input[name="${key}_count"]`, context).val());
-              if ($serviceCount) {
-                if ($serviceCount >= addtionalServices[key].mini) {
-                  const symbol = getCurrencySymbol(addtionalServices[key].currency);
-                  selectedAdditionalServices.push({
-                    ...addtionalServices[key],
-                    totalCount: $serviceCount,
-                    totalAmount: $serviceCount * addtionalServices[key].amount,
-                    symbol,
-                  });
-                }else {
-                  showErrorModal(`Service ${addtionalServices[key].name} was ignored in summary calculation due to not meeting minimum requirment`, 'Warning')
-                }
-
-              }
-
+            if (qty >= parseInt(service.mini)) {
+              const symbol = getCurrencySymbol(addtionalServices[key].currency);
+              selectedAdditionalServices.push({
+                ...addtionalServices[key],
+                totalCount: qty,
+                totalAmount: qty * addtionalServices[key].amount,
+                symbol,
+              });
+            }
+            else {
+              showErrorModal(`Service ${addtionalServices[key].name} was ignored in summary calculation due to not meeting minimum requirment`, 'Warning')
             }
           });
           return selectedAdditionalServices;
@@ -752,10 +749,11 @@
           let keys = Object.keys(overnightRooms);
           if (keys.length > 0) {
             const selectedOvernightRooms = [];
+
             keys.forEach((key)=>{
-              let $checkbox = $(`#${key}`,context);
-              let $count = parseInt($(`#${key}_count`,context).val());
-              let $nights = parseInt($(`#${key}_night`,context).val());
+              let $checkbox = $(`.${key}`,context);
+              let $count = parseInt($(`.${key}_count`,context).val());
+              let $nights = parseInt($(`.${key}_night`,context).val());
               if ($checkbox && $count) {
                 if($checkbox.is(':checked'))
                 selectedOvernightRooms.push({
