@@ -48,10 +48,6 @@ function zaal_condities_help($route_name, RouteMatchInterface $route_match)
 function zaal_condities_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
 
-  if (isset($_GET['redirect']) && $_GET['redirect'] == 'zaal') {
-    $form['actions']['submit']['#submit'][] = 'zaal_v_condition_submit';
-  }
-
   if ($form_id == 'node_zaal_form' || $form_id == 'node_zaal_edit_form') {
 
     if ($form_id == 'node_zaal_form') {
@@ -1145,5 +1141,3 @@ function zaal_condities_zaal_form_submit($form, \Drupal\Core\Form\FormStateInter
     $node->save();
   }
 }
-
-
