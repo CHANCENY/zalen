@@ -2640,6 +2640,21 @@ function reservation_node_zaal_form_validate($form, FormStateInterface $form_sta
 
   // Set back the array of properly structured references
   $form_state->setValue('field_resuse_menu_and_services_hidden', array_values($list));
+
+  $photos = $form_state->getValue('field_foto');
+  $minimum_photos = 0;
+  if (!empty($photos) && is_array($photos)) {
+    foreach ($photos as $photo) {
+      if (!empty($photo['fids'])) {
+        $minimum_photos += 1;
+      }
+    }
+  }
+
+  if ($minimum_photos < 5) {
+    $form_state->setErrorByName('field_foto', "Minimum photos is at least 5.");
+  }
+
 }
 
 function hasAtLeastOnePricingAmount(array $paragraphs): array

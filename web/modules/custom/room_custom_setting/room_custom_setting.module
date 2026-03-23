@@ -490,7 +490,6 @@ function room_custom_setting_delete_submit_handler($form, FormStateInterface $fo
    return $creating_calendar;
  };
 
-
 function ajaxValidateButtonChangeCalendar(array &$form, FormStateInterface $form_state) {
 
   //Let's check that the entered data in the field for choosing
