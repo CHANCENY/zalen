@@ -444,6 +444,7 @@ function process_vat_tokens(Payment $payment, string $token) {
   $routed_amount = !empty($payment->routing[0]->amount->value)
     ? $payment->routing[0]->amount->value
     : $actual_amount;
+  Drupal::logger('payment_invoice')->info("Token: ".$token);
 
   $is_platform_fees = $token === 'platform_fees_vat_calculated_table';
   $title = $payment->description ?? ($is_platform_fees ? 'Commission charge' : 'Reservation amount');

@@ -3,6 +3,7 @@
 namespace Drupal\reservation\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\reservation\Form\CommissionInvoiceEmail;
 use Drupal\reservation\Form\LocationNotificationEmailForm;
 use Drupal\reservation\Form\LocationPaymentWasReceivedFrom;
 use Drupal\reservation\Form\LocationPaymentInstructionWasSentForm;
@@ -37,8 +38,9 @@ class EmailTemplateController extends ControllerBase {
       'form_8' => $this->formBuilder()->getForm(OrganizerReservationCanceled::class),
       'form_9' => $this->formBuilder()->getForm(PaymentNotReceived::class),
       'form_10' => $this->formBuilder()->getForm(OneTimeSubscriptionEmail::class),
-      'form_11' => $this->formBuilder()->getForm(SubscriptionEmail::class),
-      'form_12' => $this->formBuilder()->getForm(MagnusPaidEmailForm::class),
+      'form_11' => $this->formBuilder()->getForm(CommissionInvoiceEmail::class),
+      'form_12' => $this->formBuilder()->getForm(SubscriptionEmail::class),
+      'form_13' => $this->formBuilder()->getForm(MagnusPaidEmailForm::class),
       'tokens' =>  \Drupal::service('token.tree_builder')->buildRenderable(['node', 'user','reservation','payment_invoices']),
     );
   }

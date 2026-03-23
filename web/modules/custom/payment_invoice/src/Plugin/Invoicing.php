@@ -56,6 +56,8 @@ class Invoicing {
    */
   private string|array|false $processed_invoice;
 
+  private string|array|false $processed_commission_invoice;
+
   private string $invoice_id;
 
   /**
@@ -85,7 +87,9 @@ class Invoicing {
     $this->processed_invoice = '';
     $token_service = \Drupal::token();
     $reservation_one_time = \Drupal::configFactory()->get('reservation.one_time_subscription_email')->get('template_mail');
+    $commission = \Drupal::configFactory()->get('reservation.commission_invoice_email')->get('template_mail');
     $magnus = \Drupal::configFactory()->get('reservation.magnus_reservation_paid_subscription_email')->get('template_mail');
+
     $this->processed_invoice = $token_service->replace($reservation_one_time,
       [
         'user'=>  $reservation_owner,
@@ -96,6 +100,18 @@ class Invoicing {
         'invoice'=> $this
       ]
     );
+
+    $this->processed_commission_invoice = $token_service->replace($commission,
+      [
+        'user'=>  $reservation_owner,
+        'reservation'=> $this->reservation,
+        'node' => $node_room,
+        'payment' => $this->payment,
+        'pricing' => $this->pricing,
+        'invoice'=> $this
+      ]
+    );
+
     $this->magnus_email = $token_service->replace($magnus, [
       'user'=>  $reservation_owner,
       'reservation'=> $this->reservation,
@@ -224,13 +240,13 @@ class Invoicing {
    * @throws MpdfException
    * @throws EntityStorageException
    */
-  public function getInvoicingPdf(): string {
+  public function getInvoicingPdf(bool $is_commission = false): string {
 
     // Starting mpdf object.
     $mpdf = new \Mpdf\Mpdf();
 
     // Writing html to pdf.
-    $mpdf->WriteHTML($this->processed_invoice);
+    $mpdf->WriteHTML($is_commission === false ? $this->processed_invoice : $this->processed_commission_invoice);
 
     // Define the directory and file path
     $directory = 'public://reservation';
@@ -254,6 +270,11 @@ class Invoicing {
 
   public function sendInvoices(): void
   {
+
+    // Email to magnus
+    /**@var $reservation_owner \Drupal\user\Entity\User **/
+    $reservation_owner = $this->reservation->getOwner();
+
     // Sending invoice email to organizer.
     $to  = $this->reservation->getAuthorEmail();
     $mailManager = \Drupal::service('plugin.manager.mail');
@@ -279,26 +300,29 @@ class Invoicing {
     $node_room = \Drupal::service('entity_type.manager')->getStorage('node')->load($this->reservation->get('entity_id')->target_id ?? 0);
     /**@var $room_owner \Drupal\user\Entity\User **/
     $room_owner = \Drupal::service('entity_type.manager')->getStorage('user')->load($node_room?->getOwnerId());
-    $to = $room_owner->getEmail();
+    $to = $reservation_owner->getEmail();
+
     if($to) {
       $mailManager->mail($module, $key, $to, $langcode, $params, NULL, TRUE);
     }
 
-    // Email to magnus
-    /**@var $reservation_owner \Drupal\user\Entity\User **/
-    $reservation_owner = $this->reservation->getOwner();
-    $to = $reservation_owner->getEmail();
+    $to = $room_owner->getEmail();
     if($to) {
-      $params1['body'] = Markup::create($this->magnus_email);
+      $params1['body'] = Markup::create($this->processed_commission_invoice);
       $params1['subject'] = "Payment Information";
+      $pdf_invoice = $this->getInvoicingPdf(TRUE);
+
+      // checking if pdf was created to send to email.
+      if(file_exists($pdf_invoice)) {
+        $params1['attachments'][] = [
+          'filecontent' => file_get_contents($pdf_invoice),
+          'filename' => basename($pdf_invoice),
+          'filemime' => mime_content_type($pdf_invoice),
+        ];
+      }
       $mailManager->mail($module, $key, $to, $langcode, $params1, NULL, TRUE);
     }
 
-    //    /**@var MailsystemManager $mail_service **/
-    //    $mail_service = \Drupal::service('plugin.manager.mail');
-    //    foreach ($this->invoicesEmails as $key => $email) {
-    //      $mail_service->mail(...$email);
-    //    }
   }
 
   /**

@@ -215,6 +215,17 @@ reservation.one_time_subscription_email:
       type: string
       label: 'template mail format'
 
+reservation.commission_invoice_email:
+  type: config_object
+  label: 'Email template for email'
+  mapping:
+    template_mail:
+      type: string
+      label: 'template mail'
+    template_mail_format:
+      type: string
+      label: 'template mail format'
+
 reservation.subscription_email_one_time:
   type: config_object
   label: 'Email template for email'
@@ -234,4 +245,4 @@ reservation.magnus_reservation_paid_subscription_email:
       label: 'template mail'
     template_mail_format:
       type: string
-      label: 'template mail format'      
+      label: 'template mail format'
