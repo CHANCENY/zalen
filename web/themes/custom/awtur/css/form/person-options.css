@@ -11,10 +11,13 @@
   object-fit: cover;
   margin: 24px 16px 16px 16px;
 }
+.my-per-person-item  .person-option-img {
+  border-right: 1px solid var(--border-color);
+}
+
 .my-per-person-item .person-option-offer {
-  border-left: 1px solid #BD8100;
-  border-right: 1px solid #BD8100;
   padding: 16px;
+  flex:1;
 }
 .my-per-person-item .person-option-title {
   display: flex;
@@ -34,8 +37,8 @@
   height: 20px;
 }
 .my-per-person-item .person-option-description {
-  color: #BD8100;
-  border-top: 1px solid #BD8100;
+  color: var(--brand-color);
+  border-top: 1px solid var(--border-color);;
   padding: 16px;
   max-height: clamp(4.0625rem, 3.5156rem + 1.25vw, 4.375rem);
   min-height: clamp(4.0625rem, 3.5156rem + 1.25vw, 4.375rem);
@@ -47,6 +50,7 @@
   max-height: 9999px;
 }
 .my-per-person-item .person-option-calculate {
+  border-left: 1px solid var(--border-color);;
   align-content: center;
   justify-items: center;
   margin-left: auto;
@@ -80,6 +84,7 @@
 .my-per-person-item .person-option-lees-meer a {
   display: flex;
   justify-content: end;
+  border-bottom: unset;
 }
 .my-per-person-item .person-option-lees-meer a:hover,
 .my-per-person-item .person-option-lees-meer a:focus,
@@ -90,8 +95,16 @@
   .my-per-person-item {
     flex-direction: column;
   }
-  .my-per-person-item .person-option-offer {
-    border: unset;
+  .my-per-person-item .person-option-img {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+  }
+  
+  .my-per-person-item .person-option-calculate {
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
   }
 }
 .reservation-service-count-wrapper,.reservation-overnightroom-count-wrapper {
@@ -228,7 +241,6 @@
   }
 
   .reservation-overnightroom-count-wrapper input {
-    width: 30%;
     padding: 10px !important;
     border-radius: unset;
   }
