@@ -895,7 +895,7 @@ form#flag-confirm-form {
 }
 
 @media (max-width:767px) {
-  div#main-wrapper {
+  .main-content {
     padding: 0 20px;
   }
 

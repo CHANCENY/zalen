@@ -191,8 +191,3 @@
 
 }
 
-@media (max-width: 556px) {
-  .hydrated .main-content {
-    padding: unset;
-  }
-}
