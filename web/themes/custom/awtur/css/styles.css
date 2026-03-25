@@ -61,25 +61,25 @@ dl.node-type-list {
 .path-mijn-zaal-lijst table tr th,
 .path-user table tr th,
 .path-onze-zaal-reservaties table tr th {
-  background-color: #2f9bff;
-  border: 1px solid #E9D2AA;
+  background-color: var(--button);
+  border: 1px solid var(--border-color);
 }
 
 .path-mijn-zaal-lijst table tr td,
 .path-user table tr td,
 .path-onze-zaal-reservaties table tr td {
-  border: 1px solid #E9D2AA;
+  border: 1px solid var(--border-color);
 }
 
 td.views-field-field-foto img {
   width: 70px;
   height: 70px;
-  border: 2px solid #bd8100;
+  border: 2px solid var(--brand-color);
   object-fit: cover;
 }
 
 form#views-form-flag-bookmark-page-mijn-zaal-lijst .button {
-  background: #bd8100;
+  background: var(--brand-color);
   border-radius: 4px;
   border: unset;
   font-weight: unset;
@@ -100,7 +100,7 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst .SumoSelect>p.CaptionCont>spa
   }
 
   form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 #edit-actions--2 {
-    border-left: 2px solid #e6d1a0;
+    border-left: 2px solid var(--border-color);
     margin-left: 50px;
   }
 }
@@ -125,7 +125,6 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 
 .user-logged-in.path-user #edit-actions input.button,
 .user-logged-in.path-user #edit-actions a {
-  background: #2f9bff;
   border: unset;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -159,7 +158,7 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 
 .path-user h2.content-user,
 .path-user .view-id-zalen_per_gebruiker .view-header a {
-  color: #bd8100;
+  color: var(--brand-color);
 }
 
 .path-user .view-id-zalen_per_gebruiker .view-footer {
@@ -168,7 +167,7 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 
 .path-user .view-id-zalen_per_gebruiker .view-footer a {
   color: #fff;
-  background: #2f9bff;
+  background: var(--button);
   padding: 8px 20px;
   border-radius: 5px;
 }
@@ -178,8 +177,8 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 }
 
 .path-user .sidebar .block.block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf {
-  border-bottom: 1px solid #e6d1a0;
-  border-top: 1px solid #e6d1a0;
+  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
   margin: unset;
 }
 
@@ -194,7 +193,7 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 .path-user .sidebar .block-views-blockzalen-per-gebruiker-blok-mijn-bedrijf img {
   width: 100px;
   height: 100px;
-  border: 2px solid #bd8100;
+  border: 2px solid var(--brand-color);
   object-fit: cover;
 }
 
@@ -205,7 +204,7 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 
 .path-user .profile .account-details-label {
   font-size: 20px;
-  color: #bd8100;
+  color: var(--brand-color);
   margin-top: 40px;
 }
 
@@ -238,7 +237,7 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 
 .path-user .sidebar .views-field.views-field-edit-node a,
 .path-user .sidebar .view-empty a {
-  background: #2f9bff;
+  background: var(--button);
   color: #fff;
   padding: 4px 8px;
   margin: 8px;
@@ -247,10 +246,6 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 
 .path-user .sidebar .view-empty {
   text-align: center;
-}
-
-.path-user summary {
-  background: #2f9bff;
 }
 
 .path-user .sidebar .user-profile-photo,
@@ -282,7 +277,7 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 }
 
 .path-user .profile .text-capitalize {
-  color: #2f9bff;
+  color: var(--brand-color);
   font-weight: bold;
 }
 
@@ -304,11 +299,11 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   -moz-appearance: none !important;
   appearance: none !important;
   padding: 10px 44px 10px 12px;
-  border: 1px solid #e0be59;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   background-image:
     url("data:image/svg+xml;utf8,\<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'>\<path d='M1 1l6 6 6-6' stroke='%23ffffff' stroke-width='2.5' fill='none' stroke-linecap='round'/>\</svg>"),
-    linear-gradient(to left, #e0be59 42px, #ffffff 42px);
+    linear-gradient(to left, var(--border-color) 42px, #ffffff 42px);
   background-repeat: no-repeat, no-repeat;
   background-position: right 14px center, right center;
   background-size: 14px 9px, 100% 100%;
@@ -331,12 +326,8 @@ body[class*="path-user"] .menu a[data-drupal-link-system-path="user"] {
   content: unset !important;
 }
 
-/* .path-vip-capacity-selection .main-content {
-    padding: 0 20px;
-} */
-
 .path-vip-capacity-selection .zaal-condities-capacity-selection .button {
-  background: #2f9bff;
+  background: var(--button);
 }
 
 #edit-delete:hover,
