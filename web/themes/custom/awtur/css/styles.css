@@ -2,15 +2,13 @@
   padding: 0 30px;
 }
 
-@media(min-width: 600px){
-  .main-content #block-awtur-local-tasks {
-    margin-left: -30px;
-    margin-right: -30px;
-  }
+.main-content #block-awtur-local-tasks {
+  margin-left: -30px;
+  margin-right: -30px;
 }
 
 .page-node-type-zaal .main-content {
-  padding: 0 30px;
+  padding: 0 30px 10px 30px;
 }
 
 form#node-page-form {
@@ -43,6 +41,10 @@ dl.node-type-list {
   padding: 0 30px;
 }
 
+.user-form input:not([type="submit"]) {
+  background-color: var(--form-color);
+}
+
 .path-mijn-zaal-lijst table th,
 .path-user table th,
 .path-onze-zaal-reservaties table th,
@@ -55,7 +57,7 @@ dl.node-type-list {
 .path-mijn-zaal-lijst table tr,
 .path-user table tr,
 .path-onze-zaal-reservaties table tr td {
-  background: #fffef3;
+  background: var(--form-color);
 }
 
 .path-mijn-zaal-lijst table tr th,
@@ -119,9 +121,9 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
   box-shadow: none !important;
 }
 
-.path-user #edit-actions input {
+/* .path-user #edit-actions input {
   margin-right: unset;
-}
+} */
 
 .user-logged-in.path-user #edit-actions input.button,
 .user-logged-in.path-user #edit-actions a {
@@ -149,6 +151,8 @@ form#views-form-flag-bookmark-page-mijn-zaal-lijst #edit-flagging-bulk-form--2 .
 
 .path-user .block-local-tasks-block {
   background-color: #fff;
+  margin-right: -20px;
+  margin-left: -20px;
 }
 
 .path-user .content-user {
@@ -895,7 +899,7 @@ form#flag-confirm-form {
 }
 
 @media (max-width:767px) {
-  .main-content {
+  div#main-wrapper, .main-content {
     padding: 0 20px;
   }
 
