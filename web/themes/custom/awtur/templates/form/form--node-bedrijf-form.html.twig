@@ -37,20 +37,26 @@
     <div class="form-group">
       {{ element.field_logo }}
     </div>
+  </fieldset>
 
+  <fieldset class="form-section" id="section-Openingstijden">
+    <legend>{{ 'Opening hours'|t }}</legend>
     <div class="input-openingsuren">
       {{ element.field_openingsuren }}
     </div>
+  </fieldset>
 
+  <fieldset class="form-section" id="section-sluit-periode">
+    <legend>{{ 'Close period'|t }}</legend>
     <div class="form-group">
       {{ element.field_sluit_periode }}
     </div>
   </fieldset>
 
 
-  {# ================= ADDRESS $ LOCATION ================= #}
-  <fieldset class="form-section" id="section-locatie">
-    <legend>{{ 'Address & Location'|t }}</legend>
+    {# ================= CONTACT PERSON ================= #}
+  <fieldset class="form-section" id="section-contact">
+    <legend>{{ 'Contact Person'|t }}</legend>
 
     <div class="form-group bedrijf-field-aanpreekvorm">
       <div class="element-field-aanspreekvorm">
@@ -65,6 +71,11 @@
     <div class="form-group">
       {{ element.field_avatar }}
     </div>
+  </fieldset>
+
+  {# ================= PHONE NUMBER & GSM NUMBER ================= #}
+  <fieldset class="form-section" id="section-number">
+    <legend>{{ 'Phone Number & GSM Number'|t }}</legend>
 
     <div class="form-group bedrijf-field-telefoon">
       {{ element.field_telefoon }}
@@ -73,6 +84,11 @@
     <div class="form-group bedrijf-field-gsm">
       {{ element.field_gsm }}
     </div>
+  </fieldset>
+
+  {# ================= ADDRESS $ LOCATION ================= #}
+  <fieldset class="form-section" id="section-locatie">
+    <legend>{{ 'Address & Location'|t }}</legend>
 
     <div class="form-group form-item--adres required">
       {{ element.field_adres }}
@@ -98,18 +114,19 @@
   {# ================= PUBLIC TRANSPORT ================= #}
   <fieldset class="form-section" id="section-vervoer">
     <legend>{{ 'Public transport & Distances'|t }}</legend>
-
-    <div class="form-group">
-      {{ element.field_afstand_bus }}
-    </div>
-    <div class="form-group">
-      {{ element.field_afstand_tramhalte }}
-    </div>
-    <div class="form-group">
-      {{ element.field_afstand_trein_station }}
-    </div>
-    <div class="form-group">
-      {{ element.field_afstand_metro }}
+    <div class="vervoer-wrapper">
+      <div class="form-group">
+        {{ element.field_afstand_bus }}
+      </div>
+      <div class="form-group">
+        {{ element.field_afstand_tramhalte }}
+      </div>
+      <div class="form-group">
+        {{ element.field_afstand_trein_station }}
+      </div>
+      <div class="form-group">
+        {{ element.field_afstand_metro }}
+      </div>
     </div>
   </fieldset>
 
@@ -117,20 +134,22 @@
   {# ================= PARKING / PARKING OPTIONS ================= #}
   <fieldset class="form-section" id="section-parking">
     <legend>{{ 'Parking options'|t }}</legend>
-
-    <div class="form-group">
-      {{ element.field_fietsen }}
-    </div>
-    <div class="form-group">
-      {{ element.field_motoren }}
-    </div>
-    <div class="form-group">
-      {{ element.field_wagens }}
+    <div class="parking-wrapper">
+      <div class="form-group">
+        {{ element.field_fietsen }}
+      </div>
+      <div class="form-group">
+        {{ element.field_motoren }}
+      </div>
+      <div class="form-group">
+        {{ element.field_wagens }}
+      </div>
     </div>
   </fieldset>
 
 
   {# ================= FACILITIES ================= #}
+ 
   <fieldset class="form-section" id="section-faciliteiten">
     <legend>{{ 'Facilities and Amenities'|t }}</legend>
 
@@ -173,9 +192,12 @@
     <div class="form-group">
       {{ element.field_foto }}
     </div>
+  </fieldset>
 
+  {# ================= VEdIO & FILES ================= #}
+  <fieldset class="form-section" id="section-video">
+    {# <legend>{{ 'Location Video'|t }}</legend> #}
     <div class="form-group">
-{#      {{ element.field_video }}#}
       {{ element.field_location_video }}
     </div>
   </fieldset>
@@ -202,18 +224,21 @@
     <div class="form-group">
       {{ element.body }}
     </div>
+  </fieldset>
 
+  {# ================= WEBSITE & RARING ================= #}
+  <fieldset class="form-section" id="section-website">
     <div class="form-group">
       {{ element.field_website }}
     </div>
 
-    <div class="form-group">
+    {# <div class="form-group">
       {{ element.field_google_rating }}
-    </div>
+    </div> #}
 
-    <div class="form-group">
+    {# <div class="form-group">
       {{ element.field_google_review_count }}
-    </div>
+    </div> #}
 
   </fieldset>
 

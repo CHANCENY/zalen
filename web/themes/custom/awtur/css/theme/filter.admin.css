@@ -26,7 +26,7 @@
 }
 
 .filter-help {
-  float: right; /* LTR */
+  text-align: right; /* LTR */
 }
 [dir="rtl"] .filter-help {
   float: left;

@@ -22,14 +22,14 @@
   outline: none;
   /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); */
 }
-/*.button:hover,*/
-/*.button:active,*/
-/*.button:focus {*/
+.button:hover,
+.button:active,
+.button:focus {
 /*  text-decoration: none;*/
 /*  color: #fff;*/
 /*  background: #dedede;*/
-/*  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);*/
-/*}*/
+ box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+}
 .button.is-disabled:hover,
 .button.is-disabled:active,
 .button.is-disabled:focus,

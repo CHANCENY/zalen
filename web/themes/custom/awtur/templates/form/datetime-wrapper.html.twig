@@ -20,17 +20,23 @@
     required ? 'form-required',
   ]
 %}
-{% if title %}
-  <h4{{ title_attributes.addClass(title_classes) }}>{{ title }}</h4>
-{% endif %}
-{{ content }}
-{% if errors %}
-  <div class="form-item--error-message">
-    <strong>{{ errors }}</strong>
-  </div>
-{% endif %}
-{% if description %}
-  <div{{ description_attributes.addClass('description') }}>
-    {{ description }}
-  </div>
-{% endif %}
+
+<div class="date-item">
+  {% if title %}
+    <h4{{ title_attributes.addClass(title_classes) }}>{{ title }}</h4>
+  {% endif %}
+
+  {{ content }}
+
+  {% if errors %}
+    <div class="form-item--error-message">
+      <strong>{{ errors }}</strong>
+    </div>
+  {% endif %}
+
+  {% if description %}
+    <div{{ description_attributes.addClass('description') }}>
+      {{ description }}
+    </div>
+  {% endif %}
+</div>
