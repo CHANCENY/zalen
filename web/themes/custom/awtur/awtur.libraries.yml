@@ -422,6 +422,7 @@ form-bedrijf-edit:
     layout:
       css/form/bedrijf-edit-form.css: {}
   js:
+    js/form/facilities-tabs.js: {}
     js/form/label-tooltip.js: {}
     js/form/number-input-controls.js: {}
   dependencies:
@@ -508,7 +509,6 @@ alle_zalen_slider:
   dependencies:
     - core/drupal
     - core/once
-
 
 
 

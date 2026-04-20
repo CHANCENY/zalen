@@ -45,22 +45,28 @@
 
 .form-managed-file{
   border: 2px dashed var(--border-color);
-  border-bottom: none;
   border-radius: 4px 4px 0 0;
   background: var(--form-color);
   transition: all 0.25s ease;
 }
 
-.node-bedrijf-form .form-managed-file .image-widget-data, #section-media .form-managed-file,  #section-video .form-managed-file{
-  text-align: center;
+.node-bedrijf-form .form-managed-file{
+  border-bottom: none;
 }
 
-.node-bedrijf-form .form-managed-file .image-preview{
+.form-managed-file .image-widget-data, #section-media .form-managed-file,  #section-video .form-managed-file{
+  text-align: center;
+}
+.form-managed-file .image-widget-data label{
+  display: block;
+}
+
+.form-managed-file .image-preview{
   border-bottom: 1px solid var(--border-color);
   padding: 20px;
 }
 
-.node-bedrijf-form .form-type-managed-file .description {
+.form-type-managed-file .description {
   border: 2px dashed var(--border-color);
   border-top: none;
   border-radius: 0 0 4px 4px;
@@ -181,6 +187,71 @@ table .fieldset-wrapper .date-item .label {
 .parking-wrapper label {
   display: block;
   margin-bottom: 4px;
+}
+
+#section-faciliteiten .form-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#section-faciliteiten .form-tabs__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+#section-faciliteiten .form-tabs__button {
+  border: 1px solid var(--border-color);
+  background: var(--pure-white);
+  border-radius: 999px;
+  color: #3b3b3b;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 16px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+#section-faciliteiten .form-tabs__button:hover,
+#section-faciliteiten .form-tabs__button:focus-visible {
+  border-color: var(--brand-color);
+  color: var(--brand-color);
+}
+
+#section-faciliteiten .form-tabs__button.is-active {
+  background: var(--brand-color);
+  border-color: var(--brand-color);
+  color: var(--pure-white);
+}
+
+#section-faciliteiten .form-tabs__panel[hidden] {
+  display: none;
+}
+
+#section-faciliteiten .form-tabs__panel details {
+  border: 0;
+}
+
+#section-faciliteiten .form-tabs__panel details > summary {
+  display: none;
+}
+
+#section-faciliteiten .form-tabs__panel details > .details-wrapper {
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  #section-faciliteiten .form-tabs__nav {
+    flex-direction: column;
+  }
+
+  #section-faciliteiten .form-tabs__button {
+    width: 100%;
+    text-align: left;
+  }
 }
 
 @media(hover: hover) {
@@ -453,3 +524,6 @@ table .fieldset-wrapper .date-item .label {
   display: block;
 }
 
+[id^="edit-field-sluit-periode"] .input-close-period {
+  width: 100%;
+}
