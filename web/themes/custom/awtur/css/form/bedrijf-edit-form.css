@@ -43,41 +43,50 @@
   padding: 20px;
 }
 
-.form-managed-file{
+.form-managed-file {
   border: 2px dashed var(--border-color);
   border-radius: 4px 4px 0 0;
   background: var(--form-color);
   transition: all 0.25s ease;
-}
-
-.node-bedrijf-form .form-managed-file{
-  border-bottom: none;
-}
-
-.form-managed-file .image-widget-data, #section-media .form-managed-file,  #section-video .form-managed-file{
   text-align: center;
 }
-.form-managed-file .image-widget-data label{
+
+.form-managed-file:has(+ .description) {
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  text-align: center;
+  background: var(--form-color);
+}
+
+.form-managed-file + .description {
+  border: 2px dashed var(--border-color);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  text-align: center;
+  background: var(--form-color);
+  padding-bottom: 20px;
+}
+
+.form-managed-file input{
+    text-align: center;
+}
+
+.form-managed-file .form-item label{
   display: block;
+}
+
+table .fieldset-wrapper .date-item .label {
+  color: #777;
 }
 
 .form-managed-file .image-preview{
   border-bottom: 1px solid var(--border-color);
   padding: 20px;
+  text-align: left;
 }
 
-.form-type-managed-file .description {
-  border: 2px dashed var(--border-color);
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  padding: 12px 16px;
-  background: var(--form-color);
-  font-size: 12px;
-  text-align: center;
-}
-
-table .fieldset-wrapper .date-item .label {
-  color: #777;
+.form-managed-file .image-widget-data{
+  padding: 10px;
 }
 
 #section-Openingstijden .tijd-container {
@@ -108,13 +117,13 @@ table .fieldset-wrapper .date-item .label {
 .bedrijf-form .bedrijf-form-afvanced input[type="time"],
 .bedrijf-form input[type="tel"] {
   border: 1px solid var(--border-color);
-  background: var(--form-color);
+  background-color: var(--form-color);
   border-radius: 4px;
   outline: none;
 }
 
 .bedrijf-form input.form-date {
-  background: var(--pure-white);
+  background-color: var(--pure-white);
 }
 
 .form-group.bedrijf-field-telefoon input,
@@ -526,4 +535,18 @@ table .fieldset-wrapper .date-item .label {
 
 [id^="edit-field-sluit-periode"] .input-close-period {
   width: 100%;
+}
+
+.input-close-period {
+  background-image: url('/themes/custom/awtur/images/icons/filters/calendar.svg');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;;
+}
+
+.bedrijf-form .input-openingsuren .timepicker {
+  background-image: url('/themes/custom/awtur/images/misc/icons/787878/clock.svg');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
 }

@@ -38,20 +38,28 @@
     <div class="form-group">
       {{ element.field_logo }}
     </div>
+  </fieldset>
 
+  {# ================= Opening hours ================= #}
+  <fieldset class="form-section" id="section-Openingstijden">
+    <legend>{{ 'Opening hours'|t }}</legend>
     <div class="input-openingsuren">
       {{ element.field_openingsuren }}
     </div>
+  </fieldset>
 
+
+  {# ================= Close period ================= #}
+  <fieldset class="form-section" id="section-sluit-periode">
+    <legend>{{ 'Close period'|t }}</legend>
     <div class="form-group">
       {{ element.field_sluit_periode }}
     </div>
   </fieldset>
 
-
-  {# ================= CONTACT $ LOCATION ================= #}
-  <fieldset class="form-section" id="section-locatie">
-    <legend>{{ 'Contact & Location'|t }}</legend>
+  {# ================= CONTACT PERSON ================= #}
+  <fieldset class="form-section" id="section-contact">
+    <legend>{{ 'Contact Person'|t }}</legend>
 
     <div class="form-group bedrijf-field-aanpreekvorm">
       <div class="element-field-aanspreekvorm">
@@ -65,6 +73,11 @@
     <div class="form-group">
       {{ element.field_avatar }}
     </div>
+  </fieldset>
+
+  {# ================= PHONE NUMBER & GSM NUMBER ================= #}
+  <fieldset class="form-section" id="section-number">
+    <legend>{{ 'Phone Number & GSM Number'|t }}</legend>
 
     <div class="form-group bedrijf-field-telefoon">
       {{ element.field_telefoon }}
@@ -73,6 +86,11 @@
     <div class="form-group bedrijf-field-gsm">
       {{ element.field_gsm }}
     </div>
+  </fieldset>
+
+  {# ================= ADDRESS $ LOCATION ================= #}
+  <fieldset class="form-section" id="section-locatie">
+    <legend>{{ 'Address & Location'|t }}</legend>
 
     <div class="form-group form-item--adres required">
       {{ element.field_adres }}
@@ -86,35 +104,37 @@
 
   {# ================= PUBLIC TRANSPORT ================= #}
   <fieldset class="form-section" id="section-vervoer">
-    <legend>{{ 'Public transport & Distances'|t }}</legend>
-
-    <div class="form-group">
-      {{ element.field_afstand_bus }}
-    </div>
-    <div class="form-group">
-      {{ element.field_afstand_tramhalte }}
-    </div>
-    <div class="form-group">
-      {{ element.field_afstand_trein_station }}
-    </div>
-    <div class="form-group">
-      {{ element.field_afstand_metro }}
+    <legend>{{ 'Distances to Infrastructure'|t }}</legend>
+    <div class="vervoer-wrapper">
+      <div class="form-group">
+        {{ element.field_afstand_bus }}
+      </div>
+      <div class="form-group">
+        {{ element.field_afstand_tramhalte }}
+      </div>
+      <div class="form-group">
+        {{ element.field_afstand_trein_station }}
+      </div>
+      <div class="form-group">
+        {{ element.field_afstand_metro }}
+      </div>
     </div>
   </fieldset>
 
 
   {# ================= PARKING / PARKING OPTIONS ================= #}
   <fieldset class="form-section" id="section-parking">
-    <legend>{{ 'Parking options'|t }}</legend>
-
-    <div class="form-group">
-      {{ element.field_fietsen }}
-    </div>
-    <div class="form-group">
-      {{ element.field_motoren }}
-    </div>
-    <div class="form-group">
-      {{ element.field_wagens }}
+    <legend>{{ 'Parking'|t }}</legend>
+    <div class="parking-wrapper">
+      <div class="form-group">
+        {{ element.field_fietsen }}
+      </div>
+      <div class="form-group">
+        {{ element.field_motoren }}
+      </div>
+      <div class="form-group">
+        {{ element.field_wagens }}
+      </div>
     </div>
   </fieldset>
 
@@ -225,7 +245,15 @@
     <div class="form-group">
       {{ element.body }}
     </div>
+  </fieldset>
 
+  {# ================= WEBSITE & RATING ================= #}
+  <fieldset class="form-section" id="section-website">
+    <legend>{{ 'Website & Ratings'|t }}</legend>
+
+    <div class="form-group">
+      {{ element.field_website }}
+    </div>
     <div class="form-group">
       {{ element.field_website }}
     </div>
