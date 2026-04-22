@@ -43,7 +43,8 @@
   padding: 20px;
 }
 
-.form-managed-file {
+.bedrijf-form .form-managed-file {
+  padding-top: 20px;
   border: 2px dashed var(--border-color);
   border-radius: 4px 4px 0 0;
   background: var(--form-color);
@@ -51,14 +52,23 @@
   text-align: center;
 }
 
-.form-managed-file:has(+ .description) {
+.bedrijf-form  table .form-managed-file{
+  border: unset;
+  text-align: left;
+}
+
+.bedrijf-form  table .form-managed-file input{
+  text-align: left;
+}
+
+.bedrijf-form .form-managed-file:has(+ .description) {
   border-bottom: none;
   border-radius: 4px 4px 0 0;
   text-align: center;
   background: var(--form-color);
 }
 
-.form-managed-file + .description {
+.bedrijf-form .form-managed-file + .description {
   border: 2px dashed var(--border-color);
   border-top: none;
   border-radius: 0 0 4px 4px;
@@ -67,11 +77,11 @@
   padding-bottom: 20px;
 }
 
-.form-managed-file input{
+.bedrijf-form .form-managed-file input{
     text-align: center;
 }
 
-.form-managed-file .form-item label{
+.bedrijf-form .form-managed-file .form-item label{
   display: block;
 }
 
@@ -79,14 +89,11 @@ table .fieldset-wrapper .date-item .label {
   color: #777;
 }
 
-.form-managed-file .image-preview{
+.bedrijf-form .form-managed-file .image-preview:has([data-drupal-selector]) {
   border-bottom: 1px solid var(--border-color);
   padding: 20px;
+  padding-top: 0;
   text-align: left;
-}
-
-.form-managed-file .image-widget-data{
-  padding: 10px;
 }
 
 #section-Openingstijden .tijd-container {
@@ -104,6 +111,7 @@ table .fieldset-wrapper .date-item .label {
     flex-direction: column;
   }
 }
+
 .bedrijf-form .SumoSelect>p.CaptionCont {
   border: 1px solid var(--border-color);
   border-radius: 4px;
@@ -541,7 +549,7 @@ table .fieldset-wrapper .date-item .label {
   background-image: url('/themes/custom/awtur/images/icons/filters/calendar.svg');
   background-repeat: no-repeat;
   background-position: right 12px center;
-  background-size: 14px;;
+  background-size: 14px;
 }
 
 .bedrijf-form .input-openingsuren .timepicker {
